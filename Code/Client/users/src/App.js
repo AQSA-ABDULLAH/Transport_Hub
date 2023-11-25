@@ -5,7 +5,7 @@ import Navbar from './components/Navbar';
 function App() {
   return (
    <>
-   <Navbar name="TransportHub"/>
+   <Navbar title="TransportHub" services="Services" LP="Loyality Program" MS="Manage Bookings" Subscribe="Subscribe" />
    
    </>
   );
