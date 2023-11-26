@@ -11,8 +11,8 @@ const Transporter = require('./models/Transporter');
 require('./db/connection');
 
 app.post("/register", async(req, res)=>{
-    let transporters = new Transporter(req.body);
-    let result = await transporters.save();
+    const transporter = new Transporter(req.body);
+    let result = await transporter.save();
     // result = result.toObject();
     // delete result.password;
     res.send(result);
