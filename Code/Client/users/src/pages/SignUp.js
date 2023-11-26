@@ -5,24 +5,15 @@ export default function SignUp() {
     const [fullName, setFullName] = useState('');
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
-    const [hasExperience, setHasExperience] = useState(false);
-    const [dob, setDOB] = useState('');
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
-    const [education, setEducation] = useState('');
+    const [company, setCompany] = useState('');
 
     // Handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log({
-            fullName,
-            phone,
-            email,
-            hasExperience,
-            dob,
-            address,
-            city,
-            education,
+            fullName, phone, email, address, city, company,
         });
     };
 
@@ -62,44 +53,6 @@ export default function SignUp() {
                     />
                 </label>
                 <br />
-
-                <label>
-                    Have any experience?:
-                    <div>
-                        <label>
-                            <input
-                                type="radio"
-                                value="yes"
-                                checked={hasExperience === 'yes'}
-                                onChange={() => setHasExperience('yes')}
-                            />
-                            Yes
-                        </label>
-                        <label>
-                            <input
-                                type="radio"
-                                value="no"
-                                checked={hasExperience === 'no'}
-                                onChange={() => setHasExperience('no')}
-                            />
-                            No
-                        </label>
-                    </div>
-                </label>
-
-                <br />
-
-                <label>
-                    Date of Birth:
-                    <input
-                        type="date"
-                        value={dob}
-                        onChange={(e) => setDOB(e.target.value)}
-                        required
-                    />
-                </label>
-                <br />
-
                 <label>
                     Address:
                     <input
@@ -110,7 +63,6 @@ export default function SignUp() {
                     />
                 </label>
                 <br />
-
                 <label>
                     City:
                     <input
@@ -123,11 +75,11 @@ export default function SignUp() {
                 <br />
 
                 <label>
-                    Education:
+                    Company(if any):
                     <input
                         type="text"
-                        value={education}
-                        onChange={(e) => setEducation(e.target.value)}
+                        value={company}
+                        onChange={(e) => setCompany(e.target.value)}
                         required
                     />
                 </label>

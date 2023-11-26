@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { Dropdown } from 'react-bootstrap'; 
 import '../CSS/style.css'; 
@@ -38,7 +39,8 @@ export default function Navbar(props) {
       </ul>
       <div class="d-flex" >
         <button class="btn btn-outline-success mx-3" type="submit">{props.Subscribe}</button>
-        <button class="btn btn-primary" type="submit">{props.Login}</button>
+        <button class="btn btn-primary"> <Link to="/signUp">Signup</Link> </button>
+        <button class="btn btn-primary"><Link to="/signIn">{props.Login}</Link></button>
       </div>
     </div>
   </div>
@@ -56,7 +58,6 @@ Navbar.propTypes = {
     Login: PropTypes.string,
   }
 Navbar.defaultProps = {
-    
     home: "Home",
     Login:"Login"
   }
