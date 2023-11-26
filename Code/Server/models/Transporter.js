@@ -1,13 +1,35 @@
 const mongoose = require('mongoose');
 
 const transporterSchema = new mongoose.Schema({
-    fullName:String,
-    phoneNo:String,
-    email: String,
-    experience:String,
-    dateOfBirth:String,
-    address:String,
-    city:String,
-    education:String
+    fullName: {
+        type:String,
+        requried: true
+    },
+    email: {
+        type:String,
+        requried: true,
+        unique:true
+    },
+    phoneNo: {
+        type: Number,
+        requried: true
+    },
+    experience:{
+        type: String,
+        requried: true,
+        enum: ['yes', 'no']
+    },
+    address:{
+        type: String,
+        requried: true
+    },
+    city:{
+        type: String,
+        requried: true
+    },
+    education:{
+        type: String,
+        requried: true
+    }
 });
-module.exports = mongoose.model("transporters",transporterSchema);
+module.exports = mongoose.model("transporters", transporterSchema);
