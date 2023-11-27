@@ -36,4 +36,8 @@ app.post("/user_signIn", async(req, res)=>{
     }
 });
 
-app.listen(6000);
+app.get("/",(req,res)=>{
+    res.send("app is working")
+})
+
+app.listen(5000);
