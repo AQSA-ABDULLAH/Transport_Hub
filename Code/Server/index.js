@@ -5,6 +5,7 @@ app.use(express.json());
 const cors = require('cors');
 app.use(cors());
 
+const Users = require('./models/Users');
 const Transporter = require('./models/Transporter');
 
 // For connection of DB
@@ -16,6 +17,23 @@ app.post("/register", async(req, res)=>{
     // result = result.toObject();
     // delete result.password;
     res.send(result);
+});
+
+app.post("/user_register", async(req, res)=>{
+    let user = new Users(req.body);
+    let result = await user.save();
+    res.send(result);
+});
+
+app.post("/user_signIn", async(req, res)=>{
+    if(req.body.password && req.body.email){
+        let user = await Users.findOne(req.body).select("-password");
+        if(user){
+            res.send(user);
+        }else{
+            res.send({result:"Not Found"});
+        }
+    }
 });
 
 app.listen(6000);
