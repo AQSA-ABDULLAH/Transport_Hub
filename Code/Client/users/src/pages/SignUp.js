@@ -1,71 +1,98 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import axios from 'axios';
 
-export default function Signup() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNo, setPhoneNo] = useState("");
-  const [password, setPassword] = useState("");
-  const [address, setAddress] = useState("");
-  const navigate = useNavigate();
+export default function SignUp() {
+  const [fullName, setFullName] = useState('');
+  const [phoneNo, setPhoneNo] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [address, setAddress] = useState('');
+  const [city, setCity] = useState('');
 
-  const collectData = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    let result = await fetch('http://localhost:6000/user_register', {
-      method: 'post',
-      body: JSON.stringify({ name, email, phoneNo, password, address }),
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    });
-    result = await result.json();
-    localStorage.setItem("user", JSON.stringify(result));
-    navigate('/signIn');
-  }
 
-  useEffect(()=>{
-    const auth = localStorage.getItem('user');
-    if(auth){
-      navigate('/')
+    try {
+      const formData = { fullName, phoneNo, email, password, address, city };
+      const response = await axios.post('http://localhost:5000/user_register', formData);
+      console.log('Server response:', response.data);
+    } catch (error) {
+      console.error('Error submitting form:', error.message, error.response);
     }
-  })
+  };
+
 
   return (
-    <div className='container'>
-      <form onSubmit={collectData}>
-        <h2 className='text-center pt-3'>SIGN UP</h2>
-        <div className="mb-3">
-          <label className="form-label">User Name</label>
-          <input type="text" className="form-control" id="exampleInputname"
-            value={name}
-            onChange={(e) => setName(e.target.value)} />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Email address</label>
-          <input type="email" className="form-control" id="exampleInputEmail1"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)} />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">phoneNo</label>
-          <input type="tel" className="form-control" id="exampleInputname"
+    <div>
+      <h2>Sign Up</h2>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Full Name:
+          <input
+            type="text"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+            required
+          />
+        </label>
+        <br />
+
+        <label>
+          Phone No.:
+          <input
+            type="tel"
             value={phoneNo}
-            onChange={(e) => setPhoneNo(e.target.value)} />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Password</label>
-          <input type="password" className="form-control" id="exampleInputPassword1"
+            onChange={(e) => setPhoneNo(e.target.value)}
+            required
+          />
+        </label>
+        <br />
+
+        <label>
+          Email:
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </label>
+        <br />
+
+        <label>
+          Password:
+          <input
+            type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)} />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">User Name</label>
-          <input type="text" className="form-control" id="exampleInputname"
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </label>
+        <br />
+
+        <label>
+          Address:
+          <input
+            type="text"
             value={address}
-            onChange={(e) => setAddress(e.target.value)} />
-        </div>
-        <button type="submit" className="btn btn-success">Submit</button>
-        <p className='pt-3'>Already Have an Account <Link to='/'>SIGN IN</Link></p>
+            onChange={(e) => setAddress(e.target.value)}
+            required
+          />
+        </label>
+        <br />
+
+        <label>
+          City:
+          <input
+            type="text"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            required
+          />
+        </label>
+        <br />
+
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
