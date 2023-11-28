@@ -67,33 +67,43 @@
 
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import '../CSS/style.css';
 
 const Navbar = () => {
   const auth = localStorage.getItem('user');
   const navigate = useNavigate();
-  const logout = () =>{
+  const logout = () => {
     localStorage.clear();
     navigate("/")
   }
 
   return (
-    <nav>
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className='nav-container'>
-        <h1><Link className="logo font-italic" to="/">FoodFrenzy</Link></h1>
-        <ul>
-          <li><Link to="/aboutUs">About Us</Link></li>
-          <li><Link to="/services">Services</Link></li>
-          <li><Link to="/loyaltyProgram">Loyalty Program</Link></li>
-          <li><Link to="/profile">Profile</Link></li>
-          <li><Link to="/manageBooking">Manage Booking</Link></li>
-        </ul>
+        <h1 className="navbar-brand"><Link className="logo font-italic" to="/">FoodFrenzy</Link></h1>
 
-        {auth ?
-          <button><Link onClick={logout} to="/signUp">Logout</Link></button>
-          :
-          <button><Link to="/signIn">Login</Link></button>
-        }
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="/navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
 
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li><Link to="/aboutUs">About Us</Link></li>
+            <li><Link to="/services">Services</Link></li>
+            <li><Link to="/loyaltyProgram">Loyalty Program</Link></li>
+            <li><Link to="/profile">Blog & News</Link></li>
+            <li><Link to="/manageBooking">FAQs</Link></li>
+          </ul>
+
+          {auth ?
+            <button><Link onClick={logout} to="/signUp">Logout</Link></button>
+            :
+            <>
+              <button><Link to="/signIn">Login</Link></button>
+              <button><Link to="/signUp">Sign Up</Link></button>
+            </>
+          }
+        </div>
 
       </div>
     </nav>
