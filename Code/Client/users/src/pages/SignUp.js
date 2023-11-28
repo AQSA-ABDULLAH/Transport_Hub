@@ -26,6 +26,7 @@ export default function SignUp() {
       const response = await axios.post('http://localhost:5000/user_register', formData);
 
       localStorage.setItem("user", JSON.stringify(response));
+      navigate("/")
     } 
     catch (error) {
       console.error('Error submitting form:', error.message, error.response);
