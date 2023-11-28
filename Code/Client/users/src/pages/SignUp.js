@@ -15,12 +15,13 @@ export default function SignUp() {
     try {
       const formData = { fullName, phoneNo, email, password, address, city };
       const response = await axios.post('http://localhost:5000/user_register', formData);
-      console.log('Server response:', response.data);
-    } catch (error) {
+
+      localStorage.setItem("users", JSON.stringify(response));
+    } 
+    catch (error) {
       console.error('Error submitting form:', error.message, error.response);
     }
   };
-
 
   return (
     <div>
