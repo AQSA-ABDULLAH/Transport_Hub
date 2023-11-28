@@ -66,10 +66,16 @@
 
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const auth = localStorage.getItem('user');
+  const navigate = useNavigate();
+  const logout = () =>{
+    localStorage.clear();
+    navigate("/")
+  }
+
   return (
     <nav>
       <div className='nav-container'>
@@ -83,11 +89,9 @@ const Navbar = () => {
         </ul>
 
         {auth ?
-          <button><Link to="/logout">Logout</Link></button>
+          <button><Link onClick={logout} to="/signUp">Logout</Link></button>
           :
           <button><Link to="/signIn">Login</Link></button>
-          &&
-          <button><Link to="/signUp">Signup</Link></button>
         }
 
 
