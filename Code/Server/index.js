@@ -22,6 +22,8 @@ app.post("/register", async(req, res)=>{
 app.post("/user_register", async(req, res)=>{
     let user = new Users(req.body);
     let result = await user.save();
+    result = result.toObject();
+    delete result.password;
     res.send(result);
 });
 
@@ -31,7 +33,7 @@ app.post("/user_signIn", async(req, res)=>{
         if(user){
             res.send(user);
         }else{
-            res.send({result:"Not Found"});
+            res.send({result:"User Not Found"});
         }
     }
 });
