@@ -65,34 +65,32 @@
 
 
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleNavbar = () => {
-    setIsOpen(!isOpen);
-  };
-
+  const auth = localStorage.getItem('user');
   return (
-    <nav className={`header ${isOpen ? 'open' : ''}`}>
+    <nav>
       <div className='nav-container'>
-        <Link className="logo text-white font-italic" to="/">FoodFrenzy</Link>
-        <div className='menu-icon ' onClick={toggleNavbar}>
-          <div className={`bar ${isOpen ? 'open' : ''}`}></div>
-          <div className={`bar ${isOpen ? 'open' : ''}`}></div>
-          <div className={`bar ${isOpen ? 'open' : ''}`}></div>
-        </div>
-
-        <ul className={`nav-links ${isOpen ? 'open' : ''}`}>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/cart">Cart</Link></li>
-          <li><Link to="/signUp">Signup</Link></li>
-          <li><Link to="/signIn">Login</Link></li>
-
-       
+        <h1><Link className="logo font-italic" to="/">FoodFrenzy</Link></h1>
+        <ul>
+          <li><Link to="/aboutUs">About Us</Link></li>
+          <li><Link to="/services">Services</Link></li>
+          <li><Link to="/loyaltyProgram">Loyalty Program</Link></li>
+          <li><Link to="/profile">Profile</Link></li>
+          <li><Link to="/manageBooking">Manage Booking</Link></li>
         </ul>
+
+        {auth ?
+          <button><Link to="/logout">Logout</Link></button>
+          :
+          <button><Link to="/signIn">Login</Link></button>
+          &&
+          <button><Link to="/signUp">Signup</Link></button>
+        }
+
+
       </div>
     </nav>
   )
