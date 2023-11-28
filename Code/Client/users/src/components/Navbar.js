@@ -69,6 +69,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+  const auth = localStorage.getItem('user');
   return (
     <nav>
       <div className='nav-container'>
@@ -79,10 +80,17 @@ const Navbar = () => {
           <li><Link to="/loyaltyProgram">Loyalty Program</Link></li>
           <li><Link to="/profile">Profile</Link></li>
           <li><Link to="/manageBooking">Manage Booking</Link></li>
-          <li><Link to="/logout">Logout</Link></li>
         </ul>
-        <button><Link to="/signUp">Signup</Link></button>
-        <button><Link to="/signIn">Login</Link></button>
+
+        {auth ?
+          <button><Link to="/logout">Logout</Link></button>
+          :
+          <button><Link to="/signIn">Login</Link></button>
+          &&
+          <button><Link to="/signUp">Signup</Link></button>
+        }
+
+
       </div>
     </nav>
   )

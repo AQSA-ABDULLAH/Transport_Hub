@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export default function SignUp() {
@@ -8,6 +9,14 @@ export default function SignUp() {
   const [password, setPassword] = useState('');
   const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
+  const navigate = useNavigate();
+
+    useEffect(()=>{
+      const auth = localStorage.getItem('user');
+      if(auth){
+        navigate("/")
+      }
+    })
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,7 +25,7 @@ export default function SignUp() {
       const formData = { fullName, phoneNo, email, password, address, city };
       const response = await axios.post('http://localhost:5000/user_register', formData);
 
-      localStorage.setItem("users", JSON.stringify(response));
+      localStorage.setItem("user", JSON.stringify(response));
     } 
     catch (error) {
       console.error('Error submitting form:', error.message, error.response);
