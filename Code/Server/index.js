@@ -14,40 +14,11 @@ dotenv.config({path:"./config.env"})
 // For connection of DB
 require('./db/connection');
 
+//Routes
+app.use(require('./routes/user'))
+
 const Users = require('./models/Users');
 const Transporter = require('./models/Transporter');
-
-app.post("/register", async(req, res)=>{
-    const transporter = new Transporter(req.body);
-    let result = await transporter.save();
-    // result = result.toObject();
-    // delete result.password;
-    res.send(result);
-});
-
-// app.post("/user_register", async(req, res)=>{
-//     let user = new Users(req.body);
-//     let result = await user.save();
-//     result = result.toObject();
-//     delete result.password;
-//     res.send(result);
-// });
-
-app.post("/user_signIn", async(req, res)=>{
-    if(req.body.password && req.body.email){
-        let user = await Users.findOne(req.body).select("-password");
-        if(user){
-            res.send(user);
-        }else{
-            res.send({result:"User Not Found"});
-        }
-    }
-});
-
-app.get("/",(req,res)=>{
-    res.send("app is working")
-})
-
 
 //For Server Port
 const PORT = process.env.PORT;
