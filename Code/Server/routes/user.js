@@ -1,23 +1,36 @@
-const express = require ('express');
+const express = require('express');
 const router = express.Router();
 
-router.post("/user_signUp", async(req, res)=>{
-    // let user = new Users(req.body);
-    // let result = await user.save();
-    // result = result.toObject();
-    // delete result.password;
-    res.send(res.body);
-});
+require('../db/connection');
+const User = require("../models/Users");
 
-router.post("/user_signIn", async(req, res)=>{
-    if(req.body.password && req.body.email){
-        let user = await Users.findOne(req.body).select("-password");
-        if(user){
-            res.send(user);
-        }else{
-            res.send({result:"User Not Found"});
-        }
+router.post('/user_signUp', (req, res) => {
+    const { fullName, email, phoneNumber, password, city, address } = req.body;
+
+    if (!fullName || !email || !phoneNumber || !password || !city || !address) {
+        return res.status(422).json({ error: "Please fill in all fields properly" });
     }
+
+    User.findOne({ email: email })
+        .then((userExist) => {
+            if (userExist) {
+                return res.status(422).json({ error: "User already exists" });
+            }
+
+            const user = new User({ fullName, email, phoneNumber, password, city, address });
+
+            user.save()
+                .then(() => {
+                    res.status(201).json({ message: "User registered successfully" });
+                })
+                .catch((error) => {
+                    res.status(500).json({ error: "Failed to register" });
+                    console.log(error);
+                });
+        })
+        .catch(error => {
+            console.log(error);
+        });
 });
 
 module.exports = router;
