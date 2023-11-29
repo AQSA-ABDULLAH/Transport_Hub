@@ -7,7 +7,7 @@ import './App.css';
 import LandingPage from './pages/LandingPage';
 import PrivateComponents from './components/PrivateComponents';
 import Services from './pages/Services';
-
+ 
 function App() {
   return (
     <>

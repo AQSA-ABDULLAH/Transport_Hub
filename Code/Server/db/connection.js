@@ -1,3 +1,3 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1/transport_hub');
+mongoose.connect('mongodb+srv://aqsaabdullah38403:WfvspNzsKhMgFGIK@cluster0.lvmi7hp.mongodb.net/Transport_Hub');
 console.log("Connection Successfull");

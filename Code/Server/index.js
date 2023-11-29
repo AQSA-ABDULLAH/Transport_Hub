@@ -19,13 +19,13 @@ app.post("/register", async(req, res)=>{
     res.send(result);
 });
 
-app.post("/user_register", async(req, res)=>{
-    let user = new Users(req.body);
-    let result = await user.save();
-    result = result.toObject();
-    delete result.password;
-    res.send(result);
-});
+// app.post("/user_register", async(req, res)=>{
+//     let user = new Users(req.body);
+//     let result = await user.save();
+//     result = result.toObject();
+//     delete result.password;
+//     res.send(result);
+// });
 
 app.post("/user_signIn", async(req, res)=>{
     if(req.body.password && req.body.email){
