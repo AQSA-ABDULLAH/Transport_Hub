@@ -1,9 +1,15 @@
+// Express
 const express = require ('express');
 const app = express();
 app.use(express.json());
 
+// Cors
 const cors = require('cors');
 app.use(cors());
+
+//Dot Env
+const dotenv = require("dotenv");
+dotenv.config({path:"./config.env"})
 
 const Users = require('./models/Users');
 const Transporter = require('./models/Transporter');
