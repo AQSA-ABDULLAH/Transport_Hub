@@ -11,11 +11,11 @@ app.use(cors());
 const dotenv = require("dotenv");
 dotenv.config({path:"./config.env"})
 
-const Users = require('./models/Users');
-const Transporter = require('./models/Transporter');
-
 // For connection of DB
 require('./db/connection');
+
+const Users = require('./models/Users');
+const Transporter = require('./models/Transporter');
 
 app.post("/register", async(req, res)=>{
     const transporter = new Transporter(req.body);
@@ -48,4 +48,9 @@ app.get("/",(req,res)=>{
     res.send("app is working")
 })
 
-app.listen(5000);
+
+//For Server Port
+const PORT = process.env.PORT;
+app.listen(PORT, () => {
+    console.log(`server is running at port no ${PORT}`);
+})
