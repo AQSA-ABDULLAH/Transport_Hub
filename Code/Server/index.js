@@ -17,9 +17,6 @@ require('./db/connection');
 //Routes
 app.use(require('./routes/user'))
 
-const Users = require('./models/Users');
-const Transporter = require('./models/Transporter');
-
 //For Server Port
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
