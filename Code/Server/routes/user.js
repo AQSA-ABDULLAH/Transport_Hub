@@ -1,36 +1,35 @@
 const express = require('express');
+const { UserController } = require('../controllers/users/userRegistration'); // Change the import to use named import
 const router = express.Router();
 
-require('../db/connection');
+
+//Additional code
 const User = require("../models/Users");
+require("../db/connection")
 
-router.post('/user_signUp', (req, res) => {
-    const { fullName, email, phoneNumber, password, city, address } = req.body;
+router.post("/user_signUp", UserController.userRegistration);
 
-    if (!fullName || !email || !phoneNumber || !password || !city || !address) {
-        return res.status(422).json({ error: "Please fill in all fields properly" });
+
+//Additional code
+router.post('/user_signIn', async (req,res) => {
+    try{
+        const { email, password } =req.body;
+
+        if (!email || !password){
+            return res.status(400).json({error:"Enter Username and Password"})
+        }
+
+        const userLogin = await User.findOne({email: email});
+        console.log(userLogin);
+        if(!userLogin){
+            res.status(400).json({message: "User Error"});
+        }else{
+            res.json({message: "User Signin Successfully"});   
+        }
+
+    }catch(error){
+        console.log(error)
     }
-
-    User.findOne({ email: email })
-        .then((userExist) => {
-            if (userExist) {
-                return res.status(422).json({ error: "User already exists" });
-            }
-
-            const user = new User({ fullName, email, phoneNumber, password, city, address });
-
-            user.save()
-                .then(() => {
-                    res.status(201).json({ message: "User registered successfully" });
-                })
-                .catch((error) => {
-                    res.status(500).json({ error: "Failed to register" });
-                    console.log(error);
-                });
-        })
-        .catch(error => {
-            console.log(error);
-        });
-});
+})
 
 module.exports = router;
