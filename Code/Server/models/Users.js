@@ -33,32 +33,42 @@ const usersSchema = new mongoose.Schema({
         trim: true
     },
     is_admin: {
-        type: String,
-        default: false,
-        required:true
-    },
-    is_varified: {
         type: Boolean,
-        default:0
+        default: false,
+        required: true
     },
+    is_verified: {
+        type: Boolean,
+        default: false
+    },
+    // ... other fields
+
     createdAt: {
         type: Date,
         default: Date.now
-      },
-      updatedAt: {
-          type: Date,
-          default: Date.now
-      },
-      deletedAt: { type: Date },
+    },
+    updatedAt: {
+        type: Date,
+        default: Date.now
+    },
+    deletedAt: { type: Date },
 });
 
-const User = mongoose.model("users", usersSchema); 
-module.exports = User;
-
-//Hashing Password
-usersSchema.pre('save', async function (next){
-    if (this.isModified('password')){
-        this.password = bcrypt.hash(this.password, 12)
+// Hashing Password
+usersSchema.pre('save', function (next) {
+    if (this.isModified('password')) {
+        try {
+            const hashedPassword = bcrypt.hashSync(this.password, 12);
+            this.password = hashedPassword;
+            console.log("hashing password");
+            next();
+        } catch (error) {
+            next(error);
+        }
+    } else {
+        next();
     }
-    next();
 });
+
+const User = mongoose.model("users", usersSchema);
+module.exports = User;
