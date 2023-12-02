@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
 
 const usersSchema = new mongoose.Schema({
     fullName: {
@@ -41,8 +40,6 @@ const usersSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    // ... other fields
-
     createdAt: {
         type: Date,
         default: Date.now
@@ -52,22 +49,6 @@ const usersSchema = new mongoose.Schema({
         default: Date.now
     },
     deletedAt: { type: Date },
-});
-
-// Hashing Password
-usersSchema.pre('save', function (next) {
-    if (this.isModified('password')) {
-        try {
-            const hashedPassword = bcrypt.hashSync(this.password, 12);
-            this.password = hashedPassword;
-            console.log("hashing password");
-            next();
-        } catch (error) {
-            next(error);
-        }
-    } else {
-        next();
-    }
 });
 
 const User = mongoose.model("users", usersSchema);
