@@ -1,28 +1,32 @@
+const express = require('express');
+const cors = require('cors');
+const dotenv = require('dotenv');
+
+// Load environment variables from config.env
+dotenv.config({ path: './config.env' });
+
+// Routes
+const userRoutes = require('./routes/user.js');
+
 // Express
-const express = require ('express');
 const app = express();
 app.use(express.json());
 
 // Cors
-const cors = require('cors');
 app.use(cors());
 
-//Dot Env
-const dotenv = require("dotenv");
-dotenv.config({path:"./config.env"})
+// Connection to MongoDB
+require('./db/connection.js');
 
-// For connection of DB
-require('./db/connection');
+// Load Routes
+app.use('/api/user', userRoutes);
 
-//Routes
-app.use(require('./routes/user'))
-
-//For Server Port
-const PORT = process.env.PORT;
+// For Server Port
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`server is running at port no ${PORT}`);
-})
+  console.log(`Server is running at port ${PORT}`);
+});
 
-app.get("/", (req, res) => {
-    res.send("api is working");
+app.get('/', (req, res) => {
+  res.send('API is working');
 });

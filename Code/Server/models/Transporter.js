@@ -10,7 +10,7 @@ const transporterSchema = new mongoose.Schema({
         requried: true,
         unique:true
     },
-    phoneNo: {
+    phoneNumber: {
         type: Number,
         requried: true
     },

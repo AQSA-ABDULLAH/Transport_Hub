@@ -20,7 +20,7 @@ export default function SignIn() {
 
     try {
       const formData = { email, password };
-      const response = await axios.post('http://localhost:5000/user_signIn', formData);
+      const response = await axios.post("http://localhost:5000/api/user/user_signIn", formData);
       if(response){
         localStorage.setItem("user", JSON.stringify(response));
         navigate("/")

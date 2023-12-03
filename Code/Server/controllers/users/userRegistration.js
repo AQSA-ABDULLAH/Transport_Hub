@@ -1,5 +1,6 @@
 const User = require("../../models/Users");
 const { hashPassword } = require("../../helpers/hashPassword");
+const { createToken } = require("../../helpers/jwt"); // Import the createToken function
 
 class UserController {
     static userRegistration = async (req, res) => {
@@ -26,10 +27,17 @@ class UserController {
                 city,
                 address
             });
-            
-            await user.save();
-            
-            res.status(201).json({ message: "User registered successfully" });
+
+            const savedUser = await user.save(); // Save the user and get the saved user object
+
+            // Generate JWT Token using the saved user object
+            const token = createToken(savedUser, false, '1d');
+
+            // Save the token
+            savedUser.tokens = savedUser.tokens.concat({ token });
+            await savedUser.save();
+
+            res.status(201).json({ message: "User registered successfully", token });
 
         } catch (error) {
             console.error("Error in user registration:", error);
@@ -39,4 +47,3 @@ class UserController {
 }
 
 module.exports = { UserController };
-
