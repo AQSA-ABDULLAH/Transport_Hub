@@ -4,6 +4,7 @@ const { passwordCompare } = require("../../helpers/hashPassword");
 
 const userLogin = async (req, res) => {
     try {
+        let token;
         const { email, password } = req.body;
 
         if (!email || !password) {
@@ -16,7 +17,15 @@ const userLogin = async (req, res) => {
         if (userLogin) {
             //Hashing Password
             const isMatch = await passwordCompare(password, userLogin?.password);
-            const token = userLogin.generateAuthToken();
+
+            token = await userLogin.generateAuthToken();
+            console.log(token);
+
+            res.cookie("jwtoken", token, {
+                expires: new Date(Date.now() + 25892000000),
+                httpOnly:true
+            });
+
             if (!isMatch) {
                 return res.send({ status: "400", message: "Invalid Email or Password", });
             } else{

@@ -22,3 +22,7 @@ const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`server is running at port no ${PORT}`);
 })
+
+app.get("/", (req, res) => {
+    res.send("api is working");
+});
