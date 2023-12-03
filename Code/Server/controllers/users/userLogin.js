@@ -1,10 +1,9 @@
 const User = require("../../models/Users");
-const jwt = require("jsonwebtoken");
+const { createToken } = require("../../helpers/jwt");
 const { passwordCompare } = require("../../helpers/hashPassword");
 
 const userLogin = async (req, res) => {
     try {
-        let token;
         const { email, password } = req.body;
 
         if (!email || !password) {
@@ -12,25 +11,24 @@ const userLogin = async (req, res) => {
         }
 
         const userLogin = await User.findOne({ email: email });
-        console.log(userLogin);
 
         if (userLogin) {
-            //Hashing Password
-            const isMatch = await passwordCompare(password, userLogin?.password);
-
-            token = await userLogin.generateAuthToken();
-            console.log(token);
-
-            res.cookie("jwtoken", token, {
-                expires: new Date(Date.now() + 25892000000),
-                httpOnly:true
-            });
+            // Hashing Password
+            const isMatch = await passwordCompare(password, userLogin.password);
 
             if (!isMatch) {
-                return res.send({ status: "400", message: "Invalid Email or Password", });
-            } else{
-                res.json({ message: "User Signin Successfully" });
+                return res.status(400).json({ status: "400", message: "Invalid Email or Password" });
             }
+
+            // Generate JWT Token
+            const token = createToken(userLogin, false, '1d');
+
+            // Save the token in the user document
+            userLogin.tokens = userLogin.tokens.concat({ token });
+            await userLogin.save();
+
+            res.json({ status: "success", message: "Login Success", token });
+
         } else {
             res.status(400).json({ message: "Invalid Email or Password" });
         }
