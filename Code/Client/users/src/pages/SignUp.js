@@ -23,7 +23,7 @@ export default function SignUp() {
 
     try {
       const formData = { fullName, phoneNo, email, password, address, city };
-      const response = await axios.post('http://localhost:5000/user_register', formData);
+      const response = await axios.post('"http://localhost:5000/api/user/register"', formData);
 
       localStorage.setItem("user", JSON.stringify(response));
       navigate("/")

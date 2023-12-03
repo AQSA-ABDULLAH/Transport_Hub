@@ -7,7 +7,8 @@ import './App.css';
 import LandingPage from './pages/LandingPage';
 import PrivateComponents from './components/PrivateComponents';
 import Services from './pages/Services';
- 
+import ErrorPage from './pages/ErrorPage';
+
 function App() {
   return (
     <>
@@ -15,23 +16,22 @@ function App() {
         <Navbar />
         <Routes>
           <Route exact path="/" element={<LandingPage />} />
-          <Route exact path="/aboutUs" element={"About Us Page"} />
+          <Route exact path="/aboutUs" element={<h1>About Us Page</h1>} />
           <Route exact path="/services" element={<Services />} />
-          <Route exact path="/loyaltyProgram" element={"Loyalty Program"} />
-          <Route exact path="/carRenatal" element={"Car Rental"} />
-          <Route exact path="/recreationalTrips" element={"Recreational Trips"} />
-          <Route exact path="/goodShipment" element={"Good Shipment"} />
-          <Route exact path="/parcelPickup" element={"Parcel Pickup"} />
+          <Route exact path="/loyaltyProgram" element={<h1>Loyalty Program</h1>} />
+          <Route exact path="/carRental" element={<h1>Car Rental</h1>} />
+          <Route exact path="/recreationalTrips" element={<h1>Recreational Trips</h1>} />
+          <Route exact path="/goodShipment" element={<h1>Good Shipment</h1>} />
+          <Route exact path="/parcelPickup" element={<h1>Parcel Pickup</h1>} />
 
-
-          <Route element={<PrivateComponents />}>
-            <Route exact path="/profile" element={<h1>User Profile</h1>} />
-            <Route exact path="/manageBooking" element={<h1>Manage Booking</h1>} />
-            <Route exact path="/logout" element={<h1>Logout</h1>} />
-          </Route>
+          <Route path="/profile" element={<PrivateComponents />} />
+          <Route path="/profile/userProfile" element={<h1>User Profile</h1>} />
+          <Route path="/profile/manageBooking" element={<h1>Manage Booking</h1>} />
+          <Route path="/profile/logout" element={<h1>Logout</h1>} />
 
           <Route exact path="/signUp" element={<SignUp />} />
           <Route exact path='/signIn' element={<SignIn />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
     </>
