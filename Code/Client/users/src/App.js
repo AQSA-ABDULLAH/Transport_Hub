@@ -7,6 +7,7 @@ import './App.css';
 import LandingPage from './pages/LandingPage';
 import PrivateComponents from './components/PrivateComponents';
 import Services from './pages/Services';
+import ErrorPage from './pages/ErrorPage';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
 
           <Route exact path="/signUp" element={<SignUp />} />
           <Route exact path='/signIn' element={<SignIn />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
     </>
