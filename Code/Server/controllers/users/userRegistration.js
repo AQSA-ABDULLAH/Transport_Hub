@@ -1,6 +1,8 @@
 const User = require("../../models/Users");
 const { hashPassword } = require("../../helpers/hashPassword");
-const { createToken } = require("../../helpers/jwt"); // Import the createToken function
+const { createToken } = require("../../helpers/jwt");
+const compileEmailTemplate = require("../../helpers/compile-email-template.js");
+const sendMail = require("../../libs/mail.js");
 
 class UserController {
     static userRegistration = async (req, res) => {

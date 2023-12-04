@@ -1,35 +1,34 @@
-const nodemailer = require ("nodemailer")
-// import dotenv from "dotenv";
-// dotenv.config()
+const nodemailer = require('nodemailer');
+const dotenv = require('dotenv');
+dotenv.config();
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.MAIL_EMAIL,
+    pass: process.env.MAIL_PASSWORD,
+  },
+});
+
+// You had two 'const transporter' declarations, I assume you meant to have only one.
+
+module.exports = async function sendMail(to, subject, html) {
+  return await transporter.sendMail({
+    from: process.env.MAIL_EMAIL,
+    to,
+    subject,
+    html,
+  });
+};
+
+
+
 
 // const transporter = nodemailer.createTransport({
-//   service: 'gmail',
+//   host: process.env.MAIL_HOST,
+//   port: 587,
 //   auth: {
-//     user: process.env.MAIL_EMAIL,
+//     user: process.env.MAIL_USERNAME,
 //     pass: process.env.MAIL_PASSWORD,
 //   },
 // });
-
-const sendMail = async (req, res) => {
-
-    let testAccount = await nodemailer.createTestAccount();
-
-    const transporter = nodemailer.createTransport({
-        host: 'smtp.ethereal.email',
-        port: 587,
-        auth: {
-            user: 'evans.lemke37@ethereal.email',
-            pass: '2CwyXPdbvzM4ZMNQMY'
-        }
-    });
-}
-
-
-// export default async function sendMail(to, subject, html){
-//     return await transporter.sendMail({
-//       from: process.env.MAIL_EMAIL,
-//       to,
-//       subject,
-//       html,
-//     });
-// }
