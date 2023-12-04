@@ -1,6 +1,8 @@
 const User = require("../../models/Users");
 const { hashPassword } = require("../../helpers/hashPassword");
-const { createToken } = require("../../helpers/jwt"); // Import the createToken function
+const { createToken } = require("../../helpers/jwt");
+const compileEmailTemplate = require("../../helpers/compile-email-template.js");
+const sendMail = require("../../libs/mail.js");
 
 class UserController {
     static userRegistration = async (req, res) => {
@@ -33,11 +35,36 @@ class UserController {
             // Generate JWT Token using the saved user object
             const token = createToken(savedUser, false, '1d');
 
-            // Save the token
+            // Save token
             savedUser.tokens = savedUser.tokens.concat({ token });
             await savedUser.save();
 
-            res.status(201).json({ message: "User registered successfully", token });
+            //Send Registration mail to user
+            const template = await compileEmailTemplate({
+                fileName: "register.mjml",
+                data: {
+                    fullName,
+                },
+            });
+            if (savedUser._id) {
+                try {
+                    await sendMail(email, "Your Account on Transport Hub is Created Successfully", template);
+                    res.status(201).send({
+                        status: "success",
+                        message: "User created successfully",
+                        token: token,
+                    });
+                } catch (error) {
+                    res.status(201).send({
+                        status: "success",
+                        message: "User created successfully",
+                        token: token,
+                        email: "Failed to send Create User email.",
+                    });
+                }
+            }
+
+            //res.status(201).json({ message: "User registered successfully", token });
 
         } catch (error) {
             console.error("Error in user registration:", error);
