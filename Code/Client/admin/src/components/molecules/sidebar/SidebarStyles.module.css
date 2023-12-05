@@ -7,7 +7,7 @@
     width: 14rem;
     padding: 1.1rem;
     position: absolute;
-    min-height:750px;
+    min-height:630px;
     overflow-y: auto;
     top: 0;
     left: 0;
@@ -86,16 +86,16 @@
 }
 
 .btn {
-    background-color: #EC1F3E;
-    padding: 1rem;
+    background-color:  #7E22CE;
+    padding: 0.7rem;
     text-transform: uppercase;
     position: absolute;
-    bottom: 30px;
+    bottom: 20px;
     align-self: center;
     color: #fff;
     font-weight: 700;
-    font-size: 12px;
-    width: 87%;
+    font-size: 14px;
+    width: 85%;
     border-radius: 10px;
     text-align: center;
     cursor: pointer;
