@@ -4,7 +4,7 @@
     margin: 20px;
     color: #fff;
     border-radius: 20px 0 0 20px;
-    width: 18.8rem;
+    width: 14rem;
     padding: 1.1rem;
     position: absolute;
     min-height:750px;
@@ -31,7 +31,7 @@
 
 .sideLink {
     display: flex;
-    padding: 15px 20px;
+    padding: 7.5px 12px;
     width: 100%;
     align-items: center;
     justify-content: space-between;
@@ -46,7 +46,7 @@
 }
 
 .active {
-    background-color: #EC1F3E;
+    background-color: #7E22CE;
     color: #fff;
     font-weight: 700;
     border-radius: 10px;
@@ -54,10 +54,10 @@
 }
 
 .sideLink:hover {
-    padding-right: .1em;
+    padding-right: 1rem;
     transition: all .2s ease-in-out;
     color: #fff;
-    background-color: #b8001c;
+    background-color: #7E22CE;
     border-radius: 10px;
 }
 
