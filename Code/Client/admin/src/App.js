@@ -1,19 +1,20 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import React from 'react';
-import SignIn from './pages/SignIn';
-import AdminDashboard from './pages/AdminDashboard';
+import React from "react";
+import GlobalRoute from "./routes/GlobalRoute";
+import { Route, Routes } from "react-router-dom";
+import { Provider } from 'react-redux';
 
-function App() {
+import store from './redux/store'; // Import your Redux store
+
+const App = () => {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route exact path='/' element={<SignIn />} />
-          <Route exact path='/adminDashboard' element={<AdminDashboard/>} />
-        </Routes>
-      </BrowserRouter>
+    <Provider store={store}>
+      <Routes>
+        <Route path="*" element={<GlobalRoute />} />
+      </Routes>
+      </Provider>
     </>
   );
-}
+};
 
 export default App;
