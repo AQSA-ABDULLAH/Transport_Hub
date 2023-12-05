@@ -1,5 +1,5 @@
 import React from "react";
-import Aboutus from "../../../components/molecules/aboutus/Aboutus";
+import Aboutus from "../../../../components/molecules/aboutus/Aboutus"
 import style from "../about/aboutTab.module.css";
 
 const AboutTab = () => {

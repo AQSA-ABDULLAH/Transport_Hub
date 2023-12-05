@@ -1,0 +1,74 @@
+.iconsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.8rem;
+    margin-bottom: 1.8rem;
+  }
+  .editIcon {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    border-right: 2px solid rgb(213, 212, 212);
+    padding: 1rem;
+    color: blue;
+  }
+  .previewIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: orange;
+    padding: 1rem;
+  }
+  .editIcon:hover,.previewIcon:hover{
+    background-color: lightblue;
+    cursor: pointer;
+  }
+  .editIcon p {
+    padding-left: 10px;
+  }
+  .previewIcon p {
+    padding-left: 10px;
+  }
+  .imagePreview {
+    width: 450px;
+    height: 320px;
+    margin-top: 1rem;
+    border-radius: 20px;
+  }
+  .container h2 {
+    white-space: nowrap;
+    font-size: 18px;
+    margin-bottom: 1rem;
+  }
+  .container p {
+    font-size: 14px;
+    color: rgb(43, 43, 43);
+  }
+  .Qouteby {
+    color: orange;
+    font-size: 18px;
+    margin-top: 1rem;
+  }
+  @media (max-width: 860px) {
+    .imagePreview {
+      width: 650px;
+      height: 350px;
+      margin-top: 1rem;
+    }
+  }
+  @media (max-width: 700px) {
+    .imagePreview {
+      width: 450px;
+      height: 350px;
+      margin-top: 1rem;
+    }
+  }
+  @media (max-width: 500px) {
+    .imagePreview {
+      width: 320px;
+      height: 350px;
+      margin-top: 1rem;
+    }
+  }
