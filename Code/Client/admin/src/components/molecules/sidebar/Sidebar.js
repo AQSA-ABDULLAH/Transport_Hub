@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import { AiFillHome } from "react-icons/ai";
 import SidebarLinks from "./SidebarLinks";
 import { setSignedOut } from "../../../redux/containers/auth/actions";
-import { Main, General } from "../../../constants/Data";
+import { Main, General, GeneralSettting } from "../../../constants/Data";
 import { LiaTimesSolid } from "react-icons/lia";
 import { NavLink } from "react-router-dom";
 import styles from "./SidebarStyles.module.css";
@@ -62,9 +62,9 @@ const dispatch=useDispatch();
         </div>
 
         {/* Data.js->General */}
-        <div className={`${styles.linksBlock} `}>
+        <div className={`${styles.spaceY} ${styles.linksBlock} `}>
           <h5 className={styles.headingText}>General Settings</h5>
-          <SidebarLinks data={General}   handleLinkClick={handleLinkClick}/>
+          <SidebarLinks data={GeneralSettting}   handleLinkClick={handleLinkClick}/>
         </div>
 
         <button className={styles.btn} onClick={()=>logout()}>logout</button>

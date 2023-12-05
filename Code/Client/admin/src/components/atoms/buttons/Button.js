@@ -1,3 +1,4 @@
+// Button.js
 import React from "react";
 import "./Button.module.css";
 
@@ -15,17 +16,19 @@ const Button = (props) => {
     width,
     btnClick,
     hoverColor,
+    padding, // new prop for padding
   } = props;
 
   const buttonStyle = {
     backgroundColor:
-      bgColor || (primary ? "#EC1F3E" : secondary ? "#6c757d" : "transparent"),
+      bgColor || (primary ? "#7E22CE" : secondary ? "#6c757d" : "transparent"),
     color: textColor || "#ffffff",
     borderRadius: radius || "40px",
     fontSize: size || "16px",
     width: width || "auto",
     fontWeight: fontWeight || "400",
     border: bw || "0px",
+    padding: padding || "8px", // apply padding
     transition: "0.3s", // to smooth out the effect
   };
 

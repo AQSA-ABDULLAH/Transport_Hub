@@ -1,7 +1,5 @@
-import { GiGymBag } from "react-icons/gi";
-import {
-  FaUsers,
-} from "react-icons/fa";
+// import { GiGymBag } from "react-icons/gi";
+import { FaUsers } from "react-icons/fa";
 import { BsCreditCard2FrontFill } from "react-icons/bs";
 import { BiSolidContact } from "react-icons/bi";
 import {IoMdSettings} from 'react-icons/io'
@@ -30,11 +28,11 @@ export const Main = [
   },
 ];
 
-export const General = [
+export const GeneralSettting = [
   {
     icon: <CgWebsite size={20} />,
     text: "Website Content",
-    route:'#'
+    route:'/website-content'
   },
   {
     icon: <IoMdSettings size={20}/>,
