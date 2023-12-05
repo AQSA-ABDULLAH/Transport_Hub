@@ -46,22 +46,27 @@ const dispatch=useDispatch();
         <div className={styles.logo}>
          <img src="/assets/logo/LogoDark.png" width={110} height={110}/>
         </div>
+
         <div className={styles.spaceY}>
           <NavLink to={"/"} className={styles.sideLink} onClick={handleLinkClick}>
             <div className={styles.icon}>
               <AiFillHome size={20} />
             </div>
-            <p className={styles.linkText}>Home</p>
+            <p className={styles.linkText}>Dashboard</p>
           </NavLink>
         </div>
+
+        {/* Data.js->Main */}
         <div className={` ${styles.linksBlock} `}>
           <SidebarLinks data={Main}  handleLinkClick={handleLinkClick}/>
         </div>
-       
-        <div className={`${styles.spaceY} ${styles.linksBlock} `}>
+
+        {/* Data.js->General */}
+        <div className={`${styles.linksBlock} `}>
           <h5 className={styles.headingText}>General Settings</h5>
           <SidebarLinks data={General}   handleLinkClick={handleLinkClick}/>
         </div>
+
         <button className={styles.btn} onClick={()=>logout()}>logout</button>
         <LiaTimesSolid
           className={styles.closeIcon}

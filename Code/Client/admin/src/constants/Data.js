@@ -8,11 +8,11 @@ import {IoMdSettings} from 'react-icons/io'
 import {CgWebsite} from 'react-icons/cg'
 
 export const Main = [
-  {
-    icon: <GiGymBag  size={20}/>,
-    text: "Dashboard",
-    route:'/'
-  },
+  // {
+  //   icon: <GiGymBag  size={20}/>,
+  //   text: "Loyalty Program",
+  //   route:'#'
+  // },
   {
     icon: <BsCreditCard2FrontFill size={20} />,
     text: "Services",
