@@ -24,6 +24,7 @@
   
 .btn_wrapper {
     display: inline-block;
+    padding-left: 10px;
 }
   
 @media screen and (max-width: 1068px) {

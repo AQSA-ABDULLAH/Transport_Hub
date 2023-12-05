@@ -8,8 +8,8 @@ const GalleryTab = () => {
     <div className={style.mainContainer}>
       <div className={style.outerContainer}>
         <div className={style.container}>
-          <Galleryimg />
-          <Galleryhero />
+          {/* <Galleryimg />
+          <Galleryhero /> */}
         </div>
       </div>
     </div>

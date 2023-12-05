@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Hero from "./Hero";
 import Button from "../../../../components/atoms/buttons/Button";
-import SliderForm from "../../../components/molecules/slider/SliderForm";
+import SliderForm from "../../../../components/molecules/slider/SliderForm";
 import style from "./slidertab.module.css";
 const Slider = () => {
   const [showSliderForm, setShowSliderForm] = useState(false);

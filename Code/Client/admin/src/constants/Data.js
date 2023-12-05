@@ -32,7 +32,7 @@ export const GeneralSettting = [
   {
     icon: <CgWebsite size={20} />,
     text: "Website Content",
-    route:'#'
+    route:'/website-content'
   },
   {
     icon: <IoMdSettings size={20}/>,

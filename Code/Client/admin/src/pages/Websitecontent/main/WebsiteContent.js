@@ -1,3 +1,4 @@
+// WebsiteContent.js
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./websitecontent.module.css";
@@ -14,7 +15,6 @@ const WebsiteContent = () => {
   const buttonRefs = useRef([]);
 
   useEffect(() => {
-
     const params = new URLSearchParams(location.search);
     const tabName = params.get("tab");
     if (tabName == null) {
@@ -47,9 +47,9 @@ const WebsiteContent = () => {
     switch (isActive) {
       case 0:
         return <AboutTab />
-      case 3:
+      case 1:
         return <GalleryTab />
-      case 4:
+      case 3:
         return <SliderTab />
       default:
         return null;
@@ -66,9 +66,10 @@ const WebsiteContent = () => {
                 <Button
                   btnText={item.text}
                   btnClick={() => handleTabClick(index)}
-                  bgColor={isActive === index ? "#EC1F3E" : "transparent"}
+                  bgColor={isActive === index ? "#7E22CE" : "transparent"}
                   textColor={isActive === index ? "#fff" : "#000"}
                   radius={"10px"}
+                  padding="8px" // pass padding as a prop
                 />
               </div>
             );

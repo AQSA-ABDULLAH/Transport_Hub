@@ -6,14 +6,6 @@ export const Tab = [
       onClick:'/aboutus'
     },
     {
-      text: "Trainers",
-      onClick:'/trainers'
-    },
-    {
-      text: "Testimonials",
-      onClick:'/testimonials'
-    },
-    {
       text: "Gallery",
       onClick:'/gallery'
     },
