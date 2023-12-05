@@ -1,6 +1,6 @@
 import React from "react";
-import Galleryhero from "./Galleyhero";
-import Galleryimg from "../../../components/molecules/gallerySlider/Galleryimg";
+// import Galleryhero from "./Galleyhero";
+// import Galleryimg from "../../../components/molecules/gallerySlider/Galleryimg";
 import style from "./gallerytab.module.css";
 
 const GalleryTab = () => {
