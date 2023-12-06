@@ -1,14 +1,12 @@
-// WebsiteContent.js
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import styles from "./websitecontent.module.css";
+import { Tab } from "../../../constants/TransportManagmentTab";
+import styles from "./Transport.module.css";
 import Button from "../../../components/atoms/buttons/Button";
-import { Tab } from "../../../constants/WebsiteContentTab";
-import AboutTab from '../tabs/about/AboutTab';
-import SliderTab from '../tabs/silder/SliderTab';
-import GalleryTab from '../tabs/gallery/GalleryTab';
+import Cars from "../tabs/cars/CarsTab"
+import Trucks from "../tabs/trucks/TruckTab";
 
-const WebsiteContent = () => {
+const Transport = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isActive, setIsActive] = useState(0);
@@ -18,7 +16,7 @@ const WebsiteContent = () => {
     const params = new URLSearchParams(location.search);
     const tabName = params.get("tab");
     if (tabName == null) {
-      document.title = "Website Content"
+      document.title = "Transport Managment"
     }
     if (tabName) {
       const tabIndex = Tab.findIndex(tab => tab.text.toLowerCase() === tabName.toLowerCase());
@@ -46,11 +44,9 @@ const WebsiteContent = () => {
   const renderTabContent = () => {
     switch (isActive) {
       case 0:
-        return <AboutTab />
+        return <Cars/>
       case 1:
-        return <GalleryTab />
-      case 3:
-        return <SliderTab />
+        return <Trucks/>
       default:
         return null;
     }
@@ -83,4 +79,4 @@ const WebsiteContent = () => {
   );
 };
 
-export default WebsiteContent;
+export default Transport;

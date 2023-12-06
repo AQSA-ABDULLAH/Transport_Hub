@@ -1,8 +1,8 @@
 import React from "react";
 import Aboutus from "../../../../components/molecules/aboutus/Aboutus"
-import style from "../about/aboutTab.module.css";
+import style from "./trucktab.module.css"
 
-const AboutTab = () => {
+const TruckTab = () => { 
   return (
     <>
       <div className={style.container} style={{height:window.innerHeight}}>
@@ -27,4 +27,4 @@ const AboutTab = () => {
   );
 };
 
-export default AboutTab;
+export default TruckTab;

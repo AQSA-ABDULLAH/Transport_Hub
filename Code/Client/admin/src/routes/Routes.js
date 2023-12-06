@@ -9,6 +9,7 @@ import GS from "../pages/Services/GoodShipment/GS";
 import PP from "../pages/Services/ParcelPickup/PP";
 import News from "../pages/Blogs&News/News";
 import WebsiteContent from "../pages/Websitecontent/main/WebsiteContent"
+import TransportMangment from "../pages/TransportManagment/main/Transport"
 import ErrorPage from "../pages/404/ErrorPage"
 
 const RoutesStack = ({ openSidebar, setOpenSidebar }) => {
@@ -49,6 +50,7 @@ const RoutesStack = ({ openSidebar, setOpenSidebar }) => {
           <Route path="/parcelPickup" element={<PP/>} />
           <Route path="/news" element={<News/>} />
           <Route path="/website-content" element={<WebsiteContent />} />
+          <Route path="/transport-managment" element={<TransportMangment/>} />
           <Route path="*" element={<ErrorPage/>} />
         </Routes>
       </div>

@@ -1,6 +1,5 @@
 import React from "react";
 import AboutCard from "../../atoms/aboutCard/aboutcard";
-// import Preview from "../../atoms/aboutcard/Preview";
 import style from "./aboutus.module.css";
 
 const Aboutus = (props) => {
@@ -14,12 +13,8 @@ const Aboutus = (props) => {
               text={props.text}
               author={props.author}
             />
-          </div>
+          </div> 
         </div>
-
-        {/* <div className={style.previewImg}>
-          <Preview image={props.img} />
-        </div> */}
       </div>
     </>
   );
