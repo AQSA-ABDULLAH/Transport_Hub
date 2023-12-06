@@ -1,16 +1,12 @@
-import express from "express";
-import CarController from "../controllers/transportManagment/carsController.js";
-import isAuthenticated from "../middlewares/auth-middleware.js";
+const express = require('express');
+const CarsController = require("../controllers/transportManagment/carsController.js");
+const isAuthenticated = require("../middlewares/auth-middleware.js");
 const router = express.Router();
 
 // Route Level Middleware - To Protect Route
-router.use("/create-trainer", isAuthenticated);
+router.use("/addCars", isAuthenticated);
 
-//PROTECTED ROUTES
-router.post("/create-trainer", CarController.createTrainer);
-// router.get("/get-trainer/:id", CarController.getTrainer);
-// router.patch("/update-trainer/:id", CarController.updateTrainer);
-// router.delete("/delete-trainer/:id", CarController.deleteTrainer);
+// PROTECTED ROUTES
+router.post("/addCars", CarsController.addCars); // Fix the method name here
 
-
-export default router;
+module.exports = router;

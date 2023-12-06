@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 const carSchema = new mongoose.Schema({
   image: {
     type: String,
@@ -75,4 +77,4 @@ const carSchema = new mongoose.Schema({
     timestamps: true
   });
 const Car = mongoose.model('Car', carSchema);
-export default Car;
+module.exports = Car;

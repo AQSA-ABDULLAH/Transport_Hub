@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import Cars from "../../models/Cars";
+const mongoose = require("mongoose");
+const Cars = require("../../models/Cars");
 
 class CarsController {
     static addCars = async (req, res) => {
@@ -25,4 +25,4 @@ class CarsController {
 
 };
 
-export default CarsController;
+module.exports = CarsController;

@@ -1,5 +1,5 @@
-import jwt from "jsonwebtoken";
-import UserModel from "../models/Users.js";
+const jwt = require('jsonwebtoken')
+const UserModel = require("../models/Users.js");
 
 var isAuthenticated = async (req, res, next) => {
   // get token from header
@@ -23,4 +23,4 @@ var isAuthenticated = async (req, res, next) => {
     return res.status(401).send({ status: "failed", message: "Unauthorized User, No Token" });
 };
 
-export default isAuthenticated;
+module.exports = isAuthenticated;

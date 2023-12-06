@@ -7,6 +7,8 @@ dotenv.config({ path: './config.env' });
 
 // Routes
 const userRoutes = require('./routes/user.js');
+const carsRoutes = require("./routes/carsRoutes.js");
+
 
 // Express
 const app = express();
@@ -20,6 +22,7 @@ require('./db/connection.js');
 
 // Load Routes
 app.use('/api/user', userRoutes);
+app.use("/api/user", carsRoutes);
 
 // For Server Port
 const PORT = process.env.PORT || 5000;
