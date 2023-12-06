@@ -3,26 +3,31 @@ const Cars = require("../../models/Cars");
 
 class CarsController {
     static addCars = async (req, res) => {
-        const { image, nameAndModel, type, seats, transmission, bags, mileLimit, price, color, fuelType,
-            engineType, zone, discount, startDate, endDate } = req.body;
-
-        if (!image, !nameAndModel, !type, !seats, !transmission, !bags, !mileLimit, !price, !color,
-            !fuelType, !engineType, !zone) return res.send({ status: "failed", message: `Name, is required` });
-
         try {
-            const newTrainer = new TrainerModal({
+            const {
+                image, nameAndModel, type, seats, transmission, bags, mileLimit,
+                price, color, fuelType, engineType, zone, discount, startDate, endDate
+            } = req.body;
+
+            if (!image || !nameAndModel || !type || !seats || !transmission ||
+                !bags || !mileLimit || !price || !color || !fuelType ||
+                !engineType || !zone || !discount || !startDate || !endDate) {
+                return res.status(400).send({ status: "failed", message: "Incomplete data provided" });
+            }
+
+            const newCar = new Cars({
                 image, nameAndModel, type, seats, transmission, bags, mileLimit,
                 price, color, fuelType, engineType, zone, discount, startDate, endDate
             });
-            await newTrainer.save();
 
-            res.status(201).send({ status: "success", message: "Trainer saved successfully", data: newTrainer });
+            await newCar.save();
+
+            res.status(201).send({ status: "success", message: "Car saved successfully", data: newCar });
         } catch (error) {
-            console.log(error);
-            res.status(409).send({ status: failed, message: "Failed to Save" });
+            console.error(error);
+            res.status(500).send({ status: "failed", message: "Internal Server Error" });
         }
     };
-
-};
+}
 
 module.exports = CarsController;

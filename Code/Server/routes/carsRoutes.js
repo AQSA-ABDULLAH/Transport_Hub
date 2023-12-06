@@ -4,9 +4,9 @@ const isAuthenticated = require("../middlewares/auth-middleware.js");
 const router = express.Router();
 
 // Route Level Middleware - To Protect Route
-router.use("/addCars", isAuthenticated);
+router.post("/addCar", isAuthenticated, CarsController.addCars)
 
 // PROTECTED ROUTES
-router.post("/addCars", CarsController.addCars); // Fix the method name here
+router.post("/addCar", CarsController.addCars); // Fix the method name here
 
 module.exports = router;

@@ -7,7 +7,7 @@ dotenv.config({ path: './config.env' });
 
 // Routes
 const userRoutes = require('./routes/user.js');
-const carsRoutes = require("./routes/carsRoutes.js");
+const carsRoutes = require('./routes/carsRoutes.js');
 
 
 // Express
@@ -22,7 +22,7 @@ require('./db/connection.js');
 
 // Load Routes
 app.use('/api/user', userRoutes);
-app.use("/api/user", carsRoutes);
+app.use('/api/cars', carsRoutes);
 
 // For Server Port
 const PORT = process.env.PORT || 5000;
@@ -30,6 +30,12 @@ app.listen(PORT, () => {
   console.log(`Server is running at port ${PORT}`);
 });
 
-app.get('/', (req, res) => {
-  res.send('API is working');
-});
+// For Testing
+// app.post('/addCars', (req, res) => {
+//   res.send('API is working');
+// });
+
+// app.get('/', (req, res) => {
+//   res.send('API is working');
+// });
+
