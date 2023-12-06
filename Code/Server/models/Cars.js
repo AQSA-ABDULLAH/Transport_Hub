@@ -60,12 +60,10 @@ const carSchema = new mongoose.Schema({
   },
   discount: {
     type: Number,
-    required: true,
     trim: true
   },
   startDate: {
     type: Date,
-    required: true,
     trim: true
   },
   endDate: {
