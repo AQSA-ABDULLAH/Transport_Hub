@@ -1,8 +1,8 @@
 import React from "react";
 import Aboutus from "../../../../components/molecules/aboutus/Aboutus"
-import style from "./cars.module.css"
+import style from "./trucktab.module.css"
 
-const Cars = () => {
+const TruckTab = () => { 
   return (
     <>
       <div className={style.container} style={{height:window.innerHeight}}>
@@ -27,4 +27,4 @@ const Cars = () => {
   );
 };
 
-export default Cars;
+export default TruckTab;
