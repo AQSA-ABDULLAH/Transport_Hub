@@ -3,8 +3,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Tab } from "../../../constants/TransportManagmentTab";
 import styles from "./Transport.module.css";
 import Button from "../../../components/atoms/buttons/Button";
-import Cars from "../tabs/Cars/Cars";
-import Trucks from "../tabs/Trucks/Trucks";
+import Cars from "../tabs/cars/Cars"
+import Trucks from "../tabs/trucks/Trucks";
 
 const Transport = () => {
   const navigate = useNavigate();
