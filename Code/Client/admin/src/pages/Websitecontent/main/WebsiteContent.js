@@ -69,7 +69,7 @@ const WebsiteContent = () => {
                   bgColor={isActive === index ? "#7E22CE" : "transparent"}
                   textColor={isActive === index ? "#fff" : "#000"}
                   radius={"10px"}
-                  padding="8px" // pass padding as a prop
+                  padding="8px"
                 />
               </div>
             );
