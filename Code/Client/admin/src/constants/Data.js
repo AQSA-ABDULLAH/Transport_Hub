@@ -23,8 +23,8 @@ export const Main = [
   },
   {
     icon: <BiSolidContact size={20}/>,
-    text: "Good Shipment",
-    route:'/goodShipment'
+    text: "Transport Managment",
+    route:'/'
   },
 ];
 
