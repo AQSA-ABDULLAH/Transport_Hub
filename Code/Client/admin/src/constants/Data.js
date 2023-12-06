@@ -24,7 +24,7 @@ export const Main = [
   {
     icon: <BiSolidContact size={20}/>,
     text: "Transport Managment",
-    route:'/'
+    route:'/transport-managment'
   },
 ];
 
