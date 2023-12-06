@@ -8,8 +8,9 @@ const AboutTab = () => {
       <div className={style.container} style={{height:window.innerHeight}}>
         <div className={style.message}>
           <Aboutus
-            heading="Welcome to TheBodyDoctor"
+            heading="Welcome to the Transport Hub"
             text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut eos, eum recusandae ratione odit earum quaerat assumenda magnam itaque et tempora necessitatibus consectetur a orem ipsum dolor sit amet, consectetur adipisicing elit. Ut eos, eum recusandae ratione odit earum quaerat assumenda magnam itaque et tempora necessitatibus consectetur a"
+            author="Message by "
             img={"./assets/image/about-us/aboutus.jpeg"}
           />
         </div>

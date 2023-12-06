@@ -9,7 +9,7 @@
   
   .mainMessage {
     display: flex;
-    background-color: #FAFAFA;
+    background-color: #f5f4f4;
     justify-content: center;
     border-radius: 20px;
     width: 100%;
@@ -21,7 +21,7 @@
   }
   
   .messageContainer {
-  padding: 3rem;
+  padding: 2rem;
   }
   
   @media (max-width: 860px) {

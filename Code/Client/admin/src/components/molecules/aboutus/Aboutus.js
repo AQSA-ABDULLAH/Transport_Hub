@@ -13,7 +13,7 @@ const Aboutus = (props) => {
               text={props.text}
               author={props.author}
             />
-          </div>
+          </div> 
         </div>
       </div>
     </>
