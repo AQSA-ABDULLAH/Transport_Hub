@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+.mainMessage {
+  display: flex;
+  background-color: #f5f4f4;
+  border-radius: 20px;
+  width: 25%;
+  height: 100%;
+}
+
+.messageContainer {
+padding:2rem;
+}
+
+@media (max-width: 860px) {
+  .container {
+    flex-direction: column;
+    margin: 2rem;
+  }
+}

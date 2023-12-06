@@ -1,28 +1,53 @@
 import React from "react";
-import Aboutus from "../../../../components/molecules/aboutus/Aboutus"
-import style from "./carstab.module.css"
+import Cars from "../../../../components/molecules/cars/Cars";
+import style from "./carstab.module.css";
 
-const CarsTab = () => { 
+const CarsTab = () => {
   return (
     <>
-      <div className={style.container} style={{height:window.innerHeight}}>
+      <div className={style.container} style={{ height: window.innerHeight }}>
         <div className={style.message}>
-          <Aboutus
-            heading="Welcome to the Transport Hub"
-            text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut eos, eum recusandae ratione odit earum quaerat assumenda magnam itaque et tempora necessitatibus consectetur a orem ipsum dolor sit amet, consectetur adipisicing elit. Ut eos, eum recusandae ratione odit earum quaerat assumenda magnam itaque et tempora necessitatibus consectetur a"
-            author="Message by "
-            img={"./assets/image/about-us/aboutus.jpeg"}
+          <Cars
+            heading="Cras"
+            img={""}
+            carType="Electric Vehicle"
+            seats="5"
+            transmission="Automatic"
+            bags="2"
+            Incl="800 KM"
+            color="Black"
+            fyelType="Petrol, CNG"
+            engineType="Hybrid Engines"
+            price="900/day"
           />
-        </div>
-        <div className={style.author}>
-          <Aboutus
-            heading="Qoute"
-            text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut eos, eum recusandae ratione odit earum quaerat assumenda magnam itaque et tempora necessitatibus consectetur a deleniti modi repellat labore q dolore ."
-            author="Qoute by"
-            img={"./assets/image/about-us/aboutus2.jpeg"}
+          <Cars
+            heading="Cras"
+            img={""}
+            carType="Electric Vehicle"
+            seats="5"
+            transmission="Automatic"
+            bags="2"
+            Incl="800 KM"
+            color="Black"
+            fyelType="Petrol, CNG"
+            engineType="Hybrid Engines"
+            price="900/day"
           />
-        </div>
+          <Cars
+            heading="Cras"
+            img={""}
+            carType="Electric Vehicle"
+            seats="5"
+            transmission="Automatic"
+            bags="2"
+            Incl="800 KM"
+            color="Black"
+            fyelType="Petrol, CNG"
+            engineType="Hybrid Engines"
+            price="900/day"
+          />
       </div>
+    </div >
     </>
   );
 };
