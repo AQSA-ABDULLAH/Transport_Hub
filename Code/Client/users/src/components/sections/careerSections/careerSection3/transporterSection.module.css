@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+  }
+  
+  .image,
+  .text {
+    width: 50%;
+    box-sizing: border-box; 
+    padding: 10px;
+  }
+  

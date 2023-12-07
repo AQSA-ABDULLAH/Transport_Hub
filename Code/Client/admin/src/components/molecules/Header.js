@@ -32,7 +32,7 @@ const TopHeader = ({ openSidebar, setOpenSidebar,haveButton,ButtonText,onClick }
             color="#000000"
             onClick={() => setOpenSidebar(!openSidebar)}
             size={24}
-          />
+          /> 
         </div>
 <div className={styles.content}>
         <div className={styles.navbar}>
@@ -41,7 +41,7 @@ const TopHeader = ({ openSidebar, setOpenSidebar,haveButton,ButtonText,onClick }
         <div>
         {haveButton &&
         <Button btnText={ButtonText || "Add Text"} primary btnClick={onClick}/>
-        }
+        }<Button/>
         </div>
         </div>
       </section>

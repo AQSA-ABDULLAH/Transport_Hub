@@ -12,7 +12,7 @@ const Button = (props) => {
     bgColor,
     textColor,
     bw,
-    width,
+    width, 
     btnClick,
     hoverColor,
   } = props;
