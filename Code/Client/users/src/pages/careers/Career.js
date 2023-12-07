@@ -5,6 +5,7 @@ import styles from './career.module.css';
 import CareerSection2 from '../../components/sections/careerSections/careerSection2/CareerSection2';
 import TransporterSection from '../../components/sections/careerSections/careerSection3/TransporterSection';
 import DriverSection from '../../components/sections/careerSections/careerSection4/DriverSection';
+import Footer from '../../components/Footer/Footer';
 
 export default function Career() {
   return (
@@ -19,7 +20,9 @@ export default function Career() {
         <CareerSection2 />
         <TransporterSection />
         <DriverSection />
+        
       </div>
+      <Footer/>
     </>
   )
 }
