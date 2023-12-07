@@ -6,6 +6,7 @@ import SignIn from './pages/SignIn';
 import './App.css';
 import LandingPage from './pages/LandingPage';
 import PrivateComponents from './components/PrivateComponents';
+import Career from './pages/careers/Career';
 import Services from './pages/Services';
 import ErrorPage from './pages/ErrorPage';
 
@@ -23,6 +24,7 @@ function App() {
           <Route exact path="/recreationalTrips" element={<h1>Recreational Trips</h1>} />
           <Route exact path="/goodShipment" element={<h1>Good Shipment</h1>} />
           <Route exact path="/parcelPickup" element={<h1>Parcel Pickup</h1>} />
+          <Route exact path="/career" element={<Career/>} />
 
           <Route path="/profile" element={<PrivateComponents />} />
           <Route path="/profile/userProfile" element={<h1>User Profile</h1>} />
