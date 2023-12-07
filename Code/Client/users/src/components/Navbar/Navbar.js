@@ -39,6 +39,7 @@ const Navbar = () => {
             <li className="nav-item"><Link className="nav-link active" to="/loyaltyProgram">Loyalty Program</Link></li>
             <li className="nav-item"><Link className="nav-link active" to="/profile">Blog & News</Link></li>
             <li className="nav-item"> <Link className="nav-link active" to="/manageBooking">FAQs</Link></li>
+            <li className="nav-item"> <Link className="nav-link active" to="/career">Career</Link></li>
           </ul>
 
           <div className="d-flex" >

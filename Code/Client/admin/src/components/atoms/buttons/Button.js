@@ -13,7 +13,7 @@ const Button = (props) => {
     bgColor,
     textColor,
     bw,
-    width,
+    width, 
     btnClick,
     hoverColor,
     padding, // new prop for padding
