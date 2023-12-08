@@ -11,11 +11,15 @@ const AddCarForm = ({ onClose }) => {
     const [carType, setCarType] = useState('');
     const [transmission, setTransmission] = useState('');
     const [bags, setBags] = useState('');
-    const [incl, setIncl] = useState('');
+    const [mileLimit, setmileLimit] = useState('');
     const [color, setColor] = useState('');
     const [fuelType, setFuelType] = useState('');
     const [engineType, setEngineType] = useState('');
     const [price, setPrice] = useState('');
+    const [zone, setzone] = useState('');
+    const [discount, setdiscount] = useState('');
+    const [startDate, setstartDate] = useState('');
+    const [endDate, setendDate] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = () => {
@@ -26,13 +30,13 @@ const AddCarForm = ({ onClose }) => {
         formData.append('carType', carType)
         formData.append('transmission', transmission)
         formData.append('bags', bags)
-        formData.append('incl', incl)
+        formData.append('mileLimit', mileLimit)
         formData.append('color', color)
         formData.append('fuelType', fuelType)
         formData.append('engineType', engineType)
         formData.append('price', price)
 
-        axios.post('http://localhost:5000/add_product', formData, {
+        axios.post('http://localhost:5000/api/user/addCar', formData, {
             headers: { "Content-Type": "multipart/form-data" },
         })
         .then((res) => {
@@ -50,30 +54,6 @@ const AddCarForm = ({ onClose }) => {
         <div className={style.popupForm}>
             <h3>Add New Car Form</h3>
 
-            {/* Car Title Input */}
-            <div className={style.formField}>
-                <label htmlFor="carTitle">Car Title:</label>
-                <input
-                    type="text"
-                    id="carTitle"
-                    name="carTitle"
-                    value={carTitle}
-                    onChange={(e) => setCarTitle(e.target.value)}
-                />
-            </div>
-
-            {/* Number of Seats Input */}
-            <div className={style.formField}>
-                <label htmlFor="numberOfSeats">Number of Seats:</label>
-                <input
-                    type="number"
-                    id="numberOfSeats"
-                    name="numberOfSeats"
-                    value={numberOfSeats}
-                    onChange={(e) => setNumberOfSeats(e.target.value)}
-                />
-            </div>
-
             {/* Car Image Input */}
             <div className={style.formField}>
                 <label htmlFor="carImage">Car Image URL:</label>
@@ -86,6 +66,18 @@ const AddCarForm = ({ onClose }) => {
                 />
             </div>
 
+            {/* Car Title Input */}
+            <div className={style.formField}>
+                <label htmlFor="carTitle">Car Title:</label>
+                <input
+                    type="text"
+                    id="carTitle"
+                    name="carTitle"
+                    value={carTitle}
+                    onChange={(e) => setCarTitle(e.target.value)}
+                />
+            </div>
+
             {/* Car Type Input */}
             <div className={style.formField}>
                 <label htmlFor="carType">Car Type:</label>
@@ -95,6 +87,18 @@ const AddCarForm = ({ onClose }) => {
                     name="carType"
                     value={carType}
                     onChange={(e) => setCarType(e.target.value)}
+                />
+            </div>
+
+            {/* Number of Seats Input */}
+            <div className={style.formField}>
+                <label htmlFor="numberOfSeats">Number of Seats:</label>
+                <input
+                    type="number"
+                    id="numberOfSeats"
+                    name="numberOfSeats"
+                    value={numberOfSeats}
+                    onChange={(e) => setNumberOfSeats(e.target.value)}
                 />
             </div>
 
@@ -114,7 +118,7 @@ const AddCarForm = ({ onClose }) => {
             <div className={style.formField}>
                 <label htmlFor="bags">Bags:</label>
                 <input
-                    type="text"
+                    type="number"
                     id="bags"
                     name="bags"
                     value={bags}
@@ -127,10 +131,10 @@ const AddCarForm = ({ onClose }) => {
                 <label htmlFor="incl">Incl:</label>
                 <input
                     type="text"
-                    id="incl"
-                    name="incl"
-                    value={incl}
-                    onChange={(e) => setIncl(e.target.value)}
+                    id="mileLimit"
+                    name="mileLimit"
+                    value={mileLimit}
+                    onChange={(e) => setmileLimit(e.target.value)}
                 />
             </div>
 

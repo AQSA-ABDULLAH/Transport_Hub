@@ -1,3 +1,22 @@
+// const Car = require("../../models/Cars");
+
+// const createCar = async (req, res) => {
+//     const newCar = new Car(req.body)
+
+//     try {
+//         const savedCar = await newCar.save()
+//         res.status(200).json({ success: true, message: "Successfully created", data: savedCar })
+//     } catch (err) {
+//         res.status(500).json({ success: false, message: "Failed to save" })
+//     }
+// }
+
+// module.exports = {
+//     createCar}
+
+
+
+
 const mongoose = require("mongoose");
 const Cars = require("../../models/Cars");
 
@@ -5,19 +24,19 @@ class CarsController {
     static addCars = async (req, res) => {
         try {
             const {
-                image, nameAndModel, type, seats, transmission, bags, mileLimit,
-                price, color, fuelType, engineType, zone, discount, startDate, endDate
+                carImage, carTitle, carType, numberOfSeats, bags, transmission, mileLimit,
+                color, fuelType, engineType, zone, price, discount, startDate, endDate
             } = req.body;
 
-            if (!image || !nameAndModel || !type || !seats || !transmission ||
-                !bags || !mileLimit || !price || !color || !fuelType ||
-                !engineType || !zone || !discount || !startDate || !endDate) {
+            if (!carImage || !carTitle || !carType || !numberOfSeats || !bags || 
+                !transmission ||!mileLimit || !color || !fuelType || !engineType || 
+                !zone || !price || !discount || !startDate || !endDate) {
                 return res.status(400).send({ status: "failed", message: "Incomplete data provided" });
             }
 
             const newCar = new Cars({
-                image, nameAndModel, type, seats, transmission, bags, mileLimit,
-                price, color, fuelType, engineType, zone, discount, startDate, endDate
+                carImage, carTitle, carType, numberOfSeats, bags, transmission, mileLimit,
+                color, fuelType, engineType, zone, price, discount, startDate, endDate
             });
 
             await newCar.save();

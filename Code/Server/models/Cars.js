@@ -1,21 +1,26 @@
 const mongoose = require('mongoose');
 
 const carSchema = new mongoose.Schema({
-  image: {
+  carImage: {
     type: String,
     trim: true
   },
-  nameAndModel: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  type: {
+  carTitle: {
     type: String,
     required: true,
     trim: true
   },
-  seats: {
+  carType: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  numberOfSeats: {
+    type: Number,
+    required: true,
+    trim: true
+  },
+  bags: {
     type: Number,
     required: true,
     trim: true
@@ -25,17 +30,7 @@ const carSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-  bags: {
-    type: Number,
-    required: true,
-    trim: true
-  },
   mileLimit: {
-    type: Number,
-    required: true,
-    trim: true
-  },
-  price: {
     type: Number,
     required: true,
     trim: true
@@ -52,6 +47,11 @@ const carSchema = new mongoose.Schema({
   },
   engineType: {
     type: String,
+    required: true,
+    trim: true
+  },
+  price: {
+    type: Number,
     required: true,
     trim: true
   },
@@ -72,6 +72,12 @@ const carSchema = new mongoose.Schema({
     type: Date,
     trim: true
   },
+  status: {
+    type : Boolean,
+    trim : true,
+    required: true,
+    default: false,
+  }
 },
   {
     timestamps: true
