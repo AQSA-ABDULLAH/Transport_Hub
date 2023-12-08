@@ -15,14 +15,20 @@ export default function Career() {
         <Header
           bgImage={
             "./assets/images/career/carrerPage2.jpg"
-          } />
+          }
+        />
 
         <CareerSection2 />
-        <TransporterSection />
-        <DriverSection />
-        
+
+        <TransporterSection
+          transportImage="./assets/images/career/13.png"
+        />
+
+        <DriverSection
+          driverImage="./assets/images/career/13.png"
+        />
       </div>
-      <Footer/>
+      <Footer />
     </>
   )
 }

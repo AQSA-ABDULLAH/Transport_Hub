@@ -1,5 +1,6 @@
 .container {
     display: flex;
+    position: relative;
   }
   
   .image,
@@ -8,4 +9,20 @@
     box-sizing: border-box; 
     padding: 10px;
   }
+
+  .mediumHeader{
+    height: 50vh;
+    width: 80%;
+    background-color: rgb(211, 211, 211);
+    position: relative;
+} 
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
   
