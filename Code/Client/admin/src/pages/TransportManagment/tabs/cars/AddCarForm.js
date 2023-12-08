@@ -1,194 +1,189 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+// import axios from 'axios';
+// import { useNavigate } from 'react-router-dom';
 import Button from '../../../../components/atoms/buttons/Button';
 import style from './addCarForm.module.css';
 
-const AddCarForm = ({ onClose }) => {
-    const [carTitle, setCarTitle] = useState('');
-    const [carImage, setCarImage] = useState('');
-    const [numberOfSeats, setNumberOfSeats] = useState('');
-    const [carType, setCarType] = useState('');
-    const [transmission, setTransmission] = useState('');
-    const [bags, setBags] = useState('');
-    const [mileLimit, setmileLimit] = useState('');
-    const [color, setColor] = useState('');
-    const [fuelType, setFuelType] = useState('');
-    const [engineType, setEngineType] = useState('');
-    const [price, setPrice] = useState('');
-    const [zone, setzone] = useState('');
-    const [discount, setdiscount] = useState('');
-    const [startDate, setstartDate] = useState('');
-    const [endDate, setendDate] = useState('');
-    const navigate = useNavigate();
+const AddCarForm = ({ onClose, cloudName, uploadPreset }) => {
 
-    const handleSubmit = () => {
-        const formData = new FormData();
-        formData.append('carTitle', carTitle)
-        formData.append('carImage', carImage)
-        formData.append('numberOfSeats', numberOfSeats)
-        formData.append('carType', carType)
-        formData.append('transmission', transmission)
-        formData.append('bags', bags)
-        formData.append('mileLimit', mileLimit)
-        formData.append('color', color)
-        formData.append('fuelType', fuelType)
-        formData.append('engineType', engineType)
-        formData.append('price', price)
+    const [selectedFile, setselectedFile] = useState(null);
+    const [previewURl, setpreviewURl] = useState("");
+    const [formData, setFormData] = useState({
+        carImage: selectedFile,
+        carTitle: "",
+        carType: "",
+        numberOfSeats: "",
+        bags: "",
+        transmission: "",
+        mileLimit: "",
+        color: "",
+        fuelType: "",
+        engineType: "",
+        price: "",
+        zone: "",
+        discount: "",
+        startDate: "",
+        endDate: ""
+    });
 
-        axios.post('http://localhost:5000/api/user/addCar', formData, {
-            headers: { "Content-Type": "multipart/form-data" },
-        })
-        .then((res) => {
-            console.log(res.data)
-        })
-        .catch(err => {
-            console.log(err, "err")
-        })
+    const handleInput = e => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
 
-        navigate('/transport-managment');
-        onClose();
-    };
+    const handleFile = async (event) => {
+        const file = event.target.files[0];
+        console.log(file);
+    }
+
+    const handleSubmit = async event => {
+        console.log(formData)
+        event.preventDefault()
+    }
 
     return (
         <div className={style.popupForm}>
             <h3>Add New Car Form</h3>
 
-            {/* Car Image Input */}
-            <div className={style.formField}>
-                <label htmlFor="carImage">Car Image URL:</label>
-                <input
-                    type="text"
-                    id="carImage"
-                    name="carImage"
-                    value={carImage}
-                    onChange={(e) => setCarImage(e.target.value)}
-                />
-            </div>
+            <form onSubmit={handleSubmit}>
+                {/* Car Image Input */}
+                <div className={style.formField}>
+                    <label htmlFor="carImage">Car Image:</label>
+                    <input
+                        type="file"
+                        id="carImage"
+                        accept='.jpg, .png'
+                        name="carImage"
+                        onChange={handleFile}
+                    />
+                </div>
 
-            {/* Car Title Input */}
-            <div className={style.formField}>
-                <label htmlFor="carTitle">Car Title:</label>
-                <input
-                    type="text"
-                    id="carTitle"
-                    name="carTitle"
-                    value={carTitle}
-                    onChange={(e) => setCarTitle(e.target.value)}
-                />
-            </div>
+                {/* Car Title Input */}
+                <div className={style.formField}>
+                    <label htmlFor="carTitle">Car Title:</label>
+                    <input
+                        type="text"
+                        id="carTitle"
+                        name="carTitle"
+                        value={formData.carTitle}
+                        onChange={handleInput}
+                    />
+                </div>
 
-            {/* Car Type Input */}
-            <div className={style.formField}>
-                <label htmlFor="carType">Car Type:</label>
-                <input
-                    type="text"
-                    id="carType"
-                    name="carType"
-                    value={carType}
-                    onChange={(e) => setCarType(e.target.value)}
-                />
-            </div>
+                {/* Car Type Input */}
+                <div className={style.formField}>
+                    <label htmlFor="carType">Car Type:</label>
+                    <select name="carType"
+                        value={formData.carType}
+                        onChange={handleInput}>
+                        <option value="Sedan">Sedan</option>
+                        <option value="SUV">SUV</option>
+                        <option value="Coupe">Coupe</option>
+                        <option value="FamilyCar">Family Car</option>
+                        <option value="StationVeager">Station Veager</option>
+                    </select>
+                </div>
 
-            {/* Number of Seats Input */}
-            <div className={style.formField}>
-                <label htmlFor="numberOfSeats">Number of Seats:</label>
-                <input
-                    type="number"
-                    id="numberOfSeats"
-                    name="numberOfSeats"
-                    value={numberOfSeats}
-                    onChange={(e) => setNumberOfSeats(e.target.value)}
-                />
-            </div>
+                {/* Number of Seats Input */}
+                <div className={style.formField}>
+                    <label htmlFor="numberOfSeats">Number of Seats:</label>
+                    <input
+                        type="number"
+                        id="numberOfSeats"
+                        name="numberOfSeats"
+                        value={formData.numberOfSeats}
+                        onChange={handleInput}
+                    />
+                </div>
 
-            {/* Transmission Input */}
-            <div className={style.formField}>
-                <label htmlFor="transmission">Transmission:</label>
-                <input
-                    type="text"
-                    id="transmission"
-                    name="transmission"
-                    value={transmission}
-                    onChange={(e) => setTransmission(e.target.value)}
-                />
-            </div>
+                {/* Transmission Input */}
+                <div className={style.formField}>
+                    <label htmlFor="transmission">Transmission:</label>
+                    <input
+                        type="text"
+                        id="transmission"
+                        name="transmission"
+                        value={formData.transmission}
+                        onChange={handleInput}
+                    />
+                </div>
 
-            {/* Bags Input */}
-            <div className={style.formField}>
-                <label htmlFor="bags">Bags:</label>
-                <input
-                    type="number"
-                    id="bags"
-                    name="bags"
-                    value={bags}
-                    onChange={(e) => setBags(e.target.value)}
-                />
-            </div>
+                {/* Bags Input */}
+                <div className={style.formField}>
+                    <label htmlFor="bags">Bags:</label>
+                    <input
+                        type="number"
+                        id="bags"
+                        name="bags"
+                        value={formData.bags}
+                        onChange={handleInput}
+                    />
+                </div>
 
-            {/* Incl Input */}
-            <div className={style.formField}>
-                <label htmlFor="incl">Incl:</label>
-                <input
-                    type="text"
-                    id="mileLimit"
-                    name="mileLimit"
-                    value={mileLimit}
-                    onChange={(e) => setmileLimit(e.target.value)}
-                />
-            </div>
+                {/* Incl Input */}
+                <div className={style.formField}>
+                    <label htmlFor="incl">Incl:</label>
+                    <input
+                        type="text"
+                        id="mileLimit"
+                        name="mileLimit"
+                        value={formData.mileLimit}
+                        onChange={handleInput}
+                    />
+                </div>
 
-            {/* Color Input */}
-            <div className={style.formField}>
-                <label htmlFor="color">Color:</label>
-                <input
-                    type="text"
-                    id="color"
-                    name="color"
-                    value={color}
-                    onChange={(e) => setColor(e.target.value)}
-                />
-            </div>
+                {/* Color Input */}
+                <div className={style.formField}>
+                    <label htmlFor="color">Color:</label>
+                    <input
+                        type="text"
+                        id="color"
+                        name="color"
+                        value={formData.color}
+                        onChange={handleInput}
+                    />
+                </div>
 
-            {/* Fuel Type Input */}
-            <div className={style.formField}>
-                <label htmlFor="fuelType">Fuel Type:</label>
-                <input
-                    type="text"
-                    id="fuelType"
-                    name="fuelType"
-                    value={fuelType}
-                    onChange={(e) => setFuelType(e.target.value)}
-                />
-            </div>
+                {/* Fuel Type Input */}
+                <div className={style.formField}>
+                    <label htmlFor="fuelType">Fuel Type:</label>
+                    <input
+                        type="text"
+                        id="fuelType"
+                        name="fuelType"
+                        value={formData.fuelType}
+                        onChange={handleInput}
+                    />
+                </div>
 
-            {/* Engine Type Input */}
-            <div className={style.formField}>
-                <label htmlFor="engineType">Engine Type:</label>
-                <input
-                    type="text"
-                    id="engineType"
-                    name="engineType"
-                    value={engineType}
-                    onChange={(e) => setEngineType(e.target.value)}
-                />
-            </div>
+                {/* Engine Type Input */}
+                <div className={style.formField}>
+                    <label htmlFor="engineType">Engine Type:</label>
+                    <input
+                        type="text"
+                        id="engineType"
+                        name="engineType"
+                        value={formData.engineType}
+                        onChange={handleInput}
+                    />
+                </div>
 
-            {/* Price Input */}
-            <div className={style.formField}>
-                <label htmlFor="price">Price:</label>
-                <input
-                    type="text"
-                    id="price"
-                    name="price"
-                    value={price}
-                    onChange={(e) => setPrice(e.target.value)}
-                />
-            </div>
+                {/* Price Input */}
+                <div className={style.formField}>
+                    <label htmlFor="price">Price:</label>
+                    <input
+                        type="text"
+                        id="price"
+                        name="price"
+                        value={formData.price}
+                        onChange={handleInput}
+                    />
+                </div>
 
-            {/* Add your other form fields, submit button, etc. */}
-            <Button btnText="Submit" primary onClick={handleSubmit} />
-            <Button btnText="Close" primary btnClick={onClose} />
+                {/* Add your other form fields, submit button, etc. */}
+                <Button btnText="Submit" primary />
+                <Button btnText="Close" primary btnClick={onClose} />
+
+            </form>
         </div>
     );
 };
