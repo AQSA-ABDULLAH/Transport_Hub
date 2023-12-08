@@ -16,6 +16,7 @@ const Cars = (props) => {
               transmission={props.transmission}
               bags={props.bags}
               Incl={props.Incl}
+              more={props.more}
               color={props.color}
               fyelType={props.fyelType}
               engineType={props.engineType}
