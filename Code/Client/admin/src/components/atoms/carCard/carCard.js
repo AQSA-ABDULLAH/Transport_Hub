@@ -9,6 +9,7 @@ const carCard = (prop) => {
       <p>{prop.transmission}</p>
       <p>{prop.bags}</p>
       <p>{prop.Incl}</p>
+      <p>{prop.more}</p>
       <p>{prop.color}</p>
       <p>{prop.fyelType}</p>
       <p>{prop.engineType}</p>

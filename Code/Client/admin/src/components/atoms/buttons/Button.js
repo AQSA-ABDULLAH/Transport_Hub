@@ -16,7 +16,7 @@ const Button = (props) => {
     width, 
     btnClick,
     hoverColor,
-    padding, // new prop for padding
+    padding,
   } = props;
 
   const buttonStyle = {
@@ -28,8 +28,8 @@ const Button = (props) => {
     width: width || "auto",
     fontWeight: fontWeight || "400",
     border: bw || "0px",
-    padding: padding || "8px", // apply padding
-    transition: "0.3s", // to smooth out the effect
+    padding: padding || "8px 11px",
+    transition: "0.3s",
   };
 
   const [hovered, setHovered] = React.useState(false);
