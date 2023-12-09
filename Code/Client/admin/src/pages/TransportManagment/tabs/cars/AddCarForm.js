@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-// import axios from 'axios';
-// import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Button from '../../../../components/atoms/buttons/Button';
 import style from './addCarForm.module.css';
 
-const AddCarForm = ({ onClose, cloudName, uploadPreset }) => {
-
+const AddCarForm = ({ onClose }) => {
     const [selectedFile, setselectedFile] = useState(null);
-    const [previewURl, setpreviewURl] = useState("");
     const [formData, setFormData] = useState({
-        carImage: selectedFile,
+        carImage: null,
         carTitle: "",
         carType: "",
         numberOfSeats: "",
@@ -33,11 +30,29 @@ const AddCarForm = ({ onClose, cloudName, uploadPreset }) => {
     const handleFile = async (event) => {
         const file = event.target.files[0];
         console.log(file);
+        setselectedFile(file);
+        setFormData({ ...formData, carImage: file });
     }
 
     const handleSubmit = async event => {
-        console.log(formData)
-        event.preventDefault()
+        event.preventDefault();
+        try {
+            const formDataToSend = new FormData();
+            formDataToSend.append('carImage', selectedFile);
+            for (const key in formData) {
+                formDataToSend.append(key, formData[key]);
+            }
+
+            const res = await axios.post('http://localhost:5000/api/car/addCar', formDataToSend, {
+                headers: { "Content-Type": "multipart/form-data" }
+            });
+
+            console.log(res.data);
+        } catch (err) {
+            console.log(err.response);
+
+        }
+        
     }
 
     return (
@@ -189,6 +204,7 @@ const AddCarForm = ({ onClose, cloudName, uploadPreset }) => {
 };
 
 export default AddCarForm;
+
 
 
 
