@@ -10,6 +10,7 @@ const userRoutes = require('./routes/user.js');
 const carsRoutes = require('./routes/carsRoutes.js');
 const tripsRoutes = require('./routes/tripsRoutes.js');
 
+
 // Express
 const app = express();
 app.use(express.json());
@@ -30,7 +31,6 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running at port ${PORT}`);
 });
-
 
 // For Testing
 // app.post('/addCars', (req, res) => {
