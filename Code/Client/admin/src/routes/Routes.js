@@ -10,6 +10,7 @@ import PP from "../pages/Services/ParcelPickup/PP";
 import News from "../pages/Blogs&News/News";
 import WebsiteContent from "../pages/Websitecontent/main/WebsiteContent"
 import TransportMangment from "../pages/TransportManagment/main/Transport"
+import ManageTrips from "../pages/ManageTrips/ManageTrips";
 import ErrorPage from "../pages/404/ErrorPage"
 
 const RoutesStack = ({ openSidebar, setOpenSidebar }) => {
@@ -42,7 +43,7 @@ const RoutesStack = ({ openSidebar, setOpenSidebar }) => {
           ButtonText={headerButtons[currentPath]?.buttonText}
           onClick={headerButtons[currentPath]?.onClick} />
         <Routes>
-          <Route path="/" element={<AdminDashboard/>} />
+         
           <Route path="/login" element={<Login />} />
           <Route path="/carRental" element={<CarRental/>} />
           <Route path="/trip" element={<RT/>} />
@@ -51,6 +52,8 @@ const RoutesStack = ({ openSidebar, setOpenSidebar }) => {
           <Route path="/news" element={<News/>} />
           <Route path="/website-content" element={<WebsiteContent />} />
           <Route path="/transport-managment" element={<TransportMangment/>} />
+          <Route path="/manage-trips" element={<ManageTrips />} /> 
+          <Route path="/" element={<AdminDashboard/>} />
           <Route path="*" element={<ErrorPage/>} />
         </Routes>
       </div>

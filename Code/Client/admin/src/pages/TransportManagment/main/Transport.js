@@ -25,7 +25,7 @@ const Transport = () => {
       }
     }
     else {
-      navigate(`?tab=About`);
+      navigate(`?tab=Cars`);
     }
   }, [location]);
 

@@ -26,6 +26,11 @@ export const Main = [
     text: "Transport Managment",
     route:'/transport-managment'
   },
+  {
+    icon: <BiSolidContact size={20}/>,
+    text: "Manage Trips",
+    route:'/manage-trips'
+  },
 ];
 
 export const GeneralSettting = [

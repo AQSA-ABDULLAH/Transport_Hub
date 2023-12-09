@@ -25,6 +25,7 @@ const CarsTab = () => {
           <Button btnText="Add New Car" primary btnClick={openAddCarForm} />
         </div>
         <div className={style.message}>
+          
           {/* Flex container for the row of cards */}
           <div className={style.cardRow}>
           <Cars
@@ -65,6 +66,3 @@ const CarsTab = () => {
 };
 
 export default CarsTab;
-
-
-
