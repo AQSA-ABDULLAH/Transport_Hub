@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Button from '../../../../components/atoms/buttons/Button';
 import style from './addCarForm.module.css';
@@ -19,41 +20,33 @@ const AddCarForm = ({ onClose }) => {
     const [discount, setDiscount] = useState('0');
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
+    const navigate = useNavigate();
  
 
-    const handleSubmit = () => {
-        const formData = new FormData();
-        formData.append('carImage', carImage)
-        formData.append('carTitle', carTitle)
-        formData.append('carType', carType)
-        formData.append('numberOfSeats', numberOfSeats)
-        formData.append('transmission', transmission)
-        formData.append('bags', bags)
-        formData.append('mileLimit', mileLimit)
-        formData.append('color', color)
-        formData.append('fuelType', fuelType)
-        formData.append('engineType', engineType)
-        formData.append('price', price)
-        formData.append('zone', zone)
-        formData.append('discount', discount)
-        formData.append('startDate', startDate)
-        formData.append('endDate', endDate)
-
-        axios.post('http://localhost:5000/api/cars/addCar', formData, {
-            headers: { "Content-Type": "multipart/form-data" },
-        })
-        .then((res) => {
-            console.log(res.data)
-            alert("Data successfully submitted")
-        })
-        .catch(err => {
-            console.log(err, "err")
-            alert("Failed to Submit")
-        })
-
-        
-        onClose();
-    };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        try {
+          const formData = { carImage, carTitle, carType, numberOfSeats, transmission, bags,
+             mileLimit, color, fuelType, engineType, price, zone, discount, startDate, endDate};
+          const response = await axios.post("http://localhost:5000/api/cars/addCar", formData);
+    
+          // Assuming the server returns a success message in the response
+          console.log('Data submitted successfully:', response.data.message);
+    
+          // You can also display a success message to the user
+          alert('Data submitted successfully!');
+    
+          localStorage.setItem("user", JSON.stringify(response));
+          navigate("/");
+        }
+        catch (error) {
+          console.error('Error submitting form:', error.message, error.response);
+    
+          // You can display an error message to the user
+          alert('Error submitting form. Please try again.');
+        }
+      };
 
     return (
         <div className={style.popupForm}>
