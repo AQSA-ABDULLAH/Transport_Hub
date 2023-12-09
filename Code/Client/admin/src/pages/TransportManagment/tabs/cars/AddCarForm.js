@@ -1,54 +1,67 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Button from '../../../../components/atoms/buttons/Button';
 import style from './addCarForm.module.css';
-
+ 
 const AddCarForm = ({ onClose }) => {
-    const [carTitle, setCarTitle] = useState('');
     const [carImage, setCarImage] = useState('');
-    const [numberOfSeats, setNumberOfSeats] = useState('');
+    const [carTitle, setCarTitle] = useState('');
     const [carType, setCarType] = useState('');
+    const [numberOfSeats, setNumberOfSeats] = useState('0');
     const [transmission, setTransmission] = useState('');
-    const [bags, setBags] = useState('');
-    const [incl, setIncl] = useState('');
+    const [bags, setBags] = useState('0');
+    const [mileLimit, setMileLimit] = useState('');
     const [color, setColor] = useState('');
     const [fuelType, setFuelType] = useState('');
     const [engineType, setEngineType] = useState('');
-    const [price, setPrice] = useState('');
+    const [price, setPrice] = useState('0');
+    const [zone, setZone] = useState('');
+    const [discount, setDiscount] = useState('0');
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
     const navigate = useNavigate();
+ 
 
-    const handleSubmit = () => {
-        const formData = new FormData();
-        formData.append('carTitle', carTitle)
-        formData.append('carImage', carImage)
-        formData.append('numberOfSeats', numberOfSeats)
-        formData.append('carType', carType)
-        formData.append('transmission', transmission)
-        formData.append('bags', bags)
-        formData.append('incl', incl)
-        formData.append('color', color)
-        formData.append('fuelType', fuelType)
-        formData.append('engineType', engineType)
-        formData.append('price', price)
-
-        axios.post('http://localhost:5000/add_product', formData, {
-            headers: { "Content-Type": "multipart/form-data" },
-        })
-        .then((res) => {
-            console.log(res.data)
-        })
-        .catch(err => {
-            console.log(err, "err")
-        })
-
-        navigate('/transport-managment');
-        onClose();
-    };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        try {
+          const formData = { carImage, carTitle, carType, numberOfSeats, transmission, bags,
+             mileLimit, color, fuelType, engineType, price, zone, discount, startDate, endDate};
+          const response = await axios.post("http://localhost:5000/api/cars/addCar", formData);
+    
+          // Assuming the server returns a success message in the response
+          console.log('Data submitted successfully:', response.data.message);
+    
+          // You can also display a success message to the user
+          alert('Data submitted successfully!');
+    
+          localStorage.setItem("user", JSON.stringify(response));
+          navigate("/");
+        }
+        catch (error) {
+          console.error('Error submitting form:', error.message, error.response);
+    
+          // You can display an error message to the user
+          alert('Error submitting form. Please try again.');
+        }
+      };
 
     return (
         <div className={style.popupForm}>
             <h3>Add New Car Form</h3>
+            {/* Car Image Input */}
+            <div className={style.formField}>
+                <label htmlFor="carImage">Car Image:</label>
+                <input
+                    type="text"
+                    id="carImage"
+                    name="carImage"
+                    value={carImage}
+                    onChange={(e) => setCarImage(e.target.value)}
+                />
+            </div>
 
             {/* Car Title Input */}
             <div className={style.formField}>
@@ -62,30 +75,6 @@ const AddCarForm = ({ onClose }) => {
                 />
             </div>
 
-            {/* Number of Seats Input */}
-            <div className={style.formField}>
-                <label htmlFor="numberOfSeats">Number of Seats:</label>
-                <input
-                    type="number"
-                    id="numberOfSeats"
-                    name="numberOfSeats"
-                    value={numberOfSeats}
-                    onChange={(e) => setNumberOfSeats(e.target.value)}
-                />
-            </div>
-
-            {/* Car Image Input */}
-            <div className={style.formField}>
-                <label htmlFor="carImage">Car Image URL:</label>
-                <input
-                    type="text"
-                    id="carImage"
-                    name="carImage"
-                    value={carImage}
-                    onChange={(e) => setCarImage(e.target.value)}
-                />
-            </div>
-
             {/* Car Type Input */}
             <div className={style.formField}>
                 <label htmlFor="carType">Car Type:</label>
@@ -95,6 +84,18 @@ const AddCarForm = ({ onClose }) => {
                     name="carType"
                     value={carType}
                     onChange={(e) => setCarType(e.target.value)}
+                />
+            </div>
+
+             {/* Number of Seats Input */}
+             <div className={style.formField}>
+                <label htmlFor="numberOfSeats">Number of Seats:</label>
+                <input
+                    type="number"
+                    id="numberOfSeats"
+                    name="numberOfSeats"
+                    value={numberOfSeats}
+                    onChange={(e) => setNumberOfSeats(e.target.value)}
                 />
             </div>
 
@@ -114,7 +115,7 @@ const AddCarForm = ({ onClose }) => {
             <div className={style.formField}>
                 <label htmlFor="bags">Bags:</label>
                 <input
-                    type="text"
+                    type="number"
                     id="bags"
                     name="bags"
                     value={bags}
@@ -122,15 +123,15 @@ const AddCarForm = ({ onClose }) => {
                 />
             </div>
 
-            {/* Incl Input */}
+            {/* mileLimit Input */}
             <div className={style.formField}>
-                <label htmlFor="incl">Incl:</label>
+                <label htmlFor="mileLimit">Incl:</label>
                 <input
-                    type="text"
-                    id="incl"
-                    name="incl"
-                    value={incl}
-                    onChange={(e) => setIncl(e.target.value)}
+                    type="number"
+                    id="mileLimit"
+                    name="mileLimit"
+                    value={mileLimit}
+                    onChange={(e) => setMileLimit(e.target.value)}
                 />
             </div>
 
@@ -174,7 +175,7 @@ const AddCarForm = ({ onClose }) => {
             <div className={style.formField}>
                 <label htmlFor="price">Price:</label>
                 <input
-                    type="text"
+                    type="number"
                     id="price"
                     name="price"
                     value={price}
@@ -182,8 +183,55 @@ const AddCarForm = ({ onClose }) => {
                 />
             </div>
 
+             {/* Zone Input */}
+             <div className={style.formField}>
+                <label htmlFor="Zone">Zone:</label>
+                <input
+                    type="text"
+                    id="zone"
+                    name="zone"
+                    value={zone}
+                    onChange={(e) => setZone(e.target.value)}
+                />
+            </div>
+
+            <div className={style.formField}>
+                <label htmlFor="discount">Discount:</label>
+                <input
+                    type="number"
+                    id="discount"
+                    name="discount"
+                    value={discount}
+                    onChange={(e) => setDiscount(e.target.value)}
+                />
+            </div>
+
+            <div className={style.formField}>
+                <label htmlFor="startDate">Start Date:</label>
+                <input
+                    type="Date"
+                    id="startDate"
+                    name="startDate"
+                    value={startDate}
+                    onChange={(e) => setStartDate(e.target.value)}
+                />
+            </div>
+
+            <div className={style.formField}>
+                <label htmlFor="endDate">End Date:</label>
+                <input
+                    type="Date"
+                    id="endDate"
+                    name="endDate"
+                    value={endDate}
+                    onChange={(e) => setEndDate(e.target.value)}
+                />
+            </div>
+
             {/* Add your other form fields, submit button, etc. */}
-            <Button btnText="Submit" primary onClick={handleSubmit} />
+            <button type="button" className="btn btn-success" onClick={handleSubmit}>
+                SUBMIT
+              </button>
             <Button btnText="Close" primary btnClick={onClose} />
         </div>
     );
