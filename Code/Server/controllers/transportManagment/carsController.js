@@ -5,18 +5,18 @@ class CarsController {
     static addCars = async (req, res) => {
         try {
             const {
-                image, nameAndModel, type, seats, transmission, bags, mileLimit,
+                carImage, carTitle, carType, numberOfSeats, transmission, bags, mileLimit,
                 price, color, fuelType, engineType, zone, discount, startDate, endDate
             } = req.body;
 
-            if (!image || !nameAndModel || !type || !seats || !transmission ||
+            if (!carImage || !carTitle || !carType || !numberOfSeats || !transmission ||
                 !bags || !mileLimit || !price || !color || !fuelType ||
                 !engineType || !zone || !discount || !startDate || !endDate) {
                 return res.status(400).send({ status: "failed", message: "Incomplete data provided" });
             }
 
             const newCar = new Cars({
-                image, nameAndModel, type, seats, transmission, bags, mileLimit,
+                carImage, carTitle, carType, numberOfSeats, transmission, bags, mileLimit,
                 price, color, fuelType, engineType, zone, discount, startDate, endDate
             });
 

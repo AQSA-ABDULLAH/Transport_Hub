@@ -1,21 +1,22 @@
 const mongoose = require('mongoose');
 
 const carSchema = new mongoose.Schema({
-  image: {
-    type: String,
-    trim: true
-  },
-  nameAndModel: {
+  carImage: {
     type: String,
     required: true,
     trim: true
   },
-  type: {
+  carTitle: {
     type: String,
     required: true,
     trim: true
   },
-  seats: {
+  carType: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  numberOfSeats: {
     type: Number,
     required: true,
     trim: true
