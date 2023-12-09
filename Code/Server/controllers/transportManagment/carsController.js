@@ -9,11 +9,11 @@ class CarsController {
                 price, color, fuelType, engineType, zone, discount, startDate, endDate
             } = req.body;
 
-            if (!carImage || !carTitle || !carType || !numberOfSeats || !transmission ||
-                !bags || !mileLimit || !price || !color || !fuelType ||
-                !engineType || !zone || !discount || !startDate || !endDate) {
-                return res.status(400).send({ status: "failed", message: "Incomplete data provided" });
-            }
+            // if (!carImage || !carTitle || !carType || !numberOfSeats || !transmission ||
+            //     !bags || !mileLimit || !price || !color || !fuelType ||
+            //     !engineType || !zone) {
+            //     return res.status(400).send({ status: "failed", message: "Incomplete data provided" });
+            // }
 
             const newCar = new Cars({
                 carImage, carTitle, carType, numberOfSeats, transmission, bags, mileLimit,

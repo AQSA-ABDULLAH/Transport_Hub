@@ -3,7 +3,7 @@ import Button from '../../atoms/buttons/Button';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import style from './addTrip.module.css';
-
+ 
 const AddTrip = ({ onClose }) => {
     const [tripTitle, settripTitle] = useState("");
     const [location, setLocation] = useState("");
@@ -115,7 +115,7 @@ const AddTrip = ({ onClose }) => {
 
             {/* Add your other form fields, submit button, etc. */}
             <button type="button" className="btn btn-success" onClick={handleSubmit}>
-                ADD PRODUCT
+                SUBMIT
               </button>
             <Button btnText="Close" primary btnClick={onClose} />
         </div>
