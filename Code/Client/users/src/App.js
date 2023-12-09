@@ -9,12 +9,14 @@ import PrivateComponents from './components/PrivateComponents';
 import Career from './pages/careers/Career';
 import Services from './pages/Services';
 import ErrorPage from './pages/ErrorPage';
+import LandingCarPage from './pages/CarRental/LandingCarPage'
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
+          <Route exact path="/LandingCarPage" element={<LandingCarPage />} />
           <Route exact path="/" element={<LandingPage />} />
           <Route exact path="/aboutUs" element={<h1>About Us Page</h1>} />
           <Route exact path="/services" element={<Services />} />

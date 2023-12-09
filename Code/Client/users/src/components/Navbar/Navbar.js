@@ -1,7 +1,10 @@
-import React from 'react';
+import { Button } from "bootstrap";
+import React from "react";
 import { Link, useNavigate } from 'react-router-dom';
-import { Dropdown } from 'react-bootstrap'; 
-
+import { Dropdown } from "react-bootstrap";
+import CusButton from "../Button/CusButton";
+import "./Nav.css";
+import profileIcon from "./profileicon.jpg";
 const Navbar = () => {
   const auth = localStorage.getItem('user');
   const navigate = useNavigate();
@@ -9,41 +12,83 @@ const Navbar = () => {
     localStorage.clear();
     navigate("/")
   }
-
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div className='container-fluid'>
-        <h1 className="navbar-brand"><Link className="logo font-italic" to="/">FoodFrenzy</Link></h1>
+    <>
+      <nav className="navbar navbar-expand-lg bg-white">
+        <div className="container">
+          <Link
+            className="navbar-brand fw-bold fs-3"
+            href="#"
+            style={{
+              color: "#7E22CE",
+            }}
+          >
+            TransportHub
+          </Link>
 
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="/navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div
+            className="collapse navbar-collapse justify-content-end"
+            id="navbarNav"
+          >
+            <ul className="navbar-nav">
+              <li className="nav-item active">
+                <Link className="nav-link text-black fw-bold fs-6 mx-2" href="#">
+                  AboutUs
+                </Link>
+              </li>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item"><Link className="nav-link active" to="/aboutUs">About Us</Link></li>
-            <li className="nav-item dropdown">
-              <Dropdown>
-                <Dropdown.Toggle className="custom-dropdown-toggle" >
-                  <Link className="nav-link active" to="/services">Services</Link>
-                </Dropdown.Toggle>
+              <li className="nav-item ">
+                <Dropdown>
+                  <Dropdown.Toggle className=" text-black fw-bold fs-6 mx-2 bg-white">
+                    Services
+                  </Dropdown.Toggle>
 
-                <Dropdown.Menu>
-                  <Dropdown.Item href="/carRenatal">Car Rental</Dropdown.Item>
-                  <Dropdown.Item href="/recreationalTrips">Recreational Trips</Dropdown.Item>
-                  <Dropdown.Item href="/goodShipment">Goods Shipment</Dropdown.Item>
-                  <Dropdown.Item href="/parcelPickup">Parcel pickup</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </li>
-            <li className="nav-item"><Link className="nav-link active" to="/loyaltyProgram">Loyalty Program</Link></li>
-            <li className="nav-item"><Link className="nav-link active" to="/profile">Blog & News</Link></li>
-            <li className="nav-item"> <Link className="nav-link active" to="/manageBooking">FAQs</Link></li>
-            <li className="nav-item"> <Link className="nav-link active" to="/career">Career</Link></li>
-          </ul>
-
-          <div className="d-flex" >
-          {auth ?
+                  <Dropdown.Menu>
+                    <Dropdown.Item href="/">Car Rentals</Dropdown.Item>
+                    <Dropdown.Item href="/">Recreational Trips</Dropdown.Item>
+                    <Dropdown.Item href="/">Goods Shipment</Dropdown.Item>
+                    <Dropdown.Item href="/">Parcel pickup</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link text-black fw-bold fs-6 mx-2" href="#">
+                  Loyality Program
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link text-black fw-bold fs-6 mx-2" href="#">
+                  Blogs and News
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link text-black fw-bold fs-6 mx-2" href="#">
+                  FAQs
+                </Link>
+              </li>
+              <li className="nav-item">
+                
+                <CusButton
+                  btnText="Career"
+                  primary
+                  size="16px"
+                  radius="4px"
+                  textColor="#ffffff"
+                />
+              </li>
+              <li className="nav-item">
+              {auth ?
             <button><Link className="btn btn-primary" onClick={logout} to="/signUp">Logout</Link></button>
             :
             <>
@@ -51,12 +96,45 @@ const Navbar = () => {
               <button><Link className="btn btn-primary" to="/signUp">Sign Up</Link></button>
             </>
           }
+              </li>
+            </ul>
+          </div>
         </div>
-        </div>
-
-      </div>
-    </nav>
-  )
-};
+        <Dropdown>
+          <Dropdown.Toggle
+            id="profile-dropdown-toggle"
+            style={{
+              background: "transparent",
+              border: "none",
+              color: "black",
+            }}
+          >
+            <img
+              src={profileIcon}
+              alt="Profile"
+              className="rounded-circle"
+              style={{
+                width: "55px", // Adjust the width
+                height: "55px", // Adjust the height
+                marginRight: "0px",
+                backgroundColor: "transparent",
+                padding: "-10px",
+                borderRadius: "50%", // Adjust the border-radius for a circular shape
+                margin: "0px",
+              }}
+            />
+          </Dropdown.Toggle>
+          <Dropdown.Menu
+            style={{ backgroundColor: "#d36df2", color: "#fafbfc" }}
+          >
+            <Dropdown.Item href="#">Driver</Dropdown.Item>
+            <Dropdown.Item href="#">Transporter</Dropdown.Item>
+            <Dropdown.Item href="#">Pickup-boy</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </nav>
+    </>
+  );
+}
 
 export default Navbar;
