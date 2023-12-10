@@ -1,12 +1,12 @@
 import React from 'react';
 import './Main.css';
 
-import Navbar from "../components/Navbar/Navbar"
+import Navbar from "../../components/Navbar/Navbar"
 
 function LandingPage() {
   return (
     <div className="landing-page ">
-      {/* <Navbar className="nav" /> */}
+      <Navbar/>
       <div className="video-container">
         <video autoPlay muted loop id="background-video" className="video-bg">
           <source src="/trans1.mp4" type="video/mp4" />

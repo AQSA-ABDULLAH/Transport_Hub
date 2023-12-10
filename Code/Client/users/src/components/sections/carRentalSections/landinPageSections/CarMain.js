@@ -17,9 +17,9 @@ function CarMain({ onFilterApplied, car1Image, car4Image }) {
         <CarFiltering onFilterApplied={onFilterApplied} />
         <div className="d-flex justify-content-center align-items-center">
           <img src={car1Image} alt="Car 1" style={mainCars} />
-          <img src="car2.png" alt="Car 2" style={mainCars} />
+          <img src={car4Image} alt="Car 2" style={mainCars} />
           <h2 className="text-light fw-bold">Rent Your Cars</h2>
-          <img src="car3.png" alt="Car 3" style={mainCars} />
+          <img src={car4Image} alt="Car 3" style={mainCars} />
           <img src={car4Image} alt="Car 4" style={mainCars} />
         </div>
       </div>
