@@ -1,7 +1,7 @@
 // LandingCarPage.js
 import React, { useState } from "react";
 import Navbar from '../../components/Navbar/Navbar';
-import Footer from "../../components/Footer/Footer";
+import Footer from "../../components/atoms/Footer/Footer";
 import CarDeals from "../../components/sections/carRentalSections/landinPageSections/CarDeals";
 import CarTypes from "../../components/sections/carRentalSections/landinPageSections/CarTypes";
 import CarMain from "../../components/sections/carRentalSections/landinPageSections/CarMain";
