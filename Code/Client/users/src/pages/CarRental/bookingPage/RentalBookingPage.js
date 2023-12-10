@@ -95,6 +95,20 @@ const RentalBookingPage = () => {
             required
           />
         </div>
+
+        <div>
+          <h2>Delivery Address</h2>
+          <span>In case of delivery</span>
+          <label htmlFor="cnic">Delivery Address:</label>
+          <input
+            type="text"
+            id="cnic"
+            name="cnic"
+            value={formData.cnic}
+            onChange={handleChange}
+            required
+          />
+        </div>
         <button type="submit">Submit</button>
       </form>
     </>
