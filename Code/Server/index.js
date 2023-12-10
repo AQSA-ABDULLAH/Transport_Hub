@@ -29,7 +29,7 @@ app.use('/api/trips', tripsRoutes);
 // For Server Port
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server is running at port ${PORT}`);
+  console.log(`Server is running at port http://localhost:${PORT}`);
 });
 
 // For Testing
