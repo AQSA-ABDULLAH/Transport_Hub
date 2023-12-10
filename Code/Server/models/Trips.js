@@ -7,13 +7,13 @@ const tripSchema = new mongoose.Schema({
   },
   location: {
     type: String,
-
+  
     trim: true
   },
   images: {
-    type: [String], // Change to an array of strings
-
-    trim: true
+    type : String,
+    required : true,
+    trim : true,
   },
   description: {
     type: String,

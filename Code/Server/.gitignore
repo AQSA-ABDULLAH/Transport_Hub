@@ -22,3 +22,5 @@ yarn-error.log*
 
 #Database URL
 config.env
+public
+Upload

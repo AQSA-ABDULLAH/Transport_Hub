@@ -7,7 +7,7 @@ class TripsController {
     tripTitle: Joi.string().required(),
     description: Joi.string().required(),
     location: Joi.string().required(),
-    image: Joi.string().trim().required(),
+    images: Joi.string().trim().required(),
     price: Joi.number().required(),
     extraInformation: Joi.string(),
   });
@@ -15,7 +15,7 @@ class TripsController {
   // Create a new trip
   static addTrips = async (req, res) => {
     const data = req.body;
-    data.image = req?.file?.filename;
+    data.images = req?.file?.filename;
     const { error } = this.tripPackageValidationSchema.validate(data);
     try {
       const newTrip = await Trips.create(data);
