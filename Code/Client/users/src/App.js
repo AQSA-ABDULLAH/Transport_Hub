@@ -8,9 +8,10 @@ import PrivateComponents from './components/PrivateComponents';
 import Career from './pages/careers/Career';
 import Services from './pages/Services';
 import ErrorPage from './pages/unknownPage/ErrorPage';
-import LandingCarPage from './pages/carRental/LandingPage/LandingCarPage';
-import ExtendedDetailPage from './pages/carRental/addOnPage/ExtendedDetailPage';
-import RentalBookingPage from './pages/carRental/bookingPage/RentalBookingPage'
+import LandingCarPage from './pages/CarRental/LandingPage/LandingCarPage';
+import ExtendedDetailPage from './pages/CarRental/addOnPage/ExtendedDetailPage';
+import RentalBookingPage from './pages/CarRental/bookingPage/RentalBookingPage';
+import TripLandingPage from './pages/tripsPacakages/tripLandingPage/tripLandingPage';
 
 function App() {
   return (
@@ -27,10 +28,14 @@ function App() {
           <Route exact path="/goodShipment" element={<h1>Good Shipment</h1>} />
           <Route exact path="/parcelPickup" element={<h1>Parcel Pickup</h1>} />
           <Route exact path="/career" element={<Career/>} />
+
           {/* CAR RENTAL ROUTES */}
           <Route exact path="/LandingCarPage" element={<LandingCarPage/>} />
           <Route exact path="/ExtendedDetailPage" element={<ExtendedDetailPage/>} />
           <Route exact path="/RentalBookingPage" element={<RentalBookingPage/>} />
+
+          {/* TRIP PACKAGES ROUTES */}
+          <Route exact path="/tripLandingPage" element={<TripLandingPage/>}/>
 
           <Route path="/profile" element={<PrivateComponents />} />
           <Route path="/profile/userProfile" element={<h1>User Profile</h1>} />
