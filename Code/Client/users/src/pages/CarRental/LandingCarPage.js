@@ -2,12 +2,12 @@
 import React, { useState } from "react";
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from "../../components/Footer/Footer";
-import CarDeals from "../../components/CarRental/comps/CarDeals";
-import CarTypes from "../../components/CarRental/comps/CarTypes";
-import CarMain from "../../components/CarRental/comps/CarMain";
-import ManageCars from "../../components/CarRental/comps/ManageCars";
-import CarFiltering from "../../components/CarRental/comps/CarFiltering";
-import CarResults from "../../components/CarRental/comps/CarResults"; // Import the CarResults component
+import CarDeals from "../../components/sections/carRentalSections/landinPageSections/CarDeals";
+import CarTypes from "../../components/sections/carRentalSections/landinPageSections/CarTypes";
+import CarMain from "../../components/sections/carRentalSections/landinPageSections/CarMain";
+import ManageCars from "../../components/sections/carRentalSections/landinPageSections/ManageCars";
+import CarFiltering from "../../components/sections/carRentalSections/landinPageSections/CarFiltering";
+import CarResults from "../../components/sections/carRentalSections/landinPageSections/CarResults"; // Import the CarResults component
 
 function LandingCarPage() {
   const [filterApplied, setFilterApplied] = useState(false);
@@ -27,6 +27,8 @@ function LandingCarPage() {
 
       {!filterApplied && (
         <CarMain
+          car1Image={"./assets/images/cars/SUVs.png"}
+          car4Image={"./assets/images/cars/car4.png"}
           onFilter={handleFilter}
           onFilterApplied={handleFilterApplied}
         />

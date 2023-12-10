@@ -8,7 +8,7 @@ import DriverSection from '../../components/sections/careerSections/careerSectio
 
 export default function Career() {
   return (
-    <>
+    <> 
       <Navbar />
       <div className={styles.careerPage}>
         <Header
