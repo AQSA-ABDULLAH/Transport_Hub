@@ -10,6 +10,7 @@ import Services from './pages/Services';
 import ErrorPage from './pages/unknownPage/ErrorPage';
 import LandingCarPage from './pages/carRental/LandingCarPage';
 import ExtendedDetailPage from './pages/carRental/ExtendedDetailPage';
+import RentalBookingPage from './pages/carRental/bookingPage/RentalBookingPage'
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           {/* CAR RENTAL ROUTES */}
           <Route exact path="/LandingCarPage" element={<LandingCarPage/>} />
           <Route exact path="/ExtendedDetailPage" element={<ExtendedDetailPage/>} />
+          <Route exact path="/RentalBookingPage" element={<RentalBookingPage/>} />
 
           <Route path="/profile" element={<PrivateComponents />} />
           <Route path="/profile/userProfile" element={<h1>User Profile</h1>} />
