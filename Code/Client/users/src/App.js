@@ -1,15 +1,16 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar/Navbar'
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
 import './App.css';
-import LandingPage from './pages/LandingPage';
+import LandingPage from './pages/landingPage/LandingPage';
 import PrivateComponents from './components/PrivateComponents';
 import Career from './pages/careers/Career';
 import Services from './pages/Services';
-import ErrorPage from './pages/ErrorPage';
-import LandingCarPage from './pages/CarRental/LandingCarPage'
+import ErrorPage from './pages/unknownPage/ErrorPage';
+import LandingCarPage from './pages/carRental/LandingPage/LandingCarPage';
+import ExtendedDetailPage from './pages/carRental/addOnPage/ExtendedDetailPage';
+import RentalBookingPage from './pages/carRental/bookingPage/RentalBookingPage'
 
 function App() {
   return (
@@ -26,6 +27,10 @@ function App() {
           <Route exact path="/goodShipment" element={<h1>Good Shipment</h1>} />
           <Route exact path="/parcelPickup" element={<h1>Parcel Pickup</h1>} />
           <Route exact path="/career" element={<Career/>} />
+          {/* CAR RENTAL ROUTES */}
+          <Route exact path="/LandingCarPage" element={<LandingCarPage/>} />
+          <Route exact path="/ExtendedDetailPage" element={<ExtendedDetailPage/>} />
+          <Route exact path="/RentalBookingPage" element={<RentalBookingPage/>} />
 
           <Route path="/profile" element={<PrivateComponents />} />
           <Route path="/profile/userProfile" element={<h1>User Profile</h1>} />

@@ -1,49 +1,49 @@
 import React, { useState } from "react";
 import { Carousel, Card, Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../css/CarDeals.css";
+import "./carDeals.module.css";
 
 const CarTypes = () => {
   const deals = [
     {
       id: 1,
       title: "SUVs",
-      imageUrl: "./SUVS.png",
+      imageUrl: "./assets/images/cars/SUVs.png",
     },
     {
       id: 2,
       title: "Pickup Truks",
-      imageUrl: "./PickupTrucks.PNG",
+      imageUrl: "./assets/images/cars/PickupTrucks.PNG",
     },
     {
       id: 3,
       title: "Passenger Van",
-      imageUrl: "./PassengerVan.PNG",
+      imageUrl: "./assets/images/cars/PassengerVan.PNG",
     },
     {
       id: 4,
       title: "Guarented Models",
-      imageUrl: "./GuarentedModels.PNG",
+      imageUrl: "./assets/images/cars/GuarentedModels.PNG",
     },
     {
       id: 5,
       title: "Mini Vans",
-      imageUrl: "./Minivans.PNG",
+      imageUrl: "./assets/images/cars/Minivans.PNG",
     },
     {
       id: 6,
       title: "Four Wheel Drive",
-      imageUrl: "./FourWheelDrive.PNG",
+      imageUrl: "./assets/images/cars/FourWheelDrive.PNG",
     },
     {
       id: 7,
       title: "Electric Cars",
-      imageUrl: "./ElectricCars.PNG",
+      imageUrl: "./assets/images/cars/ElectricCars.PNG",
     },
     {
       id: 8,
-      title: "CONVERTIBLES",
-      imageUrl: "./CONVERTIBLES.png",
+      title: "Convertibles",
+      imageUrl: "./assets/images/cars/CONVERTIBLES.png",
     },
   ];
 
@@ -80,8 +80,8 @@ const CarTypes = () => {
                           variant="top"
                           src={deal.imageUrl}
                           alt={deal.title}
-                          width="80px"
-                          height="80px"
+                          width="150rem"
+                          height="150rem"
                         />
                         <Card.Title className="fs-6">{deal.title}</Card.Title>
                       </Card.Body>

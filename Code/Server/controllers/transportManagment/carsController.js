@@ -20,6 +20,7 @@ class CarsController {
       });
     
     static addCars = async (req, res) => {
+
        
             const data = req.body;
             data.image = req?.file?.filename;
@@ -34,6 +35,7 @@ class CarsController {
               }
             
         
+
     };
 }
 

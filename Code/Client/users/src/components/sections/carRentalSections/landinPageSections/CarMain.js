@@ -1,6 +1,6 @@
 import React from "react";
 import CarFiltering from "./CarFiltering";
-function CarMain({ onFilterApplied }) {
+function CarMain({ onFilterApplied, car1Image, car4Image }) {
   const mainCars = {
     width: "300px",
     height: "200px",
@@ -16,11 +16,11 @@ function CarMain({ onFilterApplied }) {
       >
         <CarFiltering onFilterApplied={onFilterApplied} />
         <div className="d-flex justify-content-center align-items-center">
-          <img src="car1.png" alt="Car 1" style={mainCars} />
-          <img src="car2.png" alt="Car 2" style={mainCars} />
+          <img src={car1Image} alt="Car 1" style={mainCars} />
+          <img src={car4Image} alt="Car 2" style={mainCars} />
           <h2 className="text-light fw-bold">Rent Your Cars</h2>
-          <img src="car3.png" alt="Car 3" style={mainCars} />
-          <img src="carr4.png" alt="Car 4" style={mainCars} />
+          <img src={car4Image} alt="Car 3" style={mainCars} />
+          <img src={car4Image} alt="Car 4" style={mainCars} />
         </div>
       </div>
     </>

@@ -3,7 +3,7 @@ import Button from '../../atoms/buttons/Button';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import style from './addTrip.module.css';
-
+ 
 const AddTrip = ({ onClose }) => {
     const [tripTitle, settripTitle] = useState("");
     const [location, setLocation] = useState("");
@@ -13,28 +13,29 @@ const AddTrip = ({ onClose }) => {
     const [price, setPrice] = useState("");
     const navigate = useNavigate();
 
-    const handleSubmit = () => {
-          const formData = new FormData();
-          formData.append('tripTitle', tripTitle)
-          formData.append('location', location)
-          formData.append('images', images)
-          formData.append('description', description)
-          formData.append('extraInformation', extraInformation)
-          formData.append('price', price)
+    const handleSubmit = async (e) => {
+        e.preventDefault();
     
-          axios.post('http://localhost:5000/api/trips/addTrip', formData,
-            {
-              headers: { "Content-Type": "multipart/form-data" },
-            }
-          )
-            .then((res) => {
-              console.log(res.data)
-            })
-            .catch(err => {
-              console.log(err, "err")
-            })
-            navigate('/');
-      }
+        try {
+          const formData = { tripTitle, location, images, description, extraInformation, price };
+          const response = await axios.post("http://localhost:5000/api/trips/addTrip", formData);
+    
+          // Assuming the server returns a success message in the response
+          console.log('Data submitted successfully:', response.data.message);
+    
+          // You can also display a success message to the user
+          alert('Data submitted successfully!');
+    
+          localStorage.setItem("user", JSON.stringify(response));
+          navigate("/");
+        }
+        catch (error) {
+          console.error('Error submitting form:', error.message, error.response);
+    
+          // You can display an error message to the user
+          alert('Error submitting form. Please try again.');
+        }
+      };
 
     return (
         <div className={style.popupForm}>
@@ -115,7 +116,7 @@ const AddTrip = ({ onClose }) => {
 
             {/* Add your other form fields, submit button, etc. */}
             <button type="button" className="btn btn-success" onClick={handleSubmit}>
-                ADD PRODUCT
+                SUBMIT
               </button>
             <Button btnText="Close" primary btnClick={onClose} />
         </div>

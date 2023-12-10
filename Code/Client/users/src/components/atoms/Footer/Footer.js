@@ -1,5 +1,5 @@
 import React from "react";
-import Blogs from "../Main/Blog";
+import Blogs from "../../Main/Blog";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebook,

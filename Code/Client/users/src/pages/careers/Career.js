@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from "../../components/Navbar/Navbar"
+import Navbar from "../../components/atoms/Navbar/Navbar"
 import Header from '../../components/sections/careerSections/careerHeader/Header'
 import styles from './career.module.css';
 import CareerSection2 from '../../components/sections/careerSections/careerSection2/CareerSection2';
@@ -8,7 +8,7 @@ import DriverSection from '../../components/sections/careerSections/careerSectio
 
 export default function Career() {
   return (
-    <>
+    <> 
       <Navbar />
       <div className={styles.careerPage}>
         <Header
