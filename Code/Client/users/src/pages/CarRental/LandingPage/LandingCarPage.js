@@ -1,13 +1,13 @@
 // LandingCarPage.js
 import React, { useState } from "react";
-import Navbar from '../../components/Navbar/Navbar';
-import Footer from "../../components/atoms/Footer/Footer";
-import CarDeals from "../../components/sections/carRentalSections/landinPageSections/CarDeals";
-import CarTypes from "../../components/sections/carRentalSections/landinPageSections/CarTypes";
-import CarMain from "../../components/sections/carRentalSections/landinPageSections/CarMain";
-import ManageCars from "../../components/sections/carRentalSections/landinPageSections/ManageCars";
-import CarFiltering from "../../components/sections/carRentalSections/landinPageSections/CarFiltering";
-import CarResults from "../../components/sections/carRentalSections/landinPageSections/CarResults"; // Import the CarResults component
+import Navbar from '../../../components/atoms/Navbar/Navbar';
+import Footer from "../../../components/atoms/Footer/Footer";
+import CarDeals from "../../../components/sections/carRentalSections/landinPageSections/CarDeals";
+import CarTypes from "../../../components/sections/carRentalSections/landinPageSections/CarTypes";
+import CarMain from "../../../components/sections/carRentalSections/landinPageSections/CarMain";
+import ManageCars from "../../../components/sections/carRentalSections/landinPageSections/ManageCars";
+import CarFiltering from "../../../components/sections/carRentalSections/landinPageSections/CarFiltering";
+import CarResults from "../../../components/sections/carRentalSections/landinPageSections/CarResults"; // Import the CarResults component
 
 function LandingCarPage() {
   const [filterApplied, setFilterApplied] = useState(false);

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navbar from "../../../components/Navbar/Navbar"
+import Navbar from "../../../components/atoms/Navbar/Navbar"
 
 const RentalBookingPage = () => {
   const [formData, setFormData] = useState({

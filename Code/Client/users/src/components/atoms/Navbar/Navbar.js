@@ -1,8 +1,7 @@
-import { Button } from "bootstrap";
 import React from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { Dropdown } from "react-bootstrap";
-import CusButton from "../Button/CusButton";
+import CusButton from "../../Button/CusButton";
 import "./Nav.css";
 import profileIcon from "./profileicon.jpg";
 const Navbar = () => {

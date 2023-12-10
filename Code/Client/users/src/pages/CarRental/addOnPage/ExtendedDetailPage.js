@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navbar from '../../../components/Navbar/Navbar';
+import Navbar from '../../../components/atoms/Navbar/Navbar';
 import CusButton from '../../../components/Button/CusButton';
 import CarFeaturesModel from '../carFeatureModel/CarFeaturesModel';
 import style from './ExtendedDetail.module.css';

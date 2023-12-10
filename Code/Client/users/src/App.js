@@ -8,7 +8,7 @@ import PrivateComponents from './components/PrivateComponents';
 import Career from './pages/careers/Career';
 import Services from './pages/Services';
 import ErrorPage from './pages/unknownPage/ErrorPage';
-import LandingCarPage from './pages/carRental/LandingCarPage';
+import LandingCarPage from './pages/carRental/LandingPage/LandingCarPage';
 import ExtendedDetailPage from './pages/carRental/addOnPage/ExtendedDetailPage';
 import RentalBookingPage from './pages/carRental/bookingPage/RentalBookingPage'
 
