@@ -40,49 +40,63 @@ class TripsController {
 
   // Get a single trip by ID
   static getTripById = async (req, res) => {
-    const { tripId } = req.params;
+   
     try {
-      const trip = await Trips.findById(tripId);
-      if (!trip) {
+      const getData = await Trips.find({});
+      const package1 = await Trips.findById(req.params.id);
+      if (!package1) {
         return res.status(404).send({ status: "failed", message: "Trip not found" });
+       
       }
-      res.status(200).send({ status: "success", data: trip });
-    } catch (error) {
+      res.status(200).send({ status: "success", data: package1 });
+    } catch (err) {
       console.error(error);
       res.status(500).send({ status: "failed", message: "Internal Server Error" });
     }
+ 
   };
 
   // Update a trip by ID
   static updateTripById = async (req, res) => {
-    const { tripId } = req.params;
-    const data = req.body;
+    const tripId = req.params.id;
     try {
-      const updatedTrip = await Trips.findByIdAndUpdate(tripId, data, { new: true });
-      if (!updatedTrip) {
+      const tripPackage1 = await Trips.findById(tripId);
+      
+      if (!tripPackage1) {
         return res.status(404).send({ status: "failed", message: "Trip not found" });
       }
+  
+      // Assuming you have some update data in req.body, modify this as needed
+      const updateData = req.body;
+  
+      const updatedTrip = await Trips.findByIdAndUpdate(tripId, updateData, { new: true });
+  
       res.status(200).send({ status: "success", message: "Trip updated successfully", data: updatedTrip });
+      console.log(updatedTrip);
     } catch (error) {
       console.error(error);
       res.status(500).send({ status: "failed", message: "Internal Server Error" });
     }
   };
+  
 
   // Delete a trip by ID
   static deleteTripById = async (req, res) => {
-    const { tripId } = req.params;
+    const tripId  = req.params.id;
     try {
-      const deletedTrip = await Trips.findByIdAndRemove(tripId);
-      if (!deletedTrip) {
+      const tripPackage1 = await Trips.findById(tripId);
+      console.log(tripPackage1);
+      await Trips.findByIdAndDelete(tripPackage1);
+      if (!tripPackage1) {
         return res.status(404).send({ status: "failed", message: "Trip not found" });
       }
-      res.status(200).send({ status: "success", message: "Trip deleted successfully", data: deletedTrip });
+      res.status(200).send({ status: "success", message: "Trip deleted successfully", data: tripPackage1 });
     } catch (error) {
       console.error(error);
       res.status(500).send({ status: "failed", message: "Internal Server Error" });
     }
-  };
+  }
+   
 }
 
 module.exports = TripsController;
