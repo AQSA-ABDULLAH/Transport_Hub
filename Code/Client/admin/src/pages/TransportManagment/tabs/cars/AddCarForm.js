@@ -24,7 +24,7 @@ const AddCarForm = ({ onClose }) => {
     // const navigate = useNavigate();
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(carImage, carTitle, carType, numberOfSeats, transmission, bags,
             mileLimit, color, fuelType, engineType, price, zone, discount, startDate, endDate)
@@ -47,48 +47,29 @@ const AddCarForm = ({ onClose }) => {
         formData.append('endDate', endDate);
 
 
-        axios.post("http://localhost:5000/api/cars/addCar",
-            formData,
-            {
+        try {
+            const response = await axios.post("http://localhost:5000/api/cars/addCar", formData, {
                 headers: { 'Authorization': localStorage.getItem('token') }
-            })
-            .then((res) => {
-                console.log(res.data)
+            });
 
-                if (res.data.code === 403 && res.data.message === "Token Expired") {
-                    localStorage.setItem('token', null)
-                }
-            })
-            .catch(err => {
-                console.log(err, "error")
-            })
-    }
+            console.log(response.data);
 
+            if (response.data.status === "success") {
+                alert("Data submitted successfully!");
+                onClose();
+            } else {
+                alert("Failed to submit data. Please try again.");
+            }
 
-    //     try {
-    //         const formData = {
-    //             carImage, carTitle, carType, numberOfSeats, transmission, bags,
-    //             mileLimit, color, fuelType, engineType, price, zone, discount, startDate, endDate
-    //         };
-    //         const response = await axios.post("http://localhost:5000/api/cars/addCar", formData);
-
-    //         // Assuming the server returns a success message in the response
-    //         console.log('Data submitted successfully:', response.data.message);
-    //         console.log(formData)
-
-    //         // You can also display a success message to the user
-    //         alert('Data submitted successfully!');
-
-    //         localStorage.setItem("user", JSON.stringify(response));
-    //         navigate("/");
-    //     }
-    //     catch (error) {
-    //         console.error('Error submitting form:', error.message, error.response);
-
-    //         // You can display an error message to the user
-    //         alert('Error submitting form. Please try again.');
-    //     }
-    // };
+            if (response.data.code === 403 && response.data.message === "Token Expired") {
+                localStorage.setItem('token', null);
+            }
+        } catch (error) {
+            console.log(error);
+            alert("An error occurred while submitting the data. Please try again.");
+        }
+    };
+    
 
     return (
         <div className={style.popupForm}>
@@ -280,6 +261,3 @@ const AddCarForm = ({ onClose }) => {
 };
 
 export default AddCarForm;
-
-
-
