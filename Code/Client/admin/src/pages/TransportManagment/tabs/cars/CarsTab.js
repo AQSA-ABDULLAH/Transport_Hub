@@ -30,7 +30,8 @@ const CarsTab = () => {
           <div className={style.cardRow}>
           <Cars
               heading="Car Model XYZ"
-              imageUrl="path/to/car-image.jpg"
+              carType="SUV"
+              imageUrl={"./assets/images/cars/SUVs.png"}
               seats="5"
               transmission="Automatic"
               Incl="800 KM"
@@ -39,7 +40,8 @@ const CarsTab = () => {
             />
             <Cars
               heading="Car Model ABC"
-              imageUrl="path/to/another-car-image.jpg"
+              carType="Electric Car"
+              imageUrl={"./assets/images/cars/car4.png"}
               seats="5"
               transmission="Automatic"
               Incl="800 KM"
@@ -48,7 +50,8 @@ const CarsTab = () => {
             />
             <Cars
               heading="Car Model 123"
-              imageUrl="path/to/yet-another-car-image.jpg"
+              carType="Convertable"
+              imageUrl={"./assets/images/cars/car1.png"}
               seats="5"
               transmission="Automatic"
               Incl="800 KM"

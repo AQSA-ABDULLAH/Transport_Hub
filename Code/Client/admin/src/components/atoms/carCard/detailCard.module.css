@@ -1,0 +1,33 @@
+/* carCard.module.css */
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    max-height: 80vh;
+    overflow-y: auto;
+    z-index: 2000;
+}
+
+.modal p {
+    margin: 10px 0;
+}
+
+.closeButton {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.closeButton:hover {
+    background-color: #0056b3;
+}
