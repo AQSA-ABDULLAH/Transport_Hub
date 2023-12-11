@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../css/CarFilter.css"; // Create a new CSS file for custom styles
+import "./carFiltering.module.css"; // Create a new CSS file for custom styles
 
 const CarFiltering = ({ onFilter, onFilterApplied }) => {
   const [pickupLocation, setPickupLocation] = useState("");

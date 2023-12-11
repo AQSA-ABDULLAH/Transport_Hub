@@ -4,19 +4,45 @@ const Trips = require("../../models/Trips");
 
 class TripsController {
   static tripPackageValidationSchema = Joi.object({
-    tripTitle: Joi.string().required(),
-    description: Joi.string().required(),
-    location: Joi.string().required(),
-    images: Joi.string().trim().required(),
-    price: Joi.number().required(),
-    extraInformation: Joi.string(),
-  });
+    tripTitle: Joi.string().required().label('Trip Title').messages({
+        'string.base': '{#label} must be a string',
+        'any.required': '{#label} is required',
+    }),
+    description: Joi.string().required().label('Description').messages({
+        'string.base': '{#label} must be a string',
+        'any.required': '{#label} is required',
+    }),
+    location: Joi.string().required().label('Location').messages({
+        'string.base': '{#label} must be a string',
+        'any.required': '{#label} is required',
+    }),
+    images: Joi.string().trim().required().label('Images').messages({
+        'string.base': '{#label} must be a string',
+        'any.required': '{#label} is required',
+    }),
+    price: Joi.number().required().label('Price').messages({
+        'number.base': '{#label} must be a number',
+        'any.required': '{#label} is required',
+    }),
+    extraInformation: Joi.string().label('Extra Information').messages({
+        'string.base': '{#label} must be a string',
+    }),
+});
 
   // Create a new trip
   static addTrips = async (req, res) => {
     const data = req.body;
     data.images = req?.file?.filename;
     const { error } = this.tripPackageValidationSchema.validate(data);
+
+    if (error) {
+      console.error('Validation error:', error.details);
+      return res.status(400).json({
+        status: 'failed',
+        message: 'Validation error',
+        errors: error.details,
+      });
+    }
     try {
       const newTrip = await Trips.create(data);
       console.log("Data saved");

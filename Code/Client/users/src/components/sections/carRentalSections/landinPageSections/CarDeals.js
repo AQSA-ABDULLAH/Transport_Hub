@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Carousel, Card, Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../css/CarDeals.css";
+import "./carDeals.module.css";
 
 const CarDeals = () => {
   const deals = [
