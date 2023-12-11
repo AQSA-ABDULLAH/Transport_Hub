@@ -1,27 +1,26 @@
 const express = require('express');
-const CarsController = require("../controllers/transportManagment/carsController.js");
-// const isAuthenticated = require("../middlewares/auth-middleware.js");
 const router = express.Router();
-
+const path = require('path');
 const multer = require('multer');
+const CarsController = require("../controllers/transportManagment/carsController.js");
 
-const upload = multer({ dest: 'uploads/' })
-router.post('/addCar', upload.single('carImage'), CarsController.addCars);
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "uploads/carRental/")
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname))
+    }
+  });
 
-
-// Route Level Middleware - To Protect Route
-// router.post("/addCar", isAuthenticated, CarsController.addCars)
+  const upload = multer({ storage: storage })
 
 // PROTECTED ROUTES
-
-// const storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//         cb(null, "./Upload")
-//     },
-//     filename: (req, file, cb) => {
-//         cb(null, Date.now() + path.extname(file.originalname))
-//     }
-//   });
-
+router.post('/addCar', upload.single('carImage'), CarsController.addCars);
 
 module.exports = router;
+
+
+// const isAuthenticated = require("../middlewares/auth-middleware.js");
+// Route Level Middleware - To Protect Route
+// router.post("/addCar", isAuthenticated, CarsController.addCars)
