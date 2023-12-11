@@ -7,36 +7,59 @@ import style from './addTrip.module.css';
 const AddTrip = ({ onClose }) => {
     const [tripTitle, settripTitle] = useState("");
     const [location, setLocation] = useState("");
-    const [images, setImages] = useState("");
+    const [imageFile, setImageFile] = useState(null); // Updated state for image file
     const [description, setDescription] = useState("");
     const [extraInformation, setExtraInformation] = useState("");
     const [price, setPrice] = useState("");
     const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-    
-        try {
-          const formData = { tripTitle, location, images, description, extraInformation, price };
-          const response = await axios.post("http://localhost:5000/api/trips/addTrip", formData);
-    
-          // Assuming the server returns a success message in the response
-          console.log('Data submitted successfully:', response.data.message);
-    
-          // You can also display a success message to the user
-          alert('Data submitted successfully!');
-    
-          localStorage.setItem("user", JSON.stringify(response));
-          navigate("/");
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setImageFile(file);
         }
-        catch (error) {
-          console.error('Error submitting form:', error.message, error.response);
-    
-          // You can display an error message to the user
-          alert('Error submitting form. Please try again.');
-        }
-      };
+    };
 
+    const handleSubmit = () => {
+        // Perform data validation
+        if (!tripTitle || !location || !imageFile || !description || !extraInformation || !price) {
+            // Display an alert if any of the required fields is empty
+            alert('Please fill in all required fields.');
+            return;
+        }
+    
+        const formData = new FormData();
+        formData.append('tripTitle', tripTitle);
+        formData.append('location', location);
+        formData.append('images', imageFile);
+        formData.append('description', description);
+        formData.append('extraInformation', extraInformation);
+        formData.append('price', price);
+    
+        axios.post('http://localhost:5000/api/trips/addTrip', formData, {
+            headers: { "Content-Type": "multipart/form-data" },
+        })
+            .then((res) => {
+                console.log(res.data);
+                alert('Data submitted successfully!');
+                navigate('/');
+            })
+            .catch((err) => {
+                console.log(err, "err");
+                if (err.response && err.response.status === 400) {
+                    // Validation error(s) from the server
+                    const validationErrors = err.response.data.errors;
+                    alert(`Validation failed:\n${validationErrors.map(error => error.message).join('\n')}`);
+                } else {
+                    // Other errors
+                    alert('Error submitting data. Please try again.');
+                }
+            });
+            
+    };
+    
+
+    
     return (
         <div className={style.popupForm}>
             <h3>Add New Trip Form</h3>
@@ -67,13 +90,12 @@ const AddTrip = ({ onClose }) => {
 
              {/* Trip images Input */}
              <div className={style.formField}>
-                <label htmlFor="location">Images</label>
+                <label htmlFor="images">Images</label>
                 <input
-                    type="text"
+                    type="file" // Change type to 'file'
                     id="images"
                     name="images"
-                    value={images}
-                    onChange={(e) => setImages(e.target.value)}
+                    onChange={handleImageChange}
                 />
             </div>
 
