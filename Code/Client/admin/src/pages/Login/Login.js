@@ -1,5 +1,6 @@
 import LoginModal from "../../components/LoginModel/LoginModal";
 import { useRedirectIfAuthenticated } from "../../utils/useRedirect";
+import styles from  './login.module.css'
 
 const Login = ({ isauth }) => {
   useRedirectIfAuthenticated(isauth);
@@ -7,12 +8,12 @@ const Login = ({ isauth }) => {
     <div
       style={{
         backgroundImage: `url(
-            "/assets/image/login/image.png"
+            "/assets/images/cars/image1.jpg"
             )`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
-      className="login-admin-container"
+      className={styles.login}
     >
       <LoginModal />
     </div>
