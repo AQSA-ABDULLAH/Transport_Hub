@@ -1,6 +1,5 @@
-// CarsTab.js
-
-import React, { useState } from 'react';
+// Import useEffect from React
+import React, { useState, useEffect } from 'react';
 import Button from '../../../../components/atoms/buttons/Button';
 import Cars from "../../../../components/molecules/cars/Cars";
 import style from './carstab.module.css';
@@ -8,6 +7,21 @@ import AddCarForm from './AddCarForm';
 
 const CarsTab = () => {
   const [isAddCarFormVisible, setAddCarFormVisible] = useState(false);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
+  const getProducts = async () => {
+    try {
+      let result = await fetch("http://localhost:4000/");
+      result = await result.json();
+      setProducts(result);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
 
   const openAddCarForm = () => {
     setAddCarFormVisible(true);
@@ -25,41 +39,23 @@ const CarsTab = () => {
           <Button btnText="Add New Car" primary btnClick={openAddCarForm} />
         </div>
         <div className={style.message}>
-          
+
           {/* Flex container for the row of cards */}
           <div className={style.cardRow}>
-          <Cars
-              heading="Car Model XYZ"
-              carType="SUV"
-              imageUrl={"./assets/images/cars/SUVs.png"}
-              seats="5"
-              transmission="Automatic"
-              Incl="800 KM"
-              more="More"
-              price="$100/day"
-            />
-            <Cars
-              heading="Car Model ABC"
-              carType="Electric Car"
-              imageUrl={"./assets/images/cars/car4.png"}
-              seats="5"
-              transmission="Automatic"
-              Incl="800 KM"
-              more="More"
-              price="$120/day"
-            />
-            <Cars
-              heading="Car Model 123"
-              carType="Convertable"
-              imageUrl={"./assets/images/cars/car1.png"}
-              seats="5"
-              transmission="Automatic"
-              Incl="800 KM"
-              more="More"
-              price="$90/day"
-            />
-            
-            </div>
+            {products.map((item, index) => (
+              <Cars
+                key={index}
+                heading={item.carTitle}
+                carType={item.carType}
+                imageUrl={"./assets/images/cars/SUVs.png"}
+                seats={item.numberOfSeats}
+                transmission={item.transmission}
+                Incl={item.mileLimit}
+                more="More"
+                price={item.price}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
@@ -69,3 +65,4 @@ const CarsTab = () => {
 };
 
 export default CarsTab;
+

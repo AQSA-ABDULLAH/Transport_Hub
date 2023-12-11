@@ -3,10 +3,6 @@ import styles from "./Routes.module.css";
 import Header from "../components/molecules/Header";
 import Login from "../pages/Login/Login";
 import AdminDashboard from "../pages/Dashboard/AdminDashboard";
-import CarRental from "../pages/Services/CarRental/CarRental";
-import RT from "../pages/Services/RecreationalTrips/RT";
-import GS from "../pages/Services/GoodShipment/GS";
-import PP from "../pages/Services/ParcelPickup/PP";
 import News from "../pages/Blogs&News/News";
 import WebsiteContent from "../pages/Websitecontent/main/WebsiteContent"
 import TransportMangment from "../pages/TransportManagment/main/Transport"
@@ -45,10 +41,6 @@ const RoutesStack = ({ openSidebar, setOpenSidebar }) => {
         <Routes>
          
           <Route path="/login" element={<Login />} />
-          <Route path="/carRental" element={<CarRental/>} />
-          <Route path="/trip" element={<RT/>} />
-          <Route path="/goodShipment" element={<GS/>} />
-          <Route path="/parcelPickup" element={<PP/>} />
           <Route path="/news" element={<News/>} />
           <Route path="/website-content" element={<WebsiteContent />} />
           <Route path="/transport-managment" element={<TransportMangment/>} />
