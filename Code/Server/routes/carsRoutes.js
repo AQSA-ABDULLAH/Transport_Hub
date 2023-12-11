@@ -17,6 +17,10 @@ const storage = multer.diskStorage({
 
 // PROTECTED ROUTES
 router.post('/addCar', upload.single('carImage'), CarsController.addCars);
+router.get("/getCar/:id", CarsController.getCar);
+
+//PUBLIC ROUTES
+router.get("/getCars", CarsController.getCars);
 
 module.exports = router;
 
