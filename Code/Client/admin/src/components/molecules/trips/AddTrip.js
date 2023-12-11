@@ -7,34 +7,40 @@ import style from './addTrip.module.css';
 const AddTrip = ({ onClose }) => {
     const [tripTitle, settripTitle] = useState("");
     const [location, setLocation] = useState("");
-    const [images, setImages] = useState("");
+    const [imageFile, setImageFile] = useState(null); // Updated state for image file
     const [description, setDescription] = useState("");
     const [extraInformation, setExtraInformation] = useState("");
     const [price, setPrice] = useState("");
     const navigate = useNavigate();
 
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setImageFile(file);
+        }
+    };
+
     const handleSubmit = () => {
-          const formData = new FormData();
-          formData.append('tripTitle', tripTitle)
-          formData.append('location', location)
-          formData.append('images', images)
-          formData.append('description', description)
-          formData.append('extraInformation', extraInformation)
-          formData.append('price', price)
-    
-          axios.post('http://localhost:5000/api/trips/addTrip', formData,
-            {
-              headers: { "Content-Type": "multipart/form-data" },
-            }
-          )
+        const formData = new FormData();
+        formData.append('tripTitle', tripTitle);
+        formData.append('location', location);
+        formData.append('images', imageFile); // Updated to use imageFile
+        formData.append('description', description);
+        formData.append('extraInformation', extraInformation);
+        formData.append('price', price);
+
+        axios.post('http://localhost:5000/api/trips/addTrip', formData, {
+            headers: { "Content-Type": "multipart/form-data" },
+        })
             .then((res) => {
-              console.log(res.data)
+                console.log(res.data);
             })
             .catch(err => {
-              console.log(err, "err")
-            })
-            navigate('/');
-      }
+                console.log(err, "err");
+            });
+        navigate('/');
+    };
+
 
     return (
         <div className={style.popupForm}>
@@ -68,11 +74,10 @@ const AddTrip = ({ onClose }) => {
              <div className={style.formField}>
                 <label htmlFor="location">Images</label>
                 <input
-                    type="text"
+                    type="file" // Change type to 'file'
                     id="images"
                     name="images"
-                    value={images}
-                    onChange={(e) => setImages(e.target.value)}
+                    onChange={handleImageChange}
                 />
             </div>
 
