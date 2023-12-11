@@ -1,42 +1,38 @@
 const mongoose = require("mongoose");
 const Cars = require("../../models/Cars");
-const Joi = require("joi");
+
 class CarsController {
-    static CarPackageValidationSchema = Joi.object({
-        nameAndModel: Joi.string().required(),
-        type: Joi.string().required(),
-        description: Joi.string().required(),
-        transmission: Joi.string().required(),
-        color: Joi.string().required(),
-        fuelType: Joi.string().required(),
-        engineType: Joi.string().required(),
-        image: Joi.string().trim().required(),
-        bags: Joi.number().required(),
-        mileLimit: Joi.number().required(),
-        discount: Joi.number().required(),
-        price: Joi.date(),
-        price: Joi.date(),
-        
-      });
-    
-    static addCars = async (req, res) => {
+  static addCars = async (req, res) => {
+    console.log(req.file, req.body, 16)
+    const { carTitle, carType, numberOfSeats, transmission, bags, mileLimit, color,
+      fuelType, engineType, price, zone, discount, startDate, endDate } = req.body;
+    const carImage = req.file.path;
 
-       
-            const data = req.body;
-            data.image = req?.file?.filename;
-            const { error } = this.CarPackageValidationSchema.validate(data);
-            try {
-                const newCar = await Cars.create(data);
-                console.log("Data saved");
-                res.status(201).send({ status: "success", message: "Trip saved successfully", data: newCar });
-              } catch (error) {
-                console.error(error); // Log the error
-                res.status(500).send({ status: "failed", message: "Internal Server Error" });
-              }
-            
-        
+    if (
+      !carTitle || !carType || !numberOfSeats || !transmission || !bags || !mileLimit || !color || !fuelType || !engineType || !price || !zone
+    ) {
+      return res
+        .status(422)
+        .json({ error: "Please fill in all fields properly" });
+    }
 
+      try {
+        const newCar = new Cars({
+          carImage, carTitle, carType, numberOfSeats, transmission, bags, mileLimit, color,
+          fuelType, engineType, price, zone, discount, startDate, endDate
+        });
+        await newCar.save();
+
+        res.status(201).send({
+          status: "success", message: "Car saved successfully",
+          data: newCar
+        });
+      }
+      catch (error) {
+        console.log(error);
+        res.status(409).send({ status: failed, message: "Failed to Save" });
+      }
     };
-}
+  };
 
 module.exports = CarsController;

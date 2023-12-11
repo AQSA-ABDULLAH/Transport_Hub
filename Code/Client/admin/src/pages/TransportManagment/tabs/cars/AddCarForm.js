@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Button from '../../../../components/atoms/buttons/Button';
 import style from './addCarForm.module.css';
- 
+
 const AddCarForm = ({ onClose }) => {
     const [carImage, setCarImage] = useState('');
     const [carTitle, setCarTitle] = useState('');
@@ -20,33 +20,75 @@ const AddCarForm = ({ onClose }) => {
     const [discount, setDiscount] = useState('0');
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
-    const navigate = useNavigate();
- 
+    console.log(carImage, 12)
+    // const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
+
+    const handleSubmit = (e) => {
         e.preventDefault();
-    
-        try {
-          const formData = { carImage, carTitle, carType, numberOfSeats, transmission, bags,
-             mileLimit, color, fuelType, engineType, price, zone, discount, startDate, endDate};
-          const response = await axios.post("http://localhost:5000/api/cars/addCar", formData);
-    
-          // Assuming the server returns a success message in the response
-          console.log('Data submitted successfully:', response.data.message);
-    
-          // You can also display a success message to the user
-          alert('Data submitted successfully!');
-    
-          localStorage.setItem("user", JSON.stringify(response));
-          navigate("/");
-        }
-        catch (error) {
-          console.error('Error submitting form:', error.message, error.response);
-    
-          // You can display an error message to the user
-          alert('Error submitting form. Please try again.');
-        }
-      };
+        console.log(carImage, carTitle, carType, numberOfSeats, transmission, bags,
+            mileLimit, color, fuelType, engineType, price, zone, discount, startDate, endDate)
+
+        const formData = new FormData();
+        formData.append('carImage', carImage);
+        formData.append('carTitle', carTitle);
+        formData.append('carType', carType);
+        formData.append('numberOfSeats', numberOfSeats);
+        formData.append('transmission', transmission);
+        formData.append('bags', bags);
+        formData.append('mileLimit', mileLimit);
+        formData.append('color', color);
+        formData.append('fuelType', fuelType);
+        formData.append('engineType', engineType);
+        formData.append('price', price);
+        formData.append('zone', zone);
+        formData.append('discount', discount);
+        formData.append('startDate', startDate);
+        formData.append('endDate', endDate);
+
+
+        axios.post("http://localhost:5000/api/cars/addCar",
+            formData,
+            {
+                headers: { 'Authorization': localStorage.getItem('token') }
+            })
+            .then((res) => {
+                console.log(res.data)
+
+                if (res.data.code === 403 && res.data.message === "Token Expired") {
+                    localStorage.setItem('token', null)
+                }
+            })
+            .catch(err => {
+                console.log(err, "error")
+            })
+    }
+
+
+    //     try {
+    //         const formData = {
+    //             carImage, carTitle, carType, numberOfSeats, transmission, bags,
+    //             mileLimit, color, fuelType, engineType, price, zone, discount, startDate, endDate
+    //         };
+    //         const response = await axios.post("http://localhost:5000/api/cars/addCar", formData);
+
+    //         // Assuming the server returns a success message in the response
+    //         console.log('Data submitted successfully:', response.data.message);
+    //         console.log(formData)
+
+    //         // You can also display a success message to the user
+    //         alert('Data submitted successfully!');
+
+    //         localStorage.setItem("user", JSON.stringify(response));
+    //         navigate("/");
+    //     }
+    //     catch (error) {
+    //         console.error('Error submitting form:', error.message, error.response);
+
+    //         // You can display an error message to the user
+    //         alert('Error submitting form. Please try again.');
+    //     }
+    // };
 
     return (
         <div className={style.popupForm}>
@@ -55,11 +97,11 @@ const AddCarForm = ({ onClose }) => {
             <div className={style.formField}>
                 <label htmlFor="carImage">Car Image:</label>
                 <input
-                    type="text"
+                    type="file"
                     id="carImage"
                     name="carImage"
-                    value={carImage}
-                    onChange={(e) => setCarImage(e.target.value)}
+                    accept="image/png, image/jpeg"
+                    onChange={(e) => setCarImage(e.target.files[0])}
                 />
             </div>
 
@@ -87,8 +129,8 @@ const AddCarForm = ({ onClose }) => {
                 />
             </div>
 
-             {/* Number of Seats Input */}
-             <div className={style.formField}>
+            {/* Number of Seats Input */}
+            <div className={style.formField}>
                 <label htmlFor="numberOfSeats">Number of Seats:</label>
                 <input
                     type="number"
@@ -183,8 +225,8 @@ const AddCarForm = ({ onClose }) => {
                 />
             </div>
 
-             {/* Zone Input */}
-             <div className={style.formField}>
+            {/* Zone Input */}
+            <div className={style.formField}>
                 <label htmlFor="Zone">Zone:</label>
                 <input
                     type="text"
@@ -231,7 +273,7 @@ const AddCarForm = ({ onClose }) => {
             {/* Add your other form fields, submit button, etc. */}
             <button type="button" className="btn btn-success" onClick={handleSubmit}>
                 SUBMIT
-              </button>
+            </button>
             <Button btnText="Close" primary btnClick={onClose} />
         </div>
     );

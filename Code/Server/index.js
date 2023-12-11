@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const multer  = require('multer')
 
 // Load environment variables from config.env
 dotenv.config({ path: './config.env' });
@@ -21,6 +22,9 @@ app.use(cors());
 // Connection to MongoDB
 require('./db/connection.js');
 
+//Multer
+app.use("/upload", express.static("uploads"))
+
 // Load Routes
 app.use('/api/user', userRoutes);
 app.use('/api/cars', carsRoutes);
@@ -37,7 +41,7 @@ app.listen(PORT, () => {
 //   res.send('API is working');
 // });
 
-// app.get('/', (req, res) => {
-//   res.send('API is working');
-// });
+app.get('/', (req, res) => {
+  res.send('API is working');
+});
 
