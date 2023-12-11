@@ -1,27 +1,30 @@
 const express = require('express');
-const CarsController = require("../controllers/transportManagment/carsController.js");
-// const isAuthenticated = require("../middlewares/auth-middleware.js");
 const router = express.Router();
 const path = require('path');
 const multer = require('multer');
-
-// Route Level Middleware - To Protect Route
-// router.post("/addCar", isAuthenticated, CarsController.addCars)
-
-// PROTECTED ROUTES
+const CarsController = require("../controllers/transportManagment/carsController.js");
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "./public/Upload")
+        cb(null, "uploads/carRental/")
     },
     filename: (req, file, cb) => {
         cb(null, Date.now() + path.extname(file.originalname))
     }
   });
-  
-  
-  const upload = multer({ storage: storage });
-router.post('/addCar',upload.single('image') , CarsController.addCars);
 
+  const upload = multer({ storage: storage })
+
+// PROTECTED ROUTES
+router.post('/addCar', upload.single('carImage'), CarsController.addCars);
+router.get("/getCar/:id", CarsController.getCar);
+
+//PUBLIC ROUTES
+router.get("/getCars", CarsController.getCars);
 
 module.exports = router;
+
+
+// const isAuthenticated = require("../middlewares/auth-middleware.js");
+// Route Level Middleware - To Protect Route
+// router.post("/addCar", isAuthenticated, CarsController.addCars)

@@ -2,7 +2,7 @@ import React from "react";
 import CarCard from "../../atoms/carCard/carCard";
 import style from "./Cars.module.css";
 
-const Cars = (props) => {
+const Cars = (props) => { 
   return ( 
     <>
       <div className={style.container}>
@@ -10,7 +10,7 @@ const Cars = (props) => {
           <div className={style.messageContainer}>
           <CarCard
               heading={props.heading}
-              img={props.img}
+              imageUrl={props.imageUrl}
               carType={props.carType}
               seats={props.seats}
               transmission={props.transmission}

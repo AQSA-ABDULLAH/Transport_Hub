@@ -4,19 +4,20 @@
   justify-content: space-between;
   align-items: center;
   border-radius: 20px;
-  padding: 2rem;
+  padding: 0;
   gap: 2rem;
 }
 
 .mainMessage {
   display: flex;
   background-color: #eae7e7;
-  border-radius: 20px;
+  border-radius: 10px;
   height: 100%;
+  width: 17.5rem;
 }
 
 .messageContainer {
-padding:2rem;
+padding:2rem 1.7rem;
 }
 
 @media (max-width: 860px) {
