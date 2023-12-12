@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-// import Button from "../atoms/button/Button";
-// import "./LoginModal.css";
+import Button from "../atoms/buttons/Button";
+import styles from './loginModal.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { signUpWithEmail } from '../../redux/containers/auth/actions'
 
 function LoginModal({ onClose }) {
-  const [email, setEmail] = useState('usama@gmail.com');
-  const [password, setPassword] = useState('12345');
+  const [email, setEmail] = useState('aqsaabdullah5834@gmail.com');
+  const [password, setPassword] = useState('qwerty12345');
   const [showPassword, setShowPassword] = useState(false);
   const [isEmailValid, setEmailValid] = useState(true);
   const [isPasswordValid, setPasswordValid] = useState(true);
@@ -29,7 +29,6 @@ function LoginModal({ onClose }) {
         setPasswordValid(true);
         dispatch(signUpWithEmail(userData))
       }
-      
 
     } else {
       setEmailValid(false);
@@ -56,21 +55,18 @@ function LoginModal({ onClose }) {
   return (
     <>
       <div
-        style={{
-          backgroundImage: `url("/assets/image/login/Login image.jpg")`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-        className="modal-content"
-      >
-        <div className="logo-container">
-          <img
+        className={styles.modal_content} >
+        <div className={styles.logo_container}>
+        <img
             height={"60px"}
-            src={process.env.PUBLIC_URL + "/assets/logo/LogoLight.png"}
+            src={process.env.PUBLIC_URL + "/assets/logo/logo.png"}
           ></img>
+          <div className={styles.image}>
+          <img  src="/assets/images/cars/image4.png"></img>
+          </div>
         </div>
-        <div className="login-form-container">
-          <form className="login-form" onSubmit={handleSubmit}>
+        <div className={styles.login_form_container}>
+          <form className={styles.login_form} onSubmit={handleSubmit}>
             <div>Login</div>
 
             <input
@@ -81,7 +77,7 @@ function LoginModal({ onClose }) {
               onChange={(e) => handleChange(e, 'email')}
               style={{ border: isEmailValid ? "" : "2px solid red" }}
             ></input>
-            <div id="passwordInput">
+            <div className={styles.passwordInput}>
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
@@ -90,9 +86,24 @@ function LoginModal({ onClose }) {
                 onChange={(e) => handleChange(e, 'password')}
                 style={{ border: isPasswordValid ? "" : "2px solid red" }}
               ></input>
+              <img
+                onPointerDown={togglePasswordVisibility}
+                className={styles.toggleIcon}
+                src={!showPassword ? (
+                  "/assets/images/login/solar_eye-bold.png"
+                ) : (
+                  "/assets/images/login/solar_eye-closed-bold.png"
+                )}
+              ></img>
             </div>
-
-            <button type="submit" onClick={handleSubmit}>Submit</button>
+            <Button
+              type="submit"
+              primary
+              radius={"0px"}
+              hoverColor={"rgb(247, 131, 98)"}
+              btnText={"LOGIN"}
+              btnClick={handleSubmit}
+            />
 
           </form>
         </div>

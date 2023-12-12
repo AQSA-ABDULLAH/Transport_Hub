@@ -1,0 +1,97 @@
+.login_form_container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to bottom,#642f8d, #8d48c9, #a65fe0);
+  }
+
+.login_form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login_form_container form {
+    padding: 2rem;
+    margin: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    border: 2px solid #fdfdfd;
+    text-align: center;
+    width: 23rem;
+  }
+
+.login_form_container form h3 {
+    font-size: 2.2rem;
+    padding-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.box{
+    margin: .7rem 0;
+    width: 100%;
+    text-transform: none;
+    font-size: 1rem;
+    padding: 0.4rem;
+    border: 2px solid rgb(107, 106, 106);
+    border-radius: .2rem;
+}
+
+.login_form_container form p{
+    padding: 0;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.link{
+    color: #7E22CE;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.submit {
+    width: 100%;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    border: 2px solid #7E22CE;
+    border-radius: 6px;
+    background-color: #7E22CE;
+    color: white;
+    text-decoration: none;
+    padding: 0.3rem 0rem;
+    transition: background-color 0.3s, color 0.3s;
+    margin-bottom: 11px;
+}
+
+.login_form_container form .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.login_form_container form .buttons .btn {
+    display: block;
+    width: 50%;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    border: 2px solid #8d43cd;
+    border-radius: 6px;
+    background-color: #8d43cd;
+    color: #fff;
+    text-decoration: none;
+    padding: 0.3rem 0rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.login_form_container form .buttons .btn:hover {
+    background-color: #7E22CE;
+    color: white;
+    cursor: pointer;
+}

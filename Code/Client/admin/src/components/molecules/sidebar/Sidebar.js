@@ -44,7 +44,7 @@ const dispatch=useDispatch();
         } `}
       >
         <div className={styles.logo}>
-         <img src="/assets/logo/LogoDark.png" width={110} height={110}/>
+         <img src="/assets/logo/logo.png" width={200} height={90}/>
         </div>
 
         <div className={styles.spaceY}>
