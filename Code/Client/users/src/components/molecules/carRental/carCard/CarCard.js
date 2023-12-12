@@ -1,7 +1,9 @@
 import React from 'react';
 import style from "./carCard.module.css"
 import CusButton from "../../../Button/CusButton";
-import { MdKingBed, MdBathtub } from 'react-icons/md';
+import { GiGearStickPattern } from "react-icons/gi";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import { BsSpeedometer2 } from "react-icons/bs";
 import { IoIosPeople } from "react-icons/io";
 
 const carCard = () => {
@@ -31,17 +33,16 @@ const carCard = () => {
 
                             </div>
                             <div className={style.singleAmenity_flex}>
-                                <MdBathtub className={style.icon} />
+                                <GiGearStickPattern className={style.icon} />
                                 <small>Manual</small>
                             </div>
                             <div className={style.singleAmenity_flex}>
-                                <MdKingBed className={style.icon} />
+                                <BsSpeedometer2 className={style.icon} />
                                 <small>800 KM</small>
                             </div>
                             <div className={style.singleAmenity_flex}>
-                                <MdKingBed className={style.icon} />
+                                <BsThreeDotsVertical className={style.icon} />
                                 <small>More</small>
-
                             </div>
                         </div>
                         <div className={style.booking}>
@@ -54,7 +55,6 @@ const carCard = () => {
                             <CusButton btnText="Book Now" primary />
                         </div>
 
-                        {/* btnClick={onClose} */}
                     </div>
                 </div>
             </section>
