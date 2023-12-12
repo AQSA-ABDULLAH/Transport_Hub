@@ -8,7 +8,6 @@ const CusButton = (props) => {
     primary,
     secondary,
     size,
-    radius,
     bgColor,
     textColor,
     width,
@@ -23,7 +22,6 @@ const CusButton = (props) => {
     backgroundColor:
       bgColor || (primary ? "#7E22CE" : secondary ? "#6c757d" : "transparent"),
     color: textColor || "#ffffff",
-    borderRadius: radius || "40px",
     fontSize: size || "16px",
     width: width || "auto",
     border: border || "none",
