@@ -1,12 +1,19 @@
 import React from 'react';
 import style from "./carCard.module.css"
 import CusButton from "../../../Button/CusButton";
+import { useNavigate } from 'react-router-dom';
 import { GiGearStickPattern } from "react-icons/gi";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { BsSpeedometer2 } from "react-icons/bs";
 import { IoIosPeople } from "react-icons/io";
 
-const carCard = () => {
+const CarCard = () => {
+    const navigate = useNavigate();
+
+    const handleBookNowClick = () => {
+        navigate('/ExtendedDetailPage');
+    };
+
     return (
         <>
             <section className={style.offer_container_section}>
@@ -52,7 +59,7 @@ const carCard = () => {
                                 <small>RS 450 total</small>
                             </div>
 
-                            <CusButton btnText="Book Now" primary />
+                            <CusButton btnText="Book Now" primary  btnClick={handleBookNowClick}/>
                         </div>
 
                     </div>
@@ -63,4 +70,4 @@ const carCard = () => {
     )
 }
 
-export default carCard;
+export default CarCard;
