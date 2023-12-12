@@ -2,6 +2,8 @@ import React from 'react'
 
 export default function AddOnsCard() {
   return (
-    <div>AddOnsCard</div>
+    <>
+<h2>Add on</h2>
+    </>
   )
 }

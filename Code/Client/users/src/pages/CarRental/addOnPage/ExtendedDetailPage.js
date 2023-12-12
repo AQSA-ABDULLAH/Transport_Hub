@@ -1,33 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Navbar from '../../../components/atoms/Navbar/Navbar';
-import CusButton from '../../../components/Button/CusButton';
-import CarFeaturesModel from '../carFeatureModel/CarFeaturesModel';
 import style from './ExtendedDetail.module.css';
+import AddOnsCard from "../../../components/molecules/carRental/addOns/AddOnsCard"
 import RentalPriceCard from '../../../components/molecules/carRental/priceCard/RentalPriceCard';
 
 export default function ExtendedDetailPage() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const openModal = () => {
-        console.log('Opening modal');
-        setIsModalOpen(true);
-    };
-
-
-    const closeModal = () => {
-        setIsModalOpen(false);
-    };
 
     return (
         <>
             <Navbar />
-            <div className={` ${style.container} `}>
-                <h2>Choose your add-ons</h2>
-                <RentalPriceCard/>
-                <CusButton primary btnText="Continue" btnClick={openModal} />
-                {isModalOpen && (
-                    <CarFeaturesModel onClose={closeModal} />
-                )}
+            <div className={style.container}>
+                <div className={style.addOnContainer}>
+                    <h2>Choose your add-ons</h2>
+                    <AddOnsCard />
+                </div>
+                <div className={style.priceContainer}>
+                    <RentalPriceCard />
+                </div>
             </div>
         </>
     );
