@@ -3,7 +3,7 @@ import Navbar from '../../../components/atoms/Navbar/Navbar';
 import CusButton from '../../../components/Button/CusButton';
 import CarFeaturesModel from '../carFeatureModel/CarFeaturesModel';
 import style from './ExtendedDetail.module.css';
-import RentalPriceCard from '../../../components/atoms/CarRental/RentalPriceCard';
+import RentalPriceCard from '../../../components/molecules/carRental/priceCard/RentalPriceCard';
 
 export default function ExtendedDetailPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
