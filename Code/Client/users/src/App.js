@@ -9,6 +9,7 @@ import Career from './pages/careers/Career';
 import Services from './pages/Services';
 import ErrorPage from './pages/unknownPage/ErrorPage';
 import LandingCarPage from './pages/CarRental/LandingPage/LandingCarPage';
+import Viewcars from './pages/CarRental/showCarsPage/ViewCars';
 import ExtendedDetailPage from './pages/CarRental/addOnPage/ExtendedDetailPage';
 import RentalBookingPage from './pages/CarRental/bookingPage/RentalBookingPage';
 import TripLandingPage from './pages/tripsPacakages/tripLandingPage/tripLandingPage';
@@ -31,6 +32,7 @@ function App() {
 
           {/* CAR RENTAL ROUTES */}
           <Route exact path="/LandingCarPage" element={<LandingCarPage/>} />
+          <Route exact path="/ViewCars" element={<Viewcars/>} />
           <Route exact path="/ExtendedDetailPage" element={<ExtendedDetailPage/>} />
           <Route exact path="/RentalBookingPage" element={<RentalBookingPage/>} />
 

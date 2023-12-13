@@ -1,16 +1,21 @@
+/* viewCars.module.css */
+
 .container {
     display: flex;
     flex-direction: row;
-    padding: 60px 40px;
+    padding: 20px 40px;
     background-color: rgb(226, 222, 222);
     height: 40rem;
     gap: 40px;
   }
   
-  .addOnContainer {
-    width: 80rem;
+  .filterContainer {
+    width: 20rem;
+  }
+  
+  .carContainer {
     display: flex;
     flex-wrap: wrap; 
     gap: 20px;
-    
   }
+  
