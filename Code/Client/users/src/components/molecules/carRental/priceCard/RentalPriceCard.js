@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import style from './rentalPriceCard.module.css';
 import CusButton from '../../../Button/CusButton';
-import CarFeaturesModel from '../filterCard/FiltersCard';
+import CarFeaturesModel from '../../../../pages/CarRental/carFeatureModel/CarFeaturesModel';
 import { TiTick } from "react-icons/ti";
 
 export default function RentalPriceCard() {

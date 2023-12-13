@@ -1,3 +1,9 @@
+.modalStyle{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(180, 180, 180);
+}
+
 .heading{
     font-size: 25px;
     font-weight: 700;
