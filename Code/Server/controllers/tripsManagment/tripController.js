@@ -85,13 +85,26 @@ class TripsController {
   // Get all trips
   static getAllTrips = async (req, res) => {
     try {
-      const trips = await Trips.find({});
-      res.status(200).send({ status: "success", data: trips });
+      const { category } = req.query;
+      let trips;
+  
+      if (category) {
+        trips = await Trips.find({ category });
+      } else {
+        trips = await Trips.find({});
+      }
+  
+      if (trips.length === 0) {
+        return res.status(404).send({ status: 'success', message: 'No records found' });
+      }
+  
+      res.status(200).send({ status: 'success', data: trips });
     } catch (error) {
       console.error(error);
-      res.status(500).send({ status: "failed", message: "Internal Server Error" });
+      res.status(500).send({ status: 'failed', message: 'Internal Server Error' });
     }
   };
+  
 
   // Get a single trip by ID
   static getTripById = async (req, res) => {
