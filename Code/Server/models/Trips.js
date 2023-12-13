@@ -1,13 +1,19 @@
 const mongoose = require('mongoose');
 
 const tripSchema = new mongoose.Schema({
+  category : {
+    type : String,
+    required : true,
+    trim : true,
+},
   tripTitle: {
     type: String,
+    required : true,
     trim: true
   },
   location: {
     type: String,
-  
+    required : true,
     trim: true
   },
   images: {
@@ -21,7 +27,7 @@ const tripSchema = new mongoose.Schema({
     trim: true
   },
   extraInformation: {
-    type: String,
+    type: [String],
 
     trim: true
   },
@@ -30,6 +36,40 @@ const tripSchema = new mongoose.Schema({
 
     trim: true
   },
+  noOfGuest: {
+    type: Number,
+    required : true,
+    trim: true
+  },
+  noOfDays: {
+    type: Number,
+    
+    trim: true
+  },
+  departureCity: {
+    type: String,
+    
+    trim: true
+  },
+  startDate: {
+    type: Date,
+    
+    trim: true
+  },
+  endDate: {
+    type: Date,
+    
+    trim: true
+  },
+  status: {
+    type: String,
+    
+    trim: true
+  },
+  Ages: {
+    type: Number,
+    trim:true
+  }
 },
   {
     timestamps: true

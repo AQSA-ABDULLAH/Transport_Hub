@@ -3,7 +3,12 @@ const Joi = require("joi");
 const Trips = require("../../models/Trips");
 
 class TripsController {
+  
   static tripPackageValidationSchema = Joi.object({
+    category: Joi.string().required().label('Category').messages({
+        'string.base': '{#label} must be a string',
+        'any.required': '{#label} is required',
+    }),
     tripTitle: Joi.string().required().label('Trip Title').messages({
         'string.base': '{#label} must be a string',
         'any.required': '{#label} is required',
@@ -27,6 +32,30 @@ class TripsController {
     extraInformation: Joi.string().label('Extra Information').messages({
         'string.base': '{#label} must be a string',
     }),
+    noOfGuest: Joi.string().label('noOfGuest').messages({
+        'string.base': '{#label} must be a string',
+    }),
+    noOfDays: Joi.string().label('noOfDays:').messages({
+        'string.base': '{#label} must be a string',
+    }),
+    departureCity: Joi.string().label('DepartureCity:').messages({
+        'string.base': '{#label} must be a string',
+    }),
+    startDate: Joi.string().label('startDate').messages({
+        'string.base': '{#label} must be a string',
+    }),
+    endDate: Joi.string().label('endDate').messages({
+        'string.base': '{#label} must be a string',
+    }),
+    status: Joi.string().label('status').messages({
+        'string.base': '{#label} must be a string',
+    }),
+    Ages: Joi.string().label('Ages').messages({
+        'string.base': '{#label} must be a string',
+    }),
+    
+
+    
 });
 
   // Create a new trip
@@ -56,7 +85,7 @@ class TripsController {
   // Get all trips
   static getAllTrips = async (req, res) => {
     try {
-      const trips = await Trips.find();
+      const trips = await Trips.find({});
       res.status(200).send({ status: "success", data: trips });
     } catch (error) {
       console.error(error);

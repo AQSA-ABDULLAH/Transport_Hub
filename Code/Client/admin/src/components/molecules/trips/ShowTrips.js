@@ -6,9 +6,15 @@ import axios from 'axios';
 const ShowTrips = () => {
   const [users, setUsers] = useState([])
   useEffect(() =>{
-    axios.get('http://localhost:5000/api/trips/TripPackages')
-    .then(result => setUsers(result.data))
-    .catch(err => console.log(err))
+    const fetchData = async () =>{
+      const response = await fetch('/api/trips/TripPackages')
+      const json = await response.json() 
+      if(response.ok){
+        setUsers(json)
+      }
+
+    }
+    fetchData()
   }, [])
   const [isUpdateTripVisible, setUpdateTripVisible] = useState(false);
 
@@ -21,7 +27,10 @@ const ShowTrips = () => {
   };
   return (
     <>
-      {users.map((val,key) => {
+    {users && users.map(()=>(
+        <p key={users._id}>{users.tripTitle}</p>
+    ))}
+      {/* {users.map((val,key) => {
         return <div key={key}>
           <td>{val.tripTitle}</td>
           <td><Button btnText="Update" primary btnClick={openUpdateTrip} />
@@ -31,7 +40,7 @@ const ShowTrips = () => {
               </td>
         </div>
 
-})}
+})} */}
       {isUpdateTripVisible && <UpdateTrips onClose={closeUpdateTrip} />}
     </>
   );
