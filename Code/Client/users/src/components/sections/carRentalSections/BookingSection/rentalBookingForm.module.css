@@ -1,0 +1,18 @@
+.bookingForm{
+    background-color: #fff;
+    width: 47rem;
+    margin-top: 3rem;
+    padding: 3rem 3.3rem;
+}
+
+.text_spacing {
+    letter-spacing: 1px;
+    font-size: 1.6rem;
+  }
+
+  .btn{
+    background-color: #7E22CE;
+    width: 9rem;
+    font-size: 18px;
+    font-weight: 600;
+  }

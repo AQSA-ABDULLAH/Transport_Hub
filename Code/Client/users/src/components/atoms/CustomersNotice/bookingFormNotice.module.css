@@ -4,11 +4,12 @@
     align-items: center;
     /* border: 1px solid #7E22CE; */
     border: 2px solid #7E22CE;
-    background-color: #f4f3f5;
+    background-color: #f7f5f8;
     color: #7E22CE;
     border-radius: 0.6rem;
     padding: 14px 32px;
-    width: 50rem;
+    width: 47rem;
+    height: 5rem;
 }
 
 .button {

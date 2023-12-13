@@ -12,12 +12,8 @@ export default function RentalBookingPage() {
       <Navbar />
       <div className={style.container}>
         <div className={style.bookingContainer}>
-          <div className={style.Notice}>
-            <BookingFormNotice />
-          </div>
-          <div className={style.Booking}>
-            <RentalBookingForm/>
-          </div>
+          <BookingFormNotice />
+          <RentalBookingForm />
         </div>
         <div className={style.priceContainer}>
           <RentalPriceCard />
