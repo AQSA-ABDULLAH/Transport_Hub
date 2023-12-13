@@ -2,47 +2,75 @@ import React, { useEffect, useState } from 'react';
 import Button from '../../atoms/buttons/Button';
 import { UpdateTrips } from './UpdateTrips';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const ShowTrips = () => {
-  const [users, setUsers] = useState([])
-  useEffect(() =>{
-    const fetchData = async () =>{
-      const response = await fetch('/api/trips/TripPackages')
-      const json = await response.json() 
-      if(response.ok){
-        setUsers(json)
+  const [category, setCategory] = useState('');
+  const [categoryData, setCategoryData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/trips/TripPackages', {
+          params: { category },
+        });
+        setCategoryData(response.data.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
       }
+    };
 
-    }
-    fetchData()
-  }, [])
-  const [isUpdateTripVisible, setUpdateTripVisible] = useState(false);
+    fetchData();
+  }, [category]);
 
-  const openUpdateTrip = () => {
-    setUpdateTripVisible(true);
+  const handleCategoryChange = (event) => {
+    setCategory(event.target.value);
   };
 
-  const closeUpdateTrip = () => {
-    setUpdateTripVisible(false);
-  };
+  const filteredFields = ['_id', 'createdAt', 'updatedAt', '__v'];
+
   return (
-    <>
-    {users && users.map(()=>(
-        <p key={users._id}>{users.tripTitle}</p>
-    ))}
-      {/* {users.map((val,key) => {
-        return <div key={key}>
-          <td>{val.tripTitle}</td>
-          <td><Button btnText="Update" primary btnClick={openUpdateTrip} />
-              <button type="button" className="btn btn-danger" >
-                Delete
-              </button>
-              </td>
-        </div>
+    <div>
+      <h1>Admin Dashboard</h1>
+      <div>
+        <label>Select Category:</label>
+        <select name="category" value={category} onChange={handleCategoryChange}>
+          <option value="">Select Category</option>
+          <option value="Family">Family</option>
+          <option value="Group">Group</option>
+        </select>
+      </div>
 
-})} */}
-      {isUpdateTripVisible && <UpdateTrips onClose={closeUpdateTrip} />}
-    </>
+      {categoryData.length > 0 ? (
+        <div>
+          <h2>{category} Data</h2>
+          <table>
+            <thead>
+              <tr className="mx-3">
+                {Object.keys(categoryData[0])
+                  .filter((key) => !filteredFields.includes(key))
+                  .map((key) => (
+                    <th  key={key}>{key}</th>
+                  ))}
+              </tr>
+            </thead>
+            <tbody>
+              {categoryData.map((item, index) => (
+                <tr key={index}>
+                  {Object.entries(item)
+                    .filter(([key]) => !filteredFields.includes(key))
+                    .map(([key, value]) => (
+                      <td key={key}>{key === 'images' ? <img src={`http://localhost:5000/public/Upload/${value}`} alt={value} style={{ maxWidth: '20px', maxHeight: '20px' }} /> : value}</td>
+                    ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <p>No records found for the selected category.</p>
+      )}
+    </div>
   );
 };
 

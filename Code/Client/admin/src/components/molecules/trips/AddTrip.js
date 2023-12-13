@@ -3,9 +3,18 @@ import Button from '../../atoms/buttons/Button';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import style from './addTrip.module.css';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
  
 const AddTrip = ({ onClose }) => {
     // const [category, setCategory] = useState("");
+    const currentDate = new Date();
+    const handleDateChange = (date, name) => {
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: date,
+        }));
+      };
   const [formData, setFormData] = useState({
     category: "",
     tripTitle: "",
@@ -214,19 +223,27 @@ const AddTrip = ({ onClose }) => {
               onChange={handleInputChange}
             />
             <label>Start Date</label>
-            <input
-              type="text"
-              name="startDate"
-              value={formData.startDate}
-              onChange={handleInputChange}
-            />
-            <label>End Date</label>
-            <input
-              type="text"
-              name="endDate"
-              value={formData.endDate}
-              onChange={handleInputChange}
-            />
+            <DatePicker
+  selected={formData.startDate}
+  onChange={(date) => handleDateChange(date, 'startDate')}
+  name="startDate"
+  className="form-control custom-date-picker"
+  placeholderText="Click to select a Start Date"
+  minDate={currentDate}
+/>
+<label>End Date</label>
+            <DatePicker
+  selected={formData.startDate}
+  onChange={(date) => handleDateChange(date, 'startDate')}
+  name="endDate"
+  className="form-control custom-date-picker"
+  placeholderText="Click to select a Start Date"
+  minDate={currentDate}
+/>
+
+          
+            
+          
             <label>Departure City</label>
             <input
               type="text"

@@ -25,21 +25,7 @@ const Trips = () => {
         </div>
         <div className={style.message}>
           <div className={style.cardRow}>
-          <table className="table table-bordered table-striped">
-      <thead>
-        <tr>
-          <th>Trip Title</th>
-          <th>Location</th>
-          <th>Image</th>
-          <th>Description</th>
-          <th>Extra Information</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <tbody>
-       <ShowTrips />
-      </tbody>
-    </table>
+          <ShowTrips />
             
             
             </div>
