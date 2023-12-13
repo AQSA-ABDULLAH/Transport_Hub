@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React,{useState} from 'react'
 import Button from '../../atoms/buttons/Button';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import style from './addTrip.module.css';
  
-const AddTrip = ({ onClose }) => {
+
+export const UpdateTrips = ({ onClose }) => {
     const [tripTitle, settripTitle] = useState("");
     const [location, setLocation] = useState("");
     const [imageFile, setImageFile] = useState(null); // Updated state for image file
@@ -27,41 +28,10 @@ const AddTrip = ({ onClose }) => {
             alert('Please fill in all required fields.');
             return;
         }
-    
-        const formData = new FormData();
-        formData.append('tripTitle', tripTitle);
-        formData.append('location', location);
-        formData.append('images', imageFile);
-        formData.append('description', description);
-        formData.append('extraInformation', extraInformation);
-        formData.append('price', price);
-    
-        axios.post('http://localhost:5000/api/trips/addTrip', formData, {
-            headers: { "Content-Type": "multipart/form-data" },
-        })
-            .then((res) => {
-                console.log(res.data);
-                alert('Data submitted successfully!');
-                navigate('/trip');
-            })
-            .catch((err) => {
-                console.log(err, "err");
-                if (err.response && err.response.status === 400) {
-                    // Validation error(s) from the server
-                    const validationErrors = err.response.data.errors;
-                    alert(`Validation failed:\n${validationErrors.map(error => error.message).join('\n')}`);
-                } else {
-                    // Other errors
-                    alert('Error submitting data. Please try again.');
-                }
-            });
-            
-    };
-    
-
-    
+    }
     return (
-        <div className={style.popupForm}>
+        <div>
+            <div className={style.popupForm}>
             <h3>Add New Trip Form</h3>
 
             {/* Trip Title Input */}
@@ -142,7 +112,6 @@ const AddTrip = ({ onClose }) => {
               </button>
             <Button btnText="Close" primary btnClick={onClose} />
         </div>
-    );
-};
-
-export default AddTrip;
+        </div>
+    )
+}
