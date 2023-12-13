@@ -12,7 +12,6 @@ export default function ExtendedDetailPage() {
             <Navbar />
             <div className={style.container}>
                 <div className={style.addOnContainer}>
-                    <h2>Choose your add-ons</h2>
                     <AddOnsCard />
                 </div>
                 <div className={style.priceContainer}>

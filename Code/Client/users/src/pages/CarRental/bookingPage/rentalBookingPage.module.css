@@ -1,15 +1,12 @@
 .container {
     display: flex;
     flex-direction: row;
-    padding: 40px 40px;
+    padding: 40px 75px;
     background-color: rgb(226, 222, 222);
     height: 100%;
     gap: 40px;
-  }
-  
-  .addOnContainer {
-    width: 80rem;
-    display: flex;
-    flex-wrap: wrap; 
-    gap: 20px;
-  }
+}
+
+.bookingContainer {
+    width: 53rem;
+}
