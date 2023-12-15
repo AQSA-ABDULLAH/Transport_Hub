@@ -3,7 +3,7 @@ import Button from "../atoms/buttons/Button";
 import styles from './loginModal.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { signUpWithEmail } from '../../redux/containers/auth/actions'
- 
+
 function LoginModal({ onClose }) {
   const [email, setEmail] = useState('aqsaabdullah5834@gmail.com');
   const [password, setPassword] = useState('qwerty12345');
@@ -57,10 +57,7 @@ function LoginModal({ onClose }) {
       <div
         className={styles.modal_content} >
         <div className={styles.logo_container}>
-        <img
-            height={"60px"}
-            src={process.env.PUBLIC_URL + "/assets/logo/logo.png"}
-          ></img>
+      
           <div className={styles.image}>
           <img  src="/assets/images/cars/image4.png"></img>
           </div>

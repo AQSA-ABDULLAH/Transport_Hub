@@ -13,7 +13,7 @@ const Login = ({ isauth }) => {
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
-      className={styles.login} 
+      className={styles.login}
     >
       <LoginModal />
     </div>

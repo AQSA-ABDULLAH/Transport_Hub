@@ -1,46 +1,13 @@
-// import React from "react";
-// import CarCard from "../../atoms/carCard/carCard";
-// import style from "./Cars.module.css";
-
-// const Cars = (props) => { 
-//   return ( 
-//     <>
-//       <div className={style.container}>
-//         <div className={style.mainMessage}>
-//           <div className={style.messageContainer}>
-//           <CarCard
-//               heading={props.heading}
-//               imageUrl={props.imageUrl}
-//               carType={props.carType}
-//               seats={props.seats}
-//               transmission={props.transmission}
-//               bags={props.bags}
-//               Incl={props.Incl}
-//               more={props.more}
-//               color={props.color}
-//               fyelType={props.fyelType}
-//               engineType={props.engineType}
-//               price={props.price}
-//             />
-//           </div> 
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default Cars;
-
 import React from 'react';
-import style from "./Cars.module.css"
-import Button from '../../atoms/buttons/Button';
+import style from "./Card.module.css"
+import Button from "../Button/CusButton";
 import { useNavigate } from 'react-router-dom';
 import { GiGearStickPattern } from "react-icons/gi";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { BsSpeedometer2 } from "react-icons/bs";
 import { IoIosPeople } from "react-icons/io";
 
-const Cars = () => {
+const Card = () => {
     const navigate = useNavigate();
 
     const handleBookNowClick = () => {
@@ -55,7 +22,7 @@ const Cars = () => {
                     <div className={style.singleOffer}>
                         <h2 className={style.secTitle}>GAC GS8 320T i4*4 Model 2023 (TURBO)</h2>
                         <div className={style.destImage}>
-                            <img src="./assets/images/cars/SUVs.png" alt="car" />
+                            <img src="./assets/images/cars/car1.png" alt="car" />
                         </div>
 
                         <div className={style.offerBody}>
@@ -103,4 +70,4 @@ const Cars = () => {
     )
 }
 
-export default Cars;
+export default Card;

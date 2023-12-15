@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from '../../../components/atoms/Navbar/Navbar';
 import CarCard from '../../../components/molecules/carRental/carCard/CarCard';
+import Card from "../../../components/randomCard/Card"
 import FiltersCard from '../../../components/molecules/carRental/filterCard/FiltersCard';
 import style from "./viewCars.module.css"
 
@@ -17,9 +18,10 @@ export default function ViewCars() {
                         <CarCard />
                         <CarCard />
                         <CarCard />
+                        <Card/>
                     </div>
                 </div>
             </div>
         </>
     )
-}
+} 
