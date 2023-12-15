@@ -10,10 +10,6 @@
     color: blueviolet;
 }
 
-/* carFeature.css */
-
-/* Add your existing styles here */
-
 .accordion-section {
     margin-bottom: 10px;
 }
@@ -51,5 +47,5 @@
 }
 
 .accordion-section.active .accordion-details {
-    max-height: 400px; /* Adjust as needed */
+    max-height: 400px;
 }

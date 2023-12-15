@@ -60,7 +60,7 @@ export default function SignIn() {
 
         <button type="submit" className={styles.submit}>Submit</button>
 
-        <p>or login with</p>
+        <p>------------- or login with -------------</p>
         <div className={styles.buttons}>
           <Link to='#' className={styles.btn}>Google</Link>
           <Link to='#' className={styles.btn}>Facebook</Link>

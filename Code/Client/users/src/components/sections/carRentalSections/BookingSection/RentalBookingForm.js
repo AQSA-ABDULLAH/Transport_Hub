@@ -84,6 +84,7 @@ const RentalBookingForm = () => {
             />
           </div>
         </div>
+        
         <div className="row">
           <div className="mb-3 col-6">
             <label htmlFor="cnic" className="form-label">CNIC:</label>

@@ -29,9 +29,9 @@ const CarFeaturesModel = ({ onClose }) => {
         left: '0',
         width: '100%',
         height: '100%',
-        backgroundColor: 'rgba(0, 0, 0, 0.3)', // Adjust the opacity as needed
+        backgroundColor: 'rgba(0, 0, 0, 0.3)',
         zIndex: '999',
-        backdropFilter: 'blur(2px)', // Adjust the blur intensity as needed
+        backdropFilter: 'blur(2px)',
     };
 
     const closeButtonStyle = {
