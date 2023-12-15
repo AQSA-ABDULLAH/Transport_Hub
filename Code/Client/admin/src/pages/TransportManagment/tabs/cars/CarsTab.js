@@ -2,26 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import Button from '../../../../components/atoms/buttons/Button';
 import Cars from "../../../../components/molecules/cars/Cars";
+import Card from "../../../../components/atoms/randomCard/Card"
 import style from './carstab.module.css';
 import AddCarForm from './AddCarForm';
 
 const CarsTab = () => {
   const [isAddCarFormVisible, setAddCarFormVisible] = useState(false);
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    getProducts();
-  }, []);
-
-  const getProducts = async () => {
-    try {
-      let result = await fetch("http://localhost:4000/");
-      result = await result.json();
-      setProducts(result);
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    }
-  };
 
   const openAddCarForm = () => {
     setAddCarFormVisible(true);
@@ -40,22 +26,38 @@ const CarsTab = () => {
         </div>
         <div className={style.message}>
 
-          {/* Flex container for the row of cards */}
-          <div className={style.cardRow}>
-            {products.map((item, index) => (
-              <Cars
-                key={index}
-                heading={item.carTitle}
-                carType={item.carType}
-                imageUrl={"./assets/images/cars/SUVs.png"}
-                seats={item.numberOfSeats}
-                transmission={item.transmission}
-                Incl={item.mileLimit}
-                more="More"
-                price={item.price}
-              />
-            ))}
-          </div>
+          {/* <Cars
+            heading="Car Model XYZ"
+            imageUrl="path/to/car-image.jpg"
+            seats="5"
+            transmission="Automatic"
+            Incl="800 KM"
+            more="More"
+            price="$100/day"
+          />
+          <Cars
+            heading="Car Model ABC"
+            imageUrl="path/to/another-car-image.jpg"
+            seats="5"
+            transmission="Automatic"
+            Incl="800 KM"
+            more="More"
+            price="$120/day"
+          />
+          <Cars
+            heading="Car Model 123"
+            imageUrl="path/to/yet-another-car-image.jpg"
+            seats="5"
+            transmission="Automatic"
+            Incl="800 KM"
+            more="More"
+            price="$90/day"
+          /> */}
+
+          <Cars/>
+          <Card/>
+
+
         </div>
       </div>
 

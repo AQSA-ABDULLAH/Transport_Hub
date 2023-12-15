@@ -7,7 +7,7 @@ const AdminDashboard = () => {
   return (
     <div className={styles.container}>
       <div className={styles.inner_container}>
-        <img src='/assets/logo/LogoDark.png' width={'150px'} />
+        {/* <img src='/assets/images/logo/logo.png' width={'150px'} /> */}
         <h1>Welcome to Admin Panel</h1>
         <Button btnText="View Messages" bw={"1px solid #EC1F3E"} bgColor={'#fff'} textColor={'#EC1F3E'} btnClick={() => navigate('/contact-messages')} />
 
