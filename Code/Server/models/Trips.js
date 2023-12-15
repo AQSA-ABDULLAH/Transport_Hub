@@ -48,7 +48,6 @@ const tripSchema = new mongoose.Schema({
   },
   noOfNights: {
     type: Number,
-    
     trim: true
   },
   departureCity: {
