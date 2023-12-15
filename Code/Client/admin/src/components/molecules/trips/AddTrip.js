@@ -5,16 +5,29 @@ import axios from 'axios';
 import style from './addTrip.module.css';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
- 
+
 const AddTrip = ({ onClose }) => {
     // const [category, setCategory] = useState("");
     const currentDate = new Date();
+    
     const handleDateChange = (date, name) => {
         setFormData((prevData) => ({
           ...prevData,
           [name]: date,
         }));
       };
+      // const [time, setTime] = useState({
+      //   CheckIn: '10:05',
+      //   // Add other form fields as needed
+      // });
+    
+      // const handleTimeChange = (event) => {
+      //   const { name, value } = event.target;
+      //   setFormData((prevData) => ({
+      //     ...prevData,
+      //     [name]: value,
+      //   }));
+      // };
   const [formData, setFormData] = useState({
     category: "",
     tripTitle: "",
@@ -26,32 +39,28 @@ const AddTrip = ({ onClose }) => {
     noOfGuest: "",
     
     noOfDays: "",
+    noOfNights: "",
     departureCity: "",
     startDate: "",
     endDate: "",
     status: "",
     Ages: "",
-    // Add more group-specific fields if needed
+    CheckIn:"",
+    Checkout:"",
+    BookingCloseDate:"",
+    
   });
-  const {category, tripTitle, location, description, extraInformation, price, noOfGuest, noOfDays, departureCity, startDate, endDate, status, Ages } = formData;
+  const {category, tripTitle, location, description, extraInformation, price, noOfGuest, noOfDays,noOfNights, departureCity, startDate, endDate, status, Ages,CheckIn,Checkout, BookingCloseDate } = formData;
 
 
-//   const handleCategoryChange = (event) => {
-//     setCategory(event.target.value);
-//   };
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
- 
-    // const [tripTitle, settripTitle] = useState("");
-    // const [location, setLocation] = useState("");
-    const [imageFile, setImageFile] = useState(null); // Updated state for image file
-    // const [description, setDescription] = useState("");
-    // const [extraInformation, setExtraInformation] = useState("");
-    // const [price, setPrice] = useState("");
+    const [imageFile, setImageFile] = useState(null); 
+    
     const navigate = useNavigate();
 
     const handleImageChange = (e) => {
@@ -69,30 +78,45 @@ const AddTrip = ({ onClose }) => {
         formData.append('images', imageFile);
         formData.append('description', description);
         formData.append('extraInformation', extraInformation);
-        formData.append('price', price);
+        formData.append('noOfGuest', noOfGuest);
       
         if (category === 'Family') {
-          // Display an alert if any of the required fields for Family category is empty
-          if (!noOfGuest) {
+         
+          if (!price) {
             alert('Please fill in all required fields for Family category.');
-            return; // Exit the function if validation fails
+            return; 
           }
-          // Append fields for Family category
-          formData.append('noOfGuest', noOfGuest);
-        } else if (category === 'Group') {
-          // Display an alert if any of the required fields for Group category is empty
-          if (!noOfGuest || !noOfDays || !departureCity || !startDate || !endDate || !status || !Ages) {
-            alert('Please fill in all required fields for Group category.');
-            return; // Exit the function if validation fails
+          
+          formData.append('price', price);
+        } else if (category === 'Individual') {
+          
+          if (!price || !noOfDays || !noOfNights || !departureCity || !startDate || !endDate || !status || !Ages || !CheckIn || !Checkout || !BookingCloseDate) {
+            alert('Please fill in all required fields for Individual category.');
+            return; 
           }
-          // Append fields for Group category
-          formData.append('noOfGuest', noOfGuest);
+          
+          
+          formData.append('price', price);
           formData.append('noOfDays', noOfDays);
+          formData.append('noOfNights', noOfNights);
           formData.append('departureCity', departureCity);
           formData.append('startDate', startDate);
           formData.append('endDate', endDate);
           formData.append('status', status);
           formData.append('Ages', Ages);
+          formData.append('CheckIn', CheckIn);
+          formData.append('Checkout', Checkout);
+          formData.append('BookingCloseDate', BookingCloseDate);
+        }
+        else if (category === 'Group') {
+          
+          if (!price ) {
+            alert('Please fill in all required fields for Group category.');
+            return; 
+          }
+          
+          formData.append('price', price);
+        
         }
       
         // Proceed with data submission
@@ -132,9 +156,9 @@ const AddTrip = ({ onClose }) => {
   
   onChange={(e) => handleInputChange(e)} // Assuming handleInputChange is your existing change handler
 >
-  <option value="">Select Category</option>
   <option value="Family">Family</option>
   <option value="Group">Group</option>
+  <option value="Individual">Individual</option>
 </select>
         </div>
 
@@ -184,16 +208,6 @@ const AddTrip = ({ onClose }) => {
             onChange={handleInputChange}
           />
         </div>
-        <div>
-          <label>Price</label>
-          <input
-            type="text"
-            name="price"
-            value={formData.price}
-            onChange={handleInputChange}
-          />
-        </div>
-        {category === "Family" && (
           <div>
             <label>No of Guests</label>
             <input
@@ -204,17 +218,42 @@ const AddTrip = ({ onClose }) => {
             />
             
           </div>
+        {category === "Family" && (
+        <div>
+          <label>Price Per Person</label>
+          <input
+            type="text"
+            name="price"
+            value={formData.price}
+            onChange={handleInputChange}
+          />
+        </div>
         )}
-
         {category === "Group" && (
           <div>
-            <label>No of Guests</label>
-            <input
-              type="text"
-              name="noOfGuest"
-              value={formData.noOfGuest}
-              onChange={handleInputChange}
-            />
+          <label>Price Per Group</label>
+          <input
+            type="text"
+            name="price"
+            value={formData.price}
+            onChange={handleInputChange}
+          />
+        </div>
+         
+        )}
+
+        {category === "Individual" && (
+          <div>
+            <div>
+          <label>Price Per Individual</label>
+          <input
+            type="text"
+            name="price"
+            value={formData.price}
+            onChange={handleInputChange}
+          />
+        </div>
+         
             <label>No of Days</label>
             <input
               type="text"
@@ -222,24 +261,68 @@ const AddTrip = ({ onClose }) => {
               value={formData.noOfDays}
               onChange={handleInputChange}
             />
+            <label>No of Days</label>
+            <input
+              type="text"
+              name="noOfNights"
+              value={formData.noOfNights}
+              onChange={handleInputChange}
+            />
             <label>Start Date</label>
             <DatePicker
-  selected={formData.startDate}
-  onChange={(date) => handleDateChange(date, 'startDate')}
-  name="startDate"
-  className="form-control custom-date-picker"
-  placeholderText="Click to select a Start Date"
-  minDate={currentDate}
-/>
-<label>End Date</label>
+              selected={formData.startDate}
+              onChange={(date) => handleDateChange(date, 'startDate')}
+              name="startDate"
+              className="form-control custom-date-picker"
+              placeholderText="Click to select a Start Date"
+              minDate={currentDate}
+            />
+            <label>End Date</label>
             <DatePicker
-  selected={formData.startDate}
-  onChange={(date) => handleDateChange(date, 'startDate')}
-  name="endDate"
-  className="form-control custom-date-picker"
-  placeholderText="Click to select a Start Date"
-  minDate={currentDate}
-/>
+                selected={formData.startDate}
+                onChange={(date) => handleDateChange(date, 'endDate')}
+                name="endDate"
+                className="form-control custom-date-picker"
+                placeholderText="Click to select a End Date"
+                minDate={currentDate}
+              />
+              <label>CheckIn Time</label>
+            <input
+              type="text"
+              name="CheckIn"
+              value={formData.CheckIn}
+              onChange={handleInputChange}
+            />
+            <label>CheckOut Time</label>
+            <input
+              type="text"
+              name="Checkout"
+              value={formData.Checkout}
+              onChange={handleInputChange}
+            />
+            {/* <div class="cs-form">
+            <label>Check In Time</label>
+            <input
+          type="time"
+          className="form-control"
+          name="CheckIn"
+          value={time.CheckIn}
+          onChange={handleTimeChange}
+        />
+            </div>
+            <div class="cs-form">
+            <label>Check Out Time</label>
+              <input type="time" class="form-control" value="10:05 AM" />
+            </div>*/}
+            <label>Booking Clsoe Date</label> 
+            <DatePicker
+              selected={formData.BookingCloseDate}
+              onChange={(date) => handleDateChange(date, 'BookingCloseDate')}
+              name="BookingCloseDate"
+              className="form-control custom-date-picker"
+              placeholderText="Click to select a closing Date"
+              minDate={currentDate}
+            />
 
           
             
@@ -271,7 +354,7 @@ const AddTrip = ({ onClose }) => {
                 SUBMIT
               </button>
             <Button btnText="Close" primary btnClick={onClose} />
-      </form>
+        </form>
 
 
        

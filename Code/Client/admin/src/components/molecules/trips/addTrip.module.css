@@ -53,3 +53,13 @@
   .primary:hover {
     background-color: #0056b3;
   }
+  .customTimePickerContainer {
+    width: auto;
+    
+  }
+  
+  .customTimePickerInput {
+    width: 80px !important;
+  }
+  
+  

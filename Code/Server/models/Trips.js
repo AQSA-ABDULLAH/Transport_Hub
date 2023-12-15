@@ -46,6 +46,11 @@ const tripSchema = new mongoose.Schema({
     
     trim: true
   },
+  noOfNights: {
+    type: Number,
+    
+    trim: true
+  },
   departureCity: {
     type: String,
     
@@ -68,6 +73,18 @@ const tripSchema = new mongoose.Schema({
   },
   Ages: {
     type: Number,
+    trim:true
+  },
+  CheckIn: {
+    type: Number,
+    trim:true
+  },
+  Checkout: {
+    type: Number,
+    trim:true
+  },
+  BookingCloseDate: {
+    type: Date,
     trim:true
   }
 },
