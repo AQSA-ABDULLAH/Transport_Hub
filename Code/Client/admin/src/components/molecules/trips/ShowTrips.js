@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Button from '../../atoms/buttons/Button';
-import { UpdateTrips } from './UpdateTrips';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
@@ -35,7 +33,6 @@ const ShowTrips = () => {
       <div>
         <label>Select Category:</label>
         <select name="category" value={category} onChange={handleCategoryChange}>
-          
           <option value="Family">Family</option>
           <option value="Group">Group</option>
         </select>
@@ -44,23 +41,29 @@ const ShowTrips = () => {
       {categoryData.length > 0 ? (
         <div>
           <h2>{category} Data</h2>
-          <table>
+          <table style={{ borderCollapse: 'collapse', width: '100%' }}>
             <thead>
-              <tr className="mx-3">
+              <tr style={{ borderBottom: '1px solid #ddd' }}>
                 {Object.keys(categoryData[0])
                   .filter((key) => !filteredFields.includes(key))
                   .map((key) => (
-                    <th  key={key}>{key}</th>
+                    <th key={key} style={{ padding: '12px', textAlign: 'left' }}>{key}</th>
                   ))}
               </tr>
             </thead>
             <tbody>
               {categoryData.map((item, index) => (
-                <tr key={index}>
+                <tr key={index} style={{ borderBottom: '1px solid #ddd' }}>
                   {Object.entries(item)
                     .filter(([key]) => !filteredFields.includes(key))
                     .map(([key, value]) => (
-                      <td key={key}>{key === 'images' ? <img src={`http://localhost:5000/public/Upload/${value}`} alt={value} style={{ maxWidth: '20px', maxHeight: '20px' }} /> : value}</td>
+                      <td key={key} style={{ padding: '12px', textAlign: 'left' }}>
+                        {key === 'images' ? (
+                          <img src={`http://localhost:5000/public/Upload/${value}`} alt={value} style={{ maxWidth: '20px', maxHeight: '20px' }} />
+                        ) : (
+                          value
+                        )}
+                      </td>
                     ))}
                 </tr>
               ))}
