@@ -41,16 +41,28 @@ class TripsController {
     departureCity: Joi.string().label('DepartureCity:').messages({
         'string.base': '{#label} must be a string',
     }),
-    startDate: Joi.string().label('startDate').messages({
+    startDate: Joi.date().label('startDate').messages({
         'string.base': '{#label} must be a string',
     }),
-    endDate: Joi.string().label('endDate').messages({
+    endDate: Joi.date().label('endDate').messages({
         'string.base': '{#label} must be a string',
     }),
     status: Joi.string().label('status').messages({
         'string.base': '{#label} must be a string',
     }),
     Ages: Joi.string().label('Ages').messages({
+        'string.base': '{#label} must be a string',
+    }),
+    
+    CheckIn: Joi.string().label('CheckIn').messages({
+        'string.base': '{#label} must be a Number',
+    }),
+    
+    Checkout: Joi.string().label('Checkout').messages({
+        'string.base': '{#label} must be a Number',
+    }),
+    
+    BookingCloseDate: Joi.string().label('BookingCloseDate').messages({
         'string.base': '{#label} must be a string',
     }),
     

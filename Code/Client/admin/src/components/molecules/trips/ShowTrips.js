@@ -35,7 +35,7 @@ const ShowTrips = () => {
       <div>
         <label>Select Category:</label>
         <select name="category" value={category} onChange={handleCategoryChange}>
-          <option value="">Select Category</option>
+          
           <option value="Family">Family</option>
           <option value="Group">Group</option>
         </select>
