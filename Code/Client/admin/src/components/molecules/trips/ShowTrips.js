@@ -32,9 +32,10 @@ const ShowTrips = () => {
       <h1>Admin Dashboard</h1>
       <div>
         <label>Select Category:</label>
-        <select name="category" value={category} onChange={handleCategoryChange}>
+        <select name="category" onChange={handleCategoryChange}>
           <option value="Family">Family</option>
           <option value="Group">Group</option>
+          <option value="Individual">Group</option>
         </select>
       </div>
 

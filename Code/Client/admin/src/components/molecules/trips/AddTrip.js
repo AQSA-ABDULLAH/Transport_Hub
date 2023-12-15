@@ -79,6 +79,7 @@ const AddTrip = ({ onClose }) => {
         formData.append('description', description);
         formData.append('extraInformation', extraInformation);
         formData.append('noOfGuest', noOfGuest);
+        
       
         if (category === 'Family') {
          
@@ -86,15 +87,14 @@ const AddTrip = ({ onClose }) => {
             alert('Please fill in all required fields for Family category.');
             return; 
           }
-          
           formData.append('price', price);
+
         } else if (category === 'Individual') {
           
-          if (!price || !noOfDays || !noOfNights || !departureCity || !startDate || !endDate || !status || !Ages || !CheckIn || !Checkout || !BookingCloseDate) {
-            alert('Please fill in all required fields for Individual category.');
+          if (!price || !noOfDays || !noOfNights || !departureCity || !startDate || !endDate || !status || !Ages) {
+            alert('Please fill in all required fields for Group category.');
             return; 
           }
-          
           
           formData.append('price', price);
           formData.append('noOfDays', noOfDays);
@@ -261,7 +261,7 @@ const AddTrip = ({ onClose }) => {
               value={formData.noOfDays}
               onChange={handleInputChange}
             />
-            <label>No of Nights</label>
+            <label>No of Days</label>
             <input
               type="text"
               name="noOfNights"
@@ -286,14 +286,14 @@ const AddTrip = ({ onClose }) => {
                 placeholderText="Click to select a End Date"
                 minDate={currentDate}
               />
-              <label>CheckIn Time</label>
+             <label>CheckIn Time</label>
             <input
               type="text"
               name="CheckIn"
               value={formData.CheckIn}
               onChange={handleInputChange}
             />
-            <label>CheckOut Time</label>
+             <label>CheckOut Time</label>
             <input
               type="text"
               name="Checkout"
@@ -307,14 +307,15 @@ const AddTrip = ({ onClose }) => {
           className="form-control"
           name="CheckIn"
           value={time.CheckIn}
-          onChange={handleTimeChange}
+          onChange={handleInputChange}
         />
             </div>
+          
             <div class="cs-form">
             <label>Check Out Time</label>
-              <input type="time" class="form-control" value="10:05 AM" />
-            </div>*/}
-            <label>Booking Clsoe Date</label> 
+              <input type="time" class="form-control"  />
+            </div> */}
+            <label>Booking Clsoe Date</label>
             <DatePicker
               selected={formData.BookingCloseDate}
               onChange={(date) => handleDateChange(date, 'BookingCloseDate')}
