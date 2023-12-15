@@ -38,6 +38,9 @@ class TripsController {
     noOfDays: Joi.string().label('noOfDays:').messages({
         'string.base': '{#label} must be a string',
     }),
+    noOfNights: Joi.string().label('noOfNights:').messages({
+        'string.base': '{#label} must be a string',
+    }),
     departureCity: Joi.string().label('DepartureCity:').messages({
         'string.base': '{#label} must be a string',
     }),

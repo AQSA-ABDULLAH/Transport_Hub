@@ -261,7 +261,7 @@ const AddTrip = ({ onClose }) => {
               value={formData.noOfDays}
               onChange={handleInputChange}
             />
-            <label>No of Days</label>
+            <label>No of Nights</label>
             <input
               type="text"
               name="noOfNights"
@@ -279,7 +279,7 @@ const AddTrip = ({ onClose }) => {
             />
             <label>End Date</label>
             <DatePicker
-                selected={formData.startDate}
+                selected={formData.endDate}
                 onChange={(date) => handleDateChange(date, 'endDate')}
                 name="endDate"
                 className="form-control custom-date-picker"
