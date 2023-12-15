@@ -60,7 +60,7 @@ const ShowTrips = () => {
                     .map(([key, value]) => (
                       <td key={key} style={{ padding: '12px', textAlign: 'left' }}>
                         {key === 'images' ? (
-                          <img src={`http://localhost:5000/public/Upload/${value}`} alt={value} style={{ maxWidth: '20px', maxHeight: '20px' }} />
+                          <img src={`http://localhost:5000/uploads/trips/${value}`} alt={value} style={{ maxWidth: '20px', maxHeight: '20px' }} />
                         ) : (
                           value
                         )}
