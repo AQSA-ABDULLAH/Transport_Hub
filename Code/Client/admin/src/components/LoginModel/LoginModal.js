@@ -3,7 +3,7 @@ import Button from "../atoms/buttons/Button";
 import styles from './loginModal.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { signUpWithEmail } from '../../redux/containers/auth/actions'
-
+ 
 function LoginModal({ onClose }) {
   const [email, setEmail] = useState('aqsaabdullah5834@gmail.com');
   const [password, setPassword] = useState('qwerty12345');
