@@ -38,7 +38,7 @@ const tripSchema = new mongoose.Schema({
   },
   noOfGuest: {
     type: Number,
-    required : true,
+    
     trim: true
   },
   noOfDays: {
@@ -75,11 +75,11 @@ const tripSchema = new mongoose.Schema({
     trim:true
   },
   CheckIn: {
-    type: Number,
+    type: String,
     trim:true
   },
   Checkout: {
-    type: Number,
+    type: String,
     trim:true
   },
   BookingCloseDate: {
