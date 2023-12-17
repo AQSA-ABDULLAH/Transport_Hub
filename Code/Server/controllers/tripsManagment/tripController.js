@@ -32,14 +32,14 @@ class TripsController {
     extraInformation: Joi.string().label('Extra Information').messages({
         'string.base': '{#label} must be a string',
     }),
-    noOfGuest: Joi.string().label('noOfGuest').messages({
-        'string.base': '{#label} must be a string',
+    noOfGuest: Joi.number().label('noOfGuest').messages({
+        'string.base': '{#label} must be a number',
     }),
-    noOfDays: Joi.string().label('noOfDays:').messages({
-        'string.base': '{#label} must be a string',
+    noOfDays: Joi.number().label('noOfDays:').messages({
+        'string.base': '{#label} must be a number',
     }),
-    noOfNights: Joi.string().label('noOfNights:').messages({
-        'string.base': '{#label} must be a string',
+    noOfNights: Joi.number().label('noOfNights:').messages({
+        'string.base': '{#label} must be a number',
     }),
     departureCity: Joi.string().label('DepartureCity:').messages({
         'string.base': '{#label} must be a string',
@@ -53,16 +53,16 @@ class TripsController {
     status: Joi.string().label('status').messages({
         'string.base': '{#label} must be a string',
     }),
-    Ages: Joi.string().label('Ages').messages({
-        'string.base': '{#label} must be a string',
+    Ages: Joi.number().label('Ages').messages({
+        'string.base': '{#label} must be a number',
     }),
     
     CheckIn: Joi.string().label('CheckIn').messages({
-        'string.base': '{#label} must be a Number',
+        'string.base': '{#label} must be a String',
     }),
     
     Checkout: Joi.string().label('Checkout').messages({
-        'string.base': '{#label} must be a Number',
+        'string.base': '{#label} must be a String',
     }),
     
     BookingCloseDate: Joi.string().label('BookingCloseDate').messages({
@@ -105,12 +105,17 @@ class TripsController {
   
       if (category) {
         trips = await Trips.find({ category });
-      } else {
-        trips = await Trips.find({});
-      }
   
-      if (trips.length === 0) {
-        return res.status(404).send({ status: 'success', message: 'No records found' });
+        if (trips.length === 0) {
+          return res.status(404).send({ status: 'success', message: 'No records found for the this category' });
+        }
+      } else {
+        // Handle case where no category is specified
+        trips = await Trips.find();
+  
+        if (trips.length === 0) {
+          return res.status(404).send({ status: 'success', message: 'No records found' });
+        }
       }
   
       res.status(200).send({ status: 'success', data: trips });
@@ -119,6 +124,7 @@ class TripsController {
       res.status(500).send({ status: 'failed', message: 'Internal Server Error' });
     }
   };
+  
   
 
   // Get a single trip by ID

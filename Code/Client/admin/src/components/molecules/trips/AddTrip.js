@@ -78,20 +78,21 @@ const AddTrip = ({ onClose }) => {
         formData.append('images', imageFile);
         formData.append('description', description);
         formData.append('extraInformation', extraInformation);
-        formData.append('noOfGuest', noOfGuest);
+        
         
       
         if (category === 'Family') {
          
-          if (!price) {
+          if (!price || !noOfGuest) {
             alert('Please fill in all required fields for Family category.');
             return; 
           }
           formData.append('price', price);
+          formData.append('noOfGuest', noOfGuest);
 
         } else if (category === 'Individual') {
           
-          if (!price || !noOfDays || !noOfNights || !departureCity || !startDate || !endDate || !status || !Ages) {
+          if (!price || !noOfDays || !noOfNights || !departureCity || !startDate || !endDate || !status || !Ages || !CheckIn || !Checkout || !BookingCloseDate) {
             alert('Please fill in all required fields for Group category.');
             return; 
           }
@@ -110,12 +111,13 @@ const AddTrip = ({ onClose }) => {
         }
         else if (category === 'Group') {
           
-          if (!price ) {
+          if (!price || !noOfGuest ) {
             alert('Please fill in all required fields for Group category.');
             return; 
           }
           
           formData.append('price', price);
+          formData.append('noOfGuest', noOfGuest);
         
         }
       
@@ -156,6 +158,8 @@ const AddTrip = ({ onClose }) => {
   
   onChange={(e) => handleInputChange(e)} // Assuming handleInputChange is your existing change handler
 >
+  
+  <option >Select</option>
   <option value="Family">Family</option>
   <option value="Group">Group</option>
   <option value="Individual">Individual</option>
@@ -208,16 +212,7 @@ const AddTrip = ({ onClose }) => {
             onChange={handleInputChange}
           />
         </div>
-          <div>
-            <label>No of Guests</label>
-            <input
-              type="text"
-              name="noOfGuest"
-              value={formData.noOfGuest}
-              onChange={handleInputChange}
-            />
-            
-          </div>
+         
         {category === "Family" && (
         <div>
           <label>Price Per Person</label>
@@ -227,7 +222,20 @@ const AddTrip = ({ onClose }) => {
             value={formData.price}
             onChange={handleInputChange}
           />
+           <div>
+            <label>No of Guests</label>
+            <input
+              type="text"
+              name="noOfGuest"
+              value={formData.noOfGuest}
+              onChange={handleInputChange}
+            />
+            
+          </div>
         </div>
+        
+
+        
         )}
         {category === "Group" && (
           <div>
@@ -238,6 +246,16 @@ const AddTrip = ({ onClose }) => {
             value={formData.price}
             onChange={handleInputChange}
           />
+           <div>
+            <label>No of Guests</label>
+            <input
+              type="text"
+              name="noOfGuest"
+              value={formData.noOfGuest}
+              onChange={handleInputChange}
+            />
+            
+          </div>
         </div>
          
         )}
@@ -261,7 +279,7 @@ const AddTrip = ({ onClose }) => {
               value={formData.noOfDays}
               onChange={handleInputChange}
             />
-            <label>No of Days</label>
+            <label>No of Night</label>
             <input
               type="text"
               name="noOfNights"
@@ -286,7 +304,7 @@ const AddTrip = ({ onClose }) => {
                 placeholderText="Click to select a End Date"
                 minDate={currentDate}
               />
-             <label>CheckIn Time</label>
+             {/* <label>CheckIn Time</label>
             <input
               type="text"
               name="CheckIn"
@@ -299,22 +317,29 @@ const AddTrip = ({ onClose }) => {
               name="Checkout"
               value={formData.Checkout}
               onChange={handleInputChange}
-            />
-            {/* <div class="cs-form">
+            /> */}
+            <div class="cs-form">
             <label>Check In Time</label>
             <input
           type="time"
           className="form-control"
           name="CheckIn"
-          value={time.CheckIn}
+          value={formData.CheckIn}
+          onChange={handleInputChange}
+        />
+            </div>
+            <div class="cs-form">
+            <label>Check Out Time</label>
+            <input
+          type="time"
+          className="form-control"
+          name="Checkout"
+          value={formData.Checkout}
           onChange={handleInputChange}
         />
             </div>
           
-            <div class="cs-form">
-            <label>Check Out Time</label>
-              <input type="time" class="form-control"  />
-            </div> */}
+            
             <label>Booking Clsoe Date</label>
             <DatePicker
               selected={formData.BookingCloseDate}
