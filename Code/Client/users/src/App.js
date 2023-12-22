@@ -4,6 +4,7 @@ import SignUp from './pages/signUp/SignUp';
 import SignIn from './pages/login/SignIn';
 import './App.css';
 import LandingPage from './pages/landingPage/LandingPage';
+import BlogsNews from './pages/blogs&News/BlogsNews';
 import PrivateComponents from './components/PrivateComponents';
 import Career from './pages/careers/Career';
 import Services from './pages/Services';
@@ -19,15 +20,11 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route exact path="/LandingCarPage" element={<LandingCarPage />} />
           <Route exact path="/" element={<LandingPage />} />
           <Route exact path="/aboutUs" element={<h1>About Us Page</h1>} />
           <Route exact path="/services" element={<Services />} />
           <Route exact path="/loyaltyProgram" element={<h1>Loyalty Program</h1>} />
-          <Route exact path="/carRental" element={<h1>Car Rental</h1>} />
-          <Route exact path="/recreationalTrips" element={<h1>Recreational Trips</h1>} />
-          <Route exact path="/goodShipment" element={<h1>Good Shipment</h1>} />
-          <Route exact path="/parcelPickup" element={<h1>Parcel Pickup</h1>} />
+          <Route exact path="/blogs&News" element={<BlogsNews/>} />
           <Route exact path="/career" element={<Career/>} />
 
           {/* CAR RENTAL ROUTES */}
