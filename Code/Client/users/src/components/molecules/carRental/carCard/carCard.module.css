@@ -12,15 +12,14 @@
   
   .destImage {
     position: relative;
-    height: 100%; /* Fill the parent container */
-    width: 100%;  /* Fill the parent container */
     overflow: hidden;
   }
   
   img {
-    width: 100%;  /* Fill the parent container */
-    height: 100%; /* Fill the parent container */
-    object-fit: cover; /* Maintain aspect ratio while covering the container */
+    width: 260px;
+    height: 150px;
+    margin: 10px 0px;
+    object-fit: cover;
   }
 
   h2{

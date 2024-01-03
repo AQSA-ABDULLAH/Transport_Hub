@@ -23,7 +23,7 @@ app.use(cors());
 require('./db/connection.js');
 
 //Multer
-app.use("/upload", express.static("uploads"))
+app.use("/uploads/carRental", express.static("uploads"))
 
 // Load Routes
 app.use('/api/user', userRoutes);
