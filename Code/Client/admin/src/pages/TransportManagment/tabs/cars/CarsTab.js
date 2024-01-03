@@ -54,8 +54,12 @@ const CarsTab = () => {
             price="$90/day"
           /> */}
 
-          <Cars/>
-          <Card/>
+          <div className={style.row}>
+            <Cars />
+            <Cars />
+            <Cars />
+          </div>
+          <Card />
 
 
         </div>

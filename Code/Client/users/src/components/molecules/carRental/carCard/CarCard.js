@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react'
 import style from "./carCard.module.css"
 import CusButton from "../../../Button/CusButton";
 import { useNavigate } from 'react-router-dom';
@@ -6,8 +6,24 @@ import { GiGearStickPattern } from "react-icons/gi";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { BsSpeedometer2 } from "react-icons/bs";
 import { IoIosPeople } from "react-icons/io";
+import axios from 'axios';
 
 const CarCard = () => {
+
+    const [product, setProduct] = useState([]);
+    // const [filter, setFilter] = useState('');
+
+    useEffect(() => {
+        axios.get("http://localhost:5000/api/cars/getCars")
+            .then(res => {
+                console.log(res.data)
+                setProduct(res.data.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }, [])
+
     const navigate = useNavigate();
 
     const handleBookNowClick = () => {
@@ -16,56 +32,60 @@ const CarCard = () => {
 
     return (
         <>
-            <section className={style.offer_container_section}>
+            {
+                product.map((item, index) =>
 
-                <div className={style.mainContent_grid}>
-                    <div className={style.singleOffer}>
-                        <h2 className={style.secTitle}>GAC GS8 320T i4*4 Model 2023 (TURBO)</h2>
-                        <div className={style.destImage}>
-                            <img src="./assets/images/cars/SUVs.png" alt="car" />
-                        </div>
+                    <section className={style.offer_container_section}>
 
-                        <div className={style.offerBody}>
-                            <div className={style.price_flex}>
-                                <h4>
-                                    Vechical Type || SUV
-                                </h4>
+                        <div className={style.mainContent_grid}>
+                            <div className={style.singleOffer}>
+                                <h2 className={style.secTitle}>{item.carTitle}</h2>
+                                <div className={style.destImage}>
+                                    <img src={`http://localhost:5000/${item.carImage}`} alt="car" />
+                                    {console.log(`http://localhost:5000/${item.carImage}`)}
+                                </div>
+
+                                <div className={style.offerBody}>
+                                    <div className={style.price_flex}>
+                                        <h4>
+                                            {item.carType}
+                                        </h4>
+                                    </div>
+                                </div>
+
+                                <div className={style.amenities_flex}>
+                                    <div className={style.singleAmenity_flex}>
+                                        <IoIosPeople className={style.icon} />
+                                        <small>{item.numberOfSeats} Seater</small>
+
+                                    </div>
+                                    <div className={style.singleAmenity_flex}>
+                                        <GiGearStickPattern className={style.icon} />
+                                        <small>{item.transmission}</small>
+                                    </div>
+                                    <div className={style.singleAmenity_flex}>
+                                        <BsSpeedometer2 className={style.icon} />
+                                        <small>{item.mileLimit} KM</small>
+                                    </div>
+                                    <div className={style.singleAmenity_flex}>
+                                        <BsThreeDotsVertical className={style.icon} />
+                                        <small>More</small>
+                                    </div>
+                                </div>
+                                <div className={style.booking}>
+
+                                    <div className={style.price}>
+                                        <small className={style.dailyPrice} >RS {item.price} / day</small>
+                                        <small>RS {item.price} total</small>
+                                    </div>
+
+                                    <CusButton btnText="Book Now" primary btnClick={handleBookNowClick} />
+                                </div>
+
                             </div>
                         </div>
-
-                        <div className={style.amenities_flex}>
-                            <div className={style.singleAmenity_flex}>
-                                <IoIosPeople className={style.icon} />
-                                <small>7 Seater</small>
-
-                            </div>
-                            <div className={style.singleAmenity_flex}>
-                                <GiGearStickPattern className={style.icon} />
-                                <small>Manual</small>
-                            </div>
-                            <div className={style.singleAmenity_flex}>
-                                <BsSpeedometer2 className={style.icon} />
-                                <small>800 KM</small>
-                            </div>
-                            <div className={style.singleAmenity_flex}>
-                                <BsThreeDotsVertical className={style.icon} />
-                                <small>More</small>
-                            </div>
-                        </div>
-                        <div className={style.booking}>
-
-                            <div className={style.price}>
-                                <small className={style.dailyPrice} >RS 450 / day</small>
-                                <small>RS 450 total</small>
-                            </div>
-
-                            <CusButton btnText="Book Now" primary  btnClick={handleBookNowClick}/>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
+                    </section>
+                )}
         </>
     )
 }
