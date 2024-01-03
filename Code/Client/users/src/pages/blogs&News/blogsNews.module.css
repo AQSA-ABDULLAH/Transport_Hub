@@ -1,4 +1,10 @@
 .image{
     height: 25rem; /* 400px */
-    width: 85.4rem;
+    width: 85.4rem; /* 1366px */
 }
+
+.flexContainer {
+    display: flex;
+    flex-direction: row;
+  }
+  
