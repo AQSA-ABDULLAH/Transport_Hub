@@ -14,14 +14,13 @@ const storage = multer.diskStorage({
         cb(null, Date.now() + path.extname(file.originalname))
     }
   });
-  
-  
+
   const upload = multer({ storage: storage });
-router.post('/addTrip',upload.single('images') , TripsController.addTrips);
+  router.post('/addTrip',upload.single('images') , TripsController.addTrips);
   
   
 
-router.get("/TripPackages", TripsController.getAllTrips); // Fix the method name here
+  router.get("/TripPackages", TripsController.getAllTrips); // Fix the method name here
 // router.post("/addTrip", TripsController.addTrips); // Fix the method name here
 router.get("/tripDetails/:id", TripsController.getTripById); // Fix the method name here
 router.put("/updatePackage/:id", TripsController.updateTripById); // Fix the method name here

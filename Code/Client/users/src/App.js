@@ -13,6 +13,8 @@ import Viewcars from './pages/CarRental/showCarsPage/ViewCars';
 import ExtendedDetailPage from './pages/CarRental/addOnPage/ExtendedDetailPage';
 import RentalBookingPage from './pages/CarRental/bookingPage/RentalBookingPage';
 import TripLandingPage from './pages/tripsPacakages/tripLandingPage/tripLandingPage';
+import Parcelform from './components/Parcel/Parcelform';
+import PickupBoyForm from './components/Parcel/PickupBoyForm';
 
 function App() {
   return (
@@ -27,7 +29,9 @@ function App() {
           <Route exact path="/carRental" element={<h1>Car Rental</h1>} />
           <Route exact path="/recreationalTrips" element={<h1>Recreational Trips</h1>} />
           <Route exact path="/goodShipment" element={<h1>Good Shipment</h1>} />
-          <Route exact path="/parcelPickup" element={<h1>Parcel Pickup</h1>} />
+          <Route path="/parcelform" element={<Parcelform/>}/>
+          
+          <Route path="/pickupboyform" element={<PickupBoyForm/>}/>
           <Route exact path="/career" element={<Career/>} />
 
           {/* CAR RENTAL ROUTES */}
