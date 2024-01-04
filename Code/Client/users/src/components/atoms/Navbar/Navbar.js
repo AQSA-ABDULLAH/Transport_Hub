@@ -55,7 +55,7 @@ const Navbar = () => {
 
                   <Dropdown.Menu>
                     <Dropdown.Item href="/LandingCarPage">Car Rentals</Dropdown.Item>
-                    <Dropdown.Item href="/">Recreational Trips</Dropdown.Item>
+                    <Dropdown.Item href="/tripLandingPage">Recreational Trips</Dropdown.Item>
                     <Dropdown.Item href="/">Goods Shipment</Dropdown.Item>
                     <Dropdown.Item href="/">Parcel pickup</Dropdown.Item>
                   </Dropdown.Menu>
