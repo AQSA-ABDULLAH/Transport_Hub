@@ -1,0 +1,6 @@
+/* LandingPage.css */
+.landing-page {
+    min-height: 100vh; /* Ensure the container takes at least the full height of the viewport */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds viewport height */
+  }
+  

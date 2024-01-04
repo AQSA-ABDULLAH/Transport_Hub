@@ -22,6 +22,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
+        <Route exact path="/LandingCarPage" element={<LandingCarPage />} />
           <Route exact path="/" element={<LandingPage />} />
           <Route exact path="/aboutUs" element={<h1>About Us Page</h1>} />
           <Route exact path="/services" element={<Services />} />

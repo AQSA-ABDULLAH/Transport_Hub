@@ -1,0 +1,28 @@
+/* Truck.css */
+.image-container {
+  overflow: hidden;
+}
+
+.truck {
+    width: 500px;
+    height: 500px;
+    position: relative;
+    animation: initialMoveAndRotate 3s linear;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes initialMoveAndRotate {
+    0% {
+      left: 100%;
+    }
+    25% {
+      left: 0;
+    }
+    75% {
+      left: 0;
+    }
+    100% {
+      left: 0;
+    }
+  }
+  
