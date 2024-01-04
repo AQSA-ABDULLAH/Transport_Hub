@@ -13,7 +13,9 @@ import LandingCarPage from './pages/CarRental/LandingPage/LandingCarPage';
 import Viewcars from './pages/CarRental/showCarsPage/ViewCars';
 import ExtendedDetailPage from './pages/CarRental/addOnPage/ExtendedDetailPage';
 import RentalBookingPage from './pages/CarRental/bookingPage/RentalBookingPage';
-import TripLandingPage from './pages/tripsPacakages/tripLandingPage/tripLandingPage';
+import LandingTripPage from './pages/Trips/LandingTripPage';
+import PriceCalculator from './pages/Trips/PriceCalculator';
+import BookingForm from './pages/Trips/BookingForm';
 
 function App() {
   return (
@@ -34,7 +36,11 @@ function App() {
           <Route exact path="/RentalBookingPage" element={<RentalBookingPage/>} />
 
           {/* TRIP PACKAGES ROUTES */}
-          <Route exact path="/tripLandingPage" element={<TripLandingPage/>}/>
+            {/* TRIP PACKAGES ROUTES */}
+          <Route exact path="/tripLandingPage" element={<LandingTripPage/>}/>
+          <Route exact path="/PriceCalculator" element={<PriceCalculator/>}/>
+          <Route exact path="/BookingForm" element={<BookingForm/>}/>
+
 
           <Route path="/profile" element={<PrivateComponents />} />
           <Route path="/profile/userProfile" element={<h1>User Profile</h1>} />
