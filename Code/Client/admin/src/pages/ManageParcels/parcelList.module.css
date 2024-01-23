@@ -1,0 +1,32 @@
+.container {
+    background-color: #fff;
+    width: auto;
+    height: 85.8vh;
+    padding: 8px;
+}
+
+.scrollableTab::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollableTab {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -ms-overflow-style: none;  
+    scrollbar-width: none; 
+}
+
+  
+@media screen and (max-width: 1068px) {
+    .container {
+      height: 100vh;
+      padding: 0rem;
+    }
+}
+  
+@media screen and (max-width: 630px) {
+    .container {
+      padding: 0rem;
+    }
+}

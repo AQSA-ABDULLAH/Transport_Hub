@@ -1,0 +1,17 @@
+.tableContainer {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px; 
+  }
+  
+  .parcelTable {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .parcelTable th, .parcelTable td {
+    padding: 8px; 
+    text-align: left;
+  }
+  
+
+  
