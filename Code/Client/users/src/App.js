@@ -16,12 +16,15 @@ import RentalBookingPage from './pages/CarRental/bookingPage/RentalBookingPage';
 import LandingTripPage from './pages/Trips/LandingTripPage';
 import PriceCalculator from './pages/Trips/PriceCalculator';
 import BookingForm from './pages/Trips/BookingForm';
-
+import Parcelform from './components/Parcel/Parcelform';
+import PickupBoyForm from './components/Parcel/PickupBoyForm';
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Routes>
+        <Routes> 
+          <Route path="/parcelform" element={<Parcelform/>}/> 
+          <Route path="/pickupboyform" element={<PickupBoyForm/>}/>
         <Route exact path="/LandingCarPage" element={<LandingCarPage />} />
           <Route exact path="/" element={<LandingPage />} />
           <Route exact path="/aboutUs" element={<h1>About Us Page</h1>} />

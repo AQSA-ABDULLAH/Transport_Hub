@@ -1,9 +1,12 @@
 import React from "react";
 import { Link, useNavigate } from 'react-router-dom';
+import  { useState } from 'react';
 import { Dropdown } from "react-bootstrap";
 import CusButton from "../../Button/CusButton";
 import "./Nav.css";
 import profileIcon from "./profileicon.jpg";
+import Parcelform from "../../Parcel/Parcelform";
+import PickupBoyForm from "../../Parcel/PickupBoyForm";
 const Navbar = () => {
   const auth = localStorage.getItem('user');
   const navigate = useNavigate();
@@ -11,6 +14,19 @@ const Navbar = () => {
     localStorage.clear();
     navigate("/")
   }
+  const [showParcelForm, setShowParcelForm] = useState(false);
+  const [showPickupBoyForm, setShowPickupBoyForm] = useState(false);
+  // Event handler to show ParcelForm
+  // const handleParcelItemClick = () => {
+  //   setShowParcelForm(true);
+  // };
+
+// Event handler to show PickupBoyRegistrationForm
+const handlePickupBoyItemClick = () => {
+  setShowPickupBoyForm(true);
+  setShowParcelForm(false); // Close ParcelForm if open
+};
+  
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-white">
@@ -57,7 +73,7 @@ const Navbar = () => {
                     <Dropdown.Item href="/LandingCarPage">Car Rentals</Dropdown.Item>
                     <Dropdown.Item href="/tripLandingPage">Recreational Trips</Dropdown.Item>
                     <Dropdown.Item href="/">Goods Shipment</Dropdown.Item>
-                    <Dropdown.Item href="/">Parcel pickup</Dropdown.Item>
+                    <Dropdown.Item as={Link} to="/parcelform">Parcel pickup</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </li>
@@ -128,10 +144,12 @@ const Navbar = () => {
           >
             <Dropdown.Item href="#">Driver</Dropdown.Item>
             <Dropdown.Item href="#">Transporter</Dropdown.Item>
-            <Dropdown.Item href="#">Pickup-boy</Dropdown.Item>
+            <Dropdown.Item onClick={handlePickupBoyItemClick} as={Link} to="/pickupboyform">PickupBoy</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </nav>
+      {showParcelForm && <Parcelform />}
+      {showPickupBoyForm && <PickupBoyForm />}
     </>
   );
 }

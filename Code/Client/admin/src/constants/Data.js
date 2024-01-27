@@ -31,6 +31,16 @@ export const Main = [
     text: "Manage Trips",
     route:'/manage-trips'
   },
+  {
+    icon: <BiSolidContact size={20}/>,
+    text: "Manage Parcels",
+    route:'/ParcelList'
+  },
+  {
+    icon: <BiSolidContact size={20}/>,
+    text: "Manage Employees",
+    route:'/manageEmployees'
+  },
 ];
 
 export const GeneralSettting = [
