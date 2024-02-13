@@ -48,6 +48,7 @@
     text-align: center;
     cursor: pointer;
 }
+
 /* Show hamburger menu on small screens */
 @media screen and (max-width: 1068px) {
     .hamburger {
