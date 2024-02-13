@@ -9,12 +9,12 @@ import AppRoutes from "./routes/Routes";
 
 function App() {
   return (
-<Provider store={store}>
+    <Provider store={store}>
       <Router>
         <AppRoutes />
       </Router>
-      </Provider>
-  
+    </Provider>
+
   );
 }
 
