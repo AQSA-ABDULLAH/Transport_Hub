@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Home from "../pages/Home";
-import About from "../pages/About";
-import ContactUs from "../pages/Contact";
-import Gallery from "../pages/Gallery";
 import Signup from "../pages/Signup";
 import Login from "../pages/Login";
 import Billing from "../pages/Billing";
 import Header from "../components/sections/header/Header";
 import Footer from "../components/sections/footer/Footer";
 import NoRoute from "../pages/NoRoute.js";
-import Classes from "../pages/Classes";
-import Profile from "../pages/Profile";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { setSignedIn } from "../redux/containers/auth/actions";
@@ -58,12 +53,7 @@ function AppRoutes() {
 </div>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
         <Route path="/404" element={<NoRoute />} />
-        <Route path="/contactUs" element={<ContactUs />} />
-        <Route path="/gallery" element={<Gallery />} />
-        <Route path="/classes" element={<Classes />} />
-        <Route path="/profile" element={<Profile />} />
         <Route
           path="/signup"
           element={isAuthenticated ? <Navigate to="/" replace /> : <Signup />}
