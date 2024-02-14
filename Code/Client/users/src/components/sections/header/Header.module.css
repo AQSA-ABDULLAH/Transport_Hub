@@ -1,0 +1,156 @@
+/* Header.module.css */
+
+.mobileScreen {
+  display: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2em;
+
+}
+
+.logo {
+  font-size: 3rem;
+  width: 3em;
+  height: 2em;
+}
+
+.navLinks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.navLinks li {
+  color: white;
+  font-size: 14px;
+  padding: 10px 15px;
+  margin: 0 10px;
+  cursor: pointer;
+  text-transform: capitalize;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.navLinks li:not(.btns):hover {
+  color: #fff;
+  background-color: #f78312;
+  border-radius: 20px;
+  box-shadow: 10px 2px 8px -8px #f78312;
+  transition: 0.3s ease-in-out;
+}
+
+.hero {
+  text-align: center;
+  margin-top: 15%;
+}
+
+.hero h1 {
+  font-size: 80px;
+}
+
+.mobileMenuIcon {
+  display: block;
+}
+
+.btnNavbar {
+  border: none;
+  text-decoration: none;
+  background: orangered;
+  color: white;
+  padding: 0px;
+  margin: -5px;
+}
+
+.btnNavbar:hover {
+  border: 1px solid orangered;
+  background-color: white;
+  color: orangered;
+}
+
+.iconNavbar {
+  padding: 0px 2px;
+}
+
+/* Media Queries */
+@media (max-width: 1040px) {
+  .mobileScreen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background: transparent;
+    z-index: 999;
+  }
+
+  .logo {
+    position: center;
+    top: 2px;
+    left: 20px;
+    font-size: 2em;
+  }
+
+  .navLinks {
+    display: none;
+  }
+
+  .navLinksMobile {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: transparent;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(-100%);
+  }
+
+  .navLinksMobile.active {
+    transform: translateX(0);
+  }
+
+  .navLinksMobile ul li {
+    padding: 20px;
+    width: 100%;
+    transition: all 0.5s ease-in-out;
+    text-align: center;
+    color: white;
+  }
+
+  .mobileMenuIcon {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+
+  .mobileNavbar {
+    margin-top: 10em;
+    position: absolute;
+    z-index: 999;
+    align-items: center;
+  }
+
+  .hero h1 {
+    font-size: 50px;
+  }
+}
+
+
+
