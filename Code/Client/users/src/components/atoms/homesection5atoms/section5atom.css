@@ -1,0 +1,14 @@
+.trainer-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: center;
+  padding: 5px 15px;
+  background-color: white;
+}
+.trainer-card > div {
+  margin: 20px auto;
+  font-weight: 700;
+  color: rgb(82, 83, 84);
+  text-transform: capitalize;
+}

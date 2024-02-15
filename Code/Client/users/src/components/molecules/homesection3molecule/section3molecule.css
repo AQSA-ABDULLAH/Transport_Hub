@@ -1,0 +1,83 @@
+.left-container {
+  position: relative;
+  width: 380px;
+}
+.right-container {
+  padding-left: 60px;
+  width: 480px;
+  max-height: 330px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.left-container > p {
+  font-size: 14px;
+  margin: 25px 0px;
+  line-height: 1.8;
+}
+.header-aboutus {
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 24px;
+  color: rgb(43, 51, 59);
+}
+.btn-container {
+  z-index: 2;
+  position: absolute;
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+  .right-container {
+    width: 100%; 
+    padding: 5px;
+    padding-top: .7rem; 
+    overflow-x: auto;  
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .left-container > p {
+    font-size: 14px; 
+    margin: 15px 0px; 
+  }
+
+  .left-container{ 
+    margin-bottom: 30px; 
+  } 
+
+  .btn-container {
+    text-align: center; 
+  }
+
+  .left-container {
+   padding: 1rem 4rem;
+  }
+
+  .header-aboutus {
+    font-weight: 700;
+    font-size: 20px;
+
+  }
+
+  .right-container .cards .desc-container h2{
+    font-size: 16px;
+  }
+
+  .right-container .cards .desc-container h4{
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .index-text{
+    display: none;
+  }
+
+  .right-container {
+    margin-bottom: 20px;
+  }
+}

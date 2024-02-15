@@ -7,4 +7,4 @@ const NoRoute = () => {
   )
 }
 
-export default NoRoute;
+export default NoRoute

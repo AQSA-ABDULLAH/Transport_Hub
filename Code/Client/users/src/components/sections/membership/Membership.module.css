@@ -1,0 +1,80 @@
+.background{
+    background:linear-gradient(rgba(8,33,51,.6),rgba(8,33,51,1)),url('../../../../public/assets/image/membership-form/caucasian-young-sporty-couple-workout-gym-together.png');
+}
+.membershipContainer{
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.membership{
+    background-color: #fff;
+    height: 92vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 60%;
+}
+.imgContainer{
+    display: block;
+    height: 100%;
+    width: 35%;
+    background-image: url('../../../../public/assets/image/membership-form/formImg.png');
+    background-size: cover;
+    background-position:bottom center;
+    text-align: center;
+    padding-top: 1rem;
+}
+.imgContainer img{
+    height: 90px;
+    width: 110px;
+}
+.formContainer{
+    height: 100%;
+    width: 65%;
+ 
+}
+.formTop{
+    background-color: lightgray;
+    padding-left: 1.75rem;
+    padding-top: 3rem;
+}
+.formTop h3{
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+ .btnContainer{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    text-transform: capitalize;
+ }
+ .btnContainer div:first-child{
+    padding-bottom: .6rem;
+    border-bottom: 3px solid blue;
+ }
+
+
+/* Responsive code add here */
+ @media only screen and (max-width: 1084px) {
+    .imgContainer{
+        display: none;
+    }
+    .formContainer{
+        height: 100%;
+        width: 100%;
+        padding-bottom: 3rem;
+    }
+
+    .membership{
+        width: 70%;
+    }
+ }
+@media screen and (max-width: 767px) {
+
+    .membership{
+        width: 80%;
+    }
+}

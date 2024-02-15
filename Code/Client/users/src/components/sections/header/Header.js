@@ -15,31 +15,32 @@ const Navbar = () => {
   return (
     <>
       <nav className={styles.navbar}>
+
+        <div>
+          <Link to="/">
+            <img
+              className={styles.logo}
+              src=".\assets\logo\logo.png"
+              alt="gym-logo"
+            />
+          </Link>
+        </div>
+
         <div>
           <ul className={styles.navLinks}>
             <Link to="/">
               <li>HOME</li>
             </Link>
             <Link to="/about">
-              <li>ABOUT US</li>
+              <li>SERVICES</li>
             </Link>
             <Link to="/classes">
-              <li>CLASSES</li>
+              <li>LOYALTY PROGRAM</li>
             </Link>
             <Link to="/gallery">
-              <li>GALLERY</li>
+              <li>BLOGS & NEWS</li>
             </Link>
           </ul>
-        </div>
-
-        <div>
-          <Link to="/">
-            <img
-              className={styles.logo}
-              src=".\assets\logo\LogoLight.png"
-              alt="gym-logo"
-            />
-          </Link>
         </div>
 
         <div>
@@ -51,7 +52,7 @@ const Navbar = () => {
               <li className={styles.btns}>
                 <Button
                   bgColor={"#F78312"}
-                  btnText="JOIN MEMBERSHIP"
+                  btnText="CAREER"
                   size={"14px"}
                 />
               </li>

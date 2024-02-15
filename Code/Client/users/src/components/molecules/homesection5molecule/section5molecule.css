@@ -1,0 +1,30 @@
+.main-trainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  text-align: center;
+  width: max-content;
+  margin: 30px auto;
+}
+h2 {
+  letter-spacing: -2px;
+  color: rgb(30, 35, 40);
+  font-size: 34px;
+}
+.trainer-button {
+  margin-top: 35px;
+}
+.trainer-button > button {
+  text-transform: uppercase;
+  background-color: rgb(236, 31, 62);
+  color: white;
+  padding: 15px 20px;
+  border-radius: 50px;
+  border: none;
+}
+.trainers-data {
+  margin-top: 30px;
+  display: flex;
+}

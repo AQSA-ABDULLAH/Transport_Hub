@@ -1,0 +1,126 @@
+
+.aboutSection1 {
+  padding-bottom: 5rem;
+  border-bottom: 2px solid #e2e1e1;
+}
+.about {
+  margin-left: 20rem;
+  margin-right: 20rem;
+  margin-top: 5rem;
+}
+.aboutSection1 {
+  display: flex;
+  gap: 4rem;
+}
+.aboutSection1 h1 {
+  margin-bottom: 1.5rem;
+  font-size: 20px;
+  white-space: nowrap;
+}
+.sectio1Text p {
+  font-size: 12px;
+  color: #6a6969;
+  line-height: 1.5rem;
+  margin-bottom: 5px;
+  margin-bottom: 3rem;
+}
+
+.sectio1Message p {
+  line-height: 2rem;
+  margin-bottom: 1.5rem;
+  color: rgb(236, 235, 235);
+}
+.author p {
+  line-height: 1rem;
+  margin-bottom: 0px;
+}
+.authorName {
+  font-size: 13px;
+}
+.authorDesgn {
+  font-size: 12px;
+}
+.sectio1Text {
+  width: 50%;
+}
+
+.sectio1Message {
+  position: relative;
+  color: rgb(236, 235, 235);
+}
+.messageContainer {
+  background-color: #f0932b;
+  margin-top: 2rem;
+  margin-left: 3rem;
+
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  padding-left: 5rem;
+  padding-top: 2rem;
+}
+
+.comaicon {
+  width: 1.5rem;
+  margin-bottom: 5px;
+}
+.sectio1Message {
+  width: 50%;
+}
+.logo {
+  width: 7rem;
+  position: absolute;
+  background-color: black;
+}
+/* ________________________________________about section 2----------------------------------- */
+.aboutsection2 h1 {
+  margin-top: 5rem;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
+.section2Container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 2rem;
+}
+
+
+/* ADD RESPONSIVENESS */
+
+@media (max-width: 1300px) {
+  .about {
+    margin: 2rem;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .aboutSection1 {
+    justify-content: center;
+  }
+  .sectio1Text,
+  .sectio1Message {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .aboutSection1 {
+    flex-direction: column;
+  }
+
+  .aboutsection2 h1 {
+    margin-top: 3rem;
+  }
+
+  .section2Container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .messageContainer {
+    padding-left: 2rem;
+  }
+}

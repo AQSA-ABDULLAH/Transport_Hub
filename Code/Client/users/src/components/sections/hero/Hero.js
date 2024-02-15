@@ -9,7 +9,7 @@ const Hero = () => {
   const data = [
     {
       image: "/assets/image/home/image.png",
-      title: "Welcome to TheBodyDoctors",
+      title: "Welcome to The TransportHub",
       caption: "Discover the power within and soar to new heights.",
       buttonText: reduxState.isSignedIn ? "Welcome aboard" : "JOIN WITH US",
     },
@@ -23,7 +23,7 @@ const Hero = () => {
       image: "/assets/image/home/image.png",
       title: "Embrace Tranquility",
       caption: "Find serenity in nature's embrace and rejuvenate your soul",
-      buttonText: reduxState.isSignedIn ? "Welcome aboard" : "JOIN WITH US",
+      buttonText: reduxState.isSignedIn ? "Welcome at TransportHub" : "JOIN WITH US",
     },
   ]; 
 
