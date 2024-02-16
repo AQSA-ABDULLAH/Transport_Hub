@@ -34,7 +34,7 @@ li {
 }
 
 .navLinks li {
-  color: white;
+  color: rgb(206, 21, 21);
   font-size: 14px;
   padding: 10px 15px;
   margin: 0 10px;
@@ -46,9 +46,9 @@ li {
 
 .navLinks li:not(.btns):hover {
   color: #fff;
-  background-color: #f78312;
+  background-color: #110f9c;
   border-radius: 20px;
-  box-shadow: 10px 2px 8px -8px #f78312;
+  box-shadow: 10px 2px 8px -8px #110f9c;
   transition: 0.3s ease-in-out;
 }
 
@@ -68,16 +68,16 @@ li {
 .btnNavbar {
   border: none;
   text-decoration: none;
-  background: orangered;
+  background: rgb(13, 23, 163);
   color: white;
   padding: 0px;
   margin: -5px;
 }
 
 .btnNavbar:hover {
-  border: 1px solid orangered;
+  border: 1px solid rgb(4, 29, 141);
   background-color: white;
-  color: orangered;
+  color: rgb(13, 22, 134);
 }
 
 .iconNavbar {
