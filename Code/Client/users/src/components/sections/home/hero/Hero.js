@@ -1,7 +1,7 @@
 import React from "react";
-import SwiperSlider from "../../molecules/slider/SwiperSlider";
+import SwiperSlider from "../../../molecules/slider/SwiperSlider";
 import "./hero.module.css";
-import useUserAction from "../../../utils/customHooks/useUserAction";
+import useUserAction from "../../../../utils/customHooks/useUserAction";
 
 const Hero = () => {
   const { reduxState } = useUserAction();

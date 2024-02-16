@@ -1,4 +1,4 @@
-import HomeSection2molecule from "../../molecules/homesection2molecules/Homesection2molecule";
+import HomeSection2molecule from "../../../molecules/homesection2molecules/Homesection2molecule";
 import "./homesection2.css";
 
 function Homesection2() {

@@ -1,5 +1,5 @@
-import HomeSection7bottom from "../../molecules/homesection7molecules/Homesection7bottom";
-import HomeSection7top from "../../molecules/homesection7molecules/Homesection7top";
+import HomeSection7bottom from "../../../molecules/homesection7molecules/Homesection7bottom";
+import HomeSection7top from "../../../molecules/homesection7molecules/Homesection7top";
 import "./Section7.css";
 
 function Homesection7() {
