@@ -16,14 +16,13 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 2em;
-
+  margin-top: 0em;
 }
 
 .logo {
   font-size: 3rem;
-  width: 3em;
-  height: 2em;
+  width: 5.2em;
+  height: 1.7em;
 }
 
 .navLinks {
@@ -34,8 +33,9 @@ li {
 }
 
 .navLinks li {
-  color: rgb(206, 21, 21);
+  color: black;
   font-size: 14px;
+  font-weight: 600;
   padding: 10px 15px;
   margin: 0 10px;
   cursor: pointer;
@@ -46,9 +46,9 @@ li {
 
 .navLinks li:not(.btns):hover {
   color: #fff;
-  background-color: #110f9c;
+  background-color: #7E22CE;
   border-radius: 20px;
-  box-shadow: 10px 2px 8px -8px #110f9c;
+  box-shadow: 10px 2px 8px -8px #7E22CE;
   transition: 0.3s ease-in-out;
 }
 
@@ -68,16 +68,16 @@ li {
 .btnNavbar {
   border: none;
   text-decoration: none;
-  background: rgb(13, 23, 163);
+  background: #7E22CE;
   color: white;
   padding: 0px;
   margin: -5px;
 }
 
 .btnNavbar:hover {
-  border: 1px solid rgb(4, 29, 141);
+  border: 1px solid #7E22CE;
   background-color: white;
-  color: rgb(13, 22, 134);
+  color: #7E22CE;
 }
 
 .iconNavbar {

@@ -14,13 +14,13 @@ const Hero = () => {
       buttonText: reduxState.isSignedIn ? "Welcome aboard" : "JOIN WITH US",
     },
     {
-      image: "/assets/image/home/image.png",
+      image: "/assets/image/home/goods.png",
       title: "Unleash Your Potential",
       caption: "Embark on thrilling quests and create unforgettable memories.",
       buttonText: reduxState.isSignedIn ? "Welcome aboard" : "JOIN WITH US",
     },
     {
-      image: "/assets/image/home/image.png",
+      image: "/assets/image/home/parcelpickup.png",
       title: "Embrace Tranquility",
       caption: "Find serenity in nature's embrace and rejuvenate your soul",
       buttonText: reduxState.isSignedIn ? "Welcome at TransportHub" : "JOIN WITH US",
