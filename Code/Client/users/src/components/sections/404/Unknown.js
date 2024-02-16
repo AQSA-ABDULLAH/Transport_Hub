@@ -1,5 +1,5 @@
 import React from 'react'
-import './unknown.module.css'
+import './Unknown.css'
 import { useNavigate } from 'react-router-dom';
 
 import  Button from '../../atoms/button/Button'
@@ -19,4 +19,4 @@ const Unknown = () => {
   )
 }
 
-export default Unknown;
+export default Unknown

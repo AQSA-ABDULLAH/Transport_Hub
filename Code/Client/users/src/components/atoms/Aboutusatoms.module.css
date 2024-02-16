@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #e2e1e1;
+  width: 90%;
+  height: 90%;
+}
+.icon {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 3rem;
+}
+.heading {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+.text {
+  font-size: 12px;
+  margin-bottom: 2rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
