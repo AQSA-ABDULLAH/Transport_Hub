@@ -1,5 +1,5 @@
-simport Homesection4left from "../../../molecules/homesection4molecules/Homesection4left";
-import Homesection4right from "../../../molecules/homesection4molecules/Homesection4right";
+import Homesection4left from "../../molecules/homesection4molecules/Homesection4left";
+import Homesection4right from "../../molecules/homesection4molecules/Homesection4right";
 import "./Section4.css";
 
 function Homesection4() {
