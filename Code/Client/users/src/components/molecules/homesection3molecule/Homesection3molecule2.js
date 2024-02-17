@@ -1,4 +1,5 @@
-import HomeSection2atom from "../../atoms/homesection2atoms/Homesection2atom";
+
+import HomeSection2molecule from "../homesection2molecules/Homesection2molecule";
 import "./section3molecule.css";
 
 function HomeSection3molecule2() {
@@ -26,7 +27,7 @@ function HomeSection3molecule2() {
     <div className="right-container">
       {mockData.map((data, index) => (
         <div key={index}>
-          <HomeSection2atom
+          <HomeSection2molecule
             header={data.header}
             imgUrl={data.imgUrl}
             description={data.description}

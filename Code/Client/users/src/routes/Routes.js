@@ -11,6 +11,8 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { setSignedIn } from "../redux/containers/auth/actions";
 import './route.css'
+import LandingPage from "../pages/carRental/LandingPage.js";
+import Gallery from "../pages/Gallery.js";
 
 
 function AppRoutes() {
@@ -54,6 +56,9 @@ function AppRoutes() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/404" element={<NoRoute />} />
+        <Route path="/carrental-landingpage" element={<LandingPage/>}/>
+        <Route path="/gallery" element={<Gallery/>}/>
+
         <Route
           path="/signup"
           element={isAuthenticated ? <Navigate to="/" replace /> : <Signup />}
