@@ -1,9 +1,9 @@
 import React from 'react'
-import Unknown from '../components/sections/404/Unknown'
+import ErrorPage from '../components/sections/404/ErrorPage'
 
 const NoRoute = () => {
   return (
-      <Unknown />
+      <ErrorPage/>
   )
 }
 
