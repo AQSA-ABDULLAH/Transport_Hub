@@ -5,7 +5,7 @@ import { signUpWithEmail } from "../../redux/containers/auth/actions";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
-import "./LoginModal.css";
+import "./loginModal.css";
 
 function LoginModal({ onClose }) {
   const navigate = useNavigate();

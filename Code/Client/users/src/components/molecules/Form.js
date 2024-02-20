@@ -15,8 +15,6 @@ const Form = () => {
     confirmPassword: "",
     addressLine1: "",
     addressLine2: "",
-    classes: "",
-    gender: "",
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -94,6 +92,7 @@ const Form = () => {
           placeholder="Last Name"
         />
       </div>
+
       <div className={styles.formRow}>
         <input
           onChange={handleChange}
@@ -110,6 +109,7 @@ const Form = () => {
           placeholder="Phone Number"
         />
       </div>
+
       <div className={styles.formRow}>
         <input
           onChange={handleChange}
@@ -126,63 +126,41 @@ const Form = () => {
           placeholder="Confirm Password"
         />
       </div>
+
       <div className={styles.formRow}>
         <input
           onChange={handleChange}
           type="text"
-          name="addressLine1"
+          name="firstName"
           id=""
-          placeholder="Address Line 1"
+          placeholder="City"
         />
         <input
           onChange={handleChange}
           type="text"
-          name="addressLine2"
+          name="lastName"
           id=""
-          placeholder="Address Line 2"
+          placeholder="zip code"
         />
       </div>
-      <div className={styles.selectContainer}>
-        <div className={styles.select}>
-          <label htmlFor="classes" className={styles.label}>
-            Classes
-          </label>
-          <br />
-          <select onChange={handleChange} name="classes" id="classes">
-            <option value="">Select Classes</option>
 
-            <option value="personal training">Personal Training</option>
-          </select>
-        </div>
-        <div className={styles.select}>
-          <label htmlFor="classes" className={styles.label}>
-            Gender
-          </label>
-          <br />
-          <select onChange={handleChange} name="gender" id="gender">
-            <option value="">Select Gender</option>
-            <option value="female">Female</option>
-            <option value="male">Male</option>
-          </select>
-        </div>
+      <div className={styles.formRow}>
+        <textarea
+          onChange={handleChange}
+          type="text"
+          name="addressLine1"
+          id=""
+          placeholder="Street Address"
+        />
       </div>
-      {error && <p>{error}</p>}
+
       <div className={styles.btns}>
         <Button
           btnText="Join"
           primary
-          bgColor={"#D17831"}
           width={"20%"}
           btnClick={handleSubmit}
         />
-        <ul className={styles.socials}>
-          <li>
-            <img src="./assets/image/membership-form/facebook.png"></img>
-          </li>
-          <li>
-            <img src="./assets/image/membership-form/twitter.png"></img>
-          </li>
-        </ul>
       </div>
     </form>
   );
