@@ -1,6 +1,6 @@
 import React from "react";
-import Membership from "../components/sections/membership/Membership";
-import styles from "../components/sections/membership/Membership.module.css";
+import Membership from "../components/LoginModal/signup/Signup";
+import styles from "../components/LoginModal/signup/signup.module.css";
 
 const Signup = () => {
   return (

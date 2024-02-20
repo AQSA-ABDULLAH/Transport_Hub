@@ -1,7 +1,7 @@
 .background{
-    background:linear-gradient(rgba(8,33,51,.6),rgba(8,33,51,1)),url('../../../../public/assets/image/membership-form/caucasian-young-sporty-couple-workout-gym-together.png');
+    background: linear-gradient(rgba(50, 116, 163, 0.6),rgb(22, 66, 97)),url('../../../../public/assets/images/signup/image1.png');
 }
-.membershipContainer{
+.signupContainer{
     height: 100vh;
     width: 100%;
     background-size: cover;
@@ -9,52 +9,48 @@
     align-items: center;
     justify-content: center;
 }
-.membership{
+.signup{
     background-color: #fff;
     height: 92vh;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    width: 60%;
+    width: 65%;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 .imgContainer{
     display: block;
     height: 100%;
-    width: 35%;
-    background-image: url('../../../../public/assets/image/membership-form/formImg.png');
+    width: 38%;
+    /* width: 20.9rem;  */
+    background-image: url('../../../../public/assets/images/signup/image3.jpg');
     background-size: cover;
-    background-position:bottom center;
+    background-position: bottom center;
     text-align: center;
     padding-top: 1rem;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    filter: brightness(100%) contrast(70%) saturate(190%);
 }
 .imgContainer img{
     height: 90px;
-    width: 110px;
+    width: 200px;
 }
 .formContainer{
     height: 100%;
     width: 65%;
- 
 }
 .formTop{
-    background-color: lightgray;
-    padding-left: 1.75rem;
-    padding-top: 3rem;
+    background-color: #9d66cc;
+    padding: 3rem 0rem 2rem 1.75rem; /* top right bottom left */
+    border-top-right-radius: 10px;
 }
 .formTop h3{
     text-transform: uppercase;
-    margin-bottom: 1.5rem;
 }
- .btnContainer{
-    display: flex;
-    justify-content: space-between;
-    width: 50%;
-    text-transform: capitalize;
- }
- .btnContainer div:first-child{
-    padding-bottom: .6rem;
-    border-bottom: 3px solid blue;
- }
 
 
 /* Responsive code add here */
