@@ -5,7 +5,7 @@ const router = express.Router();
 require("../db/connection")
 
 router.post("/user_signUp", UserController.userRegistration);
-router.post('/user_signIn', userLogin);
+router.post("/user_signIn", userLogin);
 
 module.exports = router;
 
