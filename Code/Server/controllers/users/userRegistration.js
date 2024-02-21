@@ -7,9 +7,10 @@ const sendMail = require("../../libs/mail.js");
 class UserController {
     static userRegistration = async (req, res) => {
         try {
-            const { fullName, email, phoneNumber, password, city, address } = req.body;
+            const { firstName, lastName, email, phoneNumber, password, confirmPassword, city, zipCode, address } = req.body;
 
-            if (!fullName || !email || !phoneNumber || !password || !city || !address) {
+            if (!firstName || !lastName || !email || !phoneNumber || !password || !confirmPassword ||
+                !city || !zipCode || !address) {
                 return res.status(422).json({ error: "Please fill in all fields properly" });
             }
 
@@ -19,14 +20,22 @@ class UserController {
                 return res.status(422).json({ error: "User already exists" });
             }
 
+            if (password !== confirmPassword)
+                return res.send({
+                    status: "failed",
+                    message: "Password and Confirm Password doesn't match",
+                });
+
             // Hashing Password
             const hashedPassword = await hashPassword(password);
             const user = new User({
-                fullName,
+                firstName,
+                lastName,
                 email,
                 phoneNumber,
                 password: hashedPassword,
                 city,
+                zipCode,
                 address
             });
 
@@ -43,7 +52,7 @@ class UserController {
             const template = await compileEmailTemplate({
                 fileName: "register.mjml",
                 data: {
-                    fullName,
+                    fullName: `${firstName} ${lastName}`,
                 },
             });
             if (savedUser._id) {

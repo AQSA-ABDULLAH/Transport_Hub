@@ -25,6 +25,7 @@ require('./db/connection.js');
 //Multer
 app.use("/uploads/carRental", express.static("uploads"))
 app.use("/uploads", express.static("uploads"))
+
 // Load Routes
 app.use('/api/user', userRoutes);
 app.use('/api/cars', carsRoutes);
