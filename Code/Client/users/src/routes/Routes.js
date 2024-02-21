@@ -56,7 +56,7 @@ function AppRoutes() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/404" element={<NoRoute />} />
-        <Route path="/carrental-landingpage" element={<LandingPage/>}/>
+       
         <Route path="/gallery" element={<Gallery/>}/>
 
         <Route

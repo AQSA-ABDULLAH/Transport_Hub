@@ -13,8 +13,8 @@ const Form = () => {
     phoneNumber: "",
     password: "",
     confirmPassword: "",
-    city:"",
-    zipCode:"",
+    city: "",
+    zipCode: "",
     address: "",
   });
   const handleChange = (e) => {
@@ -64,7 +64,7 @@ const Form = () => {
 
     if (error.length === 0) {
       axios
-        .post("http://localhost:8000/api/user/register", formData)
+        .post("http://localhost:5000/api/user/user_signUp", formData)
         .then((response) => {
           // Handle the response if needed
           console.log("API response:", response.data);
@@ -82,14 +82,14 @@ const Form = () => {
           onChange={handleChange}
           type="text"
           name="firstName"
-          id=""
+          id="firstName"
           placeholder="First Name"
         />
         <input
           onChange={handleChange}
           type="text"
           name="lastName"
-          id=""
+          id="lastName"
           placeholder="Last Name"
         />
       </div>
@@ -99,14 +99,14 @@ const Form = () => {
           onChange={handleChange}
           type="email"
           name="email"
-          id=""
+          id="email"
           placeholder="Email Address"
         />
         <input
           onChange={handleChange}
           type="tel"
           name="phoneNumber"
-          id=""
+          id="phoneNumber"
           placeholder="Phone Number"
         />
       </div>
@@ -116,14 +116,14 @@ const Form = () => {
           onChange={handleChange}
           type="password"
           name="password"
-          id=""
+          id="password"
           placeholder="Password"
         />
         <input
           onChange={handleChange}
           type="password"
           name="confirmPassword"
-          id=""
+          id="confirmPasswor"
           placeholder="Confirm Password"
         />
       </div>
@@ -133,14 +133,14 @@ const Form = () => {
           onChange={handleChange}
           type="text"
           name="city"
-          id=""
+          id="city"
           placeholder="City"
         />
         <input
           onChange={handleChange}
           type="zipCode"
-          name="lastName"
-          id=""
+          name="zipCode"
+          id="zipCode"
           placeholder="Zip Code"
         />
       </div>
@@ -150,7 +150,7 @@ const Form = () => {
           onChange={handleChange}
           type="text"
           name="address"
-          id=""
+          id="address"
           placeholder="Street Address"
         />
       </div>
