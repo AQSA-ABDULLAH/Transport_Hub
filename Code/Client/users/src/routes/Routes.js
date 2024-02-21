@@ -55,8 +55,7 @@ function AppRoutes() {
 </div>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/404" element={<NoRoute />} />
-       
+        <Route path="/404" element={<NoRoute />} />      
         <Route path="/gallery" element={<Gallery/>}/>
 
         <Route
