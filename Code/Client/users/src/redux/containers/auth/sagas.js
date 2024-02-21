@@ -24,7 +24,7 @@ function* signIn(action) {
     // Use yield to wait for the result of the async function
     const { token, message, status } = yield call(
       axiosInstance.post,
-      "/api/user/login",
+      "/api/user/user_signIn",
       userData
     );
     localStorage.setItem("access_token", token);

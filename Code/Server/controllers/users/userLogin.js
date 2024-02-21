@@ -11,15 +11,13 @@ const userLogin = async (req, res) => {
         }
 
         const userLogin = await User.findOne({ email: email });
-
         if (userLogin) {
-            // Hashing Password
-            const isMatch = await passwordCompare(password, userLogin.password);
 
+            const isMatch = await passwordCompare(password, userLogin.password);
             if (!isMatch) {
                 return res.status(400).json({ status: "400", message: "Invalid Email or Password" });
             }
-
+            
             // Generate JWT Token
             const token = createToken(userLogin, false, '1d');
 

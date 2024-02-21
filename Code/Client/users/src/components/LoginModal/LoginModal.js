@@ -12,7 +12,6 @@ function LoginModal({ onClose }) {
   const reduxState = useSelector((state) => state.signIn);
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -22,15 +21,16 @@ function LoginModal({ onClose }) {
     const { name, value } = e.target;
     setLoginData((prev) => ({ ...prev, [name]: value }));
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
     dispatch(signUpWithEmail(loginData));
   };
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
+
   useEffect(() => {
     // Get the DOM body element
     const bodyElement = document.body;
@@ -43,6 +43,7 @@ function LoginModal({ onClose }) {
       bodyElement.style.overflow = "auto";
     };
   }, []);
+
   return (
     <>
       {onClose ? (
@@ -53,9 +54,7 @@ function LoginModal({ onClose }) {
 
       <div
         style={{
-          backgroundImage: `url(
-                "/assets/image/login/Login image.jpg"
-                )`,
+          backgroundImage: `url("/assets/image/login/Login image.jpg")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -68,7 +67,7 @@ function LoginModal({ onClose }) {
             src={process.env.PUBLIC_URL + "/assets/logo/LogoLight.png"}
           ></img>
         </div>
-        {/* {reduxState.isSignedIn && <Navigate to="/" replace={true} />} */}
+        
         <div className="login-form-container">
           <form className="login-form">
             <div>Login</div>
@@ -110,7 +109,11 @@ function LoginModal({ onClose }) {
               btnText={"LOGIN"}
             />
             <small>
-              Dont have an account? <Link to="/signup">Register.</Link>
+              {reduxState.isSignedIn
+                ? "You are logged in."
+                : "Please log in to continue."}
+              <br />
+              Don't have an account? <Link to="/signup">Register.</Link>
             </small>
           </form>
         </div>
@@ -118,4 +121,5 @@ function LoginModal({ onClose }) {
     </>
   );
 }
+
 export default LoginModal;
