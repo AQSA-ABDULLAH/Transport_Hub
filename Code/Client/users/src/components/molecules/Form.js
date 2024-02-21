@@ -13,8 +13,9 @@ const Form = () => {
     phoneNumber: "",
     password: "",
     confirmPassword: "",
-    addressLine1: "",
-    addressLine2: "",
+    city:"",
+    zipCode:"",
+    address: "",
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -131,16 +132,16 @@ const Form = () => {
         <input
           onChange={handleChange}
           type="text"
-          name="firstName"
+          name="city"
           id=""
           placeholder="City"
         />
         <input
           onChange={handleChange}
-          type="text"
+          type="zipCode"
           name="lastName"
           id=""
-          placeholder="zip code"
+          placeholder="Zip Code"
         />
       </div>
 
@@ -148,7 +149,7 @@ const Form = () => {
         <textarea
           onChange={handleChange}
           type="text"
-          name="addressLine1"
+          name="address"
           id=""
           placeholder="Street Address"
         />
