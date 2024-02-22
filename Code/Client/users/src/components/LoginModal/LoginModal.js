@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 import "./loginModal.css";
+import OAuth from "./googleAuth/OAuth";
 
 function LoginModal({ onClose }) {
   const navigate = useNavigate();
@@ -54,7 +55,7 @@ function LoginModal({ onClose }) {
 
       <div
         style={{
-          backgroundImage: `url("/assets/image/login/Login image.jpg")`,
+          backgroundImage: `url("/assets/images/Intro/deal1.png")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -115,6 +116,8 @@ function LoginModal({ onClose }) {
               <br />
               Don't have an account? <Link to="/signup">Register.</Link>
             </small>
+
+            <OAuth/>
           </form>
         </div>
       </div>
