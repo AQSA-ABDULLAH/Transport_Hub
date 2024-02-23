@@ -17,7 +17,7 @@ const userLogin = async (req, res) => {
             if (!isMatch) {
                 return res.status(400).json({ status: "400", message: "Invalid Email or Password" });
             }
-            
+
             // Generate JWT Token
             const token = createToken(userLogin, false, '1d');
 
@@ -37,4 +37,36 @@ const userLogin = async (req, res) => {
     }
 };
 
-module.exports = userLogin;
+
+const bcrypt = require('bcryptjs'); // Import bcryptjs here
+
+const google = async (req, res) => {
+    const { email, name, googlePhotoUrl } = req.body;
+    try {
+        const user = await User.findOne({ email });
+        if (user) {
+            // Your existing code
+        } else {
+            const generatedPassword =
+                Math.random().toString(36).slice(-8) +
+                Math.random().toString(36).slice(-8);
+            const hashedPassword = bcrypt.hashSync(generatedPassword, 10); // Use bcrypt instead of bcryptjs
+            const newUser = new User({
+                firstName:
+                    name.toLowerCase().split(' ').join('') +
+                    Math.random().toString(9).slice(-4),
+                email,
+                password: hashedPassword,
+                profilePicture: googlePhotoUrl,
+            });
+            await newUser.save();
+            // Your existing code
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
+
+module.exports = { userLogin, google };

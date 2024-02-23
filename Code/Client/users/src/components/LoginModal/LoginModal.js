@@ -23,10 +23,17 @@ function LoginModal({ onClose }) {
     setLoginData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(signUpWithEmail(loginData));
+    await dispatch(signUpWithEmail(loginData));
+    // Check if login was successful
+    if (reduxState.isSignedIn) {
+      // Navigate user to the desired URL
+      navigate('/');
+    }
   };
+
+
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -68,7 +75,7 @@ function LoginModal({ onClose }) {
             src={process.env.PUBLIC_URL + "/assets/logo/LogoLight.png"}
           ></img>
         </div>
-        
+
         <div className="login-form-container">
           <form className="login-form">
             <div>Login</div>
@@ -117,7 +124,7 @@ function LoginModal({ onClose }) {
               Don't have an account? <Link to="/signup">Register.</Link>
             </small>
 
-            <OAuth/>
+            <OAuth />
           </form>
         </div>
       </div>
