@@ -1,11 +1,11 @@
-const User = require("../../models/Users");
+const Driver = require("../../models/Drivers");
 const { hashPassword } = require("../../helpers/hashPassword");
 const { createToken } = require("../../helpers/jwt");
 const compileEmailTemplate = require("../../helpers/compile-email-template.js");
 const sendMail = require("../../libs/mail.js");
 
-class UserController {
-    static userRegistration = async (req, res) => {
+class DriverController {
+    static driverRegistration = async (req, res) => {
         try {
             const {email, password} = req.body;
 
@@ -69,4 +69,4 @@ class UserController {
     }
 }
 
-module.exports = { UserController };
+module.exports = { DriverController };
