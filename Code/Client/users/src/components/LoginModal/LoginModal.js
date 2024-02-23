@@ -26,12 +26,13 @@ function LoginModal({ onClose }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await dispatch(signUpWithEmail(loginData));
-    // Check if login was successful
+  };
+
+  useEffect(() => {
     if (reduxState.isSignedIn) {
-      // Navigate user to the desired URL
       navigate('/');
     }
-  };
+  }, [reduxState.isSignedIn, navigate]);
 
 
 
