@@ -1,8 +1,8 @@
-const Driver = require("../../models/Drivers");
+const Driver = require("../../models/Drivers"); // Assuming the model name is 'Driver'
 const { createToken } = require("../../helpers/jwt");
 const { passwordCompare } = require("../../helpers/hashPassword");
 
-const userLogin = async (req, res) => {
+const driverLogin = async (req, res) => {
     try {
         const { email, password } = req.body;
 
@@ -10,33 +10,32 @@ const userLogin = async (req, res) => {
             return res.status(400).json({ error: "Enter Username and Password" });
         }
 
-        const userLogin = await User.findOne({ email: email });
+        const driver = await Driver.findOne({ email });
 
-        if (userLogin) {
-            // Hashing Password
-            const isMatch = await passwordCompare(password, userLogin.password);
-
-            if (!isMatch) {
-                return res.status(400).json({ status: "400", message: "Invalid Email or Password" });
-            }
-
-            // Generate JWT Token
-            const token = createToken(userLogin, false, '1d');
-
-            // Save the token in the user document
-            userLogin.tokens = userLogin.tokens.concat({ token });
-            await userLogin.save();
-
-            res.json({ status: "success", message: "Login Success", token });
-
-        } else {
-            res.status(400).json({ message: "Invalid Email or Password" });
+        if (!driver) {
+            return res.status(400).json({ error: "Invalid Email or Password" });
         }
 
+        // Hashing Password
+        const isMatch = await passwordCompare(password, driver.password);
+
+        if (!isMatch) {
+            return res.status(400).json({ error: "Invalid Email or Password" });
+        }
+
+        // Generate JWT Token
+        const token = createToken(driver, false, '1d');
+
+        // Save the token in the driver document
+        driver.tokens = driver.tokens.concat({ token });
+        await driver.save();
+
+        res.json({ status: "success", message: "Login Success", token });
+
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(500).json({ error: "Internal Server Error" });
     }
 };
 
-module.exports = userLogin;
+module.exports = driverLogin;

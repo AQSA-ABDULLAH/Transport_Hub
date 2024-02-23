@@ -4,7 +4,7 @@ const driverLogin = require('../controllers/drivers/driverLoginController');  //
 const router = express.Router();
 require("../db/connection")
 
-router.post("/driver", DriverController.driverRegistration);
+router.post("/driver/registration", DriverController.driverRegistration);
 router.post('/driver_signIn', driverLogin);
 
 module.exports = router;

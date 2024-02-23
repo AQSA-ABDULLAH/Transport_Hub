@@ -1,4 +1,4 @@
-const Driver = require("../../models/Drivers");
+const Driver = require("../../models/Drivers.js"); // Changed from "../../models/Drivers"
 const { hashPassword } = require("../../helpers/hashPassword");
 const { createToken } = require("../../helpers/jwt");
 const compileEmailTemplate = require("../../helpers/compile-email-template.js");
@@ -13,57 +13,57 @@ class DriverController {
                 return res.status(422).json({ error: "Please fill in all fields properly" });
             }
 
-            const userExist = await User.findOne({ email: email });
+            const driverExist = await Driver.findOne({ email: email }); // Changed from User.findOne
 
-            if (userExist) {
-                return res.status(422).json({ error: "User already exists" });
+            if (driverExist) {
+                return res.status(422).json({ error: "Driver already exists" }); // Changed from "User already exists"
             }
 
             // Hashing Password
             const hashedPassword = await hashPassword(password);
-            const user = new User({
+            const driver = new Driver({ // Changed from User
                 email,
                 password: hashedPassword
             });
 
-            const savedUser = await user.save(); // Save the user and get the saved user object
+            const savedDriver = await driver.save(); // Save the driver and get the saved driver object
 
-            // Generate JWT Token using the saved user object
-            const token = createToken(savedUser, false, '1d');
+            // Generate JWT Token using the saved driver object
+            const token = createToken(savedDriver, false, '1d');
 
             // Save token
-            savedUser.tokens = savedUser.tokens.concat({ token });
-            await savedUser.save();
+            savedDriver.tokens = savedDriver.tokens.concat({ token });
+            await savedDriver.save();
 
-            //Send Registration mail to user
+            //Send Registration mail to driver
             const template = await compileEmailTemplate({
                 fileName: "register.mjml",
                 data: {
-                    fullName,
+                    fullName: savedDriver.fullName, // This is just an assumption, you need to provide the full name in the data object
                 },
             });
-            if (savedUser._id) {
+            if (savedDriver._id) {
                 try {
                     await sendMail(email, "Your Account on Transport Hub is Created Successfully", template);
                     res.status(201).send({
                         status: "success",
-                        message: "User created successfully",
+                        message: "Driver created successfully",
                         token: token,
                     });
                 } catch (error) {
                     res.status(201).send({
                         status: "success",
-                        message: "User created successfully",
+                        message: "Driver created successfully",
                         token: token,
-                        email: "Failed to send Create User email.",
+                        email: "Failed to send Create Driver email.",
                     });
                 }
             }
 
-            //res.status(201).json({ message: "User registered successfully", token });
+            //res.status(201).json({ message: "Driver registered successfully", token });
 
         } catch (error) {
-            console.error("Error in user registration:", error);
+            console.error("Error in driver registration:", error);
             res.status(500).json({ error: "Failed to register" });
         }
     }

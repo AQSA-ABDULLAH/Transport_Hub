@@ -42,7 +42,7 @@ app.listen(PORT, () => {
 });
 
 // For Testing
-// app.post('/addCars', (req, res) => {
+// app.post('/driver', (req, res) => {
 //   res.send('API is working');
 // });
 
