@@ -7,7 +7,7 @@ const sendMail = require("../../libs/mail.js");
 class UserController {
     static userRegistration = async (req, res) => {
         try {
-            const { firstName, lastName, email, phoneNumber, password, confirmPassword, city, zipCode, address } = req.body;
+            const { firstName, lastName, email, phoneNumber, password, confirmPassword, city, zipCode, address, profilePicture } = req.body;
 
             if (!firstName || !email || !password || !confirmPassword ) {
                 return res.status(422).json({ error: "Please fill in all fields properly" });
@@ -35,7 +35,8 @@ class UserController {
                 password: hashedPassword,
                 city,
                 zipCode,
-                address
+                address,
+                profilePicture
             });
 
             const savedUser = await user.save(); // Save the user and get the saved user object
@@ -54,29 +55,27 @@ class UserController {
                     fullName: `${firstName} ${lastName}`,
                 },
             });
-            if (savedUser._id) {
-                try {
-                    await sendMail(email, "Your Account on Transport Hub is Created Successfully", template);
-                    res.status(201).send({
-                        status: "success",
-                        message: "User created successfully",
-                        token: token,
-                    });
-                } catch (error) {
-                    res.status(201).send({
-                        status: "success",
-                        message: "User created successfully",
-                        token: token,
-                        email: "Failed to send Create User email.",
-                    });
-                }
+            
+            try {
+                await sendMail(email, "Your Account on Transport Hub is Created Successfully", template);
+                return res.status(201).send({
+                    status: "success",
+                    message: "User created successfully",
+                    token: token,
+                });
+            } catch (error) {
+                console.error("Failed to send Create User email:", error);
+                return res.status(201).send({
+                    status: "success",
+                    message: "User created successfully",
+                    token: token,
+                    email: "Failed to send Create User email.",
+                });
             }
-
-            //res.status(201).json({ message: "User registered successfully", token });
 
         } catch (error) {
             console.error("Error in user registration:", error);
-            res.status(500).json({ error: "Failed to register" });
+            return res.status(500).json({ error: "Failed to register" });
         }
     }
 }

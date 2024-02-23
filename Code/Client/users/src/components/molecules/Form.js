@@ -55,6 +55,7 @@ const Form = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("Form submitted");
     // Check if password and confirmPassword match
     if (formData.password !== formData.confirmPassword) {
       setError("Passwords do not match");
@@ -64,7 +65,7 @@ const Form = () => {
 
     if (error.length === 0) {
       axios
-        .post("http://localhost:5000/api/user/user_signUp", formData)
+        .post("http://localhost:8000/api/user/register", formData)
         .then((response) => {
           // Handle the response if needed
           console.log("API response:", response.data);
@@ -138,11 +139,12 @@ const Form = () => {
         />
         <input
           onChange={handleChange}
-          type="zipCode"
+          type="text"  // Corrected type from "zipCode" to "text"
           name="zipCode"
           id="zipCode"
           placeholder="Zip Code"
         />
+
       </div>
 
       <div className={styles.formRow}>
