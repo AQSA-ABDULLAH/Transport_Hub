@@ -9,8 +9,7 @@ class UserController {
         try {
             const { firstName, lastName, email, phoneNumber, password, confirmPassword, city, zipCode, address } = req.body;
 
-            if (!firstName || !lastName || !email || !phoneNumber || !password || !confirmPassword ||
-                !city || !zipCode || !address) {
+            if (!firstName || !email || !password || !confirmPassword ) {
                 return res.status(422).json({ error: "Please fill in all fields properly" });
             }
 
