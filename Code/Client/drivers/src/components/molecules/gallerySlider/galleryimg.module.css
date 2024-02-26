@@ -1,0 +1,60 @@
+.newClass {
+  margin-top: 3rem;
+  margin-left: 2rem;
+}
+.outerContainer {
+  border: 2px dashed grey;
+  text-align: center;
+  align-items: center;
+  margin: 2rem;
+  padding: 4rem;
+  width: 40%;
+  margin-bottom: 3rem;
+  margin-top: 0px;
+}
+.imgContainer {
+  display: flex;
+
+  /* white-space: nowrap; */
+  gap: 5px;
+}
+.drag {
+  color: black;
+  white-space: nowrap;
+}
+.imgContainer label {
+  margin-left: 3rem;
+
+  white-space: nowrap;
+  color: blue;
+}
+.inputTag {
+  display: none;
+}
+@media (max-width: 1470px) {
+  .imgContainer label {
+    margin-left: 1.5rem;
+  }
+}
+@media (max-width: 1300px) {
+  .imgContainer label {
+    margin-left: 0rem;
+  }
+}
+@media (max-width: 1200px) {
+  .imgContainer {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (max-width: 786px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .outerContainer {
+    width: 91%;
+  }
+}
