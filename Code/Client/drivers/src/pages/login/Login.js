@@ -1,7 +1,15 @@
-import React from 'react'
+import LoginModal from "../../components/LoginModal/LoginModal";
+import { useRedirectIfAuthenticated } from "../../utils/useRedirect";
+import "./login.css";
 
-export default function Login() {
+const Login = ({ isauth }) => {
+  useRedirectIfAuthenticated(isauth);
+
   return (
-    <div>Login</div>
-  )
-}
+    <div className="login-container">
+      <LoginModal />
+    </div>
+  );
+};
+
+export default Login;
