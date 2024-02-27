@@ -5,7 +5,7 @@ import { signUpWithEmail } from "../../redux/containers/auth/actions";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
-import "./loginModal.css";
+import "./LoginModal.css";
 import OAuth from "./googleAuth/OAuth";
 
 function LoginModal({ onClose }) {
