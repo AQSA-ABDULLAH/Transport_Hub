@@ -10,13 +10,18 @@ function LoginModal({ onClose }) {
   const [showPassword, setShowPassword] = useState(false);
   const [isEmailValid, setEmailValid] = useState(true);
   const [isPasswordValid, setPasswordValid] = useState(true);
+
+
   const {loading,error,payload}=useSelector((state)=>state?.auth);
+
   const dispatch = useDispatch();
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
+
   console.log(loading,error,payload);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     let userData = {
@@ -55,11 +60,6 @@ function LoginModal({ onClose }) {
   return (
     <>
       <div
-        style={{
-          backgroundImage: `url("/assets/image/login/Login image.jpg")`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
         className="modal-content"
       >
         <div className="logo-container">
