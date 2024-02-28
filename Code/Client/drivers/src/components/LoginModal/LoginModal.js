@@ -10,13 +10,18 @@ function LoginModal({ onClose }) {
   const [showPassword, setShowPassword] = useState(false);
   const [isEmailValid, setEmailValid] = useState(true);
   const [isPasswordValid, setPasswordValid] = useState(true);
-  const { loading, error, payload } = useSelector((state) => state?.auth);
+
+
+  const {loading,error,payload}=useSelector((state)=>state?.auth);
+
   const dispatch = useDispatch();
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
-  console.log(loading, error, payload);
+
+  console.log(loading,error,payload);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     let userData = {

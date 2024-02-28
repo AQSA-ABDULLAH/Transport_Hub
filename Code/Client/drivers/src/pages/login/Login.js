@@ -1,5 +1,6 @@
 import LoginModal from "../../components/LoginModal/LoginModal";
 import { useRedirectIfAuthenticated } from "../../utils/useRedirect";
+
 import "./login.css";
 
 const Login = ({ isauth }) => {
@@ -7,6 +8,7 @@ const Login = ({ isauth }) => {
 
   return (
     <div className="login-container">
+
       <LoginModal />
     </div>
   );

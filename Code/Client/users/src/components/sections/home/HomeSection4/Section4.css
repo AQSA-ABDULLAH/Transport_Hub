@@ -1,0 +1,38 @@
+.classes-section {
+  width: 100%;
+  height: max-content;
+  background-color: rgb(223, 223, 223);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 80px 0px 60px;
+}
+
+.header-classes {
+  color: rgb(218, 219, 221);
+  font-size: 26px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: -1px;
+  margin-bottom: 20px;
+}
+
+.classes-main {
+  margin: 40px 10px;
+  height: 360px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@media (max-width: 700px) {
+  .classes-main {
+    flex-direction: column;
+    height: auto;
+    align-items: center;
+    width: 90%;
+  }
+}

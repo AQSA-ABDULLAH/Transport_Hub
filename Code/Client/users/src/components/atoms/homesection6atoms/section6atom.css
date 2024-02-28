@@ -1,0 +1,48 @@
+.package-card {
+  background-color: white;
+  height: 100%;
+
+  width: calc(33% - 30px);
+  margin: 5px 15px;
+  /* padding: 30px 15px 0px 15px; */
+}
+.package-header {
+  font-weight: 700;
+  font-size: 16px;
+}
+.package-subheader {
+  margin-top: 5px;
+  font-size: smaller;
+  color: rgb(156, 161, 164);
+}
+.card-content {
+  height: 100%;
+  margin-top: 18px;
+  padding: 35px 10px 0px 33px;
+  display: flex;
+  flex-direction: column;
+}
+.no-bullet {
+  list-style-type: none;
+  padding: 0; /* Optional: If you want to remove any padding */
+  margin: 40px 0px 35px; /* Optional: If you want to remove any margin */
+}
+.no-bullet > li {
+  margin: 10px 0px;
+  font-size: 12px;
+  color: rgb(156, 161, 164);
+}
+.price {
+  font-size: x-large;
+  letter-spacing: -1px;
+  font-weight: bolder;
+  margin: 20px 0px;
+  color: rgb(208, 208, 208);
+}
+.price > span {
+  color: #fd8832;
+}
+.btndiv {
+  margin-top: auto;
+  margin-left: 5px;
+}

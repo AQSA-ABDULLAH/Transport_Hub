@@ -1,0 +1,141 @@
+
+.details{
+    border-bottom: 1px solid lightgray;
+}
+.detailsContainer{
+    width: 70vw;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.singleDetail{
+    display: flex;
+    justify-content: space-between;
+    padding:4rem 2rem;
+}
+.singleDetail.bordered{
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+}
+.icon{
+    width: 10%;
+    /* padding-top: 5px; */
+    color: chocolate;
+}
+.icon img{
+    /* height: 100%; */
+    width: 100%;
+    
+}
+.detail{
+    width: 80%;
+    text-align: left;
+}
+.detail h2{
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: .5rem;
+}
+.detail p{
+    font-size: .9rem;
+    line-height: 30px;
+    font-weight: 550;
+    color: lightgray;
+}
+/* form css */
+.formSectionContainer{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    /* align-items: stretch; */
+    /* background-color: green; */
+    margin-top: 3rem;
+}
+.formContainer{
+    width: 38%;
+    /* margin: auto; */
+}
+.png{
+    width: 30%;
+    height: 100%;
+}
+.png img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.formContainer h1{
+      text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.formRow{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.formRow input{
+width: 48%;
+}
+.formCol input,.formCol textarea{
+    width: 100%;
+    resize: none;
+}
+input[type=email]{
+margin-top: 1.5rem;
+margin-bottom: 1.5rem;
+}
+.input{
+    padding: .8rem;
+    border: .5px solid #00000050;
+    outline: none;
+}
+.btn{
+   margin-top: .5rem;
+   text-align: center;
+
+}
+
+/* map section */
+.map{
+    height: 50vh;
+    width: 100%;
+}
+.map img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+/* media queries */
+@media (min-width:320px) and (max-width:480px) {
+    .detailsContainer{
+        grid-template-columns: 1fr;
+        width:90vw;
+        text-align: center;
+    }
+    .singleDetail{
+        padding: 1rem 1rem;
+    }
+    .formContainer{
+        width: 80vw;
+    }
+}
+@media (min-width:481px) and (max-width:768px) {
+    .detailsContainer{
+        grid-template-columns: 1fr 1fr;
+        width:90vw;
+        text-align: center;
+    }
+    .singleDetail{
+        padding: 1rem 1rem;
+    }
+    .formContainer{
+        width: 80vw;
+    }
+}
+@media (min-width:769px) and (max-width:1060px){
+    .detailsContainer{
+        width: 90vw;
+    }
+}

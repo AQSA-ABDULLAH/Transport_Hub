@@ -1,0 +1,14 @@
+.userProfile{
+    background-color: lightgray;
+    padding: 1rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    border-radius: 2px;
+}
+.mainBlock{
+    width: 70%;
+}
+.sideBlock{
+    width: 28%;
+}

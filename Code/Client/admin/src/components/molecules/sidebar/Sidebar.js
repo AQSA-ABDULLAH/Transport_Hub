@@ -3,38 +3,18 @@ import { useDispatch } from "react-redux";
 import Swal from 'sweetalert2';
 import { AiFillHome } from "react-icons/ai";
 import SidebarLinks from "./SidebarLinks";
-import { setSignedOut } from "../../../redux/containers/auth/actions";
+
 import { Main, General, GeneralSettting } from "../../../constants/Data";
 import { LiaTimesSolid } from "react-icons/lia";
 import { NavLink } from "react-router-dom";
 import styles from "./SidebarStyles.module.css";
 const Sidebar = ({ openSidebar, setOpenSidebar }) => {
-const dispatch=useDispatch();
   const handleLinkClick = () => {
     if(openSidebar){
     setOpenSidebar(false); 
     } 
   };
-  const logout = () => {
-    Swal.fire({
-        title: 'Are you sure?',
-        text: "You will be logged out of this session!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, logout!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            dispatch(setSignedOut());
-            Swal.fire(
-                'Logged Out!',
-                'You have been logged out.',
-                'success'
-            );
-        }
-    });
-}
+
 
   return (
     <>
@@ -66,8 +46,7 @@ const dispatch=useDispatch();
           <h5 className={styles.headingText}>General Settings</h5>
           <SidebarLinks data={GeneralSettting}   handleLinkClick={handleLinkClick}/>
         </div>
-
-        <button className={styles.btn} onClick={()=>logout()}>logout</button>
+        
         <LiaTimesSolid
           className={styles.closeIcon}
           color="#000"

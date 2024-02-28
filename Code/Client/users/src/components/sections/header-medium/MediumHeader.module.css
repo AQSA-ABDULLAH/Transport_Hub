@@ -1,0 +1,18 @@
+.mediumHeader{
+    height: 30vh;
+    width: 100%;
+    background-color: lightgrey;
+    position: relative;
+}
+.mediumHeader img{
+    height: 100%;
+    width: 100%;
+}
+.mediumHeader h1{
+    position: absolute;
+    bottom: 5%;
+    left: calc(50vw); /* Centered with respect to screen width minus 50 pixels */
+    color: #fff;
+    text-transform: uppercase;
+    transform: translateX(-50%);
+}
