@@ -1,0 +1,265 @@
+.top-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  text-align: center;
+  height: 450px;
+  margin: 60px 0px 70px;
+  padding: 0px 30px;
+}
+
+.bottom-container {
+  margin-bottom: -24px;
+  display: flex;
+  align-items: center;
+  padding: 25px 40px 50px 40px;
+  width: 100%;
+  height: 450px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+.quotation-mark>img {
+  margin-bottom: 155px;
+}
+
+.header-reviews {
+  height: max-content;
+  font-size: 30px;
+  letter-spacing: -2px;
+}
+
+.testimonial {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.testimonial-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.testimonial>p {
+  line-height: 2.5;
+  font-size: 16px;
+  color: rgb(138, 139, 140);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.profile-images {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+.profile-images>div {
+  text-align: center;
+  padding: 10px;
+}
+
+.profile-images img {
+  width: 100%;
+  max-width: 200px;
+}
+
+.name {
+  margin-top: 15px;
+  color: rgb(156, 158, 159);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.about-person {
+  margin-top: 5px;
+  color: rgb(156, 158, 159);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.insta-frame {
+  margin: 0px 20px;
+  width: fit-content;
+  height: fit-content;
+  padding: 10px;
+}
+
+.insta-icon {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5px;
+}
+
+.insta-icon>* {
+  margin: 0px 6px;
+}
+
+.insta-icon img:last-child {
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.insta-icon img:nth-last-child(2) {
+  margin-left: 23px;
+}
+
+.insta-profile-info {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 6px 15px 6px 5px;
+}
+
+.insta-profile-info img:last-child {
+  align-self: flex-end;
+  margin-left: auto;
+  height: 15px;
+  margin-bottom: 3px;
+}
+
+.insta-profile-info>div {
+  font-size: 10px;
+  margin-left: 5px;
+  line-height: 1;
+}
+
+.insta-profile-info>div>span {
+  font-size: 8px;
+}
+
+.content-insta {
+  flex-grow: 1;
+}
+
+.content-insta>p {
+  color: rgb(253, 243, 244);
+  font-weight: 600;
+  font-size: 20px;
+  margin-left: 30px;
+}
+
+.content-insta>p>span {
+  color: rgb(209, 209, 209);
+}
+
+.left-arrow,
+.right-arrow {
+  padding-left: 35px;
+  padding-right: 35px;
+
+  font-size: 50px;
+  color: white;
+}
+
+
+
+
+@media (max-width: 1090px) {
+  .top-container {
+    flex-direction: column;
+    height: auto;
+    gap: 20px;
+  }
+
+  .quotation-mark>img {
+    margin-bottom: 0;
+  }
+
+  .header-reviews {
+    font-size: 24px;
+  }
+
+  .testimonial>p {
+    font-size: 14px;
+  }
+
+  .bottom-container {
+    width: 85%;
+  }
+}
+
+@media (max-width: 767px) {
+  .top-container {
+    flex-direction: column;
+    height: auto;
+    gap: 20px;
+    margin: 40px 0;
+  }
+
+  .bottom-container {
+    height: auto;
+    flex-direction: column;
+  }
+
+  .quotation-mark>img {
+    margin-bottom: 0;
+  }
+
+  .header-reviews {
+    font-size: 24px;
+  }
+
+  .testimonial-container {
+    flex-direction: column;
+  }
+
+  .testimonial>p {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 12px;
+  }
+
+  .profile-images {
+    flex-direction: column;
+  }
+
+  .profile-images>div {
+    margin-bottom: 20px;
+  }
+
+  .content-insta>p {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  /* .left-arrow,
+  .right-arrow {
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 40px;
+  } */
+
+  .left-arrow,
+  .right-arrow {
+    display: none;
+  }
+
+  .content-insta {
+    padding-top: 12px;
+  }
+}
+
+@media (max-width: 340px) {
+  .insta-frame {
+    margin: 0px 0px;
+    padding: 7px;
+  }
+  .content-insta>p {
+    font-weight: 500;
+    font-size: 15px;
+  }
+  
+.insta-profile-info {
+  padding: 6px 15px 2px 5px;
+}
+
+}

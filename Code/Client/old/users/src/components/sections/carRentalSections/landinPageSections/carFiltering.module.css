@@ -1,0 +1,39 @@
+/* CarFilter.css */
+
+.custom-select,
+.custom-date-picker {
+  border: none;
+  border-bottom: 1px solid rgb(126, 34, 206);
+  border-radius: 0;
+  box-shadow: none;
+  appearance: none;
+}
+
+.custom-select:focus,
+.custom-date-picker:focus {
+  outline: none;
+  border-color: rgb(126, 34, 206);
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255);
+}
+
+.custom-select option {
+  color: #5a138a; /* Change the background color on hover */
+  background-color: #fff;
+}
+.overlay-container {
+  background-color: rgba(
+    126,
+    34,
+    206,
+    0.8
+  ); /* Purple background with some opacity */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Adjust the z-index to make sure it's on top of other elements */
+}

@@ -1,0 +1,19 @@
+.listContainer{
+    margin-top: 1.5rem;
+}
+.list{
+    display: flex;
+    /* gap: 3rem; */
+    /* line-height: 0px; */
+    justify-content: space-between;
+}
+.list p{
+    line-height: 10px;
+}
+.list p:first-child{
+    width: 60%;
+}
+.list p:nth-child(2){
+    width: 40%;
+    /* background-color: red; */
+}

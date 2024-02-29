@@ -1,0 +1,21 @@
+.header-container {
+    /* align-self: center; */
+    z-index: 1000000;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* height: 95px; */
+    /* transition:transform 1s ease-in; */
+    /* position: absolute; */
+    /* transform: translateY(1px); */
+    /* background-color: transparent; */
+  }
+  
+  .scrolled {
+    position: fixed;
+    transform: translateY(0);
+    transition: 0.6s all;
+    background-color: #2B2E33;
+  }
+  
