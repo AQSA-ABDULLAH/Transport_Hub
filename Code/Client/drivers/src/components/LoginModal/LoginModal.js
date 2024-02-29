@@ -55,55 +55,70 @@ function LoginModal({ onClose }) {
   return (
     <>
       <div
-        className="modal-content"
+        className="modal"
       >
-        <div className="logo-container">
-          <img
-            height={"60px"}
-            src={process.env.PUBLIC_URL + "/assets/logo/LogoLight.png"}
-          ></img>
+        <div className="login-header">
+          <div className="logo-container">
+            <img
+              height={"60px"}
+              src={process.env.PUBLIC_URL + "/assets/logo/LogoLight.png"}
+            ></img>
+          </div>
+          <div className="head-container">
+            Transport Hub Driver Console
+          </div>
         </div>
-        <div className="login-form-container">
-          <form className="login-form" onSubmit={handleSubmit}>
-            <div>Login</div>
 
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              required
-              onChange={(e) => handleChange(e, 'email')}
-              style={{ border: isEmailValid ? "" : "2px solid red" }}
-            ></input>
-            <div id="passwordInput">
+        <div
+          className="modal-content"
+        >
+          <div className="notice-board">
+            sjdiadhi
+          </div>
+          <div className="login-form-container">
+            <form className="login-form" onSubmit={handleSubmit}>
+              <div>Login</div>
+
               <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Password"
-                value={password}
+                type="email"
+                placeholder="Email"
+                value={email}
                 required
-                onChange={(e) => handleChange(e, 'password')}
-                style={{ border: isPasswordValid ? "" : "2px solid red" }}
+                onChange={(e) => handleChange(e, 'email')}
+                style={{ border: isEmailValid ? "" : "2px solid red" }}
               ></input>
-              <img
-                onPointerDown={togglePasswordVisibility}
-                id="toggleIcon"
-                src={!showPassword ? (
-                  "/assets/image/login/solar_eye-bold.png"
-                ) : (
-                  "/assets/image/login/solar_eye-closed-bold.png"
-                )}
-              ></img>
-            </div>
-            <Button
-              type="submit"
-              bgColor={"rgb(247, 131, 18)"}
-              radius={"0px"}
-              hoverColor={"rgb(247, 131, 98)"}
-              btnText={"LOGIN"}
-              btnClick={handleSubmit}
-            />
 
-          </form>
+              <div id="passwordInput">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  value={password}
+                  required
+                  onChange={(e) => handleChange(e, 'password')}
+                  style={{ border: isPasswordValid ? "" : "2px solid red" }}
+                ></input>
+                <img
+                  onPointerDown={togglePasswordVisibility}
+                  id="toggleIcon"
+                  src={!showPassword ? (
+                    "/assets/image/login/solar_eye-bold.png"
+                  ) : (
+                    "/assets/image/login/solar_eye-closed-bold.png"
+                  )}
+                ></img>
+              </div>
+              
+              <Button
+                type="submit"
+                bgColor={"rgb(247, 131, 18)"}
+                radius={"0px"}
+                hoverColor={"rgb(247, 131, 98)"}
+                btnText={"LOGIN"}
+                btnClick={handleSubmit}
+              />
+
+            </form>
+          </div>
         </div>
       </div>
     </>
