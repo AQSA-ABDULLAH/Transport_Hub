@@ -7,10 +7,12 @@
   align-items: center;
 }
 
-.modal-content {
+.modal{
   z-index: 1100;
-  top: 50%; /* Vertically center */
-  left: 50%; /* Horizontally center */
+  top: 45%; 
+  /* Vertically center */
+  left: 50%;
+   /* Horizontally center */
   transform: translate(-50%, -50%);
   position: fixed;
   padding: 40px;
@@ -18,13 +20,35 @@
   height: 500px;
   border-radius: 30px;
   transition: 0.5s ease-in;
+  width: 80%;
+}
+
+.login-header{
+  background-color: rgb(189, 28, 28);
   display: flex;
+  padding: 10px;
 }
 .logo-container {
   flex-grow: 1;
   margin-left: -10px;
   margin-top: -10px;
 }
+.head-container{
+color: white;
+}
+
+.modal-content{
+  display: flex;
+  padding: 3rem 0rem;
+  gap: 3rem;
+}
+
+.notice-board{
+  background-color: white;
+  padding: 2rem;
+  width: 60%;
+}
+
 .login-form-container {
   padding-top: 20px;
   width: 300px;
@@ -32,6 +56,9 @@
   display: flex;
   justify-content: center;
   align-items: start;
+  background-color: white;
+  padding: 2rem;
+  width: 30%;
 }
 .login-form-container > form {
   width: 100%;
@@ -65,7 +92,7 @@
 }
 #passwordInput > input {
   height: 100%;
-  width: 100%;
+  width: 97%;
 }
 #toggleIcon {
   position: absolute;
