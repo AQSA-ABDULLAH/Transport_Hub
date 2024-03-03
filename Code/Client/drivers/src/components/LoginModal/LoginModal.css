@@ -62,8 +62,6 @@ color: white;
 }
 .login-form-container > form {
   width: 100%;
-  color: white;
-
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -82,6 +80,7 @@ color: white;
   padding: 12px 8px;
   border-radius: 5px;
   border: none;
+  background-color: blueviolet;
 
 }
 #passwordInput {
@@ -130,9 +129,22 @@ color: white;
   text-align: center;
 }
 .login-form > small > a {
-  color: rgb(247, 131, 18);
+  background-color: blueviolet;
   margin: 0px 5px;
 }
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%; /* Ensure the footer spans the entire width of the screen */
+  color: white;
+  background-color: blueviolet;
+  opacity: 100%;
+  height: 4%; /* Increased height */
+  font-size: 20px; /* Increased font size */
+  padding: 20px; /* Added padding */
+}
+
 
 
 @media screen and (max-width:1068px) {

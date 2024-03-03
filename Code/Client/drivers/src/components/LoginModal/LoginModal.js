@@ -5,14 +5,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { signUpWithEmail } from '../../redux/containers/auth/actions'
 
 function LoginModal({ onClose }) {
-  const [email, setEmail] = useState('usama@gmail.com');
-  const [password, setPassword] = useState('12345');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isEmailValid, setEmailValid] = useState(true);
   const [isPasswordValid, setPasswordValid] = useState(true);
 
 
-  const {loading,error,payload}=useSelector((state)=>state?.auth);
+  const { loading, error, payload } = useSelector((state) => state?.auth);
 
   const dispatch = useDispatch();
   const togglePasswordVisibility = () => {
@@ -20,7 +20,7 @@ function LoginModal({ onClose }) {
   };
 
 
-  console.log(loading,error,payload);
+  console.log(loading, error, payload);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -112,10 +112,10 @@ function LoginModal({ onClose }) {
                   )}
                 ></img>
               </div>
-              
+
               <Button
                 type="submit"
-                bgColor={"rgb(247, 131, 18)"}
+                bgColor={"blueviolet"}
                 radius={"0px"}
                 hoverColor={"rgb(247, 131, 98)"}
                 btnText={"LOGIN"}
@@ -125,6 +125,9 @@ function LoginModal({ onClose }) {
             </form>
           </div>
         </div>
+      </div>
+      <div className="footer">
+        TRANSPORT HUB, Principal Seat 2024-Transport Hub Industrial Limited
       </div>
     </>
   );

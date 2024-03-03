@@ -44,7 +44,7 @@ const dispatch=useDispatch();
         } `}
       >
         <div className={styles.logo}>
-         <img src="/assets/logo/LogoDark.png" width={110} height={110}/>
+         <img src="/assets/logo/LogoLight.png" width={215} height={110}/>
         </div>
         <div className={styles.spaceY}>
           <NavLink to={"/"} className={styles.sideLink} onClick={handleLinkClick}>
@@ -57,11 +57,7 @@ const dispatch=useDispatch();
         <div className={` ${styles.linksBlock} `}>
           <SidebarLinks data={Main}  handleLinkClick={handleLinkClick}/>
         </div>
-       
-        <div className={`${styles.spaceY} ${styles.linksBlock} `}>
-          <h5 className={styles.headingText}>General Settings</h5>
-          <SidebarLinks data={General}   handleLinkClick={handleLinkClick}/>
-        </div>
+      
         <button className={styles.btn} onClick={()=>logout()}>logout</button>
         <LiaTimesSolid
           className={styles.closeIcon}
