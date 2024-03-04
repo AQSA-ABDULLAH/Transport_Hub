@@ -1,5 +1,5 @@
 import React from 'react'
-// import Header from '../../components/sections/careerSections/careerHeader/Header'
+import Header from '../../components/sections/career/careerHeader/Header'
 // import styles from './career.module.css';
 // import CareerSection2 from '../../components/sections/careerSections/careerSection2/CareerSection2';
 // import TransporterSection from '../../components/sections/careerSections/careerSection3/TransporterSection';
@@ -10,10 +10,10 @@ export default function Career() {
         <>
             <div>
                 career
-                {/* <Header
+                <Header
                     bgImage={
                         "./assets/images/career/carrerPage2.jpg"
-                    } /> */}
+                    } />
 
                 {/* <CareerSection2 />
                 <TransporterSection />
