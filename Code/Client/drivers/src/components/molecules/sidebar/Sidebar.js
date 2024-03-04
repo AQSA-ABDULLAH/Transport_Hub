@@ -61,7 +61,6 @@ const dispatch=useDispatch();
         <button className={styles.btn} onClick={()=>logout()}>logout</button>
         <LiaTimesSolid
           className={styles.closeIcon}
-          color="#000"
           onClick={() => setOpenSidebar(!openSidebar)}
         />
       </aside>
