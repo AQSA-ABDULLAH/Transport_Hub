@@ -3,7 +3,6 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Home from "../pages/Home.js";
 import Signup from "../pages/Signup";
 import Login from "../pages/Login";
-import Billing from "../pages/Billing";
 import Header from "../components/sections/header/Header";
 import Footer from "../components/sections/footer/Footer";
 import NoRoute from "../pages/NoRoute.js";
@@ -13,6 +12,7 @@ import { setSignedIn } from "../redux/containers/auth/actions";
 import './route.css'
 import LandingPage from "../pages/carRental/LandingPage.js";
 import Gallery from "../pages/Gallery.js";
+import Career from "../pages/career/Career.js";
 
 
 function AppRoutes() {
@@ -21,7 +21,7 @@ function AppRoutes() {
 
   const location = useLocation();
   const [isAuthenticated, setisAuthenticated] = useState(false);
-  const noHeaderPaths = ["/login", "/signup", "/billing", "/404", "/profile"];
+  const noHeaderPaths = ["/login", "/signup", "/404", "/profile"];
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -57,6 +57,7 @@ function AppRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/404" element={<NoRoute />} />      
         <Route path="/gallery" element={<Gallery/>}/>
+        <Route path="/career" element={<Career/>}/>
 
         <Route
           path="/signup"
@@ -66,10 +67,10 @@ function AppRoutes() {
           path="/login"
           element={isAuthenticated ? <Navigate to="/" replace /> : <Login />}
         />
-        <Route
+        {/* <Route
           path="/billing"
           element={isAuthenticated ? <Navigate to="/" replace /> : <Billing />}
-        />
+        /> */}
         <Route path="*" element={<Navigate to="/404" replace />} />
       </Routes>
       {!noHeaderPaths.includes(location.pathname) && <Footer />}
