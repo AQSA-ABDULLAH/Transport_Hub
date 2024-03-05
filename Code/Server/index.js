@@ -44,9 +44,9 @@ app.listen(PORT, () => {
 });
 
 // For Testing
-// app.post('/driver', (req, res) => {
-//   res.send('API is working');
-// });
+app.post('/transporter', (req, res) => {
+  res.send('API is working');
+});
 
 app.get('/', (req, res) => {
   res.send('API is working');

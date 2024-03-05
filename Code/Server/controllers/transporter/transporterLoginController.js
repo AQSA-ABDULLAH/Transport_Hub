@@ -1,7 +1,6 @@
-const Transport = require("../../models/Transporter");
+const Transporter = require("../../models/Transporter");
 const { createToken } = require("../../helpers/jwt");
 const { passwordCompare } = require("../../helpers/hashPassword");
-const Driver = require("../../models/Driver");
 
 const transportLogin = async (req, res) => {
     try {
@@ -11,25 +10,25 @@ const transportLogin = async (req, res) => {
             return res.status(400).json({ error: "Please provide both email and password" });
         }
 
-        const driver = await Transport.findOne({ email });
+        const transporter = await Transporter.findOne({ email });
 
-        if (!driver) {
+        if (!transporter) {
             return res.status(400).json({ error: "Invalid Email or Password" });
         }
 
         // Hashing Password and Comparing
-        const isMatch = await passwordCompare(password, driver.password);
+        const isMatch = await passwordCompare(password, transporter.password);
 
         if (!isMatch) {
             return res.status(400).json({ error: "Invalid Email or Password" });
         }
 
         // Generate JWT Token
-        const token = createToken(driver, false, '1d');
+        const token = createToken(transporter, false, '1d');
 
         // Save the token in the transporter document
-        driver.tokens.push({ token });
-        await driver.save();
+        transporter.tokens.push({ token });
+        await transporter.save();
 
         res.json({ status: "success", message: "Login Successful", token });
 
@@ -40,3 +39,4 @@ const transportLogin = async (req, res) => {
 };
 
 module.exports = transportLogin;
+

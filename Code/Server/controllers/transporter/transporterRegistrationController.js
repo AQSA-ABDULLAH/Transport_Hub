@@ -1,11 +1,11 @@
-const Transport = require("../../models//Transporter.js");
+const Transport = require("../../models/Transporter.js");
 const { hashPassword } = require("../../helpers/hashPassword");
 const { createToken } = require("../../helpers/jwt");
 const compileEmailTemplate = require("../../helpers/compile-email-template.js");
 const sendMail = require("../../libs/mail.js");
 
 class TransporterController {
-    static driverRegistration = async (req, res) => {
+    static transporterRegistration = async (req, res) => {
         try {
             const { email, password } = req.body;
 
@@ -13,36 +13,36 @@ class TransporterController {
                 return res.status(422).json({ error: "Please fill in all fields properly" });
             }
 
-            const driverExist = await Transport.findOne({ email });
+            const transporterExist = await Transport.findOne({ email });
 
-            if (driverExist) {
+            if (transporterExist) {
                 return res.status(422).json({ error: "Transporter already exists" });
             }
 
             // Hashing Password
             const hashedPassword = await hashPassword(password);
-            const driver = new Transport({
+            const transporter = new Transport({
                 email,
                 password: hashedPassword
             });
 
-            const savedDriver = await driver.save();
+            const savedTransporter = await transporter.save();
 
-            // Generate JWT Token using the saved driver object
-            const token = createToken(savedDriver, false, '1d');
+            // Generate JWT Token using the saved transporter object
+            const token = createToken(savedTransporter, false, '1d');
 
             // Save token
-            savedDriver.tokens = savedDriver.tokens.concat({ token });
-            await savedDriver.save();
+            savedTransporter.tokens = savedTransporter.tokens.concat({ token });
+            await savedTransporter.save();
 
-            //Send Registration mail to driver
+            //Send Registration mail to transporter
             const template = await compileEmailTemplate({
                 fileName: "register.mjml",
                 data: {
-                    fullName: "", // Provide the full name here
+                    fullName: savedTransporter.fullName, // Provide the full name here
                 },
             });
-            if (savedDriver._id) {
+            if (savedTransporter._id) {
                 try {
                     await sendMail(email, "Your Account on Transport Hub is Created Successfully", template);
                     return res.status(201).send({
@@ -51,12 +51,16 @@ class TransporterController {
                         token: token,
                     });
                 } catch (error) {
-                    console.error("Failed to send Create Driver email.", error);
-                    return res.status(500).json({ error: "Failed to send Create Driver email." });
+                    res.status(201).send({
+                        status: "success",
+                        message: "Driver created successfully",
+                        token: token,
+                        email: "Failed to send Create Transporter email.",
+                    });
                 }
             }
         } catch (error) {
-            console.error("Error in driver registration:", error);
+            console.error("Error in transporter registration:", error);
             return res.status(500).json({ error: "Failed to register" });
         }
     }

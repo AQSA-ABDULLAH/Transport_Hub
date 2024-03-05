@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken')
 
 const transporterSchema = new mongoose.Schema({
     email: { type: String, trim: true },
