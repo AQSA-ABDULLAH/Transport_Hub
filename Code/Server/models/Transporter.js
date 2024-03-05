@@ -1,35 +1,24 @@
 const mongoose = require('mongoose');
 
 const transporterSchema = new mongoose.Schema({
-    fullName: {
-        type:String,
-        requried: true
+    email: { type: String, trim: true },
+    password: { type: String, required: true, trim: true },
+    tokens: [
+        {
+            token: {
+                type: String,
+                required: true
+            }
+        }
+    ],
+    createdAt: {
+        type: Date,
+        default: Date.now
     },
-    email: {
-        type:String,
-        requried: true,
-        unique:true
+    updatedAt: {
+        type: Date,
+        default: Date.now
     },
-    phoneNumber: {
-        type: Number,
-        requried: true
-    },
-    experience:{
-        type: String,
-        requried: true,
-        enum: ['yes', 'no']
-    },
-    address:{
-        type: String,
-        requried: true
-    },
-    city:{
-        type: String,
-        requried: true
-    },
-    education:{
-        type: String,
-        requried: true
-    }
+    deletedAt: { type: Date },
 });
 module.exports = mongoose.model("transporters", transporterSchema);
