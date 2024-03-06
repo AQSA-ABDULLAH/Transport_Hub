@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./AddSliderForm.module.css";
-import { FormTop, FormBottom } from "../addTrainer/AddTrainerForm";
+import Button from "../buttons/Button";
 const AddSliderForm = () => {
   return (
     <>
@@ -43,6 +43,26 @@ const AddSliderForm = () => {
           </div>
         </form>
         <FormBottom text={"Save Slider"} />
+      </div>
+    </>
+  );
+};
+
+export const FormBottom = ({ text }) => {
+  return (
+    <>
+      <div className={styles.formBottom}>
+        <Button btnText="Cancel" textColor="red" />
+        <Button btnText={text} bgColor="#2E65F3" radius="5px" />
+      </div>
+    </>
+  );
+};
+export const FormTop = ({ text }) => {
+  return (
+    <>
+      <div className={styles.formTop}>
+        <h5>{text}</h5>
       </div>
     </>
   );
