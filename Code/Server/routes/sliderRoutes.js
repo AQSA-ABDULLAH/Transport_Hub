@@ -1,13 +1,6 @@
-import express from "express";
-import SliderController from "../controllers/slider/sliderController.js";
-import isAuthenticated from "../middlewares/auth-middleware.js";
+const express = require('express');
+const SliderController = require("../controllers/slider/sliderController");
 const router = express.Router();
-
-// Route Level Middleware - To Protect Route
-router.use("/create-slider", isAuthenticated);
-router.use("/get-slider/:id", isAuthenticated);
-router.use("/update-slider/:id", isAuthenticated);
-router.use("/delete-slider/:id", isAuthenticated);
 
 //PROTECTED ROUTES
 router.post("/create-slider", SliderController.createSlider);
@@ -19,4 +12,4 @@ router.delete("/delete-slider/:id", SliderController.deleteSlider);
 router.get("/get-slider", SliderController.getSliderAll);
 
 
-export default router;
+module.exports = router;

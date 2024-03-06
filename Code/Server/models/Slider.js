@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 //Defining Schema
 const sliderSchema = new mongoose.Schema({
@@ -11,4 +11,4 @@ const sliderSchema = new mongoose.Schema({
 
  //CREATING MODAL
  const SliderModal = mongoose.model('Slider', sliderSchema);
- export default SliderModal
+module.exports = SliderModal;

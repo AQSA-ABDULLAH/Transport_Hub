@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import SliderModal from "../../models/Slider.js";
+const mongoose = require("mongoose");
+const SliderModal = require("../../models/Slider.js");
 
 class SliderController {
     static createSlider = async (req, res) => {
@@ -11,10 +11,10 @@ class SliderController {
             const newSlider = new SliderModal({ heading, content, image });
             await newSlider.save();
 
-            res.status(201).send({ status: "success", message: "Data saved successfully", data: newContactUs });
+            res.status(201).send({ status: "success", message: "Data saved successfully"});
         } catch (error) {
             console.log(error);
-            res.status(409).send({ status: failed, message: "Failed to Save" });
+            res.status(409).send({ status: "failed", message: "Failed to Save" });
         }
     };
     
@@ -74,4 +74,4 @@ class SliderController {
 
 };
 
-export default SliderController;
+module.exports = SliderController;

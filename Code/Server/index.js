@@ -12,7 +12,7 @@ const driverRoutes = require('./routes/driverRoutes.js');
 const carsRoutes = require('./routes/carsRoutes.js');
 const tripsRoutes = require('./routes/tripsRoutes.js');
 const parcelRoutes = require('./routes/parcelRoutes.js');
-import sliderRoutes from "./routes/sliderRoutes.js";
+const sliderRoutes  = require("./routes/sliderRoutes.js");
 
 // Express
 const app = express();
@@ -44,7 +44,7 @@ app.listen(PORT, () => {
 });
 
 // For Testing
-// app.post('/driver', (req, res) => {
+// app.post('/create-slider', (req, res) => {
 //   res.send('API is working');
 // });
 
