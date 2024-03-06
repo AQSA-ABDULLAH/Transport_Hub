@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../addTrainer/AddTrainerForm.module.css";
+import styles from "./AddSliderForm.module.css";
 import { FormTop, FormBottom } from "../addTrainer/AddTrainerForm";
 const AddSliderForm = () => {
   return (
