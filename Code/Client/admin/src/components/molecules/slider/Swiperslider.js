@@ -10,7 +10,7 @@ import {
 } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import "./Swiperslider.module.css";
+import "./Swiperslider.css";
 import "swiper/css/effect-creative";
 import Button from "../../atoms/buttons/Button";
 const SwiperSlider = ({ data }) => {

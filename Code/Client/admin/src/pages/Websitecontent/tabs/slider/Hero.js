@@ -1,6 +1,6 @@
 import React from "react";
 
-import SwiperSlider from "../../../components/molecules/slider/Swiperslider";
+import SwiperSlider from "../../../../components/molecules/slider/Swiperslider";
 
 const Hero = () => {
   const data = [
