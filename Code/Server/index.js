@@ -8,10 +8,11 @@ dotenv.config({ path: './config.env' });
 
 // Routes
 const userRoutes = require('./routes/user.js');
-const driverRoutes = require('./routes/driver.js');
+const driverRoutes = require('./routes/driverRoutes.js');
 const carsRoutes = require('./routes/carsRoutes.js');
 const tripsRoutes = require('./routes/tripsRoutes.js');
 const parcelRoutes = require('./routes/parcelRoutes.js');
+import sliderRoutes from "./routes/sliderRoutes.js";
 
 // Express
 const app = express();
@@ -32,6 +33,7 @@ app.use('/api/user', userRoutes);
 app.use('/api/driver', driverRoutes);
 app.use('/api/cars', carsRoutes);
 app.use('/api/trips', tripsRoutes);
+app.use("/api/user", sliderRoutes);
 app.use(parcelRoutes);
 
 
