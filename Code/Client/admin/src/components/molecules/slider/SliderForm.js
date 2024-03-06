@@ -1,12 +1,12 @@
 import React from "react";
-import styles from "./SliderForm.module.css";
-// import AddSliderForm from "../../atoms/addSlider/AddSliderForm";
+import styles from "./Slider.module.css";
+import AddSliderForm from "../../atoms/addSlider/AddSliderForm";
 const SliderForm = () => {
   return (
     <>
       <section className={styles.container}>
         <div className={styles.space}>
-          {/* <AddSliderForm /> */}
+          <AddSliderForm />
         </div>
       </section>
     </>
