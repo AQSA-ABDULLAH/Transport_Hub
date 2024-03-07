@@ -7,18 +7,19 @@ import { getDownloadURL } from "firebase/storage";
 import { app } from "../../../firebase";
 
 const AddSliderForm = () => {
-  const [image, setImage] = useState(undefined);
-  const [imgperc, setImagePrec] = useState(0);
   const [heading, setHeading] = useState("");
   const [content, setContent] = useState("");
-  const [input, setInput] = useState({}); // Define input state to manage form inputs
+  const [image, setImage] = useState(undefined);
+  const [imgperc, setImagePrec] = useState(0);
+  const [imageUrl, setImageUrl] = useState(""); // Define input state to manage form inputs
 
   useEffect(() => {
     image && uploadFile(image, "imageUrl");
   }, [image]);
 
+
   // FIREBASE SETUP HERE
-  const uploadFile = (file, filetype) => {
+  const uploadFile = (file) => {
     const storage = getStorage(app);
     const storageRef = ref(storage, 'images/' + file.name);
     const uploadTask = uploadBytesResumable(storageRef, file);
@@ -34,44 +35,52 @@ const AddSliderForm = () => {
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setImageUrl(downloadURL); // Update imageUrl directly
           console.log('File available at', downloadURL);
-          setInput(prev => ({
-            ...prev,
-            [filetype]: downloadURL,
-          }));
         });
+
+
       }
     );
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const formData = new FormData();
-    formData.append('imageUrl', input.imageUrl);
     formData.append('heading', heading);
     formData.append('content', content);
-  
-    console.log("FormData:", formData);
-  
+    formData.append('image', imageUrl);
+
+    console.log()
+    console.log()
+    console.log()
+
     try {
       const response = await axios.post("http://localhost:5000/api/user/create-slider", formData, {
-        headers: {
-          'Content-Type': 'application/json' // Set content type if required by backend
-        }
+          headers: { 'Authorization': localStorage.getItem('token') }
       });
-  
-      if (response.data.status === 'success') {
-        alert('Data submitted successfully!');
+
+
+      if (response.data.status === "success") {
+          alert("Data submitted successfully!");
       } else {
-        alert(response.data.message || 'Failed to submit data. Please try again.');
+          alert("Failed to submit data. Please try again.");
       }
-    } catch (error) {
-      console.error('An error occurred while submitting data:', error);
-      alert('An error occurred while submitting data. Please try again.');
-    }
+
+      if (response.data.code === 403 && response.data.message === "Token Expired") {
+          localStorage.setItem('token', null);
+      }
+  } catch (error) {
+      console.log(error);
+      alert("An error occurred while submitting the data. Please try again.");
+  }
   };
-  
+
+
+
+
+
 
   return (
     <>

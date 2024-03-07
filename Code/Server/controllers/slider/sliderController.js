@@ -4,9 +4,9 @@ const SliderModal = require("../../models/Slider.js");
 class SliderController {
     static createSlider = async (req, res) => {
         const { heading, content, image } = req.body;
-        if(!heading) return res.send({ status: "failed", message: `Heading, is required` });
-        if(!content) return res.send({ status: "failed", message: `Content, is required` });
-        if(!image) return res.send({ status: "failed", message: `Image URL, is required` });
+        // if(!heading) return res.send({ status: "failed", message: `Heading, is required` });
+        // if(!content) return res.send({ status: "failed", message: `Content, is required` });
+        // if(!image) return res.send({ status: "failed", message: `Image URL, is required` });
 
         try {
             const newSlider = new SliderModal({ heading, content, image });
