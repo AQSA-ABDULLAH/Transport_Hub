@@ -6,7 +6,6 @@ import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import { getDownloadURL } from "firebase/storage";
 import { app } from "../../../firebase";
 
-
 const AddSliderForm = () => {
   const [image, setImage] = useState(undefined);
   const [imgperc, setImagePrec] = useState(0);
@@ -17,7 +16,6 @@ const AddSliderForm = () => {
   useEffect(() => {
     image && uploadFile(image, "imageUrl");
   }, [image]);
-
 
   // FIREBASE SETUP HERE
   const uploadFile = (file, filetype) => {
@@ -45,23 +43,41 @@ const AddSliderForm = () => {
       }
     );
   }
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    const formData = new FormData();
+    formData.append('imageUrl', input.imageUrl);
+    formData.append('heading', heading);
+    formData.append('content', content);
+  
+    console.log("FormData:", formData);
+  
     try {
-      await axios.post("http://localhost:5000/api/user/create-slider", input);
-      console.log(input); // Log the input data for verification
+      const response = await axios.post("http://localhost:5000/api/user/create-slider", formData, {
+        headers: {
+          'Content-Type': 'application/json' // Set content type if required by backend
+        }
+      });
+  
+      if (response.data.status === 'success') {
+        alert('Data submitted successfully!');
+      } else {
+        alert(response.data.message || 'Failed to submit data. Please try again.');
+      }
     } catch (error) {
-      console.log(error);
+      console.error('An error occurred while submitting data:', error);
+      alert('An error occurred while submitting data. Please try again.');
     }
-  }
+  };
   
 
   return (
     <>
       <div className={styles.addFormContainer}>
         <FormTop text={"new slider"} />
-        <form action="" onSubmit={handleSubmit} className={styles.addForm}>
+        <form action="" className={styles.addForm}>
           <div className={styles.formRow}>
             <div className={styles.formField}>
               <label htmlFor="">background image</label> {imgperc > 0 && "Uploading " + imgperc + "%"}
@@ -105,18 +121,21 @@ const AddSliderForm = () => {
             </div>
           </div>
         </form>
-        <FormBottom text={"Save Slider"} />
+        <FormBottom text={"Save Slider"} handleSubmit={handleSubmit} />
       </div>
     </>
   );
 };
 
-export const FormBottom = ({ text }) => {
+export const FormBottom = ({ text, handleSubmit }) => {
   return (
     <>
       <div className={styles.formBottom}>
         <Button btnText="Cancel" textColor="red" />
-        <Button btnText={text} bgColor="#2E65F3" radius="5px" />
+        {/* <Button btnText={text} bgColor="#2E65F3" radius="5px" onClick={handleSubmit} /> */}
+        <button type="button" className="btn btn-success" onClick={handleSubmit}>
+          SUBMIT
+        </button>
       </div>
     </>
   );
@@ -133,4 +152,5 @@ export const FormTop = ({ text }) => {
 };
 
 export default AddSliderForm;
+
 
