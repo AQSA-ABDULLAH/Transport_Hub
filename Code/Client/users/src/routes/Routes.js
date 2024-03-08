@@ -13,6 +13,7 @@ import { setSignedIn } from "../redux/containers/auth/actions";
 import './route.css'
 import LandingPage from "../pages/carRental/LandingPage.js";
 import Gallery from "../pages/Gallery.js";
+import BlogsNews from "../pages/blogs&News/BlogsNews.js";
 
 
 function AppRoutes() {
@@ -55,8 +56,9 @@ function AppRoutes() {
 </div>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/404" element={<NoRoute />} />      
         <Route path="/gallery" element={<Gallery/>}/>
+        <Route path="/blog&news" element={<BlogsNews/>}/>
+        <Route path="/404" element={<NoRoute />} />      
 
         <Route
           path="/signup"
