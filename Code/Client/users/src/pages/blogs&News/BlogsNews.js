@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './blogsNews.module.css'
-import Blogsection1molecule from '../../components/molecules/blog&newSection/blogsection1molecules/Blogsection1molecule'
-import Blogsection2molecule from '../../components/molecules/blog&newSection/blogsection2molecules/Blogsection2molecule'
+import Blogsection1molecule from '../../components/sections/blog&new/blog&new1section/Blogs'
+import Blogsection2molecule from '../../components/sections/blog&new/blog&new2section/Blogfilter'
 
 export default function BlogsNews() {
   return (

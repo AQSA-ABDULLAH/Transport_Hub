@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './blogsection2molecule.module.css'
+import style from './blogfilter.module.css'
 
 export default function Blogsection2molecule() {
     return (

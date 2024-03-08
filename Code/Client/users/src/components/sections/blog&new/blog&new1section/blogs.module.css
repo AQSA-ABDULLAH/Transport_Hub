@@ -20,8 +20,3 @@
     overflow: hidden;
     background-color: white;
 }
-
-.cards{
-    display: flex;
-    flex-direction: row;
-}
