@@ -10,8 +10,12 @@ export default function BlogsNews() {
         <img className={style.image} src="/assets/images/blogs&News/blogImage2.png" />
       </div>
       <div className={style.blogSection}>
-        <Blogsection1molecule />
-        <Blogsection2molecule />
+        <div className={style.blogContainer}>
+          <Blogsection1molecule />
+        </div>
+        <div className={style.filterContainer}>
+          <Blogsection2molecule />
+        </div>
       </div>
     </>
   )
