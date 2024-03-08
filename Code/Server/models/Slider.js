@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 
 //Defining Schema
 const sliderSchema = new mongoose.Schema({
-    heading: {type: String, required: true, trim: true},
-    content: {type: String, required: true, trim: true},
-    image: [String],
+    heading: {type: String, trim: true},
+    content: {type: String,  trim: true},
+    image: {type: String, trim: true},
 },{ 
     timestamps: true 
  });
