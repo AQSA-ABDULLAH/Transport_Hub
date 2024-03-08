@@ -12,11 +12,17 @@
 }
 
 .blogCard {
-    padding: 1rem 1.2rem;
-    border-radius: 1rem;
-    margin: 18px 12px;
-    height: 14.2rem;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.blogImage{
     width: 20rem;
-    overflow: hidden;
-    background-color: white;
+    height: 13rem;
+
+}
+
+.blog{
+
 }
