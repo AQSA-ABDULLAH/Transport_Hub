@@ -2,3 +2,8 @@
     height: 25rem; /* 400px */
     width: 85.4rem;
 }
+
+.blogSection{
+    display: flex;
+    flex-direction: row;
+}
