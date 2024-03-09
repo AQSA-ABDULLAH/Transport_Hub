@@ -1,15 +1,14 @@
 import React from 'react';
 import style from './blogfilter.module.css';
-import { FaSearch } from 'react-icons/fa'; // Import the search icon from react-icons
+import { Link } from 'react-router-dom';
 
 export default function Blogsection2molecule() {
     return (
         <div className={style.blog_section}>
             <div className={style.search_container}>
-                <input type="text" placeholder="Search..." className={style.search_input} />
-                <button className={style.search_button}>
-                    <FaSearch />
-                </button>
+            <h2>Discover how to get anywhere...</h2>
+            <p>Transport hub searches any city, town or address across the Pakistan with thousands of routes to easily get you from A to B.</p>
+            <Link to="/">Try it now</Link>
             </div>
 
             <div className={style.blog_subscribe}>
