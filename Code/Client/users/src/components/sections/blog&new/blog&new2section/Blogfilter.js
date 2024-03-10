@@ -16,12 +16,13 @@ export default function Blogsection2molecule() {
                 <p>Get regular access to our best deals and tips in your inbox.</p>
                 <div className={style.subscribe_input}>
                     <input type="text" placeholder="Search..." />
-                    <button>Subscribe</button>
+                    <button>Subscribe now</button>
                 </div>
-                <p>Rome2Rio will use the information you provide on this form to provide product 
+            </div>
+            <p className={style.after_blog}>Rome2Rio will use the information you provide on this form to provide product 
                     updates and marketing offers. You can change your mind at any time by clicking 
                     the unsubscribe link in the footer of any email you receive from us.</p>
-            </div>
+
             <div className={style.blog_category}>
                 <h2>Categories</h2>
                 <p>People & Culture</p>
