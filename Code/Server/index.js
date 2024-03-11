@@ -48,7 +48,7 @@ app.listen(PORT, () => {
 });
 
 // For Testing
-app.post('/transporter', (req, res) => {
+app.post('/createblog', (req, res) => {
   res.send('API is working');
 });
 
