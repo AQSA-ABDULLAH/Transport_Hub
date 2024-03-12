@@ -6,6 +6,7 @@ import { Tab } from "../../../constants/WebsiteContentTab";
 import AboutTab from '../tabs/about/AboutTab';
 import SliderTab from '../tabs/slider/SliderTab';
 import GalleryTab from '../tabs/gallery/GalleryTab';
+import BlogTab from "../tabs/blog&news/BlogTab";
 
 const WebsiteContent = () => {
   const navigate = useNavigate();
@@ -51,6 +52,8 @@ const WebsiteContent = () => {
         return <GalleryTab />
       case 2:
         return <SliderTab />
+      case 3:
+        return <BlogTab/>
       default:
         return null;
     }
@@ -66,7 +69,7 @@ const WebsiteContent = () => {
                 <Button
                   btnText={item.text}
                   btnClick={() => handleTabClick(index)}
-                  bgColor={isActive === index ? "#EC1F3E" : "transparent"}
+                  bgColor={isActive === index ? "#7A28C2" : "transparent"}
                   textColor={isActive === index ? "#fff" : "#000"}
                   radius={"10px"}
                 />

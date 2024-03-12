@@ -14,6 +14,7 @@ const carsRoutes = require('./routes/carsRoutes.js');
 const tripsRoutes = require('./routes/tripsRoutes.js');
 const parcelRoutes = require('./routes/parcelRoutes.js');
 const sliderRoutes  = require("./routes/sliderRoutes.js");
+const blogsRoutes = require("./routes/blogsRoutes.js")
 
 // Express
 const app = express();
@@ -36,6 +37,7 @@ app.use('/api/transporter', transporterRoutes);
 app.use('/api/cars', carsRoutes);
 app.use('/api/trips', tripsRoutes);
 app.use("/api/user", sliderRoutes);
+app.use("/api/blogs",blogsRoutes);
 app.use(parcelRoutes);
 
 
@@ -46,7 +48,7 @@ app.listen(PORT, () => {
 });
 
 // For Testing
-app.post('/transporter', (req, res) => {
+app.post('/createblog', (req, res) => {
   res.send('API is working');
 });
 
