@@ -25,13 +25,13 @@ const BlogTab = () => {
                                 </div>
                             </div>
 
-                            <div className={styles.formField}>
+                            <div className={`${styles.formField} ${styles.formInput}`}>
                                 <div className={styles.colItem}>
                                     <label htmlFor="heading">title</label>
                                     <textarea
                                         name="heading"
                                         id="heading"
-                                        rows={4}
+                                        rows={2}
                                         className={styles.sliderTextArea}
 
 
@@ -39,11 +39,11 @@ const BlogTab = () => {
                                 </div>
 
                                 <div className={`${styles.colItem} ${styles.minorSpace}`}>
-                                    <label htmlFor="content">caption</label>
+                                    <label htmlFor="content">content</label>
                                     <textarea
                                         name="content"
                                         id="content"
-                                        rows={4}
+                                        rows={8}
                                         className={styles.sliderTextArea}
 
 
@@ -63,9 +63,9 @@ export const FormBottom = ({ text, handleSubmit }) => {
     return (
         <>
             <div className={styles.formBottom}>
-                <Button btnText="Cancel" textColor="red" />
-                <button type="button" className="btn btn-success" >
-                    SUBMIT
+                <Button btnText="Cancel" textColor="#7A28C2" />
+                <button type="button" className={styles.uploadbtn} >
+                    UPLOAD BLOG
                 </button>
             </div>
         </>
