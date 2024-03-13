@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import { setSignedIn } from "../redux/containers/auth/actions";
 import './route.css'
 import LandingPage from "../pages/carRental/LandingPage.js";
+import ViewCars from "../pages/carRental/showCarsPage/ViewCars.js"
 import Gallery from "../pages/Gallery.js";
 import BlogsNews from "../pages/blogs&News/BlogsNews.js";
 
@@ -58,6 +59,7 @@ function AppRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/gallery" element={<Gallery/>}/>
         <Route path="/blog&news" element={<BlogsNews/>}/>
+        <Route path="/viewCars" element={<ViewCars/>}/>
         <Route path="/404" element={<NoRoute />} />      
 
         <Route
