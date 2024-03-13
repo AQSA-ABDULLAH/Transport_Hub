@@ -34,7 +34,7 @@ const AddCarForm = ({ onClose }) => {
     // FIREBASE SETUP HERE
     const uploadFile = (file) => {
         const storage = getStorage(app);
-        const storageRef = ref(storage, 'CarImage/' + file.name);
+        const storageRef = ref(storage, 'CarImages/' + file.name);
         const uploadTask = uploadBytesResumable(storageRef, file);
 
         uploadTask.on('state_changed',
