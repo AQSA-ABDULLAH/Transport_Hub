@@ -5,10 +5,10 @@ const multer = require('multer');
 const CarsController = require("../controllers/transportManagment/carsController.js");
 
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "uploads/carRental/")
+    destination: (cb) => {
+        cb(null)
     },
-    filename: (req, file, cb) => {
+    filename: (file, cb) => {
         cb(null, Date.now() + path.extname(file.originalname))
     }
   });
