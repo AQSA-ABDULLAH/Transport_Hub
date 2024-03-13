@@ -5,10 +5,9 @@ class CarsController {
 
   // POST METHOD
   static addCars = async (req, res) => {
-    console.log(req.file, req.body, 16)
-    const { carTitle, carType, numberOfSeats, transmission, bags, mileLimit, color,
+    console.log(req.body, 16)
+    const { carImage, carTitle, carType, numberOfSeats, transmission, bags, mileLimit, color,
       fuelType, engineType, price, zone, discount, startDate, endDate } = req.body;
-    const carImage = req.file.path;
 
     if (
       !carTitle || !carType || !numberOfSeats || !transmission || !bags || !mileLimit || !color || !fuelType || !engineType || !price || !zone

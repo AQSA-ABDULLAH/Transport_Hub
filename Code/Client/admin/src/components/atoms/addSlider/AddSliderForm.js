@@ -9,9 +9,9 @@ import { app } from "../../../firebase";
 const AddSliderForm = () => {
   const [heading, setHeading] = useState("");
   const [content, setContent] = useState("");
-  const [image, setImage] = useState(undefined);
-  const [imgperc, setImagePrec] = useState(0);
-  const [imageUrl, setImageUrl] = useState(""); // Define input state to manage form inputs
+  const [image, setImage] = useState("");
+  const [imgperc, setImagePrec] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   useEffect(() => {
     image && uploadFile(image, "imageUrl");
@@ -21,7 +21,7 @@ const AddSliderForm = () => {
   // FIREBASE SETUP HERE
   const uploadFile = (file) => {
     const storage = getStorage(app);
-    const storageRef = ref(storage, 'images/' + file.name);
+    const storageRef = ref(storage, 'SliderImages/' + file.name);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
     uploadTask.on('state_changed',
@@ -136,7 +136,7 @@ const AddSliderForm = () => {
   );
 };
 
-export const FormBottom = ({ text, handleSubmit }) => {
+export const FormBottom = ({handleSubmit }) => {
   return (
     <>
       <div className={styles.formBottom}>

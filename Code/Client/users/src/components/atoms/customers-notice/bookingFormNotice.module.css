@@ -1,0 +1,29 @@
+.noticeContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* border: 1px solid #7E22CE; */
+    border: 2px solid #7E22CE;
+    background-color: #f7f5f8;
+    color: #7E22CE;
+    border-radius: 0.6rem;
+    padding: 14px 32px;
+    width: 43rem;
+    height: 5rem;
+}
+
+.button {
+    border: 3px solid #dac3f0;
+    border-radius: 20rem;
+    margin-right: 1.5rem;
+    padding: 4px 13px;
+    background-color: transparent; 
+    color: #7E22CE; 
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.text{
+    font-size: 17px;
+    font-weight: 600;
+}

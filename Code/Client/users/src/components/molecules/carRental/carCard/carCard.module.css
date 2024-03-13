@@ -1,0 +1,68 @@
+  .offer_container_section {
+    width: 31.2%;
+  }
+  
+  .singleOffer {
+    border-radius: 1rem;
+    overflow: hidden;
+    padding: 0.9rem;
+    background-color: white;
+    box-shadow: 0 2px 8px 2px rgba(178, 178, 178, 0.189);
+  }
+  
+  .destImage {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* img {
+    width: 260px;
+    height: 150px;
+    margin: 10px 0px;
+    object-fit: cover;
+  } */
+
+  h2{
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+  
+  h4 {
+    color: black;
+    font-weight: 500;
+    font-size: 0.8rem;
+  }
+  
+  .amenities_flex {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .singleAmenity_flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 7px;
+    border-radius: 5px;
+    /* background-color: rgb(226, 222, 222); */
+    gap: 0.2rem;
+  }
+
+  .booking{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 20px;
+  }
+
+  .price{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dailyPrice{
+    color: #7E22CE;
+    font-size: 1.1rem;
+    font-weight: 800;
+  }
+  

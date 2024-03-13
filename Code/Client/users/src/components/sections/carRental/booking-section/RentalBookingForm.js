@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import style from "./rentalBookingForm.module.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const RentalBookingForm = () => {
   const [formData, setFormData] = useState({
@@ -30,14 +29,13 @@ const RentalBookingForm = () => {
 
   return (
     <div className={`${style.bookingForm}`}>
-      <h2 className={`mb-4 ${style.text_spacing}`}>CUSTOMER DETAILS:</h2>
+      <h2 className={style.text_spacing}>CUSTOMER DETAILS</h2>
       <form onSubmit={handleSubmit}>
-        <div className="row">
-          <div className="mb-3 col-6">
-            <label htmlFor="firstName" className="form-label">First Name:</label>
+        <div className={style.formrow}>
+          <div className={style.formfiled}>
+            <label htmlFor="firstName" className={style.formlabel}>First Name:</label>
             <input
               type="text"
-              className="form-control"
               id="firstName"
               name="firstName"
               value={formData.firstName}
@@ -45,12 +43,11 @@ const RentalBookingForm = () => {
               required
             />
           </div>
-          <div className="mb-3 col-6">
-            <label htmlFor="lastName" className="form-label">Last Name:</label>
+          <div className={style.formfiled}>
+            <label htmlFor="lastName" className={style.formlabel}>Last Name:</label>
             <input
               type="text"
               id="lastName"
-              className="form-control"
               name="lastName"
               value={formData.lastName}
               onChange={handleChange}
@@ -58,52 +55,48 @@ const RentalBookingForm = () => {
             />
           </div>
         </div>
-        <div className="row">
-          <div className="mb-3 col-6">
-            <label htmlFor="phoneNo" className="form-label">Phone No:</label>
+        <div className={style.formrow}>
+          <div className={style.formfiled}>
+            <label htmlFor="phoneNo" className={style.formlabel}>Phone No:</label>
             <input
               type="tel"
               id="phoneNo"
               name="phoneNo"
-              className="form-control"
               value={formData.phoneNo}
               onChange={handleChange}
               required
             />
           </div>
-          <div className="mb-3 col-6">
-            <label htmlFor="email" className="form-label">Email:</label>
+          <div className={style.formfiled}>
+            <label htmlFor="email" className={style.formlabel}>Email:</label>
             <input
               type="email"
               id="email"
               name="email"
-              className="form-control"
               value={formData.email}
               onChange={handleChange}
               required
             />
           </div>
         </div>
-        
-        <div className="row">
-          <div className="mb-3 col-6">
-            <label htmlFor="cnic" className="form-label">CNIC:</label>
+
+        <div className={style.formrow}>
+          <div className={style.formfiled}>
+            <label htmlFor="cnic" className={style.formlabel}>CNIC:</label>
             <input
               type="text"
               id="cnic"
               name="cnic"
-              className="form-control"
               value={formData.cnic}
               onChange={handleChange}
               required
             />
           </div>
-          <div className="mb-3 col-6">
-            <label htmlFor="zipcode" className="form-label">Zip Code:</label>
+          <div className={style.formfiled}>
+            <label htmlFor="zipcode" className={style.formlabel}>Zip Code:</label>
             <input
               id="zipcode"
               name="zipcode"
-              className="form-control"
               value={formData.zipcode}
               onChange={handleChange}
               required
@@ -111,27 +104,13 @@ const RentalBookingForm = () => {
           </div>
         </div>
 
-        <div className="mb-3">
-          <label htmlFor="address" className="form-label">Address:</label>
+        <div className={style.formfiled}>
+          <label htmlFor="address" className={style.formlabel}>Address:<span className={style.msg}>(Plz provide correct delivery address, In case of need delivery):</span></label>
           <textarea
+          style={{ marginTop: '2px' }}
             id="address"
             name="address"
-            className="form-control"
             value={formData.address}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="mb-3">
-          <h2>Delivery Address</h2>
-          <span>Plz provide correct delivery address (In case of need delivery):</span>
-          <input
-            type="text"
-            id="cnic"
-            name="cnic"
-            value={formData.cnic}
-            className="form-control"
             onChange={handleChange}
             required
           />

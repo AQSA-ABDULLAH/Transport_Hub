@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import style from './addCarForm.module.css';
 import { MdCloudUpload } from "react-icons/md";
+import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
+import { getDownloadURL } from "firebase/storage";
+import { app } from "../../../../firebase";
 
 const AddCarForm = ({ onClose }) => {
     const [carImage, setCarImage] = useState('');
@@ -20,7 +23,39 @@ const AddCarForm = ({ onClose }) => {
     const [discount, setDiscount] = useState('0');
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
+    const [imgperc, setImagePrec] = useState("");
+    const [imageUrl, setImageUrl] = useState("");
     const navigate = useNavigate();
+
+    useEffect(() => {
+        carImage && uploadFile(carImage, "imageUrl");
+      }, [carImage]);
+
+    // FIREBASE SETUP HERE
+    const uploadFile = (file) => {
+        const storage = getStorage(app);
+        const storageRef = ref(storage, 'CarImages/' + file.name);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+
+        uploadTask.on('state_changed',
+            (snapshot) => {
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+                setImagePrec(progress); // Update image upload progress
+            },
+            (error) => {
+                console.error('Error uploading file:', error);
+            },
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    setImageUrl(downloadURL); // Update imageUrl directly
+                    console.log('File available at', downloadURL);
+                });
+
+
+            }
+        );
+    }
 
 
     const handleSubmit = async (e) => {
@@ -29,7 +64,7 @@ const AddCarForm = ({ onClose }) => {
             mileLimit, color, fuelType, engineType, price, zone, discount, startDate, endDate)
 
         const formData = new FormData();
-        formData.append('carImage', carImage);
+        formData.append('carImage', imageUrl);
         formData.append('carTitle', carTitle);
         formData.append('carType', carType);
         formData.append('numberOfSeats', numberOfSeats);
@@ -101,7 +136,7 @@ const AddCarForm = ({ onClose }) => {
                 <div className={style.image}>
                     {/* Car Image Input */}
                     <div className={style.fields}>
-                        <label htmlFor="carImage" className="form-label">Car Image:</label>
+                        <label htmlFor="carImage" className="form-label">Car Image:</label> {imgperc > 0 && "Uploading " + imgperc + "%"}
                         <div className="file-input-container" style={{ position: 'relative', width: '100%', height: '100%' }}>
                             <input
                                 type="file"
