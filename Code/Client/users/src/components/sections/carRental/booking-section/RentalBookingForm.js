@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import style from "./rentalBookingForm.module.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const RentalBookingForm = () => {
   const [formData, setFormData] = useState({
