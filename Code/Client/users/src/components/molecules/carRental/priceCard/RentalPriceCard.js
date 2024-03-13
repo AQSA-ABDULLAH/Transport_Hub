@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import style from './rentalPriceCard.module.css';
-import CusButton from '../../../Button/CusButton';
-import CarFeaturesModel from '../../../../pages/CarRental/carFeatureModel/CarFeaturesModel';
+import Button from '../../../atoms/button/Button';
+import CarFeaturesModel from '../../../../pages/carRental/carFeatureModel/CarFeaturesModel';
 import { TiTick } from "react-icons/ti";
 
 export default function RentalPriceCard() {
@@ -38,7 +38,7 @@ export default function RentalPriceCard() {
             <p>RS 450</p>
           </div>
           <div className={style.btn}>
-            <CusButton primary btnText="Continue" btnClick={openModal} />
+            <Button primary btnText="Continue" btnClick={openModal} />
           </div>
         </div>
       </div >

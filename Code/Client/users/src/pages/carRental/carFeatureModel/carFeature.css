@@ -1,0 +1,51 @@
+.modalStyle{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(180, 180, 180);
+}
+
+.heading{
+    font-size: 25px;
+    font-weight: 700;
+    color: blueviolet;
+}
+
+.accordion-section {
+    margin-bottom: 10px;
+}
+
+.accordion-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+.accordion-heading:hover {
+    background-color: #e2e2e2;
+}
+
+.icon {
+    margin-left: 10px;
+    font-size: 14px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.rotate {
+    transform: rotate(180deg);
+}
+
+.accordion-details {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-top: none;
+    overflow-y: auto;
+    max-height: 10rem;
+    transition: max-height 0.3s ease-in-out;
+}
+
+.accordion-section.active .accordion-details {
+    max-height: 400px;
+}
