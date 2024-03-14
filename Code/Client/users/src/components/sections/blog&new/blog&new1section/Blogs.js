@@ -1,26 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import style from './blogs.module.css'
 
 export default function Blogsection1molecule() {
+    const [product, setProduct] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:5000/api/blogs/get-blog")
+            .then(res => {
+                console.log(res.data)
+                setProduct(res.data.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }, [])
+
     return (
         <>
-                <div className={style.cards}>
-                    <div className={style.blogCard}>
-                        <div>
-                            <img className={style.blogImage} src="/assets/images/blogs&News/blogImage6.jpg" alt="blogImage" />
-                        </div>
-                        <div className={style.blog}>
-                            <h2>2023 Recap: fostering community and championing sustainability</h2>
-                            <p>In 2023, Rome2Rio lived our social impact value to its fullest, driving positive change in our 
-                                local community and lending a hand to groups and individuals who need it 
-                                most. Rome2Rio offers 2 days paid volunteer days each year. This…</p>
-                            <p>2Posted December 20, 2023       Read more ›</p>
+            {
+                product.map((item) =>
+                    <div className={style.cards}>
+                        <div className={style.blogCard}>
+                            <div>
+                                <img className={style.blogImage} src="/assets/images/blogs&News/blogImage6.jpg" alt="blogImage" />
+                            </div>
+                            <div className={style.blog}>
+                                <h2>{item.heading}</h2>
+                                <p>{item.content}</p>
+                                <p>2Posted December 20, 2023       Read more ›</p>
+                            </div>
                         </div>
                     </div>
-
-    
-
-            </div>
+                )}
         </>
     )
 }
