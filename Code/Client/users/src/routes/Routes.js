@@ -15,8 +15,8 @@ import LandingPage from "../pages/carRental/LandingPage.js";
 import ViewCars from "../pages/carRental/showCarsPage/ViewCars.js"
 import ExtendedDetailPage from "../pages/carRental/addOnPage/ExtendedDetailPage.js"
 import RentalBookingPage from "../pages/carRental/bookingPage/RentalBookingPage.js"
-import Gallery from "../pages/Gallery.js";
 import BlogsNews from "../pages/blogs&News/BlogsNews.js";
+import CareerPage from "../pages/career/CareerPage.js";
 
 
 function AppRoutes() {
@@ -25,7 +25,7 @@ function AppRoutes() {
 
   const location = useLocation();
   const [isAuthenticated, setisAuthenticated] = useState(false);
-  const noHeaderPaths = ["/login", "/signup", "/billing", "/404", "/profile"];
+  const noHeaderPaths = ["/login", "/signup", "/404", "/profile"];
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -59,8 +59,8 @@ function AppRoutes() {
 </div>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/gallery" element={<Gallery/>}/>
         <Route path="/blog&news" element={<BlogsNews/>}/>
+        <Route path="/career" element={<CareerPage/>}/>
         <Route path="/viewCars" element={<ViewCars/>}/>
         <Route path="/carAddOn" element={<ExtendedDetailPage/>}/>
         <Route path="/RentalBooking" element={<RentalBookingPage/>}/>
