@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function CareerSection2() {
+export default function AboutCareer() {
     return (
         <div>
             <h2>JOIN OUR TEAM</h2>
