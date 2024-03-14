@@ -17,6 +17,7 @@ import ExtendedDetailPage from "../pages/carRental/addOnPage/ExtendedDetailPage.
 import RentalBookingPage from "../pages/carRental/bookingPage/RentalBookingPage.js"
 import BlogsNews from "../pages/blogs&News/BlogsNews.js";
 import CareerPage from "../pages/career/CareerPage.js";
+import DriverEmail from "../pages/career/driver/registration/DriverEmail.js";
 
 
 function AppRoutes() {
@@ -61,6 +62,7 @@ function AppRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/blog&news" element={<BlogsNews/>}/>
         <Route path="/career" element={<CareerPage/>}/>
+        <Route path="/driverRegistration" element={<DriverEmail/>}/>
         <Route path="/viewCars" element={<ViewCars/>}/>
         <Route path="/carAddOn" element={<ExtendedDetailPage/>}/>
         <Route path="/RentalBooking" element={<RentalBookingPage/>}/>

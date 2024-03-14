@@ -1,8 +1,8 @@
 import React from 'react';
 import Header from '../../components/sections/career/header/Header';
 import CareerSection2 from '../../components/sections/career/careerSection2/AboutCareer';
-import TransporterSection from '../../components/sections/careerSections/careerSection3/TransporterSection';
-import DriverSection from '../../components/sections/careerSections/careerSection4/DriverSection';
+import TransporterSection from '../../components/sections/career/careerSection4/TransporterSection';
+import DriverSection from '../../components/sections/career/careerSection3/DriverSection';
 import styles from './careerpage.module.css';
 
 export default function CareerPage() {
@@ -15,8 +15,8 @@ export default function CareerPage() {
                     } />
 
                 <CareerSection2 />
-                <TransporterSection />
                 <DriverSection />
+                <TransporterSection />
 
             </div>
         </>

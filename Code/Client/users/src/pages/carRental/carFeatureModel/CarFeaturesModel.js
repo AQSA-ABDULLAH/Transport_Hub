@@ -62,7 +62,7 @@ const CarFeaturesModel = ({ onClose }) => {
     // Function to handle Continue button click
     const handleContinue = () => {
         // Redirect to /RentalBookingPage
-        navigate('/RentalBookingPage');
+        navigate('/RentalBooking');
     };
 
     return (
