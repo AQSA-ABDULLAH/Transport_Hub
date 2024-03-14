@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
+import { getDownloadURL } from "firebase/storage";
+import { app } from "../../../../firebase";
 import Button from "../../../../components/atoms/buttons/Button";
 import styles from "./blogtab.module.css";
+
 const BlogTab = () => {
     const [image, setImage] = useState("");
     const [heading, setHeading] = useState("");
