@@ -1,8 +1,17 @@
 import React from 'react';
-import style from "./careerpage.module.css";
+import Header from '../../components/sections/career/header/Header'
+import styles from './careerpage.module.css';
 
 export default function CareerPage() {
   return (
-    <div>Career Page</div>
+    <> 
+      <div className={styles.careerPage}>
+        <Header
+          bgImage={
+            "./assets/images/career/carrerPage2.jpg"
+          } />
+
+      </div>
+    </>
   )
 }
