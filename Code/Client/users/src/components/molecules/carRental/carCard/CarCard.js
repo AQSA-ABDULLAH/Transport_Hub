@@ -35,7 +35,7 @@ const CarCard = () => {
             {
                 product.map((item, index) =>
 
-                    <section className={style.offer_container_section}>
+                    <section className={style.offer_container_section} key={index}>
 
                         <div className={style.mainContent_grid}>
                             <div className={style.singleOffer}>
