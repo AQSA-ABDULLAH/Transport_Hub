@@ -11,7 +11,8 @@ export default function DriverEmail() {
         </div>
 
         <div className={styles.mainSection}>
-          <div className={styles.language}>
+          <div className={styles.header}>
+            <img src="./assets/images/career/driver_icon.png" alt=""/>
             <p>English (United Kingdom)</p>
           </div>
 
