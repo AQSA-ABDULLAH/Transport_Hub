@@ -10,4 +10,26 @@
 
 .mainSection{
     width: 60%;
+    padding: 2rem 6rem;
+}
+
+.language {
+    display: flex;
+    justify-content: flex-end;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    margin-left: 26.5rem;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: rgb(121, 121, 121);
+}
+
+.heading{
+    margin: 3rem 0rem;
+    letter-spacing: 0.01em;
+    color: #3B3B4f;
+}
+
+.heading h2{
+    font-size: 32px;
+    font-weight: 600;
 }
