@@ -37,7 +37,7 @@ const Navbar = () => {
             <Link to="/classes">
               <li>LOYALTY PROGRAM</li>
             </Link>
-            <Link to="/gallery">
+            <Link to="/blog&news">
               <li>BLOGS & NEWS</li>
             </Link>
           </ul>
@@ -48,7 +48,7 @@ const Navbar = () => {
             <Link to="/contactUs">
               <li>CONTACT US</li>
             </Link>
-            <Link to="/billing">
+            <Link to="/career">
               <li className={styles.btns}>
                 <Button
                   bgColor={"#F78312"}

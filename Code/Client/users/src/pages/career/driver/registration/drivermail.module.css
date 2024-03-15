@@ -1,0 +1,127 @@
+.container{
+    display: flex;
+    flex-direction: row;
+}
+
+.sideSection{
+    /* width: 40vw; */
+    width: 40%;
+}
+
+.mainSection{
+    width: 60%;
+    padding: 2.3rem 5rem 2.5rem 6.5rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header img{
+    width: 3.8rem;
+    height: 3.3rem;
+}
+
+.header p{
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    align-self: center;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: rgb(121, 121, 121);
+}
+
+.heading{
+    margin: 2.2rem 0rem 1rem 0rem;
+    letter-spacing: 0.01em;
+    color: #3B3B4f;
+}
+
+.heading h2{
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.form_container{
+    padding: 0.5rem 8rem;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    
+    /* padding: 0.5rem 2rem; */
+}
+
+.form input{
+    margin: 0.5rem 0rem 1.3rem 0rem;
+    font-size: 16px;
+    padding: 8px 5px;
+    border: 1px solid #a7a7a7;
+    color: #3B3B4f;
+    border-radius: 6px;
+}
+
+.form input:focus{
+    outline: none;
+}
+
+.form button{
+    padding: 7px 0px 7px 9px;
+    font-size: 16px;
+    background-color: #a871d8;
+    border: 1px solid #9b46e6;
+    border-radius: 6px;
+    color: white;
+}
+
+.form button:hover{
+    background-color: #9d4ee2;
+}
+
+.spam {
+    display: flex;
+    align-items: center;
+    color: #292933;
+    margin: 20px 0;
+  }
+  
+  .spam::before,
+  .spam::after {
+    content: '';
+    flex-grow: 1;
+    height: 1px;
+    background-color: #44424258;
+    margin: 0 12px;
+  }
+  
+
+.google_button{
+    width: 100%;
+    font-size: 17px;
+    display: flex;
+    flex-direction: row;
+    padding: 6px 0px 6px 9px;
+    border: 1.2px solid #b88cdf;
+    border-radius: 6px;
+    background-color: #f3ecfa;
+}
+.google_button img{
+    width: 1.3rem;
+    height: 1.3rem;
+    align-self: center;
+}
+.google_button p{
+    margin-left: 12px;
+    font-weight: 400;
+}
+
+.google_button:hover{
+    background-color: #e0e0e058;
+}
+
+.text{
+    font-size: 12px;
+    color: #292933;
+    margin-top: 22px;
+}
