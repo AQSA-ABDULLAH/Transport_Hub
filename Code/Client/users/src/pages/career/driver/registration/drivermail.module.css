@@ -1,0 +1,13 @@
+.container{
+    display: flex;
+    flex-direction: row;
+}
+
+.sideSection{
+    /* width: 40vw; */
+    width: 40%;
+}
+
+.mainSection{
+    width: 60%;
+}
