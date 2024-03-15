@@ -15,8 +15,7 @@ export default function DriverEmail() {
             <p>English (United Kingdom)</p>
           </div>
 
-          <section className={styles.form_container}>
-
+         
             <div className={styles.heading}>
               <h2>
                 Create your Driver Account
@@ -25,22 +24,27 @@ export default function DriverEmail() {
                 Then start your driving career!
               </p>
             </div>
+            <section className={styles.form_container}>
 
             <div>
-              <form>
-                <input type="email" />
+              <form className={styles.form}>
+                <h2>What's your email?</h2>
+                <input type="email" required placeholder='@gmail.com' />
                 <button>Send OTP</button>
               </form>
-              <div><spam>OR</spam></div>
-              <div>
-                <button>
+
+              <div className={styles.spam}>
+  <spam>OR</spam>
+</div>
+
+
+                <button className={styles.google_button}>
                   <img src='./assets/images/career/google_icon.png' alt="" />
-                  Continue with Google
+                  <p>Continue with Google</p>
                 </button>
-              </div>
             </div>
 
-            <div>
+            <div className={styles.text}>
               <p>By proceeding, you consent to get Mail, including by automated means,
                 from Transport Hub and its affiliates to the email provided.</p>
             </div>
