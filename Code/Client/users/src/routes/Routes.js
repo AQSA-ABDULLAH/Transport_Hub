@@ -27,7 +27,7 @@ function AppRoutes() {
 
   const location = useLocation();
   const [isAuthenticated, setisAuthenticated] = useState(false);
-  const noHeaderPaths = ["/login", "/signup", "/404", "/profile", "/driverRegistration"];
+  const noHeaderPaths = ["/login", "/signup", "/404", "/profile", "/driverRegistration", "/transporterRegistration"];
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {

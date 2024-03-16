@@ -12,7 +12,7 @@ export default function TransporterSection() {
       <h4>How do we reimagine & improve lives of our Transporters.</h4>
         <h2>Transporter Section</h2>
         <p>This is the Transporter section content.</p>
-        <button onClick={handleRedirect}>Become a Driver</button>
+        <button onClick={handleRedirect}>Become a Transporter</button>
     </>
   );
 }

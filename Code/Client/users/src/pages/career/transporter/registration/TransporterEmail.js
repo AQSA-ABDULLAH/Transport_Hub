@@ -19,10 +19,10 @@ export default function DriverEmail() {
          
             <div className={styles.heading}>
               <h2>
-                Create your Driver Account
+                Create your Transporter Account
               </h2>
               <p>
-                Then start your driving career!
+                Then start your transporter career!
               </p>
             </div>
             <section className={styles.form_container}>
