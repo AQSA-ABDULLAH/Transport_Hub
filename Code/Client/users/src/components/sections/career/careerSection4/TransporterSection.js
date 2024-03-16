@@ -5,7 +5,7 @@ export default function TransporterSection() {
   const navigate = useNavigate();
 
   const handleRedirect = () => {
-    navigate('/driverRegistration'); // Replace '/RentalBookingPage' with the actual path to your driver login page
+    navigate('/transporterRegistration'); // Replace '/RentalBookingPage' with the actual path to your driver login page
   };
   return (
     <>
