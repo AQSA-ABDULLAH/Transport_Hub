@@ -1,5 +1,5 @@
 const Driver = require("../../models/Drivers.js"); // Changed from "../../models/Drivers"
-const { hashPassword } = require("../../helpers/hashPassword");
+// const { hashPassword } = require("../../helpers/hashPassword");
 const { createToken } = require("../../helpers/jwt");
 const compileEmailTemplate = require("../../helpers/compile-email-template.js");
 const sendMail = require("../../libs/mail.js");
@@ -7,11 +7,12 @@ const sendMail = require("../../libs/mail.js");
 class DriverController {
     static driverRegistration = async (req, res) => {
         try {
-            const {email, password} = req.body;
+            // const {email, password} = req.body;
+            const {email} = req.body;
 
-            if (!email || !password) {
-                return res.status(422).json({ error: "Please fill in all fields properly" });
-            }
+            // if (!email || !password) {
+            //     return res.status(422).json({ error: "Please fill in all fields properly" });
+            // }
 
             const driverExist = await Driver.findOne({ email: email }); // Changed from User.findOne
 
@@ -19,11 +20,11 @@ class DriverController {
                 return res.status(422).json({ error: "Driver already exists" }); // Changed from "User already exists"
             }
 
-            // Hashing Password
-            const hashedPassword = await hashPassword(password);
+            // // Hashing Password
+            // const hashedPassword = await hashPassword(password);
             const driver = new Driver({ // Changed from User
-                email,
-                password: hashedPassword
+                email
+                // password: hashedPassword
             });
 
             const savedDriver = await driver.save(); // Save the driver and get the saved driver object
