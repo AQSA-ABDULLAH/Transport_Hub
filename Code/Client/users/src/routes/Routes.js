@@ -19,6 +19,7 @@ import BlogsNews from "../pages/blogs&News/BlogsNews.js";
 import CareerPage from "../pages/career/CareerPage.js";
 import DriverEmail from "../pages/career/driver/registration/DriverEmail.js";
 import TransporterEmail from "../pages/career/transporter/registration/TransporterEmail.js"
+import VerifyMail from "../pages/career/transporter/verifymail/VerifyMail.js"
 
 
 function AppRoutes() {
@@ -27,7 +28,8 @@ function AppRoutes() {
 
   const location = useLocation();
   const [isAuthenticated, setisAuthenticated] = useState(false);
-  const noHeaderPaths = ["/login", "/signup", "/404", "/profile", "/driverRegistration", "/transporterRegistration"];
+  const noHeaderPaths = ["/login", "/signup", "/404", "/profile", "/driverRegistration", "/verify_transporter_mail",
+  "/transporterRegistration"];
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -65,6 +67,7 @@ function AppRoutes() {
         <Route path="/career" element={<CareerPage/>}/>
         <Route path="/driverRegistration" element={<DriverEmail/>}/>
         <Route path="/transporterRegistration" element={<TransporterEmail/>}/>
+        <Route path="/verify_transporter_mail" element={<VerifyMail/>}/> 
         <Route path="/viewCars" element={<ViewCars/>}/>
         <Route path="/carAddOn" element={<ExtendedDetailPage/>}/>
         <Route path="/RentalBooking" element={<RentalBookingPage/>}/>
