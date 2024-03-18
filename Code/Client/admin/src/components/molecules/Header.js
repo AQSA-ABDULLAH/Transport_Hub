@@ -13,7 +13,7 @@ const capitalizeFirstLetter = (str) => {
 
 const replaceHyphensWithSpaces = (str) => {
   return str.replace(/-/g, " ");
-};
+}; 
 
 const TopHeader = ({ openSidebar, setOpenSidebar, haveButton, ButtonText, onClick }) => {
   const location = useLocation();

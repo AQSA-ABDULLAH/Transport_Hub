@@ -30,9 +30,9 @@ export default function Blogsection2molecule() {
                 <p>Travel Technology</p>
                 <p>Other</p>
             </div>
-            <div className={style.latest_tweet}>
+            {/* <div className={style.latest_tweet}>
                 <h2>Latest Tweet</h2>
-            </div>
+            </div> */}
         </div>
     );
 }

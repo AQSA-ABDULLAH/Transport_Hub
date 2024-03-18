@@ -3,13 +3,15 @@ const BlogModal = require("../../models/Blogs");
 
 class BlogController {
     static createBlog = async (req, res) => {
-        const { image, heading, content } = req.body;
+        const { image, heading, category, writtenby, content } = req.body;
         if (!image) return res.status(400).send({ status: "failed", message: `Image URL is required` });
         if (!heading) return res.status(400).send({ status: "failed", message: `Heading is required` });
+        if (!category) return res.status(400).send({ status: "failed", message: `Category is required` });
+        if (!writtenby) return res.status(400).send({ status: "failed", message: `Writter name is required` });
         if (!content) return res.status(400).send({ status: "failed", message: `Content is required` });
 
         try {
-            const newBlog = new BlogModal({ image, heading, content });
+            const newBlog = new BlogModal({ image, heading, category, writtenby, content });
             await newBlog.save();
 
             res.status(201).send({ status: "success", message: "Data saved successfully" });
