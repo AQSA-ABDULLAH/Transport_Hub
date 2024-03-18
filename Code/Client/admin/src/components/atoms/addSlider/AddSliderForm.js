@@ -16,7 +16,7 @@ const AddSliderForm = () => {
   useEffect(() => {
     image && uploadFile(image, "imageUrl");
   }, [image]);
-
+ 
 
   // FIREBASE SETUP HERE
   const uploadFile = (file) => {
