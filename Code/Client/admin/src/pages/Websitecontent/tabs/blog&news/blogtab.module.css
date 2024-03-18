@@ -5,108 +5,104 @@
     width: 100%;
 }
 
-.addFormContainer {
-    /* margin-top: 4rem; */
+/* Form styles */
+.addFormContainer{
     width: 100%;
     border-radius: 0.625rem;
     border: 1px solid lightgray;
 }
-
-.formTop {
-    font-size: 1.3rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 1.75rem;
-    text-transform: capitalize;
-    padding: 1.1rem 1.2rem 1.1rem 2.5rem;
+.formTop{
+font-size: 1rem;
+font-style: normal;
+font-weight: 700;
+line-height: 1.75rem;
+text-transform: capitalize;
+padding: 1.5rem 1.5rem 1.5rem 2.5rem;
 }
-
-.addForm {
+.addForm{
     padding: 1.5rem 2.5rem;
     background-color: #fafafa;
     border-top: 1px solid lightgray;
     border-bottom: 1px solid lightgray;
-    /* background-color: red; */
 }
-
-.formRow {
+.formRow{
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     width: 100%;
 }
-
-.formInput {
-    margin-top: 15px;
+.formField:first-child{
+    width: 48%;
+    height: 16rem;
 }
-
-.formField input[type="file"] {
+.formField:last-child{
+    width: 48%;
+    margin-top: 10px;
+}
+.formField input[type="file"]{
     display: none;
-
 }
-
-label {
+label{
     display: block;
     text-transform: capitalize;
 }
-
-.imgUpload {
-    background-color: #fff;
-    width: 100%;
-    padding: 50px 0px;
+.imgUpload{
+    background-color:#fff;
+    height: 80px;
+    width: 80px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     border-radius: 0.625rem;
     border: 1px dashed lightgray;
 }
-
-.formBottom {
+.formBottom{
     padding: 1rem 2.5rem;
     display: flex;
     justify-content: space-between;
 }
 
 /* testimonialsForm CSS */
-.formField textarea {
+.formField input[type="text"]{
     width: 100%;
-    resize: none;
+    padding: .5rem;
+    border-radius: 5px;
     border: none;
     outline: none;
-    border-radius: 5px;
-    padding: 5px 7px;
+    background-color: #fff;
+}
+.colItem{
+    margin-bottom: 10px;
+}
+.colItem .imgUpload{
+    border-radius: 50% !important;
+    margin-top: 10px;
+    /* height: 80px;
+    width: 80px; */
+}
+.minorSpace textarea{
+    width: 100%; /* Set width to 100% to make the div take up full width */
 }
 
-.uploadbtn{
-    background-color:#7A28C2 ;
+/* sliderForm styles */
+.imgUpload.sliderUpload{
+    width: 100%;
+    height: 90%;
 }
 
-.uploadbtn:hover{
-    background-color: #a871d8;
-}
-
-.colItem.minorSpace {
-    margin-top: 1rem !important;
-
-}
-
-.sliderTextArea {
+.sliderTextArea{
     border: 1px solid lightgray !important;
 }
-
 @media (max-width:768px) {
-    .addForm {
+    .addForm{
         padding: 1rem;
     }
-
-    .formRow {
+    .formRow{
         flex-direction: column;
     }
-
-    .formField:first-child {
+    .formField:first-child{
         width: 100%;
     }
-
-    .formField:last-child {
+    .formField:last-child{
         width: 100%;
     }
 }

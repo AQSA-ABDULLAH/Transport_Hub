@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import { getDownloadURL } from "firebase/storage";
@@ -7,11 +7,18 @@ import Button from "../../../../components/atoms/buttons/Button";
 import styles from "./blogtab.module.css";
 
 const BlogTab = () => {
+    const inputRef = useRef(null);
     const [image, setImage] = useState("");
     const [heading, setHeading] = useState("");
+    const [category, setCategory] = useState("");
+    const [writtenby, setWrittenby] = useState("");
     const [content, setContent] = useState("");
     const [imgperc, setImagePrec] = useState("");
     const [imageUrl, setImageUrl] = useState("");
+
+    const handelImage = () => {
+        inputRef.current.click();
+    }
 
     useEffect(() => {
         image && uploadFile(image, "imageUrl");
@@ -50,9 +57,11 @@ const BlogTab = () => {
         e.preventDefault();
 
         const formData = new FormData();
+        formData.append('image', imageUrl);
+        formData.append('category',category);
+        formData.append('writtenby', writtenby);
         formData.append('heading', heading);
         formData.append('content', content);
-        formData.append('image', imageUrl);
 
         try {
             const response = await axios.post("http://localhost:5000/api/blogs/create-blog", formData, {
@@ -86,45 +95,80 @@ const BlogTab = () => {
                     <form action="" className={styles.addForm}>
                         <div className={styles.formRow}>
                             <div className={styles.formField}>
-                                <label htmlFor="">background image</label> {imgperc > 0 && "Uploading " + imgperc + "%"}
-                                <div className={`${styles.imgUpload} ${styles.sliderUpload}`}>
-                                    <input type="file" name="sliderImg" id="sliderImg" accept="image/png, image/jpeg"
-                                        onChange={(e) => setImage(e.target.files[0])}
-                                    />
-                                    <label htmlFor="sliderImg">
+                                <label htmlFor="">background image</label>
+                                <div className={`${styles.imgUpload} ${styles.sliderUpload}`} onClick={handelImage}>
+                                    {image ? (
                                         <img
-                                            src="./assets/image/trainers/photograph.svg"
+                                            src={URL.createObjectURL(image)}
                                             alt="icon"
                                         />
-                                    </label>
+                                    ) : (
+                                        <label htmlFor="sliderImg">
+                                            <img
+                                                src="./assets/images/photograph.svg"
+                                                alt="icon"
+                                            />
+                                        </label>
+                                    )}
+
+                                    <input type="file" name="sliderImg" id="sliderImg"
+                                        accept="image/png, image/jpeg"
+                                        ref={inputRef}
+                                        onChange={(e) => setImage(e.target.files[0])}
+                                    />
+
                                 </div>
                             </div>
 
                             <div className={`${styles.formField} ${styles.formInput}`}>
                                 <div className={styles.colItem}>
-                                    <label htmlFor="heading">title</label>
-                                    <textarea
+                                    <label htmlFor="heading">Title</label>
+                                    <input type="text"
                                         name="heading"
                                         id="heading"
                                         rows={2}
                                         className={styles.sliderTextArea}
                                         value={heading}
                                         onChange={(e) => setHeading(e.target.value)}
-                                    ></textarea>
+                                    />
                                 </div>
 
-                                <div className={`${styles.colItem} ${styles.minorSpace}`}>
-                                    <label htmlFor="content">content</label>
-                                    <textarea
-                                        name="content"
-                                        id="content"
-                                        rows={8}
+                                <div className={styles.colItem}>
+                                    <label htmlFor="category">Category</label>
+                                    <input type="text"
+                                        name="category"
+                                        id="category"
+                                        rows={2}
                                         className={styles.sliderTextArea}
-                                        value={content}
-                                        onChange={(e) => setContent(e.target.value)}
-                                    ></textarea>
+                                        value={category}
+                                        onChange={(e) => setCategory(e.target.value)}
+                                    />
+                                </div>
+
+                                <div className={styles.colItem}>
+                                    <label htmlFor="writtenby">Written By</label>
+                                    <input type="text"
+                                        name="writtenby"
+                                        id="writtenby"
+                                        rows={2}
+                                        className={styles.sliderTextArea}
+                                        value={writtenby}
+                                        onChange={(e) => setWrittenby(e.target.value)}
+                                    />
                                 </div>
                             </div>
+                        </div>
+
+                        <div className={styles.minorSpace}>
+                            <label htmlFor="content">content</label>
+                            <textarea
+                                name="content"
+                                id="content"
+                                rows={8}
+                                className={styles.sliderTextArea}
+                                value={content}
+                                onChange={(e) => setContent(e.target.value)}
+                            ></textarea>
                         </div>
                     </form>
                     <FormBottom text={"Save Slider"} handleSubmit={handleSubmit} />
