@@ -4,6 +4,7 @@ import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import { getDownloadURL } from "firebase/storage";
 import { app } from "../../../../firebase";
 import Button from "../../../../components/atoms/buttons/Button";
+import { useNavigate } from 'react-router-dom';
 import styles from "./blogtab.module.css";
 
 const BlogTab = () => {
@@ -15,6 +16,8 @@ const BlogTab = () => {
     const [content, setContent] = useState("");
     const [imgperc, setImagePrec] = useState("");
     const [imageUrl, setImageUrl] = useState("");
+    const [error, setError] = useState(false);
+    const navigate = useNavigate();
 
     const handelImage = () => {
         inputRef.current.click();
@@ -56,11 +59,16 @@ const BlogTab = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (!imageUrl || !heading || !category || !writtenby || !content) {
+            setError(true);
+            return false;
+          }
+
         const formData = new FormData();
         formData.append('image', imageUrl);
+        formData.append('heading', heading);
         formData.append('category',category);
         formData.append('writtenby', writtenby);
-        formData.append('heading', heading);
         formData.append('content', content);
 
         try {
@@ -78,6 +86,8 @@ const BlogTab = () => {
             if (response.data.code === 403 && response.data.message === "Token Expired") {
                 localStorage.setItem('token', null);
             }
+
+            navigate('/');
         } catch (error) {
             console.log(error);
             alert("An error occurred while submitting the data. Please try again.");
@@ -118,11 +128,12 @@ const BlogTab = () => {
                                     />
 
                                 </div>
+                                {error && !image && <span className={styles.text_danger}>Plz Select Any Image</span>}
                             </div>
 
                             <div className={`${styles.formField} ${styles.formInput}`}>
                                 <div className={styles.colItem}>
-                                    <label htmlFor="heading">Title</label>
+                                    <label htmlFor="heading">Title <span>(word limit : 200)</span></label>
                                     <input type="text"
                                         name="heading"
                                         id="heading"
@@ -131,6 +142,8 @@ const BlogTab = () => {
                                         value={heading}
                                         onChange={(e) => setHeading(e.target.value)}
                                     />
+                                  
+                                    {error && !heading && <span className={styles.text_danger}>Heading is required</span>}
                                 </div>
 
                                 <div className={styles.colItem}>
@@ -143,6 +156,7 @@ const BlogTab = () => {
                                         value={category}
                                         onChange={(e) => setCategory(e.target.value)}
                                     />
+                                    {error && !category && <span className={styles.text_danger}>Select Any category</span>}
                                 </div>
 
                                 <div className={styles.colItem}>
@@ -155,12 +169,13 @@ const BlogTab = () => {
                                         value={writtenby}
                                         onChange={(e) => setWrittenby(e.target.value)}
                                     />
+                                    {error && !writtenby && <span className={styles.text_danger}>Writer name required</span>}
                                 </div>
                             </div>
                         </div>
 
                         <div className={styles.minorSpace}>
-                            <label htmlFor="content">content</label>
+                            <label htmlFor="content">content <span>(word limit : 5000)</span></label>
                             <textarea
                                 name="content"
                                 id="content"
@@ -169,6 +184,7 @@ const BlogTab = () => {
                                 value={content}
                                 onChange={(e) => setContent(e.target.value)}
                             ></textarea>
+                            {error && !content && <span className={styles.text_danger}>Description required</span>}
                         </div>
                     </form>
                     <FormBottom text={"Save Slider"} handleSubmit={handleSubmit} />
