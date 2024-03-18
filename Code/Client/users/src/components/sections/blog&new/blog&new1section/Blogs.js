@@ -16,6 +16,20 @@ export default function Blogsection1molecule() {
             });
     }, []);
 
+    const formatDate = (dateString) => {
+        const options = { month: 'long', day: 'numeric', year: 'numeric' };
+        const date = new Date(dateString);
+        return `Posted ${date.toLocaleDateString('en-US', options)}`;
+    };
+    
+
+    const truncateContent = (content, maxLength) => {
+        if (content.length > maxLength) {
+            return content.substring(0, maxLength) + '...'; // Append ellipsis for truncated content
+        }
+        return content;
+    };
+
     return (
         <>
             {product.map((item, index) => (
@@ -30,14 +44,22 @@ export default function Blogsection1molecule() {
                         </div>
                         <div className={style.blog}>
                             <h2>{item.heading}</h2>
-                            <p>{item.content}</p>
-                            <p>Posted December 20, 2023 Read more ›</p>
+                            <p>{truncateContent(item.content, 200)}</p>
+                            <div className={style.blogBottom}>
+                            <p>{formatDate(item.createdAt)}</p>
+                            {item.content.length > 200 && (
+                                <button onClick={() => alert(item.content)}>Read more </button>
+                            )}
+                            </div>
                         </div>
                     </div>
+
+                    <div className={style.border}></div>
                 </div>
             ))}
         </>
     );
 }
+
 
 
