@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
+import Swal from 'sweetalert2';
 import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import { getDownloadURL } from "firebase/storage";
 import { app } from "../../../../firebase";
@@ -78,7 +79,11 @@ const BlogTab = () => {
 
 
             if (response.data.status === "success") {
-                alert("Data submitted successfully!");
+                Swal.fire(
+                    'Add New Blog!',
+                    'You have been added new blog succesfully.',
+                    'success'
+                  );
             } else {
                 alert("Failed to submit data. Please try again.");
             }
