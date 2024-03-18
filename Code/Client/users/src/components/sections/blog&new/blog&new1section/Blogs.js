@@ -4,7 +4,6 @@ import style from './blogs.module.css';
 
 export default function Blogsection1molecule() {
     const [product, setProduct] = useState([]);
-    const [imageURL, setImageURL] = useState("");
 
     useEffect(() => {
         axios.get("http://localhost:5000/api/blogs/get-blog")
@@ -17,8 +16,6 @@ export default function Blogsection1molecule() {
             });
     }, []);
 
-    console.log(imageURL);
-
     return (
         <>
             {product.map((item, index) => (
@@ -27,11 +24,8 @@ export default function Blogsection1molecule() {
                         <div>
                             <img
                                 className={style.blogImage}
-                                src="/assets/images/blogs&News/blogImage6.jpg"
+                                src={item?.image}
                                 alt="blogImage"
-                                onClick={() => {
-                                    setImageURL(item.image);  // Corrected this line
-                                }}
                             />
                         </div>
                         <div className={style.blog}>
