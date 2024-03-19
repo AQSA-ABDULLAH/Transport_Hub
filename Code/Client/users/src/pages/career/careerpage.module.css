@@ -10,7 +10,7 @@
     justify-content: space-between;
   }
   .button button{
-    width: 32%;
+    width: 25%;
     font-size: 15px;
     font-weight: 500;
     padding: 6px 0px 6px 0px;
@@ -42,7 +42,7 @@
 
 .subContainer {
   min-height: 89vh;
-  width: 40%;
+  width: 38%;
   background-color: white;
   margin: 0;
 }
