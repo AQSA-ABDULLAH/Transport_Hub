@@ -1,18 +1,14 @@
 .mediumHeader{
-    height: 30vh;
+    display: flex;
+    justify-content: space-between;
+    height: 12vh;
     width: 100%;
-    background-color: lightgrey;
+    background-color: #7A28C2;
     position: relative;
+    padding: 10px 15px 2px 15px ;
 }
 .mediumHeader img{
-    height: 100%;
-    width: 100%;
-}
-.mediumHeader h1{
-    position: absolute;
-    bottom: 5%;
-    left: calc(50vw); /* Centered with respect to screen width minus 50 pixels */
-    color: #fff;
-    text-transform: uppercase;
-    transform: translateX(-50%);
+    font-size: 3rem;
+  width: 2.9em;
+  height: 1.2em;
 }
