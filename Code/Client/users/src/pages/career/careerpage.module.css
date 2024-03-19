@@ -29,3 +29,20 @@
       padding: 12px;
       border: 1px solid #ddd;
     }
+
+/* APPLICATION STYLE */
+.container{
+  background-color: #cfcece58;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* rgb(238, 238, 238) */
+}
+
+.subContainer {
+  min-height: 89vh;
+  width: 40%;
+  background-color: white;
+  margin: 0;
+}

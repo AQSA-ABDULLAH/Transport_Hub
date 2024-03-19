@@ -22,6 +22,7 @@ import DriverName from "../pages/career/driver/namesection/DriverName.js"
 import TransporterEmail from "../pages/career/transporter/registration/TransporterEmail.js"
 import TransporterName from "../pages/career/transporter/namesection/TransporterName.js";
 import VerifyMail from "../pages/career/transporter/verifymail/VerifyMail.js"
+import DriverLocation from "../pages/career/driver/locationsection/DriverLocation.js";
 
 
 function AppRoutes() {
@@ -31,7 +32,7 @@ function AppRoutes() {
   const location = useLocation();
   const [isAuthenticated, setisAuthenticated] = useState(false);
   const noHeaderPaths = ["/login", "/signup", "/404", "/profile", "/driverRegistration", "/verify_transporter_mail",
-  "/transporterRegistration", "/transporter_name_section", "/driver_name_section"];
+  "/transporterRegistration", "/transporter_name_section", "/driver_name_section", "/driver_location_section"];
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -69,6 +70,7 @@ function AppRoutes() {
         <Route path="/career" element={<CareerPage/>}/>
         <Route path="/driverRegistration" element={<DriverEmail/>}/>
         <Route path="/driver_name_section" element={<DriverName/>}/>
+        <Route path="/driver_location_section" element={<DriverLocation/>}/>
         <Route path="/transporterRegistration" element={<TransporterEmail/>}/>
         <Route path="/verify_transporter_mail" element={<VerifyMail/>}/>
         <Route path="/transporter_name_section" element={<TransporterName/>}/>
