@@ -1,4 +1,4 @@
-.name_container {
+.container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -11,8 +11,29 @@
    display: flex;
    flex-direction: column;
   }
+
+  .inputForm input{
+    width: 20rem;
+    margin: 12px 0px;
+  }
+
+  .formdiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
   
-  .button {
-    /* styles for the buttons */
+  .formdiv h2{
+    font-size: 25px;
+    margin: 13px 0px;
+  }
+
+  .formdiv p{
+    font-size: 13px;
+    margin: 8px 0px 15px;
+  }
+
+  .formbutton{
+    margin-top: 5rem;
   }
   
