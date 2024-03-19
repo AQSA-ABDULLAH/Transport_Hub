@@ -18,6 +18,7 @@ import RentalBookingPage from "../pages/carRental/bookingPage/RentalBookingPage.
 import BlogsNews from "../pages/blogs&News/BlogsNews.js";
 import CareerPage from "../pages/career/CareerPage.js";
 import DriverEmail from "../pages/career/driver/registration/DriverEmail.js";
+import DriverName from "../pages/career/driver/namesection/DriverName.js"
 import TransporterEmail from "../pages/career/transporter/registration/TransporterEmail.js"
 import TransporterName from "../pages/career/transporter/namesection/TransporterName.js";
 import VerifyMail from "../pages/career/transporter/verifymail/VerifyMail.js"
@@ -30,7 +31,7 @@ function AppRoutes() {
   const location = useLocation();
   const [isAuthenticated, setisAuthenticated] = useState(false);
   const noHeaderPaths = ["/login", "/signup", "/404", "/profile", "/driverRegistration", "/verify_transporter_mail",
-  "/transporterRegistration", "/transporter_name_section"];
+  "/transporterRegistration", "/transporter_name_section", "/driver_name_section"];
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -67,6 +68,7 @@ function AppRoutes() {
         <Route path="/blog&news" element={<BlogsNews/>}/>
         <Route path="/career" element={<CareerPage/>}/>
         <Route path="/driverRegistration" element={<DriverEmail/>}/>
+        <Route path="/driver_name_section" element={<DriverName/>}/>
         <Route path="/transporterRegistration" element={<TransporterEmail/>}/>
         <Route path="/verify_transporter_mail" element={<VerifyMail/>}/>
         <Route path="/transporter_name_section" element={<TransporterName/>}/>

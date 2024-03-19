@@ -1,11 +1,11 @@
 import React from 'react';
-import styles from "../../driver/namesection/drivername.module.css";
+import styles from './drivername.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons'; // Import both icons here
 import transporterStyles from '../../careerpage.module.css';
 import MediumHeader from '../../../../components/sections/header-medium/MediumHeader';
 
-export default function TransporterName() {
+export default function DriverName() {
     return (
         <>
             <MediumHeader />
