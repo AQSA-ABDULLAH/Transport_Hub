@@ -25,15 +25,16 @@
   
   .formdiv h2{
     font-size: 25px;
-    margin: 13px 0px;
+    margin: 6px 0px;
   }
 
   .formdiv p{
     font-size: 13px;
-    margin: 8px 0px 15px;
+    margin: 6px 0px 28px;
   }
 
   .formbutton{
-    margin-top: 5rem;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
   }
   
