@@ -28,6 +28,7 @@ import DriverVechicalSection from "../pages/career/driver/vechicalselection/Driv
 import DriverApplication from "../pages/career/driver/application/DriverApplication.js";
 import DriverCnic from "../pages/career/driver/uploadCNIC/DriverCnic.js";
 import TermsCondition from "../pages/career/driver/terms&condition/Terms&Condition.js";
+import BlogsDetails from "../pages/blogs&News/BlogsDetails.js";
 
 
 function AppRoutes() {
@@ -74,6 +75,7 @@ function AppRoutes() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/blog&news" element={<BlogsNews/>}/>
+        <Route path="/blog&news/:id" element={<BlogsDetails/>}/>
         <Route path="/career" element={<CareerPage/>}/>
         <Route path="/driverRegistration" element={<DriverEmail/>}/>
         <Route path="/driver_verify_mail" element={<DriverVerifyMail/>}/>
