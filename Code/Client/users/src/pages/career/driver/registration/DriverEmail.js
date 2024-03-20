@@ -1,8 +1,14 @@
 import React from 'react';
 import SideSection from '../../../../components/sections/career/sidesection/SideSection';
 import styles from "./drivermail.module.css";
+import { useNavigate } from 'react-router-dom';
 
 export default function DriverEmail() {
+  const navigate = useNavigate();
+
+  const handleRedirect = () => {
+    navigate('/driver_verify_mail'); 
+  };
   return (
     <>
       <section className={styles.container}>
@@ -31,7 +37,7 @@ export default function DriverEmail() {
               <form className={styles.form}>
                 <h2>What's your email?</h2>
                 <input type="email" required placeholder='@gmail.com' />
-                <button>Send OTP</button>
+                <button onClick={handleRedirect}>Send OTP</button>
               </form>
 
               <div className={styles.spam}>

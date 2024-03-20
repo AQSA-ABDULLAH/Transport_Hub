@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 import SideSection from '../../../../components/sections/career/sidesection/SideSection';
 import styles from "../../driver/registration/drivermail.module.css";
 
 export default function DriverEmail() {
   const [email, setEmail] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleRedirect = () => {
+    navigate('/verify_transporter_mail'); 
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -67,7 +74,8 @@ export default function DriverEmail() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                <button onClick={handleSubmit}>Send OTP</button>
+                {/* <button onClick={handleSubmit}>Send OTP</button> */}
+                <button onClick={handleRedirect}>Send OTP</button>
               </form>
 
               <div className={styles.spam}>

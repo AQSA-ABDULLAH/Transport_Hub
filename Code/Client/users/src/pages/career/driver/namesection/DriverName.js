@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './drivername.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons'; // Import both icons here
@@ -6,6 +7,15 @@ import careerStyles from '../../careerpage.module.css';
 import MediumHeader from '../../../../components/sections/header-medium/MediumHeader';
 
 export default function DriverName() {
+    const navigate = useNavigate();
+
+    const backRedirect = () => {
+      navigate('/driverRegistration'); 
+    };
+
+    const nextRedirect = () => {
+      navigate('/driver_location_section'); 
+    };
     return (
         <>
             <MediumHeader />
@@ -19,8 +29,8 @@ export default function DriverName() {
                         <input type='text' placeholder='Enter last name' />
 
                         <div className={`${careerStyles.button} ${styles.formbutton}`}>
-                            <button><FontAwesomeIcon icon={faArrowLeft} /> BACK</button>
-                            <button>NEXT <FontAwesomeIcon icon={faArrowRight} /></button>
+                            <button onClick={backRedirect}><FontAwesomeIcon icon={faArrowLeft} /> BACK</button>
+                            <button onClick={nextRedirect}>NEXT <FontAwesomeIcon icon={faArrowRight} /></button>
                         </div>
                     </form>
                 </div>

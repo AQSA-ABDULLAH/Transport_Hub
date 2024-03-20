@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from "../../driver/namesection/drivername.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons'; // Import both icons here
@@ -6,6 +7,15 @@ import transporterStyles from '../../careerpage.module.css';
 import MediumHeader from '../../../../components/sections/header-medium/MediumHeader';
 
 export default function TransporterName() {
+    const navigate = useNavigate();
+
+    const nextRedirect = () => {
+      navigate('/transporterRegistration'); 
+    };
+
+    const backRedirect = () => {
+      navigate('/transporterRegistration'); 
+    };
     return (
         <>
             <MediumHeader />
@@ -19,8 +29,8 @@ export default function TransporterName() {
                         <input type='text' placeholder='Enter last name' />
 
                         <div className={`${transporterStyles.button} ${styles.formbutton}`}>
-                            <button><FontAwesomeIcon icon={faArrowLeft} /> BACK</button>
-                            <button>NEXT <FontAwesomeIcon icon={faArrowRight} /></button>
+                            <button onClick={backRedirect}><FontAwesomeIcon icon={faArrowLeft} /> BACK</button>
+                            <button onClick={nextRedirect}>NEXT <FontAwesomeIcon icon={faArrowRight} /></button>
                         </div>
                     </form>
                 </div>

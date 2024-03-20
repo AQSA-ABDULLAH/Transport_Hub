@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import careerStyles from '../../careerpage.module.css';
 import styles from './driverlocation.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,6 +7,15 @@ import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import MediumHeader from '../../../../components/sections/header-medium/MediumHeader';
 
 export default function DriverLocation() {
+    const navigate = useNavigate();
+
+    const backRedirect = () => {
+      navigate('/driver_name_section'); 
+    };
+
+    const nextRedirect = () => {
+      navigate('/driver_vechical_selection'); 
+    };
     return (
         <>
             <div className={careerStyles.container}>
@@ -25,8 +35,8 @@ export default function DriverLocation() {
                         </div>
 
                         <div className={`${careerStyles.button} ${styles.formbutton}`}>
-                            <button><FontAwesomeIcon icon={faArrowLeft} /> BACK</button>
-                            <button>NEXT <FontAwesomeIcon icon={faArrowRight} /></button>
+                            <button onClick={backRedirect}><FontAwesomeIcon icon={faArrowLeft} /> BACK</button>
+                            <button onClick={nextRedirect}>NEXT <FontAwesomeIcon icon={faArrowRight} /></button>
                         </div>
                     </div>
                 </div>

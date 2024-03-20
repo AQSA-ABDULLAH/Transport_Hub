@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import SideSection from '../../../../components/sections/career/sidesection/SideSection';
-import styles from "../../driver/registration/drivermail.module.css";
+import styles from "../registration/drivermail.module.css";
 import { useNavigate } from 'react-router-dom';
 
-export default function VerifyTransporterEmail() {
+export default function DriverVerifyMail() {
     const navigate = useNavigate();
 
     const handleRedirect = () => {
-      navigate('/transporter_name_section'); 
+      navigate('/driver_name_section'); 
     };
 
     useEffect(() => {
