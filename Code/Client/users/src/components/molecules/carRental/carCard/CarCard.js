@@ -13,6 +13,8 @@ const CarCard = () => {
     const [product, setProduct] = useState([]);
     // const [filter, setFilter] = useState('');
 
+    
+
     useEffect(() => {
         axios.get("http://localhost:5000/api/cars/getCars")
             .then(res => {
@@ -41,8 +43,7 @@ const CarCard = () => {
                             <div className={style.singleOffer}>
                                 <h2 className={style.secTitle}>{item.carTitle}</h2>
                                 <div className={style.destImage}>
-                                    <img src={`http://localhost:5000/${item.carImage}`} alt="car" />
-                                    {console.log(`http://localhost:5000/${item.carImage}`)}
+                                    <img src={item?.carImage} alt="car" />
                                 </div>
 
                                 <div className={style.offerBody}>

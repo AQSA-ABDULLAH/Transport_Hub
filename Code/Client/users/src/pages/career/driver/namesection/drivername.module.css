@@ -1,0 +1,40 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 88vh;
+    margin: 0;
+  }
+  
+  .inputForm {
+   display: flex;
+   flex-direction: column;
+  }
+
+  .inputForm input{
+    width: 20rem;
+    margin: 12px 0px;
+  }
+
+  .formdiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  
+  .formdiv h2{
+    font-size: 25px;
+    margin: 6px 0px;
+  }
+
+  .formdiv p{
+    font-size: 13px;
+    margin: 6px 0px 28px;
+  }
+
+  .formbutton{
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+  }
+  

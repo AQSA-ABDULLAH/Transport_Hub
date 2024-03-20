@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken')
 
 const driversSchema = new mongoose.Schema({
-    email: { type: String, trim: true },
-    password: { type: String, required: true, trim: true },
+    driverEmail: { type: String, unique:true, trim: true },
     tokens: [
         {
             token: {

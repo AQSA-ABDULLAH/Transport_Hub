@@ -1,22 +1,20 @@
 import React from 'react';
-import styles from "./transporterSection.module.css";
+import { useNavigate } from 'react-router-dom';
 
 export default function TransporterSection() {
+  const navigate = useNavigate();
+
+  const handleRedirect = () => {
+    navigate('/transporterRegistration'); 
+  };
   return (
     <>
       <h4>How do we reimagine & improve lives of our Transporters.</h4>
-      <div className={styles.container}>
-        <div className={styles.image}>
-          {/* Your image goes here */}
-          <img src="your-image-source.jpg" alt="Your Image" />
-        </div>
-        <div className={styles.text }>
-          {/* Your text goes here */}
-          <p>Your text goes here.</p>
-        </div>
-      </div>
+        <h2>Transporter Section</h2>
+        <p>This is the Transporter section content.</p>
+        <button onClick={handleRedirect}>Become a Transporter</button>
     </>
   );
 }
 
-
+  

@@ -45,7 +45,7 @@ const google = async (req, res) => {
     try {
         const user = await User.findOne({ email });
         if (user) {
-            // Your existing code
+            return res.status(422).json({ error: "user already exists" });
         } else {
             const generatedPassword =
                 Math.random().toString(36).slice(-8) +
