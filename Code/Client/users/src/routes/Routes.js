@@ -25,6 +25,8 @@ import VerifyMail from "../pages/career/transporter/verifymail/VerifyMail.js"
 import DriverLocation from "../pages/career/driver/locationsection/DriverLocation.js";
 import DriverVechicalSection from "../pages/career/driver/vechicalselection/DriverVechicalSelection.js";
 import DriverApplication from "../pages/career/driver/application/DriverApplication.js";
+import DriverCnic from "../pages/career/driver/uploadCNIC/DriverCnic.js";
+import TermsCondition from "../pages/career/driver/terms&condition/Terms&Condition.js";
 
 
 function AppRoutes() {
@@ -35,7 +37,7 @@ function AppRoutes() {
   const [isAuthenticated, setisAuthenticated] = useState(false);
   const noHeaderPaths = ["/login", "/signup", "/404", "/profile", "/driverRegistration", "/verify_transporter_mail",
   "/transporterRegistration", "/transporter_name_section", "/driver_name_section", "/driver_location_section",
-  "/driver_vechical_selection", "/driver_application_form" ];
+  "/driver_vechical_selection", "/driver_application_form", "/trems_and_conditions", "/upload_driver_cnic" ];
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -76,6 +78,8 @@ function AppRoutes() {
         <Route path="/driver_location_section" element={<DriverLocation/>}/>
         <Route path="/driver_vechical_selection" element={<DriverVechicalSection/>}/>
         <Route path="/driver_application_form" element={<DriverApplication/>}/>
+        <Route path="/upload_driver_cnic" element={<DriverCnic/>}/>
+        <Route path="/trems_and_conditions" element={<TermsCondition/>}/>
         <Route path="/transporterRegistration" element={<TransporterEmail/>}/>
         <Route path="/verify_transporter_mail" element={<VerifyMail/>}/>
         <Route path="/transporter_name_section" element={<TransporterName/>}/>
