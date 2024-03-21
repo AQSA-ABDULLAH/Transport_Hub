@@ -41,6 +41,8 @@
 
 import React from 'react';
 import CarMain from "../../components/sections/car-rental/rental-landingpage/rentalSection1/CarMain";
+import CarDeals from '../../components/sections/car-rental/rental-landingpage/rentalSection2/CarDeals';
+import CarTypes from '../../components/sections/car-rental/rental-landingpage/rentalSection4/CarTypes';
 // import CarResults from "../../components/sections/carRental/landinPageSections/CarResults";
 // import CarDeals from "../../components/sections/carRental/landinPageSections/CarDeals";
 
@@ -50,6 +52,8 @@ export default function LandingPage() {
             <CarMain
                 car1Image={"./assets/images/carrental/landing_image.png"}
             />
+            <CarDeals/>
+            <CarTypes/>
             {/* <CarResults/>
             <CarDeals /> */}
         </>
