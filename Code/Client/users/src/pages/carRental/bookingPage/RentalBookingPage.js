@@ -2,7 +2,7 @@ import React from 'react';
 import RentalPriceCard from '../../../components/molecules/carRental/priceCard/RentalPriceCard';
 import style from "./rentalBookingPage.module.css";
 import BookingFormNotice from '../../../components/atoms/customers-notice/BookingFormNotice';
-import RentalBookingForm from "../../../components/sections/carRental/booking-section/RentalBookingForm"
+import RentalBookingForm from "../../../components/sections/car-rental/booking-section/RentalBookingForm"
 
 
 export default function RentalBookingPage() {

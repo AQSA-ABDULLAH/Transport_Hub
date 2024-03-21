@@ -39,10 +39,19 @@
 
 // export default LandingCarPage;
 
-import React from 'react'
+import React from 'react';
+import CarMain from "../../components/sections/car-rental/rental-landingpage/rentalSection1/CarMain";
+// import CarResults from "../../components/sections/carRental/landinPageSections/CarResults";
+// import CarDeals from "../../components/sections/carRental/landinPageSections/CarDeals";
 
 export default function LandingPage() {
-  return (
-    <div>LandingPage</div>
-  )
+    return (
+        <>
+            <CarMain
+                car1Image={"./assets/images/carrental/landing_image.png"}
+            />
+            {/* <CarResults/>
+            <CarDeals /> */}
+        </>
+    )
 }
