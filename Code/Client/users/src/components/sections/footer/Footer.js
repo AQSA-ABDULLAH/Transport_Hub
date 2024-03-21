@@ -23,7 +23,7 @@ const Footer = () => {
           <div className={style.emailDiv}>
             <input type="email" placeholder="Enter your email here" id="" />
             <div className={style.arrow}>
-              <img src="./assets/image/contact/.png" alt="arrow img" />
+              <img src="./assets/images/footer/.png" alt="arrow img" />
             </div>
           </div>
         </div>
