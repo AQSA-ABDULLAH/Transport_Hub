@@ -73,6 +73,10 @@ function AppRoutes() {
 </div>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/rental_landing_page" element={<LandingPage/>}/>
+        <Route path="/viewCars" element={<ViewCars/>}/>
+        <Route path="/carAddOn" element={<ExtendedDetailPage/>}/>
+        <Route path="/RentalBooking" element={<RentalBookingPage/>}/>
         <Route path="/blog&news" element={<BlogsNews/>}/>
         <Route path="/career" element={<CareerPage/>}/>
         <Route path="/driverRegistration" element={<DriverEmail/>}/>
@@ -86,9 +90,7 @@ function AppRoutes() {
         <Route path="/transporterRegistration" element={<TransporterEmail/>}/>
         <Route path="/verify_transporter_mail" element={< VerifyTransporterEmail/>}/>
         <Route path="/transporter_name_section" element={<TransporterName/>}/>
-        <Route path="/viewCars" element={<ViewCars/>}/>
-        <Route path="/carAddOn" element={<ExtendedDetailPage/>}/>
-        <Route path="/RentalBooking" element={<RentalBookingPage/>}/>
+        
         <Route path="/404" element={<NoRoute />} />      
 
         <Route

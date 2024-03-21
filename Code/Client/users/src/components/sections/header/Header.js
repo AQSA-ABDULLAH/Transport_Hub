@@ -41,7 +41,7 @@ const Navbar = () => {
               SERVICES <FaAngleDown />
               {showDropdown && (
                 <ul className={styles.dropdownMenu}>
-                  <Link to="">
+                  <Link to="/rental_landing_page">
                   <li>Car rental</li>
                   </Link>
                   <Link to="">
@@ -61,7 +61,7 @@ const Navbar = () => {
               <li>BLOGS & NEWS</li>
             </Link>
 
-            <Link to="/blog&news">
+            <Link to="/">
               <li>LOYALTY PROGRAM</li>
             </Link>
 
