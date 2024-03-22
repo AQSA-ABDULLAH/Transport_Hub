@@ -9,9 +9,9 @@ export default function ViewCars() {
             <div>
                 <div className={style.container}>
                 <h2>WHICH VEHICLE DO YOU WANT TO DRIVE?</h2>
-                    <div className={style.filterContainer}>
+                    {/* <div className={style.filterContainer}>
                         <FiltersCard />
-                    </div>
+                    </div> */}
                     <div className={style.carContainer}>
                         <CarCard />
                         <CarCard />

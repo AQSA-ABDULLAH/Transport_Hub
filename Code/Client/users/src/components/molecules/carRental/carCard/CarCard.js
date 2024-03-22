@@ -7,24 +7,41 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { BsSpeedometer2 } from "react-icons/bs";
 import { IoIosPeople } from "react-icons/io";
 import axios from 'axios';
+import FiltersCard from '../filterCard/FiltersCard';
 
 const CarCard = () => {
 
     const [product, setProduct] = useState([]);
-    // const [filter, setFilter] = useState('');
+    const [sortBy, setSortBy] = useState('high');
+    const [vehicleType, setVehicleType] = useState('all');
+    const [gearshift, setGearshift] = useState('manual');
+    const [passengers, setPassengers] = useState('four');
+    const [bags, setBags] = useState('one');
 
-    
+
 
     useEffect(() => {
-        axios.get("http://localhost:5000/api/cars/getCars")
+        fetchCars();
+    }, [sortBy, vehicleType, gearshift, passengers, bags]);
+
+    const fetchCars = () => {
+        const params = {
+            sortBy,
+            vehicleType,
+            gearshift,
+            passengers,
+            bags
+        };
+
+        axios.get("http://localhost:5000/api/cars/getCars", { params })
             .then(res => {
-                console.log(res.data)
-                setProduct(res.data.data)
+                console.log(res.data);
+                setProduct(res.data.data);
             })
             .catch(err => {
-                console.log(err)
-            })
-    }, [])
+                console.log(err);
+            });
+    };
 
     const navigate = useNavigate();
 
@@ -34,12 +51,14 @@ const CarCard = () => {
 
     return (
         <>
+            <FiltersCard setSortBy={setSortBy} setVehicleType={setVehicleType} setGearshift={setGearshift}
+                setPassengers={setPassengers} setBags={setBags} />
             {
                 product.map((item, index) =>
 
                     <section className={style.offer_container_section} key={index}>
 
-                    
+                        <div className={style.mainContent_grid}>
                             <div className={style.singleOffer}>
                                 <h2 className={style.secTitle}>{item.carTitle}</h2>
                                 <div className={style.destImage}>
@@ -84,7 +103,7 @@ const CarCard = () => {
                                 </div>
 
                             </div>
-                  
+                        </div>
                     </section>
                 )}
         </>
