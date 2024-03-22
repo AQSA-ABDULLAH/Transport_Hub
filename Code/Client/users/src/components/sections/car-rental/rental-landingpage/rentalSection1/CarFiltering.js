@@ -62,16 +62,6 @@ const CarFiltering = ({ onFilter, onFilterApplied }) => {
           </div>
 
           <div>
-            <DatePicker
-              selected={pickupDate}
-              onChange={(date) => setPickupDate(date)}
-              className={styles.datepicker}
-              placeholderText="Click to select a date"
-              minDate={currentDate}
-            />
-          </div>
-
-          <div>
             <select
               value={dropLocation}
               onChange={(e) => setDropLocation(e.target.value)}
@@ -86,16 +76,6 @@ const CarFiltering = ({ onFilter, onFilterApplied }) => {
             <DatePicker
               selected={dropDate}
               onChange={(date) => setDropDate(date)}
-              className={styles.datepicker}
-              placeholderText="Click to select a date"
-              minDate={currentDate}
-            />
-          </div>
-
-          <div>
-            <DatePicker
-              selected={pickupDate}
-              onChange={(date) => setPickupDate(date)}
               className={styles.datepicker}
               placeholderText="Click to select a date"
               minDate={currentDate}

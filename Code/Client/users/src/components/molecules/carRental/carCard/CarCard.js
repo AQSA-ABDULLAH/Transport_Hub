@@ -39,7 +39,7 @@ const CarCard = () => {
 
                     <section className={style.offer_container_section} key={index}>
 
-                        <div className={style.mainContent_grid}>
+                    
                             <div className={style.singleOffer}>
                                 <h2 className={style.secTitle}>{item.carTitle}</h2>
                                 <div className={style.destImage}>
@@ -84,7 +84,7 @@ const CarCard = () => {
                                 </div>
 
                             </div>
-                        </div>
+                  
                     </section>
                 )}
         </>
