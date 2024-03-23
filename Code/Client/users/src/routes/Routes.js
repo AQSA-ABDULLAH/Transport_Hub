@@ -22,7 +22,7 @@ import DriverVerifyMail from "../pages/career/driver/verifymail/DriverVerifyMain
 import DriverName from "../pages/career/driver/namesection/DriverName.js"
 import TransporterEmail from "../pages/career/transporter/registration/TransporterEmail.js"
 import TransporterName from "../pages/career/transporter/namesection/TransporterName.js";
-import  VerifyTransporterEmail from "../pages/career/transporter/verifymail/VerifyMail.js"
+import VerifyTransporterEmail from "../pages/career/transporter/verifymail/VerifyMail.js"
 import DriverLocation from "../pages/career/driver/locationsection/DriverLocation.js";
 import DriverVechicalSection from "../pages/career/driver/vechicalselection/DriverVechicalSelection.js";
 import DriverApplication from "../pages/career/driver/application/DriverApplication.js";

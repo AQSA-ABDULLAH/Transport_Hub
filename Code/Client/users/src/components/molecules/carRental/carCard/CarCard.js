@@ -9,7 +9,9 @@ import { IoIosPeople } from "react-icons/io";
 import axios from 'axios';
 import FiltersCard from '../filterCard/FiltersCard';
 
-const CarCard = () => {
+function CarCard (props) {
+
+    console.log("props",props); 
 
     const [product, setProduct] = useState([]);
     const [sortBy, setSortBy] = useState('high');
@@ -43,11 +45,11 @@ const CarCard = () => {
             });
     };
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
-    const handleBookNowClick = () => {
-        navigate('/ExtendedDetailPage');
-    };
+    // const handleBookNowClick = () => {
+    //     navigate('/ExtendedDetailPage');
+    // };
 
     return (
         <>
@@ -99,7 +101,11 @@ const CarCard = () => {
                                         <small>RS {item.price} total</small>
                                     </div>
 
-                                    <Button btnText="Book Now" primary btnClick={handleBookNowClick} />
+                                    <Button btnText="Book Now" primary
+                                        onClick={() =>
+                                            props.bookCar({ price: 123, name:"sfs", more:"shfbh"})
+                                        }
+                                    />
                                 </div>
 
                             </div>
