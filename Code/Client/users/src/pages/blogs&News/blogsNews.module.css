@@ -1,25 +1,25 @@
 .image{
-    height: 25rem; /* 400px */
-    width: 85.4rem;
-    /* padding: 0rem 6rem; */
+  height: 25rem; /* 400px */
+  width: 84.3rem;
+  /* padding: 0rem 6rem; */
 }
 
 .blogSection {
-    display: flex;
-    flex-direction: row;
-    padding: 3rem 6rem;
-    height: 100%;
-    gap: 55px;
-    width: 100%;
-  }
-  
-  .blogContainer {
-    width: 75%;
-    display: flex;
-    flex-wrap: wrap; 
-    gap: 20px;
-  }
+  display: flex;
+  flex-direction: row;
+  padding: 3rem 6rem;
+  height: 100%;
+  gap: 55px;
+  width: 100%;
+}
 
-  .filterContainer{
-    width: 28%;
-  }
+.blogContainer {
+  width: 75%;
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 15px;
+}
+
+.filterContainer{
+  width: 28%;
+}
