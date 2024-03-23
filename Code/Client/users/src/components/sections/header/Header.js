@@ -10,7 +10,7 @@ import useUserAction from "../../../utils/customHooks/useUserAction";
 const Navbar = () => {
   const navigate = useNavigate();
   const [Mobile, setMobile] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false); 
+  const [showDropdown, setShowDropdown] = useState(false);
   const { reduxState, dispatch, actions } = useUserAction();
 
   return (
@@ -32,7 +32,7 @@ const Navbar = () => {
             <Link to="/">
               <li>HOME</li>
             </Link>
-    
+
             <li
               onMouseEnter={() => setShowDropdown(true)}
               onMouseLeave={() => setShowDropdown(false)}
@@ -41,17 +41,17 @@ const Navbar = () => {
               SERVICES <FaAngleDown />
               {showDropdown && (
                 <ul className={styles.dropdownMenu}>
+                  <Link to="">
+                    <li>Trip Packages</li>
+                  </Link>
                   <Link to="/rental_landing_page">
-                  <li>Car rental</li>
+                    <li>Car rental</li>
+                  </Link>
+                  <Link to="/shipment_landing_page">
+                    <li>Good Shipment</li>
                   </Link>
                   <Link to="">
-                  <li>Trip Packages</li>
-                  </Link>
-                  <Link to="">
-                  <li>Good Shipment</li>
-                  </Link>
-                  <Link to="">
-                  <li>Parcel Pickup</li>
+                    <li>Parcel Pickup</li>
                   </Link>
                 </ul>
               )}
