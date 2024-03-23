@@ -29,7 +29,7 @@ const AddCarForm = ({ onClose }) => {
 
     useEffect(() => {
         carImage && uploadFile(carImage, "imageUrl");
-      }, [carImage]);
+    }, [carImage]);
 
     // FIREBASE SETUP HERE
     const uploadFile = (file) => {
@@ -219,15 +219,17 @@ const AddCarForm = ({ onClose }) => {
                 <div className={style.row}>
                     {/* Transmission Input */}
                     <div className="mb-3">
-                        <label htmlFor="transmission" className="form-label">Transmission:</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="transmission"
-                            name="transmission"
+                        <label htmlFor="transmissionType" className="form-label">Gearshift:</label>
+                        <select
+                            className="form-select"
+                            id="transmissionType"
+                            name="transmissionType"
                             value={transmission}
                             onChange={(e) => setTransmission(e.target.value)}
-                        />
+                        >
+                            <option value="manual">Manual</option>
+                            <option value="auto">Automatic</option>
+                        </select>
                     </div>
 
                     {/* mileLimit Input */}
