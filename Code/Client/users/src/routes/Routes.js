@@ -22,7 +22,7 @@ import DriverVerifyMail from "../pages/career/driver/verifymail/DriverVerifyMain
 import DriverName from "../pages/career/driver/namesection/DriverName.js"
 import TransporterEmail from "../pages/career/transporter/registration/TransporterEmail.js"
 import TransporterName from "../pages/career/transporter/namesection/TransporterName.js";
-import  VerifyTransporterEmail from "../pages/career/transporter/verifymail/VerifyMail.js"
+import VerifyTransporterEmail from "../pages/career/transporter/verifymail/VerifyMail.js"
 import DriverLocation from "../pages/career/driver/locationsection/DriverLocation.js";
 import DriverVechicalSection from "../pages/career/driver/vechicalselection/DriverVechicalSelection.js";
 import DriverApplication from "../pages/career/driver/application/DriverApplication.js";
@@ -74,6 +74,10 @@ function AppRoutes() {
 </div>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/rental_landing_page" element={<LandingPage/>}/>
+        <Route path="/viewCars" element={<ViewCars/>}/>
+        <Route path="/carAddOn" element={<ExtendedDetailPage/>}/>
+        <Route path="/RentalBooking" element={<RentalBookingPage/>}/>
         <Route path="/blog&news" element={<BlogsNews/>}/>
         <Route path="/blog&news/:id" element={<BlogsDetails/>}/>
         <Route path="/career" element={<CareerPage/>}/>
@@ -88,9 +92,7 @@ function AppRoutes() {
         <Route path="/transporterRegistration" element={<TransporterEmail/>}/>
         <Route path="/verify_transporter_mail" element={< VerifyTransporterEmail/>}/>
         <Route path="/transporter_name_section" element={<TransporterName/>}/>
-        <Route path="/viewCars" element={<ViewCars/>}/>
-        <Route path="/carAddOn" element={<ExtendedDetailPage/>}/>
-        <Route path="/RentalBooking" element={<RentalBookingPage/>}/>
+        
         <Route path="/404" element={<NoRoute />} />      
 
         <Route

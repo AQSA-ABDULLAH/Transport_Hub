@@ -7,37 +7,58 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { BsSpeedometer2 } from "react-icons/bs";
 import { IoIosPeople } from "react-icons/io";
 import axios from 'axios';
+import FiltersCard from '../filterCard/FiltersCard';
 
-const CarCard = () => {
+function CarCard (props) {
+
+    console.log("props",props); 
 
     const [product, setProduct] = useState([]);
-    // const [filter, setFilter] = useState('');
+    const [sortBy, setSortBy] = useState('high');
+    const [vehicleType, setVehicleType] = useState('all');
+    const [gearshift, setGearshift] = useState('manual');
+    const [passengers, setPassengers] = useState('four');
+    const [bags, setBags] = useState('one');
 
-    
+
 
     useEffect(() => {
-        axios.get("http://localhost:5000/api/cars/getCars")
+        fetchCars();
+    }, [sortBy, vehicleType, gearshift, passengers, bags]);
+
+    const fetchCars = () => {
+        const params = {
+            sortBy,
+            vehicleType,
+            gearshift,
+            passengers,
+            bags
+        };
+
+        axios.get("http://localhost:5000/api/cars/getCars", { params })
             .then(res => {
-                console.log(res.data)
-                setProduct(res.data.data)
+                console.log(res.data);
+                setProduct(res.data.data);
             })
             .catch(err => {
-                console.log(err)
-            })
-    }, [])
-
-    const navigate = useNavigate();
-
-    const handleBookNowClick = () => {
-        navigate('/ExtendedDetailPage');
+                console.log(err);
+            });
     };
+
+    // const navigate = useNavigate();
+
+    // const handleBookNowClick = () => {
+    //     navigate('/ExtendedDetailPage');
+    // };
 
     return (
         <>
+            <FiltersCard setSortBy={setSortBy} setVehicleType={setVehicleType} setGearshift={setGearshift}
+                setPassengers={setPassengers} setBags={setBags} />
             {
                 product.map((item, index) =>
 
-                    <section className={style.offer_container_section}>
+                    <section className={style.offer_container_section} key={index}>
 
                         <div className={style.mainContent_grid}>
                             <div className={style.singleOffer}>
@@ -80,7 +101,11 @@ const CarCard = () => {
                                         <small>RS {item.price} total</small>
                                     </div>
 
-                                    <Button btnText="Book Now" primary btnClick={handleBookNowClick} />
+                                    <Button btnText="Book Now" primary
+                                        onClick={() =>
+                                            props.bookCar({ price: 123, name:"sfs", more:"shfbh"})
+                                        }
+                                    />
                                 </div>
 
                             </div>

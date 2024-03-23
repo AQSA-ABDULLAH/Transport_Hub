@@ -52,9 +52,6 @@ const AddSliderForm = () => {
     formData.append('content', content);
     formData.append('image', imageUrl);
 
-    console.log()
-    console.log()
-    console.log()
 
     try {
       const response = await axios.post("http://localhost:5000/api/user/create-slider", formData, {
@@ -91,7 +88,7 @@ const AddSliderForm = () => {
             <div className={styles.formField}>
               <label htmlFor="">background image</label> {imgperc > 0 && "Uploading " + imgperc + "%"}
               <div className={`${styles.imgUpload} ${styles.sliderUpload}`}>
-                <input type="file" name="sliderImg" id="sliderImg" accept="image/"
+                <input type="file" name="sliderImg" id="sliderImg" accept="image/png, image/jpeg"
                   onChange={(e) => setImage(e.target.files[0])}
                 />
                 <label htmlFor="sliderImg">

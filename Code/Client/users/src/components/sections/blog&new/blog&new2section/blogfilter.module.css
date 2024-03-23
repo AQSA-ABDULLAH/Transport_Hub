@@ -79,3 +79,21 @@
     margin: 0px 0px 20px 0px ;
     padding: 16px 20px;
 }
+
+.blog_category p{
+    border-top: 1.5px solid #dad7d7;
+    padding: 9px 5px;
+}
+
+.blog_category {
+    p::after {
+        content: '>';
+        display: inline-block; /* Ensure ">" is displayed inline with the text */
+        margin-left: 5px; /* Add space after the text */
+    }
+}
+
+
+.blog_category h2{
+    padding: 9px 0px;
+}

@@ -14,29 +14,33 @@ li {
 
 .navbar {
   display: flex;
-  justify-content: center;
   align-items: center;
   margin-top: 0em;
-  height: 92px;
+  height: 80px;
+}
+
+.logo_div{
+  margin-right: 2.2rem;
 }
 
 .logo {
   font-size: 3rem;
-  width: 3.8em;
-  height: 1.7em;
+  width: 2.9em;
+  height: 1.3em;
+  margin-top: 8px;
 }
 
 .navLinks {
   display: flex;
-  justify-content: center;
   align-items: center;
+  margin: 0rem -2rem 0rem 0.625rem;
   width: 100%;
 }
 
 .navLinks li {
   color: black;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 400;
   padding: 10px 15px;
   margin: 0 10px;
   cursor: pointer;
@@ -46,12 +50,43 @@ li {
 }
 
 .navLinks li:not(.btns):hover {
-  color: #fff;
-  background-color: #7E22CE;
-  border-radius: 20px;
-  box-shadow: 10px 2px 8px -8px #7E22CE;
+  background-color: #e0e0e058;
+  border-radius: 2px;
   transition: 0.3s ease-in-out;
 }
+
+.dropdownMenu {
+  position: absolute;
+  bottom: 25.5rem;
+  left: 22rem;
+  background-color: #fff; 
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  padding: 10px 0;
+  z-index: 1000; 
+}
+
+.navDropdown:hover .dropdownMenu {
+  display: block; /* Show the dropdown menu on hover */
+}
+
+
+.dropdownMenu li {
+  padding: 8px 20px; /* Padding for dropdown items */
+  font-size: 14px;
+  color: #333; /* Text color for dropdown items */
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out; /* Smooth background color transition */
+}
+
+.dropdownMenu li:hover {
+  background-color: #f4f4f4; 
+}
+
+.button_div{
+  margin-left: 7rem;
+}
+
 
 .hero {
   text-align: center;
