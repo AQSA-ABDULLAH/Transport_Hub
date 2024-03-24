@@ -75,14 +75,21 @@ function AppRoutes() {
 </div>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/blog&news" element={<BlogsNews/>}/>
+        <Route path="/blog&news/:id" element={<BlogsDetails/>}/>
+
+        {/* CAR RENTAL ROUTES */}
         <Route path="/rental_landing_page" element={<LandingPage/>}/>
         <Route path="/viewCars" element={<ViewCars/>}/>
         <Route path="/carAddOn" element={<ExtendedDetailPage/>}/>
         <Route path="/RentalBooking" element={<RentalBookingPage/>}/>
+
+        {/* GOOD SHIPMENT ROUTES */}
         <Route path="/shipment_landing_page" element={<ShipmentLandingPage/>}/>
-        <Route path="/blog&news" element={<BlogsNews/>}/>
-        <Route path="/blog&news/:id" element={<BlogsDetails/>}/>
+
+
         <Route path="/career" element={<CareerPage/>}/>
+        {/* DRIVER REGISTRATION */}
         <Route path="/driverRegistration" element={<DriverEmail/>}/>
         <Route path="/driver_verify_mail" element={<DriverVerifyMail/>}/>
         <Route path="/driver_name_section" element={<DriverName/>}/>
@@ -91,6 +98,8 @@ function AppRoutes() {
         <Route path="/driver_application_form" element={<DriverApplication/>}/>
         <Route path="/upload_driver_cnic" element={<DriverCnic/>}/>
         <Route path="/trems_and_conditions" element={<TermsCondition/>}/>
+
+        {/* TRANSPORTER REGISTRATION */}
         <Route path="/transporterRegistration" element={<TransporterEmail/>}/>
         <Route path="/verify_transporter_mail" element={< VerifyTransporterEmail/>}/>
         <Route path="/transporter_name_section" element={<TransporterName/>}/>
