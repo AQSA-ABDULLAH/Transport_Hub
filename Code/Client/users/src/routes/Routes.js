@@ -30,6 +30,7 @@ import DriverApplication from "../pages/career/driver/application/DriverApplicat
 import DriverCnic from "../pages/career/driver/uploadCNIC/DriverCnic.js";
 import TermsCondition from "../pages/career/driver/terms&condition/Terms&Condition.js";
 import ShipmentLandingPage from "../pages/good-shipment/ShipmentLandingPage.js";
+import ShipmentForm from "../pages/good-shipment/create-shipment/ShipmentForm.js";
 
 
 function AppRoutes() {
@@ -86,6 +87,7 @@ function AppRoutes() {
 
         {/* GOOD SHIPMENT ROUTES */}
         <Route path="/shipment_landing_page" element={<ShipmentLandingPage/>}/>
+        <Route path="/create_shipment_form" element={<ShipmentForm/>}/>
 
 
         <Route path="/career" element={<CareerPage/>}/>
