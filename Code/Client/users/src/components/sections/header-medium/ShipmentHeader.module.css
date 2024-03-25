@@ -1,0 +1,16 @@
+.shipment_header{
+    display: flex;
+    flex-direction: row;
+    /* -webkit-box-align: center; */
+    align-items: center;
+    justify-content: flex-end;
+    height: 10vh;
+    border-bottom:1px solid #333 ;
+    background-color: #FCFCFF;
+    padding: 0px 40px;
+    border-bottom: solid 1px rgba(var(--m-color-neutral-20,230,237,242),1);
+}
+
+.shipment_header a {
+    margin-left: 20px;
+}

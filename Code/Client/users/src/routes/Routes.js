@@ -42,7 +42,7 @@ function AppRoutes() {
   const noHeaderPaths = ["/login", "/signup", "/404", "/profile", "/driverRegistration", "/verify_transporter_mail",
   "/transporterRegistration", "/transporter_name_section", "/driver_name_section", "/driver_location_section",
   "/driver_vechical_selection", "/driver_application_form", "/trems_and_conditions", "/upload_driver_cnic", 
-  "/driver_verify_mail" ];
+  "/driver_verify_mail", "/create_shipment_form" ];
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
