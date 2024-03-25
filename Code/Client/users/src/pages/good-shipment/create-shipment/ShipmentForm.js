@@ -1,19 +1,25 @@
 import React from 'react';
 import styles from '../shipmentstyle.module.css'
-import ShipmentDetailsForm from '../../../components/sections/good-shipment/create-shipment-form/shipment-details/ShipmentDetailsForm';
-import Header from '../../../components/sections/header/Header';
 import ShipmentHeader from '../../../components/sections/header-medium/ShipmentHeader';
+import NewQoute from '../../../components/sections/good-shipment/create-shipment-form/shipment-details/NewQoute';
+import QouteFooter from '../../../components/molecules/create-shipment/qoute-footer/QouteFooter';
 
 function ShipmentForm() {
   return (
     <>
-    <ShipmentHeader/>
+      <ShipmentHeader />
       <div className={styles.quote_container}>
         <section className={styles.quote_section}>
-          sjkfdsh
+          <div className={styles.quote_form}>
+            <NewQoute />
+          </div>
+          <QouteFooter />
         </section>
         <section>
-          dksfnskfj
+          <div className={styles.quote_form}>
+            sjfhsj
+          </div>
+          <QouteFooter />
         </section>
       </div>
     </>
