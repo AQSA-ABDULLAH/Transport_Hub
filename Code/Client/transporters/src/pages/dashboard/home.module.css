@@ -1,0 +1,23 @@
+.container{
+    background-color: #fff;
+    width: auto;
+    height: 85.8vh;
+    padding: 2rem;
+}
+.inner_container h1{
+    margin: 20px;
+}
+.inner_container{
+    display: flex;
+  flex-direction: column;
+  
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+@media screen and (max-width:1068px) {
+    .container{
+        height: 100vh;
+        
+    }
+}
