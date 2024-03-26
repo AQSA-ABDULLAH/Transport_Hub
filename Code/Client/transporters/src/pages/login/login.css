@@ -1,7 +1,7 @@
 .login-container {
   position: relative;
   background-image: url('../../../public/assets/images/Login/5.jpg');
-  height: 40rem;
+  height: 90vh;
   width: 100%;
   background-size: cover;
   background-position: center;
@@ -14,9 +14,19 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 89.8%;
-  background-color: #a871d8; /* Color overlay */
-  opacity: 0.7; /* Adjust the opacity to control the intensity of the color overlay */
+  height: 90vh;
+  background-color: #cbb6dd;
+  opacity: 0.9;
 }
 
-
+.footer{
+  position: fixed;
+  width: 100%;
+  color: white;
+  background-color: blueviolet;
+  height: 10vh;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

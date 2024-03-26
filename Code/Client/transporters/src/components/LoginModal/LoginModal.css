@@ -1,5 +1,5 @@
 .modal-conatainer {
-  z-index: 1000;
+  z-index: 100;
   position: fixed;
   inset: 0;
   display: flex;
@@ -24,7 +24,7 @@
 }
 
 .login-header{
-  background-color: rgb(189, 28, 28);
+  /* background-color: rgb(199, 108, 108); */
   display: flex;
   padding: 10px;
 }
@@ -132,18 +132,18 @@ color: white;
   background-color: blueviolet;
   margin: 0px 5px;
 }
-
+/* 
 .footer {
   position: fixed;
   bottom: 0;
-  width: 100%; /* Ensure the footer spans the entire width of the screen */
+  width: 100%;
   color: white;
   background-color: blueviolet;
   opacity: 100%;
-  height: 4%; /* Increased height */
-  font-size: 20px; /* Increased font size */
-  padding: 20px; /* Added padding */
-}
+  height: 4%;
+  font-size: 20px;
+  padding: 20px;
+} */
 
 
 

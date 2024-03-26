@@ -126,9 +126,6 @@ function LoginModal({ onClose }) {
           </div>
         </div>
       </div>
-      <div className="footer">
-        TRANSPORT HUB, Principal Seat 2024-Transport Hub Industrial Limited
-      </div>
     </>
   );
 }
