@@ -1,0 +1,163 @@
+.modal-conatainer {
+  z-index: 1000;
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal{
+  z-index: 1100;
+  top: 45%; 
+  /* Vertically center */
+  left: 50%;
+   /* Horizontally center */
+  transform: translate(-50%, -50%);
+  position: fixed;
+  padding: 40px;
+  width: 700px;
+  height: 500px;
+  border-radius: 30px;
+  transition: 0.5s ease-in;
+  width: 80%;
+}
+
+.login-header{
+  background-color: rgb(189, 28, 28);
+  display: flex;
+  padding: 10px;
+}
+.logo-container {
+  flex-grow: 1;
+  margin-left: -10px;
+  margin-top: -10px;
+}
+.head-container{
+color: white;
+}
+
+.modal-content{
+  display: flex;
+  padding: 3rem 0rem;
+  gap: 3rem;
+}
+
+.notice-board{
+  background-color: white;
+  padding: 2rem;
+  width: 60%;
+}
+
+.login-form-container {
+  padding-top: 20px;
+  width: 300px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  background-color: white;
+  padding: 2rem;
+  width: 30%;
+}
+.login-form-container > form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.login-form > div {
+  margin: 25px 0px;
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -2px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.login-form > input,
+#passwordInput > input {
+  margin: 10px 0px;
+  padding: 12px 8px;
+  border-radius: 5px;
+  border: none;
+  background-color: blueviolet;
+
+}
+#passwordInput {
+  position: relative;
+
+  padding: 0px;
+  margin: 0px;
+}
+#passwordInput > input {
+  height: 100%;
+  width: 97%;
+}
+#toggleIcon {
+  position: absolute;
+  top: 33%;
+  right: 10px;
+  width: 22px;
+  aspect-ratio: 1/1;
+}
+#toggleIcon:hover {
+  cursor: pointer;
+}
+
+.login-form > label {
+  margin: 0px 0px 5px;
+  font-size: 14px;
+  color: white;
+}
+.login-form > label > input {
+  margin: 0px 5px;
+}
+.login-form > label > input:hover {
+  cursor: pointer;
+}
+.login-form > label > span {
+  float: right;
+}
+.login-form > label > span > a {
+  text-decoration: none;
+  color: white;
+}
+.login-form > button {
+  margin: 20px 0px;
+}
+.login-form > small {
+  text-align: center;
+}
+.login-form > small > a {
+  background-color: blueviolet;
+  margin: 0px 5px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%; /* Ensure the footer spans the entire width of the screen */
+  color: white;
+  background-color: blueviolet;
+  opacity: 100%;
+  height: 4%; /* Increased height */
+  font-size: 20px; /* Increased font size */
+  padding: 20px; /* Added padding */
+}
+
+
+
+@media screen and (max-width:1068px) {
+  .modal-content{
+      height: 100% ;
+      width: 100%;
+      /* background-image: url('/client/admin/public/assets/image/error/error.png'); */
+      justify-content: center;
+      align-items: center;
+      background-image: none;
+      border-radius: 0px;
+      /* padding: 20p; */
+      margin: 0;
+
+  }
+}
