@@ -100,6 +100,11 @@
   width: 100%;
 }
 
+.recaptcha{
+  padding-left: 18px;
+  padding-top: 12px;
+}
+
 #toggleIcon {
   position: absolute;
   top: 33%;
@@ -112,40 +117,9 @@
   cursor: pointer;
 }
 
-.login-form>label {
-  margin: 0px 0px 5px;
-  font-size: 14px;
-  color: white;
-}
-
-.login-form>label>input {
-  margin: 0px 5px;
-}
-
-.login-form>label>input:hover {
-  cursor: pointer;
-}
-
-.login-form>label>span {
-  float: right;
-}
-
-.login-form>label>span>a {
-  text-decoration: none;
-  color: white;
-}
-
-.login-form>button {
+.login-form Button {
   margin: 20px 0px;
-}
-
-.login-form>small {
-  text-align: center;
-}
-
-.login-form>small>a {
-  background-color: blueviolet;
-  margin: 0px 5px;
+  padding: 10px 0px;
 }
 
 @media screen and (max-width:1068px) {

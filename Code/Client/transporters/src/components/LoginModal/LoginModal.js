@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import Button from "../atoms/button/Button";
 import "./LoginModal.css";
-import { useDispatch, useSelector } from 'react-redux'
-import { signUpWithEmail } from '../../redux/containers/auth/actions'
+import { useDispatch, useSelector } from 'react-redux';
+import { signUpWithEmail } from '../../redux/containers/auth/actions';
+import ReCAPTCHA from "react-google-recaptcha";
 
 function LoginModal({ onClose }) {
   const [email, setEmail] = useState('');
@@ -114,11 +115,17 @@ function LoginModal({ onClose }) {
                 ></img>
               </div>
 
+              <div className="recaptcha">
+                <ReCAPTCHA
+                  sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                />
+              </div>
+
               <Button
                 type="submit"
-                bgColor={"blueviolet"}
-                radius={"0px"}
-                hoverColor={"rgb(247, 131, 98)"}
+                primary
+                radius={"6px"}
+                hoverColor={"#6a17b3"}
                 btnText={"LOGIN"}
                 btnClick={handleSubmit}
               />
