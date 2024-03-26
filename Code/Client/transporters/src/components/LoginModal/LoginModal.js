@@ -78,11 +78,12 @@ function LoginModal({ onClose }) {
           className="modal-content"
         >
           <div className="notice-board">
+            <h3>NOTICE BOARD</h3>
             sjdiadhi
           </div>
           <div className="login-form-container">
             <form className="login-form" onSubmit={handleSubmit}>
-              <div>Login</div>
+              <h3>Driver Sign In</h3>
 
               <input
                 type="email"
@@ -101,7 +102,7 @@ function LoginModal({ onClose }) {
                   required
                   onChange={(e) => handleChange(e, 'password')}
                   style={{ border: isPasswordValid ? "" : "2px solid red" }}
-                ></input>
+                />
                 <img
                   onPointerDown={togglePasswordVisibility}
                   id="toggleIcon"
