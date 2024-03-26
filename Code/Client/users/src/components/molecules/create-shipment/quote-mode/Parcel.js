@@ -1,9 +1,7 @@
 import React from 'react'
 
-function Parcel() {
+export default function Parcel() {
   return (
     <div>Parcel</div>
   )
 }
-
-export default Parcel

@@ -5,8 +5,6 @@
 .quote_container{
     display: flex;
     flex-direction: row;
-    /* overflow-x: hidden;
-    overflow-y: scroll; */
     background-color: #FCFCFF;
 }
 
@@ -17,5 +15,7 @@
 
 .quote_form{
     height: 80vh;
-    padding: 10px 40px;
+    padding: 25px 85px;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }

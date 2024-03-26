@@ -1,9 +1,7 @@
 import React from 'react'
 
-function Flatbed() {
+export default function Flatbed() {
   return (
     <div>Flatbed</div>
   )
 }
-
-export default Flatbed

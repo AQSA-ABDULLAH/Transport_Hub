@@ -1,14 +1,64 @@
-.heading{
-    font-size: 16px;
+.newQuote h2{
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: normal;
+    /* margin-bottom: 12px; */
 }
 
 .row{
     display: flex;
     flex-direction: row;
+    gap: 50px;
+}
+
+.row label,
+.row input,
+.row select{
+    display: flex;
+    flex-direction: column;
+}
+
+.newQuote label{
+    display: inline-block;
+    font-weight: 500;
+    line-height: 140%;
+    text-transform: none;
+    font-size: 0.875rem;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-top: 18px;
+}
+
+.row input,
+.row select,
+.input_div{
+    width: 100%;
+    font-weight: 400;
+    font-size: 0.85rem;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #949494;
+    border-radius: 5px;
+    min-width: 0px;
+}
+
+.input_div{
+    margin: 0px;
+}
+
+.row input:focus,
+.row select:focus{
+    outline: none;
+}
+
+.input_div{
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
 }
 
-.mode, .pickupDate{
-    display: flex;
-    flex-direction: column;
+.input_div button{
+    border: none;
+    height: 0px;
+    background-color: transparent;
+    font-size: 1rem;
 }
