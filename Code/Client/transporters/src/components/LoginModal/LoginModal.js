@@ -71,7 +71,7 @@ function LoginModal({ onClose }) {
             ></img>
           </div>
           <div className="head-container">
-            Transport Hub Driver Console
+            Transport Hub Transporter Console
           </div>
         </div>
 
