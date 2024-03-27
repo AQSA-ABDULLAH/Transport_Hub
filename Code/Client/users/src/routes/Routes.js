@@ -31,6 +31,7 @@ import DriverCnic from "../pages/career/driver/uploadCNIC/DriverCnic.js";
 import TermsCondition from "../pages/career/driver/terms&condition/Terms&Condition.js";
 import ShipmentLandingPage from "../pages/good-shipment/ShipmentLandingPage.js";
 import ShipmentForm from "../pages/good-shipment/create-shipment/ShipmentForm.js";
+import ManageShipments from "../pages/good-shipment/manage-shipments/ManageShipments.js";
 
 
 function AppRoutes() {
@@ -42,7 +43,7 @@ function AppRoutes() {
   const noHeaderPaths = ["/login", "/signup", "/404", "/profile", "/driverRegistration", "/verify_transporter_mail",
   "/transporterRegistration", "/transporter_name_section", "/driver_name_section", "/driver_location_section",
   "/driver_vechical_selection", "/driver_application_form", "/trems_and_conditions", "/upload_driver_cnic", 
-  "/driver_verify_mail", "/create_shipment_form" ];
+  "/driver_verify_mail", "/create_shipment_form", "/manage_shipments" ];
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -88,6 +89,7 @@ function AppRoutes() {
         {/* GOOD SHIPMENT ROUTES */}
         <Route path="/shipment_landing_page" element={<ShipmentLandingPage/>}/>
         <Route path="/create_shipment_form" element={<ShipmentForm/>}/>
+        <Route path="/manage_shipments" element={<ManageShipments/>}/>
 
 
         <Route path="/career" element={<CareerPage/>}/>
