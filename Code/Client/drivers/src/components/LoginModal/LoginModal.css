@@ -1,98 +1,110 @@
-.modal-conatainer {
-  z-index: 1000;
-  position: fixed;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal{
-  z-index: 1100;
-  top: 45%; 
-  /* Vertically center */
+.modal {
+  z-index: 100;
+  top: 44%;
   left: 50%;
-   /* Horizontally center */
   transform: translate(-50%, -50%);
   position: fixed;
-  padding: 40px;
-  width: 700px;
-  height: 500px;
-  border-radius: 30px;
-  transition: 0.5s ease-in;
-  width: 80%;
+  padding: 0px 80px;
+  width: 100%;
 }
 
-.login-header{
-  background-color: rgb(189, 28, 28);
+.login-header {
   display: flex;
-  padding: 10px;
-}
-.logo-container {
-  flex-grow: 1;
-  margin-left: -10px;
-  margin-top: -10px;
-}
-.head-container{
-color: white;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.modal-content{
+.head-container {
+  color: white;
+  font-size: 20px;
+}
+
+.modal-content {
   display: flex;
-  padding: 3rem 0rem;
-  gap: 3rem;
+  padding: 2rem 0rem;
+  height: 450px;
+  gap: 2rem;
 }
 
-.notice-board{
+.notice-board {
   background-color: white;
-  padding: 2rem;
-  width: 60%;
+  padding: 1rem 2rem;
+  border-top: 16px solid #efefef;
+  border-left: 16px solid #efefef;
+  border-bottom: 16px solid #efefef;
+  border-radius: 8px;
+  overflow-y: scroll;
+  width: 65%;
+}
+
+.notice-board h3 {
+  float: left;
+  width: 100%;
+  margin: 10px 0;
+  text-align: center;
+  font-size: 36px;
+  font-weight: 300;
+  letter-spacing: -2px;
+  color: inherit;
 }
 
 .login-form-container {
-  padding-top: 20px;
-  width: 300px;
-  margin-right: 10px;
   display: flex;
   justify-content: center;
   align-items: start;
   background-color: white;
+  border-radius: 8px;
   padding: 2rem;
-  width: 30%;
+  width: 32%;
 }
-.login-form-container > form {
+
+.login-form-container>form {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: stretch;
 }
-.login-form > div {
+
+/* .login-form>div {
   margin: 25px 0px;
   font-size: 32px;
   font-weight: 600;
   letter-spacing: -2px;
   text-align: center;
   text-transform: uppercase;
-}
-.login-form > input,
-#passwordInput > input {
-  margin: 10px 0px;
-  padding: 12px 8px;
-  border-radius: 5px;
-  border: none;
-  background-color: blueviolet;
+} */
 
+.login-form h3{
+  font-size: 20px;
+  padding-bottom: 15px;
 }
+
+.login-form input {
+  margin: 10px 0px;
+  padding: 10px 8px;
+  font-size: 15px;
+  border-radius: 5px;
+  border: 1px solid #b3b2b2;
+}
+
+.login-form input:focus {
+  outline: none;
+}
+
 #passwordInput {
   position: relative;
+}
 
-  padding: 0px;
-  margin: 0px;
-}
-#passwordInput > input {
+#passwordInput>input {
   height: 100%;
-  width: 97%;
+  width: 100%;
 }
+
+.recaptcha{
+  padding-left: 18px;
+  padding-top: 12px;
+}
+
 #toggleIcon {
   position: absolute;
   top: 33%;
@@ -100,64 +112,27 @@ color: white;
   width: 22px;
   aspect-ratio: 1/1;
 }
+
 #toggleIcon:hover {
   cursor: pointer;
 }
 
-.login-form > label {
-  margin: 0px 0px 5px;
-  font-size: 14px;
-  color: white;
-}
-.login-form > label > input {
-  margin: 0px 5px;
-}
-.login-form > label > input:hover {
-  cursor: pointer;
-}
-.login-form > label > span {
-  float: right;
-}
-.login-form > label > span > a {
-  text-decoration: none;
-  color: white;
-}
-.login-form > button {
+.login-form Button {
   margin: 20px 0px;
+  padding: 10px 0px;
 }
-.login-form > small {
-  text-align: center;
-}
-.login-form > small > a {
-  background-color: blueviolet;
-  margin: 0px 5px;
-}
-
-.footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%; /* Ensure the footer spans the entire width of the screen */
-  color: white;
-  background-color: blueviolet;
-  opacity: 100%;
-  height: 4%; /* Increased height */
-  font-size: 20px; /* Increased font size */
-  padding: 20px; /* Added padding */
-}
-
-
 
 @media screen and (max-width:1068px) {
-  .modal-content{
-      height: 100% ;
-      width: 100%;
-      /* background-image: url('/client/admin/public/assets/image/error/error.png'); */
-      justify-content: center;
-      align-items: center;
-      background-image: none;
-      border-radius: 0px;
-      /* padding: 20p; */
-      margin: 0;
+  .modal-content {
+    height: 100%;
+    width: 100%;
+    /* background-image: url('/client/admin/public/assets/image/error/error.png'); */
+    justify-content: center;
+    align-items: center;
+    background-image: none;
+    border-radius: 0px;
+    /* padding: 20p; */
+    margin: 0;
 
   }
 }
