@@ -1,0 +1,39 @@
+.shipment_card {
+    background-color: #FCFCFF;
+    border: 1px solid rgba(var(--m-color-neutral-20, 230, 237, 242), 1);
+    padding: 2rem 3rem;
+}
+
+.shipment_card_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card_heading h3 {
+    font-weight: 600;
+}
+
+.shipment_card p {
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.shipment_overview  h4{
+    padding-top: 35px;
+    padding-bottom: 10px;
+}
+
+.overview_cards{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.boxes{
+    width: 6rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(var(--m-color-neutral-20, 230, 237, 242), 1);
+    border-radius: 6px;
+}
