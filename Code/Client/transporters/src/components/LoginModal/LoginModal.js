@@ -84,7 +84,7 @@ function LoginModal({ onClose }) {
           </div>
           <div className="login-form-container">
             <form className="login-form" onSubmit={handleSubmit}>
-              <h3>Driver Sign In</h3>
+              <h3>Transporter Sign In</h3>
 
               <input
                 type="email"
