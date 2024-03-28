@@ -1,24 +1,25 @@
-.newQuote h2{
+.newQuote h2 {
     font-size: 20px;
     font-weight: 700;
     letter-spacing: normal;
     /* margin-bottom: 12px; */
 }
 
-.row{
+.row {
     display: flex;
     flex-direction: row;
     gap: 50px;
+    align-items: center;
 }
 
 .row label,
 .row input,
-.row select{
+.row select {
     display: flex;
     flex-direction: column;
 }
 
-.newQuote label{
+.newQuote label {
     display: inline-block;
     font-weight: 500;
     line-height: 140%;
@@ -31,34 +32,49 @@
 
 .row input,
 .row select,
-.input_div{
+.input_div {
     width: 100%;
     font-weight: 400;
     font-size: 0.85rem;
     padding: 0.6rem 0.8rem;
-    border: 1px solid #949494;
+    border: 1px solid #cccbcb;
     border-radius: 5px;
     min-width: 0px;
 }
 
-.input_div{
+.input_div {
     margin: 0px;
 }
 
 .row input:focus,
-.row select:focus{
+.row select:focus {
     outline: none;
 }
 
-.input_div{
+.input_div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.input_div button{
+.input_div button {
     border: none;
     height: 0px;
     background-color: transparent;
     font-size: 1rem;
+    cursor: pointer;
+}
+
+.addStop button {
+    border-radius: 5px;
+    margin: 32px 0px 12px 12px;
+    border: 1px solid;
+    padding: 6px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.addStop button:hover{
+    background-color: #e7e7e7;
+    cursor: pointer;
 }

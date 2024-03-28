@@ -8,35 +8,16 @@ import Parcel from '../../../../molecules/create-shipment/quote-mode/Parcel';
 
 function NewQuote() {
   const [selectedMode, setSelectedMode] = useState('LTL');
-  const [LTL, setLTL] = useState(false);
-  const [FTL, setFTL] = useState(false);
-  const [container, setContainer] = useState(false);
-  const [flatbed, setFlatbed] = useState(false);
-  const [parcel, setParcel] = useState(false);
+  const [pickupDate, setPickupDate] = useState('');
+  const [isAddStopOpen, setIsAddStopOpen] = useState(false);
 
   const handleModeChange = (event) => {
     const mode = event.target.value;
     setSelectedMode(mode);
-    if (mode === 'LTL') {
-      setLTL(true);
-      setFTL(false); setContainer(false); setFlatbed(false); setParcel(false);
-    }
-    else if (mode === 'FTL') {
-      setFTL(true);
-      setLTL(false); setContainer(false); setFlatbed(false); setParcel(false);
-    }
-    else if (mode === 'container') {
-      setContainer(true)
-      setLTL(false); setFTL(false); setFlatbed(false); setParcel(false);
-    }
-    else if (mode === 'flatbed') {
-      setFlatbed(true);
-      setLTL(false); setFTL(false); setContainer(false); setParcel(false);
-    }
-    else if (mode === 'parcel') {
-      setParcel(true);
-      setLTL(false); setFTL(false); setContainer(false); setFlatbed(false);
-    }
+  };
+
+  const handleAddStopClick = () => {
+    setIsAddStopOpen((prevIsAddStopOpen) => !prevIsAddStopOpen); // Toggle the state
   };
 
   return (
@@ -57,38 +38,22 @@ function NewQuote() {
           </div>
           <div>
             <label htmlFor="pickupDate">Pickup Date</label>
-            <input type="date" id="pickupDate" />
+            <input
+              type="date"
+              id="pickupDate"
+              value={pickupDate}
+              onChange={(e) => setPickupDate(e.target.value)}
+            />
           </div>
         </div>
 
         <div>
-          {selectedMode === 'LTL' && (
-            <div className={styles.LTL}>
-              <LTLForm />
-            </div>
-          )}
-          {selectedMode === 'FTL' && (
-            <div className={styles.FTL}>
-              <FTLForm />
-            </div>
-          )}
-          {selectedMode === 'container' && (
-            <div className={styles.container}>
-              <Container />
-            </div>
-          )}
-          {selectedMode === 'flatbed' && (
-            <div className={styles.flatbed}>
-              <Flatbed />
-            </div>
-          )}
-          {selectedMode === 'parcel' && (
-            <div className={styles.parcel}>
-              <Parcel />
-            </div>
-          )}
+          {selectedMode === 'LTL' && <LTLForm />}
+          {selectedMode === 'FTL' && <FTLForm />}
+          {selectedMode === 'container' && <Container />}
+          {selectedMode === 'flatbed' && <Flatbed />}
+          {selectedMode === 'parcel' && <Parcel />}
         </div>
-
 
         <div className={styles.pickup}>
           <label htmlFor="pickup">Pickup</label>
@@ -99,9 +64,14 @@ function NewQuote() {
         </div>
 
         <div className={styles.addStop}>
-          <button>+</button>
-          <span>Add Stop</span>
+          <button onClick={handleAddStopClick}>+ Add Stop</button>
         </div>
+        {isAddStopOpen && (
+          <div className={styles.addStopDiv}>
+            <p>This is the additional stop information.</p>
+            <p>You can add more content here.</p>
+          </div>
+        )}
 
         <div className={styles.delivery}>
           <label htmlFor="delivery">Delivery</label>
@@ -111,20 +81,14 @@ function NewQuote() {
           </div>
         </div>
 
-
         <div>
           <label>More Details (optional)</label>
           <textarea
             placeholder="More Details (optional)"
-            rows={3} 
+            rows={3}
             className={styles.input_div}
           ></textarea>
         </div>
-
-        {/* <div className={styles.accessories}>
-          <h3>Accessorials</h3>
-          <button>+</button>
-        </div> */}
       </form>
     </div>
   );
