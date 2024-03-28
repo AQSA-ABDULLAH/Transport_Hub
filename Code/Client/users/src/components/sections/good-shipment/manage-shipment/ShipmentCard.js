@@ -1,8 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from "./shipmentcard.module.css";
 import Button from "../../../atoms/button/Button";
+import { useNavigate } from 'react-router-dom';
 
-export default function () {
+export default function ShipmentCard() {
+
+    const navigate = useNavigate();
+
+    const handleRedirect = () => {
+        navigate('/create_shipment_form');
+    };
     return (
         <>
             <div className={styles.shipment_card}>
@@ -12,12 +20,17 @@ export default function () {
                         <p>Manage your ongoing and past shipments easily</p>
                     </div>
                     <div className={styles.create_shipment}>
-                        <Button
-                            bgColor={"#7E22CE"}
-                            btnText="New shipment"
-                            radius={"6px"}
-                            size={"14px"}
-                        />
+
+
+                        <Link to="/create_shipment_form">
+                            <Button
+                                bgColor={"#7E22CE"}
+                                btnText="New shipment"
+                                radius={"6px"}
+                                size={"14px"}
+                                onClick={handleRedirect}
+                            />
+                        </Link>
                     </div>
                 </div>
 

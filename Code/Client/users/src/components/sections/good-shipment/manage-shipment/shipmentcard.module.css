@@ -1,7 +1,8 @@
 .shipment_card {
-    background-color: #FCFCFF;
+    background-color: #fbfbfc;
     border: 1px solid rgba(var(--m-color-neutral-20, 230, 237, 242), 1);
     padding: 2rem 3rem;
+    border-radius: 5px;
 }
 
 .shipment_card_header {
@@ -35,5 +36,5 @@
     width: 6rem;
     padding: 0.5rem 1rem;
     border: 1px solid rgba(var(--m-color-neutral-20, 230, 237, 242), 1);
-    border-radius: 6px;
+    border-radius: 5px;
 }

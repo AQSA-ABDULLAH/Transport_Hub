@@ -8,7 +8,7 @@ function ManageShipments() {
         <>
             <ShipmentHeader />
             <div className={styles.shipment_container}>
-                <ShipmentCard/>
+                <ShipmentCard />
             </div>
         </>
     )
