@@ -18,15 +18,15 @@
     border-Right-style: dashed;
 }
 
-.logo {
-    color: #fa983a;
-    text-transform: uppercase;
-    text-align: center;
+.logo img{
+   width: 10.5rem;
+   height: auto;
+   display: flex;
+   margin-left: 20px;
 }
 
 .spaceY {
-    margin-top: 1.5rem;
-
+    margin-top: 1rem;
 }
 
 .sideLink {
