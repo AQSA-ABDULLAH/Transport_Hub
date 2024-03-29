@@ -9,9 +9,14 @@ import { IoIosPeople } from "react-icons/io";
 import axios from 'axios';
 import FiltersCard from '../filterCard/FiltersCard';
 
-function CarCard (props) {
+import { useDispatch } from "react-redux";
+import { bookCar } from "../../../../redux/containers/cars/actions";
+import { useSelector } from "react-redux";
 
-    console.log("props",props); 
+function CarCard() {
+    const navigate = useNavigate();
+    const reduxState = useSelector((state) => state.bookCar);
+    const dispatch = useDispatch();
 
     const [product, setProduct] = useState([]);
     const [sortBy, setSortBy] = useState('high');
@@ -20,6 +25,17 @@ function CarCard (props) {
     const [passengers, setPassengers] = useState('four');
     const [bags, setBags] = useState('one');
 
+
+    const handleSubmit = async (e, carData) => {
+        e.preventDefault();
+        await dispatch(bookCar(carData));
+    };
+
+    useEffect(() => {
+        if (reduxState.isBooked) {
+          navigate('/carAddOn');
+        }
+      }, [reduxState.isBooked, navigate]);
 
 
     useEffect(() => {
@@ -101,10 +117,11 @@ function CarCard (props) {
                                         <small>RS {item.price} total</small>
                                     </div>
 
-                                    <Button btnText="Book Now" primary
-                                        onClick={() =>
-                                            props.bookCar({ price: 123, name:"sfs", more:"shfbh"})
-                                        }
+                                    <Button
+                                        btnText="Book Now"
+                                        primary
+                                        btnClick={(e) => handleSubmit(e, { carType: item.carType, 
+                                            carPrice: item.price })}
                                     />
                                 </div>
 

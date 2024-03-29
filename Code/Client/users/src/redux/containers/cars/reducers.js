@@ -4,8 +4,9 @@ import * as type from './constants';
 const initialState = {
   loading: false,
   error: null,
-  user:null,
-  userId: null,
+  carData: null,
+  carId: null,
+  isBooked: false,
   payload:null
 };
 
@@ -21,7 +22,8 @@ export default function reducer(state = initialState, action) {
         ...state,
         loading: false,
         error:null,
-        user: action.payload,
+        isBooked: true,
+        carData: action.payload,
       };
     case type.BOOK_CAR_FAILURE:
       return {
