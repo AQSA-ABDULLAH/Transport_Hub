@@ -7,17 +7,14 @@ import Flatbed from '../../../../molecules/create-shipment/quote-mode/Flatbed';
 import Parcel from '../../../../molecules/create-shipment/quote-mode/Parcel';
 
 function NewQuote() {
-  const [selectedMode, setSelectedMode] = useState('LTL');
+  const [selectedMode, setSelectedMode] = useState();
   const [pickupDate, setPickupDate] = useState('');
   const [isAddStopOpen, setIsAddStopOpen] = useState(false);
 
+  // Handle mode change event
   const handleModeChange = (event) => {
     const mode = event.target.value;
     setSelectedMode(mode);
-  };
-
-  const handleAddStopClick = () => {
-    setIsAddStopOpen((prevIsAddStopOpen) => !prevIsAddStopOpen); // Toggle the state
   };
 
   return (
@@ -29,6 +26,7 @@ function NewQuote() {
           <div>
             <label htmlFor="mode">Mode</label>
             <select id="mode" value={selectedMode} onChange={handleModeChange}>
+              <option value="select_option" disabled selected>Select Option</option>
               <option value="LTL">LTL (Less than Truckload)</option>
               <option value="FTL">FTL (Full Truckload)</option>
               <option value="container">Container Quotes</option>
@@ -63,15 +61,33 @@ function NewQuote() {
           </div>
         </div>
 
-        <div className={styles.addStop}>
-          <button onClick={handleAddStopClick}>+ Add Stop</button>
-        </div>
         {isAddStopOpen && (
-          <div className={styles.addStopDiv}>
-            <p>This is the additional stop information.</p>
-            <p>You can add more content here.</p>
+          <div className={styles.stop}>
+            <label htmlFor="pickup">Stop</label>
+            <div className={styles.stop_input}>
+              <div className={styles.input_div}>
+                <span>Add an address or facility</span>
+                <button>+</button>
+              </div>
+              <select id="stop_type">
+                <option value="select_option" disabled selected>Select Option</option>
+                <option value="pickup">Pick up</option>
+                <option value="delivery">Delivery</option>
+              </select>
+              <button className={styles.close_stop}><img src="/assets/images/good-shipment/delete.png" alt="Delete"
+                onClick={() => setIsAddStopOpen(false)} /></button>
+            </div>
           </div>
         )}
+
+        <div className={styles.addStop}>
+          {/* Conditionally render the button based on isAddStopOpen */}
+          {!isAddStopOpen && (
+            <button type="button" onClick={() => setIsAddStopOpen(true)}> + Add Stop
+            </button>
+          )}
+        </div>
+
 
         <div className={styles.delivery}>
           <label htmlFor="delivery">Delivery</label>

@@ -31,7 +31,7 @@
 }
 
 .row input,
-.row select,
+select,
 .input_div {
     width: 100%;
     font-weight: 400;
@@ -47,7 +47,7 @@
 }
 
 .row input:focus,
-.row select:focus {
+select:focus {
     outline: none;
 }
 
@@ -74,7 +74,28 @@
     font-weight: 500;
 }
 
-.addStop button:hover{
+.addStop button:hover {
     background-color: #e7e7e7;
     cursor: pointer;
+}
+
+.stop_input {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.stop img {
+    width: 1.6rem;
+    height: auto;
+}
+
+.stop select {
+    width: 40%;
+}
+
+.close_stop {
+    border-radius: 50%;
+    border: none;
+    padding: 3px 8px;
 }
