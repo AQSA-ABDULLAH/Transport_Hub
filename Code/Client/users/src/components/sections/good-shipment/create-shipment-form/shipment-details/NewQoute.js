@@ -26,7 +26,7 @@ function NewQuote() {
           <div>
             <label htmlFor="mode">Mode</label>
             <select id="mode" value={selectedMode} onChange={handleModeChange}>
-              <option value="select_option" disabled selected>Select Option</option>
+              <option value="select_option" disabled selected>Select Mode</option>
               <option value="LTL">LTL (Less than Truckload)</option>
               <option value="FTL">FTL (Full Truckload)</option>
               <option value="container">Container Quotes</option>
@@ -70,7 +70,7 @@ function NewQuote() {
                 <button>+</button>
               </div>
               <select id="stop_type">
-                <option value="select_option" disabled selected>Select Option</option>
+                <option value="select_option" disabled selected>Stop Type</option>
                 <option value="pickup">Pick up</option>
                 <option value="delivery">Delivery</option>
               </select>
