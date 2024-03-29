@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styles from './newqoute.module.css';
-import Container from '../../../../molecules/create-shipment/quote-mode/Container';
 import LTLForm from '../../../../molecules/create-shipment/quote-mode/LTLForm';
 import FTLForm from '../../../../molecules/create-shipment/quote-mode/FTLForm';
 import Flatbed from '../../../../molecules/create-shipment/quote-mode/Flatbed';
@@ -20,16 +19,21 @@ function NewQuote() {
   return (
     <div className={styles.newQuote}>
       <h2>New Quote</h2>
-
       <form>
         <div className={styles.row}>
+          <div>
+            <label htmlFor="commodity_name">Commodity name</label>
+            <input
+              type="text"
+              placeholder='Item description'
+            />
+          </div>
           <div>
             <label htmlFor="mode">Mode</label>
             <select id="mode" value={selectedMode} onChange={handleModeChange}>
               <option value="select_option" disabled selected>Select Mode</option>
               <option value="LTL">LTL (Less than Truckload)</option>
               <option value="FTL">FTL (Full Truckload)</option>
-              <option value="container">Container Quotes</option>
               <option value="flatbed">Flatbed Quotes</option>
               <option value="parcel">Parcel Quotes</option>
             </select>
@@ -48,7 +52,6 @@ function NewQuote() {
         <div>
           {selectedMode === 'LTL' && <LTLForm />}
           {selectedMode === 'FTL' && <FTLForm />}
-          {selectedMode === 'container' && <Container />}
           {selectedMode === 'flatbed' && <Flatbed />}
           {selectedMode === 'parcel' && <Parcel />}
         </div>
