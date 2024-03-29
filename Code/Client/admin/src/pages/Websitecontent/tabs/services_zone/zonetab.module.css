@@ -1,0 +1,19 @@
+.zoneContainer {
+    padding: 35px 60px 32px 83px;
+    height: 75vh;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+.avilable_zone{
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+}
+
+.avilable_zone p{
+    border: 1px solid #b491d2;
+    border-radius: 6px;
+    background-color:#e0e0e058;
+    padding: 8px 15px;
+}
