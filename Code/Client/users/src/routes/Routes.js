@@ -15,7 +15,7 @@ import LandingPage from "../pages/carRental/LandingPage.js";
 import ViewCars from "../pages/carRental/showCarsPage/ViewCars.js"
 import ExtendedDetailPage from "../pages/carRental/addOnPage/ExtendedDetailPage.js"
 import RentalBookingPage from "../pages/carRental/bookingPage/RentalBookingPage.js"
-import BlogsNews from "../pages/blogs&News/BlogsNews.js";
+import BlogsNews from "../pages/blogs&news/BlogsNews.js";
 import CareerPage from "../pages/career/CareerPage.js";
 import DriverEmail from "../pages/career/driver/registration/DriverEmail.js";
 import DriverVerifyMail from "../pages/career/driver/verifymail/DriverVerifyMain.js";
