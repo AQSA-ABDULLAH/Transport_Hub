@@ -7,6 +7,7 @@ import AboutTab from '../tabs/about/AboutTab';
 import SliderTab from '../tabs/slider/SliderTab';
 import GalleryTab from '../tabs/gallery/GalleryTab';
 import BlogTab from "../tabs/blog&news/BlogTab";
+import ZoneTab from "../tabs/services_zone/ZoneTab";
 
 const WebsiteContent = () => {
   const navigate = useNavigate();
@@ -54,6 +55,8 @@ const WebsiteContent = () => {
         return <SliderTab />
       case 3:
         return <BlogTab/>
+      case 4:
+        return <ZoneTab/>
       default:
         return null;
     }
