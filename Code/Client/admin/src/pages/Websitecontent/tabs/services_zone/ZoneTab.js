@@ -7,7 +7,7 @@ import Button from "../../../../components/atoms/buttons/Button";
 import ZoneList from "./ZoneList";
 
 const ZoneTab = () => {
-    const [addZoneForm, setAddZoneForm] = useState(true);
+    const [addZoneForm, setAddZoneForm] = useState(false);
     const [zone, setZone] = useState("");
     const [error, setError] = useState(false);
     const navigate = useNavigate();

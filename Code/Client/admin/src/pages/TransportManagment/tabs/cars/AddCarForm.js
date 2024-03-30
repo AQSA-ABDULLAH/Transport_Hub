@@ -115,79 +115,114 @@ const AddCarForm = ({ onClose }) => {
         backdropFilter: 'blur(1px)',
     };
 
-    const closeButtonStyle = {
-        cursor: 'pointer',
-        position: 'absolute',
-        top: '2.4rem',
-        right: '3.7rem',
-        fontSize: '3rem',
-    };
-
 
     return (
         <>
-            <div style={overlayStyle} onClick={onClose}></div>
-            <div className={`${style.popupForm} container`}>
-                <div style={closeButtonStyle} onClick={onClose}>
-                    &times;
-                </div>
-                <h3 className={style.heading}>Add New Car</h3>
+            <div style={overlayStyle}></div>
+            <div className={style.popupForm}>
+                <h3>Add New Car</h3>
+                <div className={style.first_row}>
+                    <div className={style.image}>
+                        <label htmlFor="carImage">Car Image:</label>
+                        <input
+                            type="file"
+                            className={style.form_image}
+                            id="carImage"
+                            name="carImage"
+                            accept="image/png, image/jpeg"
+                            onChange={(e) => setCarImage(e.target.files[0])}
+                        />
 
-                <div className={style.image}>
-                    {/* Car Image Input */}
-                    <div className={style.fields}>
-                        <label htmlFor="carImage" className="form-label">Car Image:</label> {imgperc > 0 && "Uploading " + imgperc + "%"}
-                        <div className="file-input-container" style={{ position: 'relative', width: '100%', height: '100%' }}>
-                            <input
-                                type="file"
-                                className={style.form_image}
-                                id="carImage"
-                                name="carImage"
-                                accept="image/png, image/jpeg"
-                                onChange={(e) => setCarImage(e.target.files[0])}
-                            />
-                            <div className={style.margin}>
-                                <div className={style.file_input}>
+                        <div className={style.image_view}>
+                            {carImage ? (
+                                <img
+                                    src={URL.createObjectURL(carImage)}
+                                    alt="icon"
+                                />
+                            ) : (
+                                <div className={style.image_container}>
                                     <MdCloudUpload className={style.icon} />
-                                    <span style={{ fontSize: '12px' }}>Click or drag to upload</span>
+                                    <p>Drag and drop or click here to upload image</p>
                                 </div>
+                            )}
+                        </div>
+
+                    </div>
+
+                    <div>
+                        <div>
+                            <label htmlFor="carTitle" className="form-label">Car Title:</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="carTitle"
+                                name="carTitle"
+                                value={carTitle}
+                                onChange={(e) => setCarTitle(e.target.value)}
+                            />
+                        </div>
+
+
+                        <div className={style.side_row}>
+                            <div>
+                                <label htmlFor="carType">Car Type:</label>
+                                <select
+                                    id="carType"
+                                    name="carType"
+                                    value={carType}
+                                    onChange={(e) => setCarType(e.target.value)}
+                                >
+                                    <option value="suv">SUV</option>
+                                    <option value="civic">CIVIC</option>
+                                    <option value="cng">Islamabad</option>
+                                    <option value="electricity">Wah Cantt</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label htmlFor="color" className="form-label">Color:</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="color"
+                                    name="color"
+                                    value={color}
+                                    onChange={(e) => setColor(e.target.value)}
+                                />
+                            </div>
+                        </div>
+
+                        <div className={style.side_row}>
+                            <div className={style.fileds}>
+                                <label htmlFor="Zone" className="form-label">Zone:</label>
+                                <select
+                                    id="zone"
+                                    name="zone"
+                                    value={zone}
+                                    onChange={(e) => setZone(e.target.value)}
+                                >
+                                    <option value="petrol">Karachi</option>
+                                    <option value="diesel">Lahore</option>
+                                    <option value="cng">Islamabad</option>
+                                    <option value="electricity">Wah Cantt</option>
+                                </select>
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="price" className="form-label">Price:</label>
+                                <input
+                                    type="number"
+                                    className="form-control"
+                                    id="price"
+                                    name="price"
+                                    value={price}
+                                    onChange={(e) => setPrice(e.target.value)}
+                                />
                             </div>
                         </div>
                     </div>
                 </div>
 
-
                 <div className={style.row}>
-                    {/* Car Title Input */}
-                    <div className={style.fileds}>
-                        <label htmlFor="carTitle" className="form-label">Car Title:</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="carTitle"
-                            name="carTitle"
-                            value={carTitle}
-                            onChange={(e) => setCarTitle(e.target.value)}
-                        />
-                    </div>
-
-                    {/* Car Type Input */}
-                    <div className={style.fileds}>
-                        <label htmlFor="carType">Car Type:</label>
-                        <input
-                            type="text"
-                            id="carType"
-                            name="carType"
-                            value={carType}
-                            onChange={(e) => setCarType(e.target.value)}
-                        />
-                    </div>
-
-
-                </div>
-
-                <div className={style.row}>
-                    {/* Number of Seats Input */}
                     <div className={style.fileds}>
                         <label htmlFor="numberOfSeats" className="form-label">Number of Seats:</label>
                         <input
@@ -198,7 +233,6 @@ const AddCarForm = ({ onClose }) => {
                             onChange={(e) => setNumberOfSeats(e.target.value)}
                         />
                     </div>
-                    {/* Bags Input */}
                     <div className={style.fileds}>
                         <label htmlFor="bags" className="form-label">Bags:</label>
                         <input
@@ -210,18 +244,25 @@ const AddCarForm = ({ onClose }) => {
                             onChange={(e) => setBags(e.target.value)}
                         />
                     </div>
+                    <div>
+                        <label htmlFor="mileLimit" >Incl:</label>
+                        <input
+                            type="number"
+                            id="mileLimit"
+                            name="mileLimit"
+                            value={mileLimit}
+                            onChange={(e) => setMileLimit(e.target.value)}
+                        />
+                    </div>
                 </div>
+
+
 
                 <div className={style.row}>
 
-                </div>
-
-                <div className={style.row}>
-                    {/* Transmission Input */}
-                    <div className="mb-3">
+                    <div>
                         <label htmlFor="transmissionType" className="form-label">Gearshift:</label>
                         <select
-                            className="form-select"
                             id="transmissionType"
                             name="transmissionType"
                             value={transmission}
@@ -232,93 +273,39 @@ const AddCarForm = ({ onClose }) => {
                         </select>
                     </div>
 
-                    {/* mileLimit Input */}
-                    <div className="mb-3">
-                        <label htmlFor="mileLimit" className="form-label">Incl:</label>
-                        <input
-                            type="number"
-                            className="form-control"
-                            id="mileLimit"
-                            name="mileLimit"
-                            value={mileLimit}
-                            onChange={(e) => setMileLimit(e.target.value)}
-                        />
-                    </div>
-                </div>
 
-                <div className={style.row}>
-                    {/* Fuel Type Input */}
-                    <div className="mb-3">
-                        <label htmlFor="fuelType" className="form-label">Fuel Type:</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="fuelType"
-                            name="fuelType"
-                            value={fuelType}
-                            onChange={(e) => setFuelType(e.target.value)}
-                        />
-                    </div>
-
-                    {/* Engine Type Input */}
-                    <div className="mb-3">
+                    <div>
                         <label htmlFor="engineType" className="form-label">Engine Type:</label>
-                        <input
-                            type="text"
-                            className="form-control"
+                        <select
                             id="engineType"
                             name="engineType"
                             value={engineType}
                             onChange={(e) => setEngineType(e.target.value)}
-                        />
-                    </div>
-                </div>
-
-
-                <div className={style.row}>
-
-                    {/* Car Color */}
-                    <div className={style.fileds}>
-                        <label htmlFor="color" className="form-label">Color:</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="color"
-                            name="color"
-                            value={color}
-                            onChange={(e) => setColor(e.target.value)}
-                        />
+                        >
+                            <option value="ev">Electric Vehicle</option>
+                            <option value="hev">Hybrid Engine</option>
+                            <option value="ice">Internal Combustion Engine</option>
+                        </select>
                     </div>
 
-                    {/* Zone Input */}
-                    <div className={style.fileds}>
-                        <label htmlFor="Zone" className="form-label">Zone:</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="zone"
-                            name="zone"
-                            value={zone}
-                            onChange={(e) => setZone(e.target.value)}
-                        />
+                    <div>
+                        <label htmlFor="fuelType" className="form-label">Fuel Type:</label>
+                        <select
+                            id="fuelType"
+                            name="fuelType"
+                            value={fuelType}
+                            onChange={(e) => setFuelType(e.target.value)}
+                        >
+                            <option value="petrol">Gasoline (Petrol)</option>
+                            <option value="diesel">Diesel</option>
+                            <option value="cng">CNG</option>
+                            <option value="electricity">Electricity</option>
+                        </select>
                     </div>
                 </div>
 
                 <div className={style.row}>
-                    {/* Price Input */}
-                    <div className="mb-3">
-                        <label htmlFor="price" className="form-label">Price:</label>
-                        <input
-                            type="number"
-                            className="form-control"
-                            id="price"
-                            name="price"
-                            value={price}
-                            onChange={(e) => setPrice(e.target.value)}
-                        />
-                    </div>
-
-                    <div className={style.fileds}>
+                    <div>
                         <label htmlFor="discount" className="form-label">Discount:</label>
                         <input
                             type="number"
@@ -330,10 +317,7 @@ const AddCarForm = ({ onClose }) => {
                         />
                     </div>
 
-                </div>
-
-                <div className={style.row}>
-                    <div className={style.fileds}>
+                    <div>
                         <label htmlFor="startDate" className="form-label">Start Date:</label>
                         <input
                             type="Date"
@@ -345,7 +329,7 @@ const AddCarForm = ({ onClose }) => {
                         />
                     </div>
 
-                    <div className={style.fileds}>
+                    <div>
                         <label htmlFor="endDate" className="form-label">End Date:</label>
                         <input
                             type="Date"
@@ -358,10 +342,12 @@ const AddCarForm = ({ onClose }) => {
                     </div>
                 </div>
 
-                {/* Add your other form fields, submit button, etc. */}
-                <button type="button" className="btn btn-success" onClick={handleSubmit}>
-                    SUBMIT
-                </button>
+                <div className={style.row}>
+                    <button onClick={onClose}>CANCLE</button>
+                    <button type="button" onClick={handleSubmit}>
+                        SUBMIT
+                    </button>
+                </div>
             </div>
         </>
     );
