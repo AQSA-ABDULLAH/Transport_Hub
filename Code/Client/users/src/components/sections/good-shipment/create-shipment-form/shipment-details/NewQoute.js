@@ -21,7 +21,7 @@ function NewQuote() {
     <div className={styles.newQuote}>
       <h2>New Quote</h2>
       <form>
-        <h4>Frigment Details :</h4>
+        <h4>Freight Information :</h4>
         <div className={styles.row}>
           <div>
             <label htmlFor="commodity_name">Commodity name</label>
