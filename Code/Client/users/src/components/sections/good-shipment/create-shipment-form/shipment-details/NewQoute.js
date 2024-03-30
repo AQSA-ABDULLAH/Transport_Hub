@@ -1,130 +1,168 @@
 import React, { useState } from 'react';
 import styles from './newqoute.module.css';
-import Container from '../../../../molecules/create-shipment/quote-mode/Container';
 import LTLForm from '../../../../molecules/create-shipment/quote-mode/LTLForm';
 import FTLForm from '../../../../molecules/create-shipment/quote-mode/FTLForm';
 import Flatbed from '../../../../molecules/create-shipment/quote-mode/Flatbed';
 import Parcel from '../../../../molecules/create-shipment/quote-mode/Parcel';
 
 function NewQuote() {
-  const [selectedMode, setSelectedMode] = useState('LTL');
-  const [LTL, setLTL] = useState(false);
-  const [FTL, setFTL] = useState(false);
-  const [container, setContainer] = useState(false);
-  const [flatbed, setFlatbed] = useState(false);
-  const [parcel, setParcel] = useState(false);
+  const [selectedMode, setSelectedMode] = useState();
+  const [pickupDate, setPickupDate] = useState('');
+  const [isAddStopOpen, setIsAddStopOpen] = useState(false);
+  const [isAddAccessorial, setIsAddAccessorial] = useState(false);
 
+  // Handle mode change event
   const handleModeChange = (event) => {
     const mode = event.target.value;
     setSelectedMode(mode);
-    if (mode === 'LTL') {
-      setLTL(true);
-      setFTL(false); setContainer(false); setFlatbed(false); setParcel(false);
-    }
-    else if (mode === 'FTL') {
-      setFTL(true);
-      setLTL(false); setContainer(false); setFlatbed(false); setParcel(false);
-    }
-    else if (mode === 'container') {
-      setContainer(true)
-      setLTL(false); setFTL(false); setFlatbed(false); setParcel(false);
-    }
-    else if (mode === 'flatbed') {
-      setFlatbed(true);
-      setLTL(false); setFTL(false); setContainer(false); setParcel(false);
-    }
-    else if (mode === 'parcel') {
-      setParcel(true);
-      setLTL(false); setFTL(false); setContainer(false); setFlatbed(false);
-    }
   };
 
   return (
     <div className={styles.newQuote}>
       <h2>New Quote</h2>
-
       <form>
+        <h4>Freight Information :</h4>
         <div className={styles.row}>
+          <div>
+            <label htmlFor="commodity_name">Commodity name</label>
+            <input
+              type="text"
+              placeholder='Item description'
+            />
+          </div>
           <div>
             <label htmlFor="mode">Mode</label>
             <select id="mode" value={selectedMode} onChange={handleModeChange}>
+              <option value="select_option" disabled selected>Select Mode</option>
               <option value="LTL">LTL (Less than Truckload)</option>
               <option value="FTL">FTL (Full Truckload)</option>
-              <option value="container">Container Quotes</option>
               <option value="flatbed">Flatbed Quotes</option>
               <option value="parcel">Parcel Quotes</option>
             </select>
           </div>
           <div>
             <label htmlFor="pickupDate">Pickup Date</label>
-            <input type="date" id="pickupDate" />
+            <input
+              type="date"
+              id="pickupDate"
+              value={pickupDate}
+              onChange={(e) => setPickupDate(e.target.value)}
+            />
           </div>
         </div>
 
         <div>
-          {selectedMode === 'LTL' && (
-            <div className={styles.LTL}>
-              <LTLForm />
-            </div>
-          )}
-          {selectedMode === 'FTL' && (
-            <div className={styles.FTL}>
-              <FTLForm />
-            </div>
-          )}
-          {selectedMode === 'container' && (
-            <div className={styles.container}>
-              <Container />
-            </div>
-          )}
-          {selectedMode === 'flatbed' && (
-            <div className={styles.flatbed}>
-              <Flatbed />
-            </div>
-          )}
-          {selectedMode === 'parcel' && (
-            <div className={styles.parcel}>
-              <Parcel />
-            </div>
-          )}
+          {selectedMode === 'LTL' && <LTLForm />}
+          {selectedMode === 'FTL' && <FTLForm />}
+          {selectedMode === 'flatbed' && <Flatbed />}
+          {selectedMode === 'parcel' && <Parcel />}
         </div>
-
 
         <div className={styles.pickup}>
-          <label htmlFor="pickup">Pickup</label>
+          <h4>Pickup details :</h4>
           <div className={styles.input_div}>
             <span>Add an address or facility</span>
             <button>+</button>
           </div>
         </div>
+
+        {isAddStopOpen && (
+          <div className={styles.stop}>
+            <h4>Stop details :</h4>
+            <div className={styles.stop_input}>
+              <div className={styles.input_div}>
+                <span>Add an address or facility</span>
+                <button>+</button>
+              </div>
+              <select id="stop_type">
+                <option value="select_option" disabled selected>Stop Type</option>
+                <option value="pickup">Pickup</option>
+                <option value="delivery">Delivery</option>
+              </select>
+              <button className={styles.close_stop}><img src="/assets/images/good-shipment/delete.png" alt="Delete"
+                onClick={() => setIsAddStopOpen(false)} /></button>
+            </div>
+          </div>
+        )}
 
         <div className={styles.addStop}>
-          <button>+</button>
-          <span>Add Stop</span>
+          {/* Conditionally render the button based on isAddStopOpen */}
+          {!isAddStopOpen && (
+            <button type="button" onClick={() => setIsAddStopOpen(true)}> + Add Stop
+            </button>
+          )}
         </div>
 
+
         <div className={styles.delivery}>
-          <label htmlFor="delivery">Delivery</label>
+          <h4>Delivery details :</h4>
           <div className={styles.input_div}>
             <span>Add an address or facility</span>
             <button>+</button>
           </div>
         </div>
 
+        <div>
+          <h4>Accessorial :</h4>
+          {!isAddAccessorial && (
+            <div className={styles.input_div}>
+              <span>Add Accessorial</span>
+              <button type='button' onClick={() => setIsAddAccessorial(true)}>+</button>
+            </div>
+          )}
+          {isAddAccessorial && (
+            <div className={styles.accessorial_div}>
+              <div className={styles.accessorial_div_heading}>
+                <span>Select Accessorial</span>
+                <button type='button' onClick={() => setIsAddAccessorial(false)}>-</button>
+              </div>
+              <div className={styles.ckeckbox_column}>
+                <div className={styles.first_column}>
+                  <div>
+                    <input type="checkbox" id="freezer" name="freezer" />
+                    <label for="freezer">Protect From Freezing</label><br></br>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="hazmat" name="hazmat" />
+                    <label for="hazmat">Hazmat</label><br></br>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="trunable" name="trunable" />
+                    <label for="trunable">Trunable</label><br></br>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="team" name="team" />
+                    <label for="team">Team Service</label><br></br>
+                  </div>
+                </div>
+
+                <div>
+                  <div>
+                    <input type="checkbox" id="non_stackable" name="non_stackable" />
+                    <label for="non_stackable">Non_Stackable</label><br></br>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="residential" name="residential" />
+                    <label for="residential">Residential</label><br></br>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="construction_site" name="construction_site" />
+                    <label for="construction_site">Construction Site</label><br></br>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
 
         <div>
-          <label>More Details (optional)</label>
+          <h4>More Details (optional) :</h4>
           <textarea
-            placeholder="More Details (optional)"
-            rows={3} 
+            placeholder="Type any instruction note to the carrier"
+            rows={5}
             className={styles.input_div}
           ></textarea>
         </div>
-
-        {/* <div className={styles.accessories}>
-          <h3>Accessorials</h3>
-          <button>+</button>
-        </div> */}
       </form>
     </div>
   );

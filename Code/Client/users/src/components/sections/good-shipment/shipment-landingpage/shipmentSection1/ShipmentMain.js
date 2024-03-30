@@ -7,7 +7,7 @@ function ShipmentMain({ landingVideo }) {
     const navigate = useNavigate();
 
     const handleRedirect = () => {
-      navigate('/create_shipment_form'); 
+      navigate('/manage_shipments'); 
     };
     return (
         <>
