@@ -12,7 +12,35 @@
     padding-bottom: 40px;
 }
 
+.zone_form{
+    border: 1px solid #6b6b6b58;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.form_top{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 35px;
+    border-bottom: 1px solid #6b6b6b58;
+    align-items: center;
+}
+
+.zone_form form{
+    padding: 28px 35px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 70px;
+}
+
+.zone_form input{
+    margin-top: 10px;
+    width: 80%;
+}
+
 .avilable_zone{
+    position: relative;
     display: flex;
     flex-direction: row;
     gap: 25px;
@@ -23,4 +51,16 @@
     border-radius: 6px;
     background-color:#e0e0e058;
     padding: 8px 15px;
+}
+
+.avilable_zone button{
+    border: none;
+    background-color: transparent;
+} 
+
+.avilable_zone button img {
+    width: 1.5rem;
+    height: auto;
+    position: absolute;
+    top: 10px;
 }

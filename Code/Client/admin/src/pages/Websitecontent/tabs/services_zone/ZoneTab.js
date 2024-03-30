@@ -2,7 +2,7 @@ import React from 'react';
 import styles from "./zonetab.module.css";
 import Button from "../../../../components/atoms/buttons/Button";
 
-export default function ZoneTab() {
+const ZoneTab = () => {
     return (
         <>
             <div className={styles.zoneContainer}>
@@ -15,16 +15,35 @@ export default function ZoneTab() {
                         size={"15px"}
                     />
                 </div>
+                <div className={styles.zone_form}>
+                    <div className={styles.form_top}>
+                        <p>Add New Zone</p>
+                        <Button
+                            secondary
+                            btnText="Cancel"
+                            radius={"6px"}
+                            size={"15px"}
+                        />
+
+                    </div>
+
+                    <form>
+                        <input type='text' placeholder='City name' />
+                        <Button
+                            primary
+                            btnText="Save Zone"
+                            radius={"6px"}
+                            size={"15px"}
+                        />
+                    </form>
+                </div>
                 <div className={styles.avilable_zone}>
-                    <p>Karachi <button></button></p>
-                    <p>Karachi</p>
-                    <p>Karachi</p>
-                    <p>Karachi</p>
-                    <p>Karachi</p>
-                    <p>Karachi</p>
-                    <p>Karachi</p>
+                    <p>Karachi <button><img src='/assets/images/website-content/delete.png' /></button></p>
+                    <p>KarachiKarachiLkdsfn <button><img src='/assets/images/website-content/delete.png' /></button></p>
                 </div>
             </div>
         </>
     )
 }
+
+export default ZoneTab;
