@@ -15,7 +15,7 @@
 .zone_form{
     border: 1px solid #6b6b6b58;
     border-radius: 6px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 .form_top{
@@ -55,6 +55,10 @@
 
 .avilable_zone button{
     border: none;
+    background-color: transparent;
+} 
+
+.avilable_zone button:hover{
     background-color: transparent;
 } 
 
