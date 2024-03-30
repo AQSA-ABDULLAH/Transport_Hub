@@ -119,38 +119,35 @@ function NewQuote() {
               <div className={styles.ckeckbox_column}>
                 <div className={styles.first_column}>
                   <div>
-                    <input type="checkbox" id="checkbox1" name="checkbox1" />
-                    <label for="checkbox1">Checkbox 1</label><br></br>
+                    <input type="checkbox" id="freezer" name="freezer" />
+                    <label for="freezer">Protect From Freezing</label><br></br>
                   </div>
                   <div>
-                    <input type="checkbox" id="checkbox1" name="checkbox1" />
-                    <label for="checkbox1">Checkbox 1</label><br></br>
+                    <input type="checkbox" id="hazmat" name="hazmat" />
+                    <label for="hazmat">Hazmat</label><br></br>
                   </div>
                   <div>
-                    <input type="checkbox" id="checkbox1" name="checkbox1" />
-                    <label for="checkbox1">Checkbox 1</label><br></br>
+                    <input type="checkbox" id="trunable" name="trunable" />
+                    <label for="trunable">Trunable</label><br></br>
                   </div>
                   <div>
-                    <input type="checkbox" id="checkbox1" name="checkbox1" />
-                    <label for="checkbox1">Checkbox 1</label><br></br>
+                    <input type="checkbox" id="team" name="team" />
+                    <label for="team">Team Service</label><br></br>
                   </div>
                 </div>
+
                 <div>
-                <div>
-                    <input type="checkbox" id="checkbox1" name="checkbox1" />
-                    <label for="checkbox1">Checkbox 1</label><br></br>
+                  <div>
+                    <input type="checkbox" id="non_stackable" name="non_stackable" />
+                    <label for="non_stackable">Non_Stackable</label><br></br>
                   </div>
                   <div>
-                    <input type="checkbox" id="checkbox1" name="checkbox1" />
-                    <label for="checkbox1">Checkbox 1</label><br></br>
+                    <input type="checkbox" id="residential" name="residential" />
+                    <label for="residential">Residential</label><br></br>
                   </div>
                   <div>
-                    <input type="checkbox" id="checkbox1" name="checkbox1" />
-                    <label for="checkbox1">Checkbox 1</label><br></br>
-                  </div>
-                  <div>
-                    <input type="checkbox" id="checkbox1" name="checkbox1" />
-                    <label for="checkbox1">Checkbox 1</label><br></br>
+                    <input type="checkbox" id="construction_site" name="construction_site" />
+                    <label for="construction_site">Construction Site</label><br></br>
                   </div>
                 </div>
               </div>
