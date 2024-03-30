@@ -68,3 +68,8 @@
     position: absolute;
     top: 10px;
 }
+
+.text_danger{
+    color: red;
+    font-size: 12px;
+}
