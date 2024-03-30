@@ -9,6 +9,7 @@ function NewQuote() {
   const [selectedMode, setSelectedMode] = useState();
   const [pickupDate, setPickupDate] = useState('');
   const [isAddStopOpen, setIsAddStopOpen] = useState(false);
+  const [isAddAccessorial, setIsAddAccessorial] = useState(false);
 
   // Handle mode change event
   const handleModeChange = (event) => {
@@ -20,6 +21,7 @@ function NewQuote() {
     <div className={styles.newQuote}>
       <h2>New Quote</h2>
       <form>
+        <h4>Frigment Details :</h4>
         <div className={styles.row}>
           <div>
             <label htmlFor="commodity_name">Commodity name</label>
@@ -57,7 +59,7 @@ function NewQuote() {
         </div>
 
         <div className={styles.pickup}>
-          <label htmlFor="pickup">Pickup</label>
+          <h4>Pickup details :</h4>
           <div className={styles.input_div}>
             <span>Add an address or facility</span>
             <button>+</button>
@@ -66,7 +68,7 @@ function NewQuote() {
 
         {isAddStopOpen && (
           <div className={styles.stop}>
-            <label htmlFor="pickup">Stop</label>
+            <h4>Stop details :</h4>
             <div className={styles.stop_input}>
               <div className={styles.input_div}>
                 <span>Add an address or facility</span>
@@ -74,7 +76,7 @@ function NewQuote() {
               </div>
               <select id="stop_type">
                 <option value="select_option" disabled selected>Stop Type</option>
-                <option value="pickup">Pick up</option>
+                <option value="pickup">Pickup</option>
                 <option value="delivery">Delivery</option>
               </select>
               <button className={styles.close_stop}><img src="/assets/images/good-shipment/delete.png" alt="Delete"
@@ -93,7 +95,7 @@ function NewQuote() {
 
 
         <div className={styles.delivery}>
-          <label htmlFor="delivery">Delivery</label>
+          <h4>Delivery details :</h4>
           <div className={styles.input_div}>
             <span>Add an address or facility</span>
             <button>+</button>
@@ -101,10 +103,66 @@ function NewQuote() {
         </div>
 
         <div>
-          <label>More Details (optional)</label>
+          <h4>Accessorial :</h4>
+          {!isAddAccessorial && (
+            <div className={styles.input_div}>
+              <span>Add Accessorial</span>
+              <button type='button' onClick={() => setIsAddAccessorial(true)}>+</button>
+            </div>
+          )}
+          {isAddAccessorial && (
+            <div className={styles.accessorial_div}>
+              <div className={styles.accessorial_div_heading}>
+                <span>Select Accessorial</span>
+                <button type='button' onClick={() => setIsAddAccessorial(false)}>-</button>
+              </div>
+              <div className={styles.ckeckbox_column}>
+                <div className={styles.first_column}>
+                  <div>
+                    <input type="checkbox" id="checkbox1" name="checkbox1" />
+                    <label for="checkbox1">Checkbox 1</label><br></br>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="checkbox1" name="checkbox1" />
+                    <label for="checkbox1">Checkbox 1</label><br></br>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="checkbox1" name="checkbox1" />
+                    <label for="checkbox1">Checkbox 1</label><br></br>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="checkbox1" name="checkbox1" />
+                    <label for="checkbox1">Checkbox 1</label><br></br>
+                  </div>
+                </div>
+                <div>
+                <div>
+                    <input type="checkbox" id="checkbox1" name="checkbox1" />
+                    <label for="checkbox1">Checkbox 1</label><br></br>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="checkbox1" name="checkbox1" />
+                    <label for="checkbox1">Checkbox 1</label><br></br>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="checkbox1" name="checkbox1" />
+                    <label for="checkbox1">Checkbox 1</label><br></br>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="checkbox1" name="checkbox1" />
+                    <label for="checkbox1">Checkbox 1</label><br></br>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div>
+          <h4>More Details (optional) :</h4>
           <textarea
-            placeholder="More Details (optional)"
-            rows={3}
+            placeholder="Type any instruction note to the carrier"
+            rows={5}
             className={styles.input_div}
           ></textarea>
         </div>
