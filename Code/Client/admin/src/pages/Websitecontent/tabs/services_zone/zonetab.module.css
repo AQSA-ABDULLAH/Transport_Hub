@@ -1,8 +1,9 @@
 .zoneContainer {
     padding: 40px 90px;
+    height: 75vh;
     overflow-y: scroll;
-    color: #3B3B4f;
     width: 100%;
+    color: #3B3B4f;
 }
 
 .zoneHeader{
@@ -38,20 +39,22 @@
     margin-top: 10px;
     width: 80%;
 }
-
-.avilable_zone{
+.avilable_zone {
     position: relative;
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     gap: 25px;
 }
 
-.avilable_zone p{
+.zone div {
+    margin-bottom: 12px;
     border: 1px solid #b491d2;
     border-radius: 6px;
-    background-color:#e0e0e058;
+    background-color: #e0e0e058;
     padding: 8px 15px;
 }
+
+
 
 .avilable_zone button{
     border: none;

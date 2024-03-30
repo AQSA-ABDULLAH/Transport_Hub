@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import styles from "./zonetab.module.css";
 import Button from "../../../../components/atoms/buttons/Button";
+import ZoneList from "./ZoneList";
 
 const ZoneTab = () => {
     const [addZoneForm, setAddZoneForm] = useState(true);
@@ -11,19 +12,26 @@ const ZoneTab = () => {
     const [error, setError] = useState(false);
     const navigate = useNavigate();
 
+  
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
         if (!zone) {
             setError(true);
             return;
         }
-    
+
         try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                throw new Error("No token found. Please log in.");
+            }
+
             const response = await axios.post("http://localhost:5000/api/zone/add_zone", {
                 zone
             }, {
-                headers: { 'Authorization': localStorage.getItem('token') }
+                headers: { 'Authorization': token }
             });
 
             if (response.data.status === "success") {
@@ -32,6 +40,7 @@ const ZoneTab = () => {
                     'You have added a new zone successfully.',
                     'success'
                 );
+                navigate('/');
             } else {
                 throw new Error("Failed to submit data. Please try again.");
             }
@@ -40,7 +49,6 @@ const ZoneTab = () => {
                 localStorage.setItem('token', null);
             }
 
-            navigate('/');
         } catch (error) {
             console.error(error);
             alert("An error occurred while submitting the data. Please try again.");
@@ -49,7 +57,7 @@ const ZoneTab = () => {
 
     return (
         <>
-            <div className={styles.zoneContainer}>
+            <section className={styles.zoneContainer}>
                 <div className={styles.zoneHeader}>
                     <h2>Transport Hub Zone</h2>
                     <div onClick={() => setAddZoneForm(true)}>
@@ -75,19 +83,20 @@ const ZoneTab = () => {
                                 />
                             </div>
                         </div>
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <input type='text' placeholder='City name'
-                            name="zone"
+                                name="zone"
                                 value={zone}
                                 onChange={(e) => setZone(e.target.value)}
                             />
                             {error && !zone && <span className={styles.text_danger}>This field is required</span>}
-                            <div onClick={handleSubmit}>
+                            <div>
                                 <Button
                                     primary
                                     btnText="Save Zone"
                                     radius={"6px"}
                                     size={"15px"}
+                                    type="submit"
                                 />
                             </div>
                         </form>
@@ -95,10 +104,10 @@ const ZoneTab = () => {
                 }
 
                 <div className={styles.avilable_zone}>
-                    <p>Karachi <button><img src='/assets/images/website-content/delete.png' alt="Delete" /></button></p>
-                    <p>KarachiKarachiLkdsfn <button><img src='/assets/images/website-content/delete.png' alt="Delete" /></button></p>
+                    <ZoneList/>
                 </div>
-            </div>
+
+            </section>
         </>
     )
 }
