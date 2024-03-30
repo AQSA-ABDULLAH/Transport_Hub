@@ -1,4 +1,4 @@
-.row, .sub_input {
+.row, .sub_input, .parcel_row {
     display: flex;
     flex-direction: row;
     gap: 20px;
@@ -23,7 +23,7 @@
     margin-top: 18px;
 }
 
-.row input,
+.row input, .parcel_row input,
 select {
     width: 210px;
     font-weight: 400;
@@ -32,4 +32,18 @@ select {
     border: 1px solid #cccbcb;
     border-radius: 5px;
     min-width: 0px;
+}
+
+.parcel_row input{
+    width: 170px;
+}
+
+.dimensions_row{
+    display: flex;
+    flex-direction: row;
+    gap: 9px;
+}
+
+.dimensions_row input{
+    width: 100px;
 }
