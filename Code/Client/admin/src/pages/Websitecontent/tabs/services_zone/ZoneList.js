@@ -14,7 +14,7 @@ export default function ZoneList() {
             .catch(err => {
                 console.log(err);
             });
-    }, []); // Empty dependency array ensures this effect runs only once, similar to componentDidMount
+    }, []); 
   return (
     <>
     {

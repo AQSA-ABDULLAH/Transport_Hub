@@ -79,6 +79,11 @@
   width: 250px;
 }
 
+.popupForm input, .popupForm select{
+  font-size: 14px;
+  padding: 10px;
+}
+
 .popupForm select{
   padding: 10px;
   border: 1px solid #c4c2c2;

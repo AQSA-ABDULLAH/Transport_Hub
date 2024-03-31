@@ -10,21 +10,22 @@ import { app } from "../../../../firebase";
 const AddCarForm = ({ onClose }) => {
     const [carImage, setCarImage] = useState('');
     const [carTitle, setCarTitle] = useState('');
-    const [carType, setCarType] = useState('');
-    const [numberOfSeats, setNumberOfSeats] = useState('0');
+    const [carType, setCarType] = useState('Select car type');
+    const [numberOfSeats, setNumberOfSeats] = useState('');
     const [transmission, setTransmission] = useState('');
-    const [bags, setBags] = useState('0');
+    const [bags, setBags] = useState('');
     const [mileLimit, setMileLimit] = useState('');
     const [color, setColor] = useState('');
-    const [fuelType, setFuelType] = useState('');
-    const [engineType, setEngineType] = useState('');
-    const [price, setPrice] = useState('0');
-    const [zone, setZone] = useState('');
-    const [discount, setDiscount] = useState('0');
+    const [fuelType, setFuelType] = useState('Select Fuel Type');
+    const [engineType, setEngineType] = useState('Select Engine Type');
+    const [price, setPrice] = useState('');
+    const [zone, setZone] = useState('Select zone');
+    const [discount, setDiscount] = useState('');
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     const [imgperc, setImagePrec] = useState("");
     const [imageUrl, setImageUrl] = useState("");
+    const [product, setProduct] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -104,6 +105,17 @@ const AddCarForm = ({ onClose }) => {
         }
     };
 
+
+    useEffect(() => {
+        axios.get("http://localhost:5000/api/zone/get-zone")
+            .then(res => {
+                setProduct(res.data.data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }, []);
+
     const overlayStyle = {
         position: 'fixed',
         top: '0',
@@ -154,7 +166,7 @@ const AddCarForm = ({ onClose }) => {
                             <label htmlFor="carTitle" className="form-label">Car Title:</label>
                             <input
                                 type="text"
-                                className="form-control"
+                                placeholder="Car Name/Model"
                                 id="carTitle"
                                 name="carTitle"
                                 value={carTitle}
@@ -172,6 +184,7 @@ const AddCarForm = ({ onClose }) => {
                                     value={carType}
                                     onChange={(e) => setCarType(e.target.value)}
                                 >
+                                    <option disabled>Select car type</option>
                                     <option value="suv">SUV</option>
                                     <option value="civic">CIVIC</option>
                                     <option value="cng">Islamabad</option>
@@ -179,11 +192,12 @@ const AddCarForm = ({ onClose }) => {
                                 </select>
                             </div>
 
+
                             <div>
                                 <label htmlFor="color" className="form-label">Color:</label>
                                 <input
                                     type="text"
-                                    className="form-control"
+                                    placeholder="e.g. Black"
                                     id="color"
                                     name="color"
                                     value={color}
@@ -201,18 +215,19 @@ const AddCarForm = ({ onClose }) => {
                                     value={zone}
                                     onChange={(e) => setZone(e.target.value)}
                                 >
-                                    <option value="petrol">Karachi</option>
-                                    <option value="diesel">Lahore</option>
-                                    <option value="cng">Islamabad</option>
-                                    <option value="electricity">Wah Cantt</option>
+                                    <option disabled selected>Select zone</option>
+                                    {product.map((item, index) =>
+                                        <option key={index} value="">{item.zone}</option>
+                                    )}
                                 </select>
                             </div>
-                            <div className="mb-3">
-                                <label htmlFor="price" className="form-label">Price:</label>
+
+
+                            <div>
+                                <label>Price <span>(per/hour)</span>:</label>
                                 <input
-                                    type="number"
-                                    className="form-control"
-                                    id="price"
+                                    type="text"
+                                    placeholder="e.g. 450"
                                     name="price"
                                     value={price}
                                     onChange={(e) => setPrice(e.target.value)}
@@ -227,7 +242,7 @@ const AddCarForm = ({ onClose }) => {
                         <label htmlFor="numberOfSeats" className="form-label">Number of Seats:</label>
                         <input
                             type="number"
-                            id="numberOfSeats"
+                            placeholder="Enter No. of seats"
                             name="numberOfSeats"
                             value={numberOfSeats}
                             onChange={(e) => setNumberOfSeats(e.target.value)}
@@ -237,18 +252,17 @@ const AddCarForm = ({ onClose }) => {
                         <label htmlFor="bags" className="form-label">Bags:</label>
                         <input
                             type="number"
-                            className="form-control"
-                            id="bags"
+                            placeholder="Enter No. of Bags"
                             name="bags"
                             value={bags}
                             onChange={(e) => setBags(e.target.value)}
                         />
                     </div>
                     <div>
-                        <label htmlFor="mileLimit" >Incl:</label>
+                        <label htmlFor="mileLimit" >MileLimit <span>(per/day)</span>:</label>
                         <input
-                            type="number"
-                            id="mileLimit"
+                            type="text"
+                            placeholder="e.g. 200"
                             name="mileLimit"
                             value={mileLimit}
                             onChange={(e) => setMileLimit(e.target.value)}
@@ -282,6 +296,7 @@ const AddCarForm = ({ onClose }) => {
                             value={engineType}
                             onChange={(e) => setEngineType(e.target.value)}
                         >
+                            <option disabled>Select Engine Type</option>
                             <option value="ev">Electric Vehicle</option>
                             <option value="hev">Hybrid Engine</option>
                             <option value="ice">Internal Combustion Engine</option>
@@ -296,6 +311,7 @@ const AddCarForm = ({ onClose }) => {
                             value={fuelType}
                             onChange={(e) => setFuelType(e.target.value)}
                         >
+                            <option disabled>Select Fuel Type</option>
                             <option value="petrol">Gasoline (Petrol)</option>
                             <option value="diesel">Diesel</option>
                             <option value="cng">CNG</option>
@@ -306,12 +322,11 @@ const AddCarForm = ({ onClose }) => {
 
                 <div className={style.row}>
                     <div>
-                        <label htmlFor="discount" className="form-label">Discount:</label>
+                        <label>Discount <span>(per/hour)</span>:</label>
                         <input
-                            type="number"
-                            className="form-control"
-                            id="discount"
+                            type="text"
                             name="discount"
+                            placeholder="e.g. 250"
                             value={discount}
                             onChange={(e) => setDiscount(e.target.value)}
                         />
