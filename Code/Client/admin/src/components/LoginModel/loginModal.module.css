@@ -16,12 +16,19 @@
     flex-grow: 1;
   }
   .image{
-    margin-left: 10px;
-    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  .image img{
-    width: 20.5rem; 
+  .logo_image{
+    width: 11rem; 
     height: auto; 
+  }
+  .login_image{
+    width: 20rem;
+    height: auto;
+    margin-right: 10px;
+    margin-top: 15px;
   }
   .login_form_container {
     padding-top: 20px;

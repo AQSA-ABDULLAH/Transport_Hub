@@ -59,7 +59,8 @@ function LoginModal({ onClose }) {
         <div className={styles.logo_container}>
       
           <div className={styles.image}>
-          <img  src="/assets/images/cars/image4.png"></img>
+          <img className={styles.logo_image} src="/assets/logo/LogoDark.png"></img>
+          <img className={styles.login_image} src="/assets/images/cars/image4.png"></img>
           </div>
         </div>
         <div className={styles.login_form_container}>
