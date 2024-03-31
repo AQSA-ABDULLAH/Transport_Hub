@@ -1,0 +1,38 @@
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+  }
+  
+  .dumbbell {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+    animation: lift 1s infinite;
+  }
+  
+  .dumbbell.left {
+    animation-delay: 0.5s;
+  }
+  
+  .weight {
+    height: 40px;
+    width: 40px;
+    background: rgb(0, 0, 0);
+    border-radius: 50%;
+  }
+  
+  .handle {
+    width: 10px;
+    height: 100px;
+    border-radius: 20px;
+    background: #EC1F3E;
+  }
+  
+  @keyframes lift {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-30px); }
+    100% { transform: translateY(0); }
+  }
+  

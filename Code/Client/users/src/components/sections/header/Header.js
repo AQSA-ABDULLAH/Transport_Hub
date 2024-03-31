@@ -10,7 +10,7 @@ import useUserAction from "../../../utils/customHooks/useUserAction";
 const Navbar = () => {
   const navigate = useNavigate();
   const [Mobile, setMobile] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false); 
+  const [showDropdown, setShowDropdown] = useState(false);
   const { reduxState, dispatch, actions } = useUserAction();
 
   return (
@@ -32,7 +32,7 @@ const Navbar = () => {
             <Link to="/">
               <li>HOME</li>
             </Link>
-    
+
             <li
               onMouseEnter={() => setShowDropdown(true)}
               onMouseLeave={() => setShowDropdown(false)}
@@ -41,52 +41,54 @@ const Navbar = () => {
               SERVICES <FaAngleDown />
               {showDropdown && (
                 <ul className={styles.dropdownMenu}>
+                  <Link to="">
+                    <li>Trip Packages</li>
+                  </Link>
                   <Link to="/rental_landing_page">
-                  <li>Car rental</li>
+                    <li>Car rental</li>
+                  </Link>
+                  <Link to="/shipment_landing_page">
+                    <li>Good Shipment</li>
                   </Link>
                   <Link to="">
-                  <li>Trip Packages</li>
-                  </Link>
-                  <Link to="">
-                  <li>Good Shipment</li>
-                  </Link>
-                  <Link to="">
-                  <li>Parcel Pickup</li>
+                    <li>Parcel Pickup</li>
                   </Link>
                 </ul>
               )}
             </li>
 
-            <Link to="/blog&news">
-              <li>BLOGS & NEWS</li>
+            <Link to="/career">
+              <li>CAREER</li>
             </Link>
 
             <Link to="/">
               <li>LOYALTY PROGRAM</li>
             </Link>
 
-            <Link to="/contactUs">
-              <li>CONTACT US</li>
+            <Link to="/blog&news">
+              <li>BLOGS & NEWS</li>
             </Link>
           </ul>
         </div>
 
         <div className={styles.button_div}>
           <ul className={styles.navLinks}>
-            <Link to="/career">
+            <Link to="/">
               <li className={styles.btns}>
                 <Button
-                  bgColor={"#F78312"}
-                  btnText="CAREER"
-                  size={"14px"}
+                  primary
+                  btnText="Manage Booking"
+                  radius={"7px"}
+                  size={"13px"}
                 />
               </li>
             </Link>
             <li className={styles.btns}>
               <Button
-                bgColor={"#fff"}
+                bgColor={"#e0e0e058"}
                 btnText={reduxState.isSignedIn ? " Sign Out" : "Sign Up"}
-                textColor={"#F78312"}
+                textColor={"#7E22CE"}
+                radius={"8px"}
                 btnClick={
                   reduxState.isSignedIn
                     ? () => dispatch(actions.setSignedOut())
@@ -97,11 +99,12 @@ const Navbar = () => {
                   <FaUser
                     size={16}
                     style={{ marginRight: "10px" }}
-                    color="#F78312"
+                    color="#7E22CE"
                   />
                 }
               />
             </li>
+
           </ul>
         </div>
       </nav>
