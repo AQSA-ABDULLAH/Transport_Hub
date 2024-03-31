@@ -216,9 +216,11 @@ const AddCarForm = ({ onClose }) => {
                                     onChange={(e) => setZone(e.target.value)}
                                 >
                                     <option disabled selected>Select zone</option>
-                                    {product.map((item, index) =>
+                                    <option>Lahore</option>
+                                    <option>Karachi</option>
+                                    {/* {product.map((item, index) =>
                                         <option key={index} value="">{item.zone}</option>
-                                    )}
+                                    )} */}
                                 </select>
                             </div>
 
