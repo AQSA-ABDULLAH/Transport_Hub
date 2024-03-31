@@ -1,12 +1,7 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import Swal from 'sweetalert2';
-import { AiFillHome } from "react-icons/ai";
 import SidebarLinks from "./SidebarLinks";
-
-import { Main, General, GeneralSettting } from "../../../constants/Data";
+import { Main, GeneralSettting } from "../../../constants/Data";
 import { LiaTimesSolid } from "react-icons/lia";
-import { NavLink } from "react-router-dom";
 import styles from "./SidebarStyles.module.css";
 const Sidebar = ({ openSidebar, setOpenSidebar }) => {
   const handleLinkClick = () => {
@@ -27,14 +22,14 @@ const Sidebar = ({ openSidebar, setOpenSidebar }) => {
          <img src="/assets/logo/LogoDark.png"/>
         </div>
 
-        <div className={styles.spaceY}>
+        {/* <div className={styles.spaceY}>
           <NavLink to={"/"} className={styles.sideLink} onClick={handleLinkClick}>
             <div className={styles.icon}>
               <AiFillHome size={20} />
             </div>
             <p className={styles.linkText}>Dashboard</p>
           </NavLink>
-        </div>
+        </div> */}
 
         {/* Data.js->Main */}
         <div className={` ${styles.linksBlock} `}>
