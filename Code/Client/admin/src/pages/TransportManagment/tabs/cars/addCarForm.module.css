@@ -65,7 +65,7 @@
 }
 
 .side_row select{
-  width: 195px;
+  width: 193px;
 }
 
 .row {
@@ -107,4 +107,15 @@
 
 .popupForm input:focus, .popupForm select:focus{
   outline: none;
+}
+
+.input_field{
+  display: flex;
+  flex-direction: column;
+}
+
+.text_danger{
+  color: red;
+  font-size: 11px;
+  padding: 0;
 }
