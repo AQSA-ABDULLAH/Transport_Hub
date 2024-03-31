@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import style from './addCarForm.module.css';
 import { MdCloudUpload } from "react-icons/md";
 import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
@@ -97,18 +98,18 @@ const AddCarForm = ({ onClose }) => {
                 headers: { 'Authorization': localStorage.getItem('token') }
             });
 
-            console.log(response.data);
-
             if (response.data.status === "success") {
-                alert("Data submitted successfully!");
-                onClose();
+                Swal.fire(
+                    'Add New Car!',
+                    'You have been added new car succesfully.',
+                    'success'
+                  );
+                  onClose();
+                  navigate("/")
             } else {
                 alert("Failed to submit data. Please try again.");
             }
 
-            if (response.data.code === 403 && response.data.message === "Token Expired") {
-                localStorage.setItem('token', null);
-            }
         } catch (error) {
             console.log(error);
             alert("An error occurred while submitting the data. Please try again.");
