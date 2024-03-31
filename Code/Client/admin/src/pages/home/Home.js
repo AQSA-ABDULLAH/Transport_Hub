@@ -5,7 +5,7 @@ import Button from '../../components/atoms/button/Button'
 const Home = () => {
   const navigate=useNavigate();
   return (
-    <div className={styles.container}>
+    <div className={styles.home_container}>
       <div className={styles.inner_container}>
         <img src='/assets/logo/LogoDark.png' width={'150px'}/>
      <h1>Welcome to Admin Panel</h1>
