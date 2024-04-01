@@ -1,14 +1,12 @@
 const nodemailer = require('nodemailer');
 
+
 const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    post: process.env.SMTP_PORT,
-    secure: false,
-    requireTLS: true,
-    auth: {
-        user: process.env.SMTP_EMAIL,
-        pass: process.env.SMTP_PASSWORD
-    },
+  service: 'gmail',
+  auth: {
+    user: process.env.SMTP_MAIL,
+    pass: process.env.SMTP_PASSWORD,
+  },
 });
 
 const sendMail = async (to, subject, content) => {
@@ -20,19 +18,16 @@ const sendMail = async (to, subject, content) => {
             html: content,
         };
 
-        transporter.sendMail(mailOptions, (error, info) => {
-            if(error){
-                console.log(error)
-            }
-
-            console.log("Mail Sent", info.messageId)
-        })
+        const info = await transporter.sendMail(mailOptions);
+        console.log("Mail Sent:", info.response);
 
     } catch (error) {
-        console.log(error.message)
+        console.log("Error sending mail:", error.message);
     }
 };
 
 module.exports = {
     sendMail
-}
+};
+
+

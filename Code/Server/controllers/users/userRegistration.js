@@ -1,8 +1,8 @@
 const User = require("../../models/Users");
 const { hashPassword } = require("../../helpers/hashPassword");
 const { createToken } = require("../../helpers/jwt");
-const compileEmailTemplate = require("../../helpers/compile-email-template.js");
-const sendMail = require("../../libs/mail.js");
+const compileEmailTemplate = require("../../helpers/compile-email-template.js")
+const mailer = require("../../libs/mailer.js");
 
 class UserController {
     static userRegistration = async (req, res) => {
@@ -49,15 +49,22 @@ class UserController {
             await savedUser.save();
 
             //Send Registration mail to user
-            const template = await compileEmailTemplate({
-                fileName: "register.mjml",
-                data: {
-                    fullName: `${firstName} ${lastName}`,
-                },
-            });
+            const msg = '<p>Hi'+firstName+', Please <a href="http://localhost:3000/mail-verification?id='+savedUser._id+'">Verify</a> your mail.</p>';
+
+            // mailer.sendMail(email, "Mail Verification", msg)
+
+
+        const template = await compileEmailTemplate({
+          fileName: "register.mjml",
+          data: {
+            firstName,
+          },
+        });
+       
+    
             
             try {
-                await sendMail(email, "Your Account on Transport Hub is Created Successfully", template);
+                mailer.sendMail(email, "Mail Verification", template)
                 return res.status(201).send({
                     status: "success",
                     message: "User created successfully",
