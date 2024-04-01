@@ -9,7 +9,7 @@ class UserController {
         try {
             const { firstName, lastName, email, phoneNumber, password, confirmPassword, city, zipCode, address, profilePicture } = req.body;
 
-            if (!firstName || !email || !password || !confirmPassword ) {
+            if (!firstName || !email || !password || !confirmPassword) {
                 return res.status(422).json({ error: "Please fill in all fields properly" });
             }
 
@@ -49,20 +49,15 @@ class UserController {
             await savedUser.save();
 
             //Send Registration mail to user
-            const msg = '<p>Hi'+firstName+', Please <a href="http://localhost:3000/mail-verification?id='+savedUser._id+'">Verify</a> your mail.</p>';
 
-            // mailer.sendMail(email, "Mail Verification", msg)
+            const template = await compileEmailTemplate({
+                fileName: "register.mjml",
+                data: {
+                    firstName,
+                },
+            });
 
 
-        const template = await compileEmailTemplate({
-          fileName: "register.mjml",
-          data: {
-            firstName,
-          },
-        });
-       
-    
-            
             try {
                 mailer.sendMail(email, "Mail Verification", template)
                 return res.status(201).send({
