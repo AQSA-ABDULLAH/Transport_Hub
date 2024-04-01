@@ -1,11 +1,13 @@
+
 const Transport = require("../../models/Transporter.js");
 const { hashPassword } = require("../../helpers/hashPassword");
 const { createToken } = require("../../helpers/jwt");
 const compileEmailTemplate = require("../../helpers/compile-email-template.js");
-const sendMail = require("../../libs/mail.js");
+const mailer = require("../../libs/mail.js");
+const SaveOTP = require("../../models/OTP_Verfication.js"); 
 
 class TransporterController {
-    static transporterRegistration = async (req, res) => {
+    static async transporterRegistration(req, res) {
         try {
             const { email } = req.body;
 
@@ -54,11 +56,10 @@ class TransporterController {
                             token: token,
                         });
                     } catch (error) {
-                        res.status(201).send({
-                            status: "success",
-                            message: "Driver created successfully",
-                            token: token,
-                            email: "Failed to send Create Transporter email.",
+                        return res.status(500).send({
+                            status: "error",
+                            message: "Failed to send Create Transporter email.",
+                            error: error.message,
                         });
                     }
                 }
@@ -68,6 +69,54 @@ class TransporterController {
             return res.status(500).json({ error: "Failed to register" });
         }
     }
+
+    static async generateOTP() {
+        return Math.floor(1000 + Math.random() * 9000);
+    }
+
+    static async sendOTP(req, res) {
+        try {
+            const { email } = req.body;
+
+            const transporter = await Transport.findOne({ email });
+
+            if (!transporter) {
+                return res.status(422).json({ error: "Transporter does not exist" });
+            }
+
+            if (transporter.is_verified === 1) {
+                return res.status(400).json({ error: "Already Verified" });
+            }
+
+            const OTP = await TransporterController.generateOTP(); // Use proper reference
+
+            const saveOTP = new SaveOTP({
+                user_id: transporter._id,
+                otp: OTP
+            });
+
+            await saveOTP.save();
+
+            const msg = `<p> Hi <b>${transporter.email}</b>, </br> <h4>${OTP}</h4> </p>`;
+            mailer.sendMail(transporter.email, 'OTP VERIFICATION', msg);
+
+            return res.status(200).json({
+                success: true,
+                msg: 'OTP have been sent to your email'
+            });
+
+        } catch (error) {
+            console.error("Error sending OTP:", error);
+            return res.status(500).send({
+                status: "error",
+                message: "Failed to send OTP.",
+                error: error.message,
+            });
+        }
+    }
 }
+
 module.exports = { TransporterController };
+
+
 
