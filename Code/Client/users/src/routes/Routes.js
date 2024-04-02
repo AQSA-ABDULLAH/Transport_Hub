@@ -16,6 +16,7 @@ import ViewCars from "../pages/carRental/showCarsPage/ViewCars.js"
 import ExtendedDetailPage from "../pages/carRental/addOnPage/ExtendedDetailPage.js"
 import RentalBookingPage from "../pages/carRental/bookingPage/RentalBookingPage.js"
 import BlogsNews from "../pages/blogs&news/BlogsNews.js";
+import BlogsDetails from "../pages/blogs&news/BlogsDetails.js";
 import CareerPage from "../pages/career/CareerPage.js";
 import DriverEmail from "../pages/career/driver/registration/DriverEmail.js";
 import DriverVerifyMail from "../pages/career/driver/verifymail/DriverVerifyMain.js";
@@ -28,6 +29,9 @@ import DriverVechicalSection from "../pages/career/driver/vechicalselection/Driv
 import DriverApplication from "../pages/career/driver/application/DriverApplication.js";
 import DriverCnic from "../pages/career/driver/uploadCNIC/DriverCnic.js";
 import TermsCondition from "../pages/career/driver/terms&condition/Terms&Condition.js";
+import ShipmentLandingPage from "../pages/good-shipment/ShipmentLandingPage.js";
+import ShipmentForm from "../pages/good-shipment/create-shipment/ShipmentForm.js";
+import ManageShipments from "../pages/good-shipment/manage-shipments/ManageShipments.js";
 
 
 function AppRoutes() {
@@ -39,7 +43,7 @@ function AppRoutes() {
   const noHeaderPaths = ["/login", "/signup", "/404", "/profile", "/driverRegistration", "/verify_transporter_mail",
   "/transporterRegistration", "/transporter_name_section", "/driver_name_section", "/driver_location_section",
   "/driver_vechical_selection", "/driver_application_form", "/trems_and_conditions", "/upload_driver_cnic", 
-  "/driver_verify_mail" ];
+  "/driver_verify_mail", "/create_shipment_form", "/manage_shipments" ];
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -73,12 +77,23 @@ function AppRoutes() {
 </div>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/blog&news" element={<BlogsNews/>}/>
+        <Route path="/blog&news/:id" element={<BlogsDetails/>}/>
+
+        {/* CAR RENTAL ROUTES */}
         <Route path="/rental_landing_page" element={<LandingPage/>}/>
         <Route path="/viewCars" element={<ViewCars/>}/>
         <Route path="/carAddOn" element={<ExtendedDetailPage/>}/>
         <Route path="/RentalBooking" element={<RentalBookingPage/>}/>
-        <Route path="/blog&news" element={<BlogsNews/>}/>
+
+        {/* GOOD SHIPMENT ROUTES */}
+        <Route path="/shipment_landing_page" element={<ShipmentLandingPage/>}/>
+        <Route path="/create_shipment_form" element={<ShipmentForm/>}/>
+        <Route path="/manage_shipments" element={<ManageShipments/>}/>
+
+
         <Route path="/career" element={<CareerPage/>}/>
+        {/* DRIVER REGISTRATION */}
         <Route path="/driverRegistration" element={<DriverEmail/>}/>
         <Route path="/driver_verify_mail" element={<DriverVerifyMail/>}/>
         <Route path="/driver_name_section" element={<DriverName/>}/>
@@ -87,6 +102,8 @@ function AppRoutes() {
         <Route path="/driver_application_form" element={<DriverApplication/>}/>
         <Route path="/upload_driver_cnic" element={<DriverCnic/>}/>
         <Route path="/trems_and_conditions" element={<TermsCondition/>}/>
+
+        {/* TRANSPORTER REGISTRATION */}
         <Route path="/transporterRegistration" element={<TransporterEmail/>}/>
         <Route path="/verify_transporter_mail" element={< VerifyTransporterEmail/>}/>
         <Route path="/transporter_name_section" element={<TransporterName/>}/>

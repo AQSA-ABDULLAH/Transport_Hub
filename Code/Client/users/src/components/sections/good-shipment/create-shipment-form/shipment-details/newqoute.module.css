@@ -1,0 +1,138 @@
+.newQuote h2 {
+    display: inline-block;
+    font-size: 23px;
+    font-weight: 700;
+    letter-spacing: normal;
+    margin-bottom: -2px;
+    padding-left: 1px;
+    padding-right: 3px;
+    border-bottom: 2px solid ;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+.row label,
+.row input,
+.row select {
+    display: flex;
+    flex-direction: column;
+}
+
+.newQuote h4{
+    font-size: 0.97rem;
+    font-weight: 600;
+    margin-top: 30px;
+    margin-bottom: 5px;
+}
+
+.newQuote label {
+    display: inline-block;
+    /* font-weight: 500; */
+    line-height: 140%;
+    text-transform: none;
+    font-size: 0.84rem;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-top: 15px;
+}
+
+.row input,
+select,
+.input_div,
+.accessorial_div {
+    width: 100%;
+    font-weight: 400;
+    font-size: 0.85rem;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #cccbcb;
+    border-radius: 5px;
+    min-width: 0px;
+}
+
+.input_div {
+    margin: 0px;
+}
+
+.row input:focus,
+select:focus {
+    outline: none;
+}
+
+.input_div, .accessorial_div_heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.input_div button,
+.accessorial_div_heading button {
+    border: none;
+    height: 0px;
+    background-color: transparent;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.addStop button {
+    border-radius: 5px;
+    margin: 32px 0px 12px 12px;
+    border: 1px solid;
+    padding: 6px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.addStop button:hover {
+    background-color: #e7e7e7;
+    cursor: pointer;
+}
+
+.stop_input {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.stop img {
+    width: 1.6rem;
+    height: auto;
+}
+
+.stop select {
+    width: 40%;
+}
+
+.close_stop {
+    border-radius: 50%;
+    border: none;
+    padding: 3px 8px;
+}
+
+.accessorial_div_heading{
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 22px;
+    padding: 2px 3px 5px 3px;
+    border-bottom: 1px solid #cccbcb;
+}
+
+.ckeckbox_column{
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+}
+
+.first_column{
+    width: 50%;
+}
+
+.ckeckbox_column label{
+    margin: -4px;
+    padding-left: 15px;
+    padding-top: 10px;
+}

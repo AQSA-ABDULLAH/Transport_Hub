@@ -1,0 +1,10 @@
+.footer_conatainer{
+    display: flex;
+    /* -webkit-box-align: center; */
+    align-items: center;
+    justify-content: flex-end;
+    height: 10vh;
+    background-color: #FCFCFF;
+    padding: 0px 40px;
+    border-top: solid 1px rgba(var(--m-color-neutral-20,230,237,242),1);
+}
