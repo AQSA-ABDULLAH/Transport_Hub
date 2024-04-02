@@ -18,13 +18,9 @@ const storage = multer.diskStorage({
 // PROTECTED ROUTES
 router.post('/addCar', upload.single('carImage'), CarsController.addCars);
 router.get("/getCar/:id", CarsController.getCar);
+router.delete("/deleteCar/:id", CarsController.deletecar);
 
 //PUBLIC ROUTES
 router.get("/getCars", CarsController.getCars);
 
 module.exports = router;
-
-
-// const isAuthenticated = require("../middlewares/auth-middleware.js");
-// Route Level Middleware - To Protect Route
-// router.post("/addCar", isAuthenticated, CarsController.addCars)

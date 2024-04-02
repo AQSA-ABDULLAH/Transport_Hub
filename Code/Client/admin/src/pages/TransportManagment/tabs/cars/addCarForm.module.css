@@ -34,7 +34,7 @@
 .form_image {
   opacity: 0;
   position: absolute;
-  height: 15rem;
+  height: 14.5rem;
   cursor: pointer;
 }
 
@@ -50,6 +50,12 @@
   border: 2px dotted #333;
   border-radius: 6px;
   height: 14.5rem;
+   width: 24.25rem;
+}
+
+.image_view img{
+  width: 24rem;
+  height: 14.3rem;
 }
 
 
