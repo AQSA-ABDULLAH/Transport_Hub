@@ -1,7 +1,7 @@
 const User = require("../../models/Users");
 const { hashPassword } = require("../../helpers/hashPassword");
 const { createToken } = require("../../helpers/jwt");
-const compileEmailTemplate = require("../../helpers/compile-email-template.js")
+const compileEmailTemplate = require("../../helpers/compile-email-template.js");
 const mailer = require("../../libs/mailer.js");
 
 class UserController {
@@ -19,11 +19,11 @@ class UserController {
                 return res.status(422).json({ error: "User already exists" });
             }
 
-            if (password !== confirmPassword)
-                return res.send({
-                    status: "failed",
-                    message: "Password and Confirm Password doesn't match",
+            if (password !== confirmPassword) {
+                return res.status(422).json({
+                    error: "Password and Confirm Password don't match",
                 });
+            }
 
             // Hashing Password
             const hashedPassword = await hashPassword(password);
@@ -36,20 +36,15 @@ class UserController {
                 city,
                 zipCode,
                 address,
-                profilePicture
+                profilePicture,
             });
 
             const savedUser = await user.save(); // Save the user and get the saved user object
 
             // Generate JWT Token using the saved user object
-            const token = createToken(savedUser, false, '1d');
+            const token = createToken(savedUser, false, "1d");
 
-            // Save token
-            savedUser.tokens = savedUser.tokens.concat({ token });
-            await savedUser.save();
-
-            //Send Registration mail to user
-
+            // Send Registration mail to user
             const template = await compileEmailTemplate({
                 fileName: "register.mjml",
                 data: {
@@ -57,9 +52,8 @@ class UserController {
                 },
             });
 
-
             try {
-                mailer.sendMail(email, "Mail Verification", template)
+                await mailer.sendMail(email, "Mail Verification", template);
                 return res.status(201).send({
                     status: "success",
                     message: "User created successfully",
@@ -67,14 +61,10 @@ class UserController {
                 });
             } catch (error) {
                 console.error("Failed to send Create User email:", error);
-                return res.status(201).send({
-                    status: "success",
-                    message: "User created successfully",
-                    token: token,
-                    email: "Failed to send Create User email.",
+                return res.status(500).send({
+                    error: "Failed to send Create User email.",
                 });
             }
-
         } catch (error) {
             console.error("Error in user registration:", error);
             return res.status(500).json({ error: "Failed to register" });
@@ -82,4 +72,28 @@ class UserController {
     }
 }
 
-module.exports = { UserController };
+const mailVerification = async (req, res) => {
+    try {
+        const { id } = req.query;
+        if (!id) {
+            return res.status(400).json({ error: "Invalid request, ID not provided" });
+        }
+
+        const userData = await User.findOne({ _id: id });
+
+        if (!userData) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        userData.is_verified = true;
+        await userData.save();
+
+        return res.status(200).json({ message: "Mail verified successfully" });
+    } catch (error) {
+        console.error("Error in user verification", error);
+        return res.status(500).json({ error: "Failed to verify user" });
+    }
+};
+
+module.exports = { UserController, mailVerification };
+

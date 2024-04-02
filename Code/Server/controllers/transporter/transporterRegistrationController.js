@@ -3,7 +3,7 @@ const Transport = require("../../models/Transporter.js");
 const { hashPassword } = require("../../helpers/hashPassword");
 const { createToken } = require("../../helpers/jwt");
 const compileEmailTemplate = require("../../helpers/compile-email-template.js");
-const mailer = require("../../libs/mail.js");
+const mailer = require("../../libs/mailer.js");
 const SaveOTP = require("../../models/OTP_Verfication.js"); 
 
 class TransporterController {

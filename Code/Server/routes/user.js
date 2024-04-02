@@ -9,6 +9,8 @@ router.post("/user_signUp", UserController.userRegistration);
 router.post("/user_signIn", userLogin);
 router.post("/google", google);
 
+router.get("/mail_verification", )
+
 module.exports = router;
 
 
