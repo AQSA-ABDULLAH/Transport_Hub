@@ -6,6 +6,7 @@ import { FaTrash, FaEdit } from "react-icons/fa";
 export default function ViewCars() {
   const [product, setProduct] = useState([]);
 
+  // GET CAR DATA
   useEffect(() => {
     axios.get("http://localhost:5000/api/cars/getCars")
       .then(res => {
@@ -16,6 +17,12 @@ export default function ViewCars() {
         console.log(err);
       });
   }, []);
+
+
+  // DELETE CAR DATA
+  const deleteCar = (id) => {
+    console.log(id)
+  }
 
   return (
     <>
@@ -36,7 +43,7 @@ export default function ViewCars() {
           {product.map((item, index) => (
             <tr key={index}>
               <td>
-                <img src={item?.carImage} alt={item.carTitle}/>
+                <img src={item?.carImage} alt={item.carTitle} />
               </td>
               <td className={styles.carTitle}>{item.carTitle}</td>
               <td>{item.carType}</td>
@@ -46,7 +53,7 @@ export default function ViewCars() {
               <td>{item.price}</td>
               <td>
                 <FaEdit className={styles.editButton} />
-                <FaTrash className={styles.deleteButton} />
+                <FaTrash className={styles.deleteButton} onClick={() => deleteCar(item._id)} />
               </td>
             </tr>
           ))}
