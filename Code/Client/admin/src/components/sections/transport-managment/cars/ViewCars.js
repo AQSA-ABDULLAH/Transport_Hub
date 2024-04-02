@@ -24,8 +24,8 @@ export default function ViewCars() {
           <tr>
             <th>Image</th>
             <th>Title</th>
-            <th>Type</th>
-            <th></th>
+            <th>Model</th>
+            <th>Vechical</th>
             <th>Status</th>
             <th>Zone</th>
             <th>Price<span>(per/hour)</span></th>
@@ -40,6 +40,7 @@ export default function ViewCars() {
               </td>
               <td className={styles.carTitle}>{item.carTitle}</td>
               <td>{item.carType}</td>
+              <td>{item.engineType}</td>
               <td>BOOKED</td>
               <td>{item.zone}</td>
               <td>{item.price}</td>
