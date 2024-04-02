@@ -23,15 +23,11 @@ const ZoneTab = () => {
         }
 
         try {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                throw new Error("No token found. Please log in.");
-            }
 
             const response = await axios.post("http://localhost:5000/api/zone/add_zone", {
                 zone
             }, {
-                headers: { 'Authorization': token }
+                headers: { 'Authorization': localStorage.getItem('token') }
             });
 
             if (response.data.status === "success") {
