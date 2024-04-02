@@ -26,9 +26,20 @@ const AddCarForm = ({ onClose }) => {
     const [endDate, setEndDate] = useState('');
     const [imgperc, setImagePrec] = useState("");
     const [imageUrl, setImageUrl] = useState("");
-    const [product, setProduct] = useState([]);
     const [error, setError] = useState(false);
+    const [product, setProduct] = useState([]);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        axios.get("http://localhost:5000/api/zone/get-zone")
+            .then(res => {
+                console.log(res.data);
+                setProduct(res.data.data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }, []); 
 
     useEffect(() => {
         carImage && uploadFile(carImage, "imageUrl");
@@ -72,7 +83,7 @@ const AddCarForm = ({ onClose }) => {
 
           if (isNaN(price || mileLimit || discount)) {
             setError(true);
-            return false;
+            return false; 
           }
 
         const formData = new FormData();
@@ -233,9 +244,9 @@ const AddCarForm = ({ onClose }) => {
                                     <option disabled selected>Select zone</option>
                                     <option>Lahore</option>
                                     <option>Karachi</option>
-                                    {/* {product.map((item, index) =>
+                                    {product.map((item, index) =>
                                         <option key={index} value="">{item.zone}</option>
-                                    )} */}
+                                    )}
                                 </select>
                                 {error && !zone && <span className={style.text_danger}>This field is required</span>}
                             </div>
