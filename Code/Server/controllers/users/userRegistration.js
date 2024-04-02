@@ -70,30 +70,30 @@ class UserController {
             return res.status(500).json({ error: "Failed to register" });
         }
     }
+    
+    static mailVerification = async (req, res) => {
+        try {
+            const id = req.params.id; 
+            console.log(id);
+            const user = await User.findById(id);
+            
+            if (!user) {
+                return res.status(404).json({ error: "User not found" });
+            }
+    
+            user.is_verified = true; 
+    
+            await user.save(); 
+    
+            return res.status(200).json(user); 
+        } catch (error) {
+            console.error("Error in user verification", error);
+            return res.status(500).json({ error: "Failed to verify user" });
+        }
+    };
+    
 }
 
-const mailVerification = async (req, res) => {
-    try {
-        const { id } = req.query;
-        if (!id) {
-            return res.status(400).json({ error: "Invalid request, ID not provided" });
-        }
 
-        const userData = await User.findOne({ _id: id });
-
-        if (!userData) {
-            return res.status(404).json({ error: "User not found" });
-        }
-
-        userData.is_verified = true;
-        await userData.save();
-
-        return res.status(200).json({ message: "Mail verified successfully" });
-    } catch (error) {
-        console.error("Error in user verification", error);
-        return res.status(500).json({ error: "Failed to verify user" });
-    }
-};
-
-module.exports = { UserController, mailVerification };
+module.exports = { UserController };
 

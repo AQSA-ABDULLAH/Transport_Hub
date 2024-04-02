@@ -9,7 +9,7 @@ router.post("/user_signUp", UserController.userRegistration);
 router.post("/user_signIn", userLogin);
 router.post("/google", google);
 
-router.get("/mail_verification", )
+router.post("/mail_verification/:id",UserController.mailVerification )
 
 module.exports = router;
 
