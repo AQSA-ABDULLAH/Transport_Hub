@@ -1,34 +1,53 @@
 .table {
-    width: 100%; /* Set table width to 100% */
-    border-collapse: collapse; /* Remove borders between cells */
-  }
-  
-  .table th,
-  .table td {
-    padding: 10px; /* Add padding to cells */
-    border: 1px solid #ddd; /* Add thin border to cells */
-    text-align: left; /* Align text to the left */
-  }
-  
-  .striped tr:nth-child(even) {  /* Add zebra striping effect */
-    background-color: #f2f2f2;
-  }
-  
-  .editButton {
-    background-color: #3498db; /* Blue color for edit button */
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .deleteButton {
-    background-color: #e74c3c; /* Red color for delete button */
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+  width: 100%;
+  /* border-collapse: collapse; */
+}
+
+.table th{
+  border-bottom: 1px solid #ddd;
+}
+
+.table img{
+  height: 40px;
+  width: 80px;
+}
+
+.table th,
+.table td {
+  padding: 3px 8px 3px 9px;
+  font-size: 15px;
+  text-align: left;
+}
+
+.table span{
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.carTitle {
+  width: 40%;
+}
+
+.editButton, .deleteButton{
+  color: white;
+  font-size: 22px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.editButton {
+  background-color: #3498db;
+}
+
+.deleteButton {
+  background-color: #e74c3c;
+  margin-left: 4px;
+}
+
   

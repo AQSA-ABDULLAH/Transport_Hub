@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from "./viewcars.module.css";
+import { FaTrash, FaEdit } from "react-icons/fa";
 
 export default function ViewCars() {
   const [product, setProduct] = useState([]);
@@ -18,15 +19,16 @@ export default function ViewCars() {
 
   return (
     <>
-      <table className={`${styles.table} ${styles.striped}`}>  {/* Combine table and striped classes */}
+      <table className={styles.table}>
         <thead>
           <tr>
             <th>Image</th>
             <th>Title</th>
-            <th>Price</th>
             <th>Type</th>
+            <th></th>
             <th>Status</th>
             <th>Zone</th>
+            <th>Price<span>(per/hour)</span></th>
             <th>Action</th>
           </tr>
         </thead>
@@ -34,16 +36,16 @@ export default function ViewCars() {
           {product.map((item, index) => (
             <tr key={index}>
               <td>
-                <img src={item?.carImage} alt={item.carTitle} style={{ width: '100px', height: 'auto' }} />
+                <img src={item?.carImage} alt={item.carTitle}/>
               </td>
-              <td>{item.carTitle}</td>
-              <td>{item.price}</td>
+              <td className={styles.carTitle}>{item.carTitle}</td>
               <td>{item.carType}</td>
               <td>BOOKED</td>
               <td>{item.zone}</td>
+              <td>{item.price}</td>
               <td>
-                <button className={styles.editButton}>Edit</button>  {/* Add editButton class */}
-                <button className={styles.deleteButton}>Delete</button>  {/* Add deleteButton class */}
+                <FaEdit className={styles.editButton} />
+                <FaTrash className={styles.deleteButton} />
               </td>
             </tr>
           ))}
@@ -52,6 +54,3 @@ export default function ViewCars() {
     </>
   );
 }
-
-
-
