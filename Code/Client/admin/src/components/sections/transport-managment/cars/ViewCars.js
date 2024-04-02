@@ -20,9 +20,26 @@ export default function ViewCars() {
 
 
   // DELETE CAR DATA
-  const deleteCar = (id) => {
-    console.log(id)
-  }
+const deleteCar = (id) => {
+  axios.delete(`http://localhost:5000/api/cars/deleteCar/${id}`)
+    .then(res => {
+      console.log(res.data);
+      if (res.status === 200) {
+        axios.get("http://localhost:5000/api/cars/getCars")
+          .then(res => {
+            console.log(res.data);
+            setProduct(res.data.data);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
+
 
   return (
     <>
