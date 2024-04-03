@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import styles from "./viewcars.module.css";
 import { FaTrash, FaEdit } from "react-icons/fa";
+import UpdateCar from '../update_car/UpdateCars';
 
 export default function ViewCars() {
   const [product, setProduct] = useState([]);
@@ -96,13 +97,19 @@ export default function ViewCars() {
               <td>{item.zone}</td>
               <td>{item.price}</td>
               <td>
-                <FaEdit className={styles.editButton} onClick={() => updateCar(item._id)} />
+                <FaEdit className={styles.editButton} onClick={() => updateCar(`${item._id}`)} />
                 <FaTrash className={styles.deleteButton} onClick={() => deleteCar(item._id)} />
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      {showUpdateCar && (
+        <UpdateCar
+        onClose={() => setShowUpdateCar(false)}
+        carId={selectedCar}/>
+      )}
     </>
   );
 }
