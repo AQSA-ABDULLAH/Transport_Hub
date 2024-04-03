@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import style from './addCarForm.module.css';
@@ -229,11 +228,9 @@ const AddCarForm = ({ onClose }) => {
                                     value={zone}
                                     onChange={(e) => setZone(e.target.value)}
                                 >
-                                    <option disabled selected>Select zone</option>
-                                    <option>Lahore</option>
-                                    <option>Karachi</option>
+                                     <option disabled value="">Select zone</option>
                                     {product.map((item, index) =>
-                                        <option key={index} value="">{item.zone}</option>
+                                        <option key={index} value={item.zone}>{item.zone}</option>
                                     )}
                                 </select>
                                 {error && !zone && <span className={style.text_danger}>This field is required</span>}
