@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import style from './addCarForm.module.css';
@@ -27,8 +26,11 @@ const AddCarForm = ({ onClose }) => {
     const [imgperc, setImagePrec] = useState("");
     const [imageUrl, setImageUrl] = useState("");
     const [error, setError] = useState(false);
+
+
     const [product, setProduct] = useState([]);
     const navigate = useNavigate();
+
 
     useEffect(() => {
         axios.get("http://localhost:5000/api/zone/get-zone")
@@ -116,7 +118,6 @@ const AddCarForm = ({ onClose }) => {
                     'success'
                   );
                   onClose();
-                  navigate("/")
             } else {
                 alert("Failed to submit data. Please try again.");
             }
@@ -127,16 +128,17 @@ const AddCarForm = ({ onClose }) => {
         }
     };
 
-
     useEffect(() => {
         axios.get("http://localhost:5000/api/zone/get-zone")
             .then(res => {
+                console.log(res.data);
                 setProduct(res.data.data);
             })
             .catch(err => {
                 console.log(err);
             });
     }, []);
+
 
     const overlayStyle = {
         position: 'fixed',
@@ -241,9 +243,7 @@ const AddCarForm = ({ onClose }) => {
                                     value={zone}
                                     onChange={(e) => setZone(e.target.value)}
                                 >
-                                    <option disabled selected>Select zone</option>
-                                    <option>Lahore</option>
-                                    <option>Karachi</option>
+                                     
                                     {product.map((item, index) =>
                                         <option key={index} value="">{item.zone}</option>
                                     )}

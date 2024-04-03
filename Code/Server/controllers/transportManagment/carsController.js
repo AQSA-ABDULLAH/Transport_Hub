@@ -60,7 +60,8 @@ class CarsController {
   // UPDATE METHOD
   // static updateCar = async (req, res) => {
   //   const { id } = req.params;
-  //   const { name, image } = req.body;
+  //   const { carImage, carTitle, carType, numberOfSeats, transmission, bags, mileLimit, color,
+  //     fuelType, engineType, price, zone, discount, startDate, endDate } = req.body;
   //   if (!name) return res.send({ status: "failed", message: `Name, is required` });
 
   //   if (!id) return res.status(400).send({ status: "failed", message: `Id is required` });
