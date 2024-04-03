@@ -6,6 +6,8 @@ import { FaTrash, FaEdit } from "react-icons/fa";
 
 export default function ViewCars() {
   const [product, setProduct] = useState([]);
+  const [showUpdateCar, setShowUpdateCar] = useState(false);
+  const [selectedCar, setSelectedCar] = useState(null);
 
   // GET CAR DATA
   useEffect(() => {
@@ -21,45 +23,50 @@ export default function ViewCars() {
 
 
   // DELETE CAR DATA
-const deleteCar = (id) => {
-  Swal.fire({
-    title: 'Are you sure?',
-    text: "You want to delete this car!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, Delete!'
-  })
+  const deleteCar = (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You want to delete this car!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Delete!'
+    })
 
-  .then((result) => {
-    if (result.isConfirmed) {
-      axios.delete(`http://localhost:5000/api/cars/deleteCar/${id}`)
-      .then(res => {
-        Swal.fire(
-          'Delete Car!',
-          'You data have been delete.',
-          'success'
-        );
-        if (res.status === 200) {
-          axios.get("http://localhost:5000/api/cars/getCars")
+      .then((result) => {
+        if (result.isConfirmed) {
+          axios.delete(`http://localhost:5000/api/cars/deleteCar/${id}`)
             .then(res => {
-              console.log(res.data);
-              setProduct(res.data.data);
+              Swal.fire(
+                'Delete Car!',
+                'You data have been delete.',
+                'success'
+              );
+              if (res.status === 200) {
+                axios.get("http://localhost:5000/api/cars/getCars")
+                  .then(res => {
+                    console.log(res.data);
+                    setProduct(res.data.data);
+                  })
+                  .catch(err => {
+                    console.log(err);
+                  });
+              }
             })
             .catch(err => {
               console.log(err);
             });
         }
-      })
-      .catch(err => {
-        console.log(err);
       });
-    }
-  });
-    
-}
 
+  }
+
+  //  UPDATE CAR DATA
+  const updateCar = (id) => {
+    setShowUpdateCar(true);
+    setSelectedCar(id);
+  };
 
   return (
     <>
@@ -89,7 +96,7 @@ const deleteCar = (id) => {
               <td>{item.zone}</td>
               <td>{item.price}</td>
               <td>
-                <FaEdit className={styles.editButton} />
+                <FaEdit className={styles.editButton} onClick={() => updateCar(item._id)} />
                 <FaTrash className={styles.deleteButton} onClick={() => deleteCar(item._id)} />
               </td>
             </tr>

@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import Button from '../../../../components/atoms/buttons/Button';
 import style from './carstab.module.css';
-import AddCarForm from './AddCarForm';
-import ViewCars from '../../../../components/sections/transport-managment/cars/ViewCars';
+import AddCarForm from '../../../../components/sections/transport-managment/cars/add_car/AddCarForm';
+import ViewCars from '../../../../components/sections/transport-managment/cars/view_car/ViewCars';
 
 const CarsTab = () => {
   const [isAddCarFormVisible, setAddCarFormVisible] = useState(false);
