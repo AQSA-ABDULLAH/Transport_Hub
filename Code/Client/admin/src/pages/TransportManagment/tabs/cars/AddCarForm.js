@@ -28,7 +28,6 @@ const AddCarForm = ({ onClose }) => {
     const [imageUrl, setImageUrl] = useState("");
     const [product, setProduct] = useState([]);
     const [error, setError] = useState(false);
-    const navigate = useNavigate();
 
     useEffect(() => {
         carImage && uploadFile(carImage, "imageUrl");
@@ -105,7 +104,6 @@ const AddCarForm = ({ onClose }) => {
                     'success'
                   );
                   onClose();
-                  navigate("/")
             } else {
                 alert("Failed to submit data. Please try again.");
             }
@@ -116,16 +114,17 @@ const AddCarForm = ({ onClose }) => {
         }
     };
 
-
     useEffect(() => {
         axios.get("http://localhost:5000/api/zone/get-zone")
             .then(res => {
+                console.log(res.data);
                 setProduct(res.data.data);
             })
             .catch(err => {
                 console.log(err);
             });
     }, []);
+
 
     const overlayStyle = {
         position: 'fixed',
@@ -233,9 +232,9 @@ const AddCarForm = ({ onClose }) => {
                                     <option disabled selected>Select zone</option>
                                     <option>Lahore</option>
                                     <option>Karachi</option>
-                                    {/* {product.map((item, index) =>
+                                    {product.map((item, index) =>
                                         <option key={index} value="">{item.zone}</option>
-                                    )} */}
+                                    )}
                                 </select>
                                 {error && !zone && <span className={style.text_danger}>This field is required</span>}
                             </div>
