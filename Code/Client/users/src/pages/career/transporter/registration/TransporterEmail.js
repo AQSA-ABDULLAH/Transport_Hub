@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import SideSection from '../../../../components/sections/career/sidesection/SideSection';
@@ -6,41 +6,31 @@ import styles from "../../driver/registration/drivermail.module.css";
 
 export default function DriverEmail() {
   const [email, setEmail] = useState("");
-
   const navigate = useNavigate();
-
-  const handleRedirect = () => {
-    navigate('/verify_transporter_mail'); 
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const formData = new FormData();
-    formData.append('email', email);
-
-    console.log("FormData:", formData);
-
+  
+    console.log(email);
+  
     try {
-      const response = await axios.post("http://localhost:5000/api/transporter/registration", formData, {
-        headers: { 'Authorization': localStorage.getItem('token') }
-      });
-
-
+      const response = await axios.post("http://localhost:5000/api/transporter/registration", { email: email });
+  
       if (response.data.status === "success") {
-        alert("Data submitted successfully!");
+        navigate("/verify_transporter_mail")
       } else {
         alert("Failed to submit data. Please try again.");
       }
-
-      if (response.data.code === 403 && response.data.message === "Token Expired") {
-        localStorage.setItem('token', null);
-      }
     } catch (error) {
       console.log(error);
-      alert("An error occurred while submitting the data. Please try again.");
+      if (error.response && error.response.status === 422) {
+        alert("Validation error: Please check your email and try again.");
+      } else {
+        alert("An error occurred while submitting the data. Please try again.");
+      }
     }
   };
+  
 
 
   return (
@@ -74,8 +64,7 @@ export default function DriverEmail() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                {/* <button onClick={handleSubmit}>Send OTP</button> */}
-                <button onClick={handleRedirect}>Send OTP</button>
+                <button onClick={handleSubmit}>Send OTP</button>
               </form>
 
               <div className={styles.spam}>

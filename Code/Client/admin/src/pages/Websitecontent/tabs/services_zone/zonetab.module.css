@@ -1,0 +1,78 @@
+.zoneContainer {
+    padding: 40px 90px;
+    height: 75vh;
+    overflow-y: scroll;
+    width: 100%;
+    color: #3B3B4f;
+}
+
+.zoneHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 40px;
+}
+
+.zone_form{
+    border: 1px solid #6b6b6b58;
+    border-radius: 6px;
+    margin-bottom: 50px;
+}
+
+.form_top{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 35px;
+    border-bottom: 1px solid #6b6b6b58;
+    align-items: center;
+}
+
+.zone_form form{
+    padding: 28px 35px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 70px;
+}
+
+.zone_form input{
+    margin-top: 10px;
+    width: 80%;
+}
+.avilable_zone {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.zone div {
+    margin-bottom: 12px;
+    border: 1px solid #b491d2;
+    border-radius: 6px;
+    background-color: #e0e0e058;
+    padding: 8px 15px;
+}
+
+
+
+.avilable_zone button{
+    border: none;
+    background-color: transparent;
+} 
+
+.avilable_zone button:hover{
+    background-color: transparent;
+} 
+
+.avilable_zone button img {
+    width: 1.5rem;
+    height: auto;
+    position: absolute;
+    top: 10px;
+}
+
+.text_danger{
+    color: red;
+    font-size: 12px;
+}

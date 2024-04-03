@@ -56,9 +56,10 @@ li {
   transition: 0.3s ease-in-out;
 }
 
+
 .dropdownMenu {
   position: absolute;
-  bottom: 25.5rem;
+  bottom: 25.7rem;
   left: 22rem;
   background-color: #fff; 
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
@@ -102,19 +103,12 @@ li {
   display: block;
 }
 
-.btnNavbar {
-  border: none;
+.btns Button{
+  font-weight: 600;
+  border: 2px solid #7E22CE;
   text-decoration: none;
-  background: #7E22CE;
-  color: white;
-  padding: 0px;
+  padding: 7px 15px;
   margin: -5px;
-}
-
-.btnNavbar:hover {
-  border: 1px solid #7E22CE;
-  background-color: white;
-  color: #7E22CE;
 }
 
 .iconNavbar {
