@@ -48,7 +48,7 @@ color: #FFFFFF;
         <mj-text font-family="Poppins, sans-serif" font-style="normal" font-weight="700" font-size="24px" line-height="140%" color="#121A26">Registration Success</mj-text>
         <mj-text font-family="Poppins, sans-serif" font-size="16px" font-style="normal" line-height="150%" font-weight="400" letter-spacing="0.2px">Hi <strong>{{name}}</strong> 👋<br><br>In order to proceed, Please verfiy your Account.</mj-text>
           
-          <mj-button href="http://localhost:3000/mail-verification?id='+savedUser._id+'" font-family="Poppins, sans-serif" height="57px" padding="20px 32px"css-class="gradient-button" align="left" border-radius="0px" background-color="#2C5364" color="#FFFFFF">Verify Account</mj-button>
+          <mj-button href="http://localhost:3000" font-family="Poppins, sans-serif" height="57px" padding="20px 32px"css-class="gradient-button" align="left" border-radius="0px" background-color="#2C5364" color="#FFFFFF">Verify Account</mj-button>
        <mj-text font-family="Poppins, sans-serif" font-size="16px" font-style="normal" line-height="150%" font-weight="400" letter-spacing="0.2px">Thanks, <br>TransportHub</mj-text>
       
       </mj-column>

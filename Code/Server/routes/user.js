@@ -10,6 +10,7 @@ router.post("/user_signIn", userLogin);
 router.post("/google", google);
 
 router.post("/mail_verification/:id",UserController.mailVerification )
+// "http://localhost:3000/mail-verification?id='+savedUser._id+'"
 
 module.exports = router;
 

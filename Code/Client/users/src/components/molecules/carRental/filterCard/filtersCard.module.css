@@ -13,10 +13,13 @@
     background-color: white;
     border-radius: 610px;
     padding: 7px 13px;
+    white-space: nowrap;
 }
 
 .filter_item select{
     border: none;
+    padding: 0;
+    width: auto;
 }
 
 .filter_item select:focus{

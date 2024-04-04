@@ -5,7 +5,7 @@ import style from './addCarForm.module.css';
 import { MdCloudUpload } from "react-icons/md";
 import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import { getDownloadURL } from "firebase/storage";
-import { app } from "../../../../firebase";
+import { app } from "../../../../../firebase";
 
 const AddCarForm = ({ onClose }) => {
     const [carImage, setCarImage] = useState('');
@@ -26,10 +26,7 @@ const AddCarForm = ({ onClose }) => {
     const [imgperc, setImagePrec] = useState("");
     const [imageUrl, setImageUrl] = useState("");
     const [error, setError] = useState(false);
-
-
     const [product, setProduct] = useState([]);
-    const navigate = useNavigate();
 
 
     useEffect(() => {
