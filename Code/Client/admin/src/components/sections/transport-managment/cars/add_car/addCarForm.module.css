@@ -146,3 +146,7 @@
   flex-direction: row;
   gap: 40px;
 }
+
+.length{
+  width: 200px;
+}

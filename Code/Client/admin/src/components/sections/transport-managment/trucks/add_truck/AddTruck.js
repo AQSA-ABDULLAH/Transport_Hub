@@ -22,6 +22,7 @@ const AddTruck = ({ onClose }) => {
     const [product, setProduct] = useState([]);
 
     const [selectedMode, setSelectedMode] = useState();
+    const [selectedEquipment, setSelectedEquipment] = useState();
 
     // Handle mode change event
     const handleModeChange = (event) => {
@@ -31,6 +32,11 @@ const AddTruck = ({ onClose }) => {
     };
 
 
+    // Handle mode change event
+    const handleEquipmentChange = (event) => {
+        const equipment = event.target.value;
+        setSelectedEquipment(equipment);
+    };
 
     useEffect(() => {
         truckImage && uploadFile(truckImage, "imageUrl");
@@ -216,39 +222,97 @@ const AddTruck = ({ onClose }) => {
                     </div>
                 </div>
 
-
-                {/* <div>
-          {selectedMode === 'LTL' && <LTLForm />}
-          {selectedMode === 'FTL' && <FTLForm />}
-          {selectedMode === 'flatbed' && <Flatbed />}
-          {selectedMode === 'parcel' && <Parcel />}
-        </div> */}
-
                 <div className={style.truck_selection}>
-                    
-                    <div className={style.input_field}>
-                        <label>Number of Seats:</label>
-                        <input
-                            type="number"
-                            placeholder="Enter No. of seats"
-                            name="numberOfSeats"
-                            value={numberOfSeats}
-                            onChange={(e) => setNumberOfSeats(e.target.value)}
-                        />
-                        {error && !numberOfSeats && <span className={style.text_danger}>This field is required</span>}
-                    </div>
-                    <div className={style.input_field}>
-                        <label >Bags:</label>
-                        <input
-                            type="number"
-                            placeholder="Enter No. of Bags"
-                            name="bags"
-                            value={bags}
-                            onChange={(e) => setBags(e.target.value)}
-                        />
-                        {error && !bags && <span className={style.text_danger}>This field is required</span>}
-                    </div>
-                    
+                    {selectedMode === 'LTL' && (
+                        <div>
+                            <label htmlFor="equipment">Vechical Type</label>
+                            <select id="equipment">
+                                <option value="select_option" disabled selected>Select Vechical Type</option>
+                                <option value="mazda">Mazda</option>
+                                <option value="shehzore">Shehzore</option>
+                                <option value="pickup">Pickup</option>
+                            </select>
+                        </div>
+
+                    )}
+
+                    {selectedMode === 'FTL' && (
+                        <div className={style.truck_selection}>
+                            <div>
+                                <label htmlFor="equipment">Equipment</label>
+                                <select id="equipment" className={style.length} value={selectedEquipment} onChange={handleEquipmentChange}>
+                                    <option value="select_option" disabled selected>Select Equipment</option>
+                                    <option value="truck">Truck</option>
+                                    <option value="reefer">Reefer</option>
+                                    <option value="tanker">Tanker</option>
+                                    <option value="container">Container</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                {selectedEquipment === 'truck' &&
+                                    <div>
+                                        <label htmlFor="equipment_type">Equipment Length</label>
+                                        <select id="equipment_type" className={style.length}>
+                                            <option value="small">48'</option>
+                                            <option value="large">53'</option>
+                                        </select>
+                                    </div>
+
+                                }
+
+                                {selectedEquipment === 'reefer' &&
+                                    <div>
+                                        <label htmlFor="equipment_type">Equipment Length</label>
+                                        <select id="equipment_type" className={style.length}>
+                                            <option value="small">45'</option>
+                                            <option value="large">50'</option>
+                                        </select>
+                                    </div>
+                                }
+
+                                {selectedEquipment === 'tanker' &&
+                                    <div>
+                                        <label htmlFor="equipment_type">Equipment Length</label>
+                                        <select id="equipment_type" className={style.length}>
+                                            <option value="small">45'</option>
+                                            <option value="large">52'</option>
+                                        </select>
+                                    </div>
+                                }
+
+                                {selectedEquipment === 'container' &&
+                                    <div>
+                                        <label htmlFor="equipment_type">Container Size</label>
+                                        <select id="equipment_type" className={style.length}>
+                                            <option value="small">20'</option>
+                                            <option value="medium">40'</option>
+                                            <option value="large">45'</option>
+                                            <option value="very_large">53'</option>
+                                        </select>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                    )}
+
+                    {selectedMode === 'flatbed' && (
+                        <div>
+                            <label htmlFor="dimensions">Dimensions</label>
+                            <select id="dimensions" className={style.length}>
+                                <option value="first">45', 10'</option>
+                                <option value="second">45', 12'</option>
+                                <option value="third">50', 10'</option>
+                                <option value="fourth">50', 12'</option>
+                                <option value="fifth">50', 15'</option>
+                                <option value="sixth">53', 15'</option>
+                            </select>
+                        </div>
+
+
+                    )}
+
                     <div className={style.input_field}>
                         <label>Price <span>(per/hour)</span>:</label>
                         <input
@@ -262,6 +326,7 @@ const AddTruck = ({ onClose }) => {
                         {error && price && isNaN(price) && <span className={style.text_danger}>Price must be a number</span>}
                     </div>
                 </div>
+
 
                 <div className={style.row}>
                     <button onClick={onClose}>CANCLE</button>
