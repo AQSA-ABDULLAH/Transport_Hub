@@ -1,28 +1,43 @@
-import React from "react";
-import Aboutus from "../../../../components/molecules/aboutus/Aboutus"
-import style from "./trucktab.module.css"
+// Import useEffect from React
+import React, { useState } from 'react';
+import Button from '../../../../components/atoms/buttons/Button';
+import style from '../cars/carstab.module.css';
+import AddCarForm from '../../../../components/sections/transport-managment/cars/add_car/AddCarForm';
+import ViewCars from '../../../../components/sections/transport-managment/cars/view_car/ViewCars';
 
-const TruckTab = () => { 
+const TruckTab = () => {
+  const [isAddCarFormVisible, setAddCarFormVisible] = useState(false);
+
+  const openAddCarForm = () => {
+    setAddCarFormVisible(true);
+  };
+
+  const closeAddCarForm = () => {
+    setAddCarFormVisible(false);
+  };
+
   return (
     <>
-      <div className={style.container} style={{height:window.innerHeight}}>
-        <div className={style.message}>
-          <Aboutus
-            heading="Welcome to the Transport Hub"
-            text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut eos, eum recusandae ratione odit earum quaerat assumenda magnam itaque et tempora necessitatibus consectetur a orem ipsum dolor sit amet, consectetur adipisicing elit. Ut eos, eum recusandae ratione odit earum quaerat assumenda magnam itaque et tempora necessitatibus consectetur a"
-            author="Message by "
-            img={"./assets/image/about-us/aboutus.jpeg"}
-          />
+      <div className={style.transport_container}>
+        <div className={style.headingContainer}>
+          <h2 className={style.heading}>Truck Management</h2>
+          <Button btnText="Add New Truck" 
+          primary
+          radius={"7px"}
+          size={"13px"}
+           btnClick={openAddCarForm} />
         </div>
-        <div className={style.author}>
-          <Aboutus
-            heading="Qoute"
-            text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut eos, eum recusandae ratione odit earum quaerat assumenda magnam itaque et tempora necessitatibus consectetur a deleniti modi repellat labore q dolore ."
-            author="Qoute by"
-            img={"./assets/image/about-us/aboutus2.jpeg"}
-          />
+        <div className={style.message}>
+
+          <div className={style.row}>
+            <ViewCars />
+          </div>
+
+
         </div>
       </div>
+
+      {isAddCarFormVisible && <AddCarForm onClose={closeAddCarForm} />}
     </>
   );
 };
