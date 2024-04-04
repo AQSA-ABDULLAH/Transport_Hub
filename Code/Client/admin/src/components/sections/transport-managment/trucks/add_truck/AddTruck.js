@@ -8,35 +8,38 @@ import { getDownloadURL } from "firebase/storage";
 import { app } from "../../../../../firebase";
 
 const AddTruck = ({ onClose }) => {
-    const [carImage, setCarImage] = useState('');
-    const [carTitle, setCarTitle] = useState('');
-    const [carType, setCarType] = useState('');
+    const [truckImage, setTruckImage] = useState('');
+    const [truckTitle, setTruckTitle] = useState('');
+    const [truckMode, setTruckMode] = useState('');
+    const [zone, setZone] = useState('Select zone');
+    const [price, setPrice] = useState('');
     const [numberOfSeats, setNumberOfSeats] = useState('');
-    const [transmission, setTransmission] = useState('');
     const [bags, setBags] = useState('');
     const [mileLimit, setMileLimit] = useState('');
-    const [color, setColor] = useState('');
-    const [fuelType, setFuelType] = useState('');
-    const [engineType, setEngineType] = useState('');
-    const [price, setPrice] = useState('');
-    const [zone, setZone] = useState('Select zone');
-    const [discount, setDiscount] = useState('');
-    const [startDate, setStartDate] = useState('');
-    const [endDate, setEndDate] = useState('');
     const [imgperc, setImagePrec] = useState("");
     const [imageUrl, setImageUrl] = useState("");
     const [error, setError] = useState(false);
     const [product, setProduct] = useState([]);
 
+    const [selectedMode, setSelectedMode] = useState();
+
+    // Handle mode change event
+    const handleModeChange = (event) => {
+        const mode = event.target.value;
+        setTruckMode(mode); // Fixed syntax error
+        setSelectedMode(mode);
+    };
+
+
 
     useEffect(() => {
-        carImage && uploadFile(carImage, "imageUrl");
-    }, [carImage]);
+        truckImage && uploadFile(truckImage, "imageUrl");
+    }, [truckImage]);
 
     // FIREBASE SETUP HERE
     const uploadFile = (file) => {
         const storage = getStorage(app);
-        const storageRef = ref(storage, 'CarImages/' + file.name);
+        const storageRef = ref(storage, 'TruckImages/' + file.name);
         const uploadTask = uploadBytesResumable(storageRef, file);
 
         uploadTask.on('state_changed',
@@ -63,33 +66,26 @@ const AddTruck = ({ onClose }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!carImage || !carTitle || !carType || !numberOfSeats || !transmission || !bags || !mileLimit ||
-            !color || !fuelType || !engineType || !price || !zone) {
+        if (!truckImage || !truckTitle || !truckMode || !numberOfSeats || !bags || !mileLimit || !price
+            || !zone) {
             setError(true);
             return false;
-          }
+        }
 
-          if (isNaN(price || mileLimit || discount)) {
+        if (isNaN(price || mileLimit)) {
             setError(true);
-            return false; 
-          }
+            return false;
+        }
 
         const formData = new FormData();
-        formData.append('carImage', imageUrl);
-        formData.append('carTitle', carTitle);
-        formData.append('carType', carType);
+        formData.append('truckImage', imageUrl);
+        formData.append('truckTitle', truckTitle);
+        formData.append('truckMode', truckMode);
         formData.append('numberOfSeats', numberOfSeats);
-        formData.append('transmission', transmission);
         formData.append('bags', bags);
         formData.append('mileLimit', mileLimit);
-        formData.append('color', color);
-        formData.append('fuelType', fuelType);
-        formData.append('engineType', engineType);
         formData.append('price', price);
         formData.append('zone', zone);
-        formData.append('discount', discount);
-        formData.append('startDate', startDate);
-        formData.append('endDate', endDate);
 
 
         try {
@@ -102,8 +98,8 @@ const AddTruck = ({ onClose }) => {
                     'Add New Car!',
                     'You have been added new car succesfully.',
                     'success'
-                  );
-                  onClose();
+                );
+                onClose();
             } else {
                 alert("Failed to submit data. Please try again.");
             }
@@ -141,24 +137,24 @@ const AddTruck = ({ onClose }) => {
     return (
         <>
             <div style={overlayStyle}></div>
-            <div className={style.popupForm}>
-                <h3>Add New Car</h3>
-                <div className={style.first_row}>
+            <div className={`${style.popupForm} ${style.truck_form}`}>
+
+                <h3>Add New Truck</h3>
+                <div className={style.truck_row}>
                     <div className={style.image}>
-                        <label htmlFor="carImage">Car Image:</label>
+                        <label>Truck Image:</label>
                         <input
                             type="file"
                             className={style.form_image}
-                            id="carImage"
-                            name="carImage"
+                            name="truckImage"
                             accept="image/png, image/jpeg"
-                            onChange={(e) => setCarImage(e.target.files[0])}
+                            onChange={(e) => setTruckImage(e.target.files[0])}
                         />
 
                         <div className={style.image_view}>
-                            {carImage ? (
+                            {truckImage ? (
                                 <img
-                                    src={URL.createObjectURL(carImage)}
+                                    src={URL.createObjectURL(truckImage)}
                                     alt="icon"
                                 />
                             ) : (
@@ -168,93 +164,68 @@ const AddTruck = ({ onClose }) => {
                                 </div>
                             )}
                         </div>
-                        {error && !carImage && <span className={style.text_danger}>Plz Select Any Image</span>}
+                        {error && !truckImage && <span className={style.text_danger}>Plz Select Any Image</span>}
 
                     </div>
 
                     <div>
                         <div className={style.input_field}>
-                            <label htmlFor="carTitle" className="form-label">Car Title:</label>
+                            <label>Truck Title:</label>
                             <input
                                 type="text"
-                                placeholder="Car Name/Model"
-                                id="carTitle"
-                                name="carTitle"
-                                value={carTitle}
-                                onChange={(e) => setCarTitle(e.target.value)}
+                                placeholder="Truck Name/Model"
+                                id="truckTitle"
+                                name="truckTitle"
+                                value={truckTitle}
+                                onChange={(e) => setTruckTitle(e.target.value)}
                             />
-                            {error && !carTitle && <span className={style.text_danger}>This field is required</span>}
+                            {error && !truckTitle && <span className={style.text_danger}>This field is required</span>}
+                        </div>
+
+                        <div className={style.input_field}>
+                            <label>Truck Mode:</label>
+
+                            <select id="mode" value={truckMode} onChange={handleModeChange}>
+                                <option value="select_option" disabled selected>Select Mode</option>
+                                <option value="LTL">LTL (Less than Truckload)</option>
+                                <option value="FTL">FTL (Full Truckload)</option>
+                                <option value="flatbed">Flatbed</option>
+                            </select>
+                            {error && !truckMode && <span className={style.text_danger}>This field is required</span>}
+                        </div>
+
+                        <div className={style.input_field}>
+                            <label>Zone:</label>
+                            <select
+                                id="zone"
+                                name="zone"
+                                value={zone}
+                                onChange={(e) => setZone(e.target.value)}
+                            >
+
+                                {product.map((item, index) =>
+                                    <option key={index} value="">{item.zone}</option>
+                                )}
+                            </select>
+                            {error && !zone && <span className={style.text_danger}>This field is required</span>}
                         </div>
 
 
-                        <div className={style.side_row}>
-                            <div className={style.input_field}>
-                                <label htmlFor="carType">Car Type:</label>
-                                <select
-                                    id="carType"
-                                    name="carType"
-                                    value={carType}
-                                    onChange={(e) => setCarType(e.target.value)}
-                                >
-                                    <option value="car_type" disabled selected>Select car type</option>
-                                    <option value="suv">SUV</option>
-                                    <option value="civic">CIVIC</option>
-                                    <option value="cng">Islamabad</option>
-                                    <option value="electricity">Wah Cantt</option>
-                                </select>
-                                {error && !carType && <span className={style.text_danger}>This field is required</span>}
-                            </div>
 
 
-                            <div className={style.input_field}>
-                                <label>Color:</label>
-                                <input
-                                    type="text"
-                                    placeholder="e.g. Black"
-                                    id="color"
-                                    name="color"
-                                    value={color}
-                                    onChange={(e) => setColor(e.target.value)}
-                                />
-                                {error && !color && <span className={style.text_danger}>This field is required</span>}
-                            </div>
-                        </div>
-
-                        <div className={style.side_row}>
-                            <div className={style.input_field}>
-                                <label>Zone:</label>
-                                <select
-                                    id="zone"
-                                    name="zone"
-                                    value={zone}
-                                    onChange={(e) => setZone(e.target.value)}
-                                >
-                                     
-                                    {product.map((item, index) =>
-                                        <option key={index} value="">{item.zone}</option>
-                                    )}
-                                </select>
-                                {error && !zone && <span className={style.text_danger}>This field is required</span>}
-                            </div>
-
-
-                            <div className={style.input_field}>
-                                <label>Price <span>(per/hour)</span>:</label>
-                                <input
-                                    type="text"
-                                    placeholder="e.g. 450"
-                                    name="price"
-                                    value={price}
-                                    onChange={(e) => setPrice(e.target.value)}
-                                />
-                                {error && !price && <span className={style.text_danger}>This field is required</span>}
-                                {error && price && isNaN(price) && <span className={style.text_danger}>Price must be a number</span>}
-                            </div>
-                        </div>
                     </div>
                 </div>
 
-                <div className={style.row}>
+
+                {/* <div>
+          {selectedMode === 'LTL' && <LTLForm />}
+          {selectedMode === 'FTL' && <FTLForm />}
+          {selectedMode === 'flatbed' && <Flatbed />}
+          {selectedMode === 'parcel' && <Parcel />}
+        </div> */}
+
+                <div className={style.truck_selection}>
+                    
                     <div className={style.input_field}>
                         <label>Number of Seats:</label>
                         <input
@@ -277,108 +248,18 @@ const AddTruck = ({ onClose }) => {
                         />
                         {error && !bags && <span className={style.text_danger}>This field is required</span>}
                     </div>
+                    
                     <div className={style.input_field}>
-                        <label>MileLimit <span>(per/day)</span>:</label>
+                        <label>Price <span>(per/hour)</span>:</label>
                         <input
                             type="text"
-                            placeholder="e.g. 200"
-                            name="mileLimit"
-                            value={mileLimit}
-                            onChange={(e) => setMileLimit(e.target.value)}
+                            placeholder="e.g. 450"
+                            name="price"
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
                         />
-                        {error && !mileLimit && <span className={style.text_danger}>This field is required</span>}
-                        {error && mileLimit && isNaN(mileLimit) && <span className={style.text_danger}>MileLimit must be a number</span>}
-                    </div>
-                </div>
-
-
-
-                <div className={style.row}>
-
-                    <div className={style.input_field}>
-                        <label>Gearshift:</label>
-                        <select
-                            id="transmissionType"
-                            name="transmissionType"
-                            value={transmission}
-                            onChange={(e) => setTransmission(e.target.value)}
-                        >
-                            <option value="manual">Manual</option>
-                            <option value="auto">Automatic</option>
-                        </select>
-                        {error && !transmission && <span className={style.text_danger}>This field is required</span>}
-                    </div>
-
-
-                    <div className={style.input_field}>
-                        <label >Engine Type:</label>
-                        <select
-                            id="engineType"
-                            name="engineType"
-                            value={engineType}
-                            onChange={(e) => setEngineType(e.target.value)}
-                        >
-                            <option disabled>Select Engine Type</option>
-                            <option value="ev">Electric Vehicle</option>
-                            <option value="hev">Hybrid Engine</option>
-                            <option value="ice">Internal Combustion Engine</option>
-                        </select>
-                        {error && !engineType && <span className={style.text_danger}>This field is required</span>}
-                    </div>
-
-                    <div className={style.input_field}>
-                        <label>Fuel Type:</label>
-                        <select
-                            id="fuelType"
-                            name="fuelType"
-                            value={fuelType}
-                            onChange={(e) => setFuelType(e.target.value)}
-                        >
-                            <option disabled>Select Fuel Type</option>
-                            <option value="petrol">Gasoline (Petrol)</option>
-                            <option value="diesel">Diesel</option>
-                            <option value="cng">CNG</option>
-                            <option value="electricity">Electricity</option>
-                        </select>
-                        {error && !fuelType && <span className={style.text_danger}>This field is required</span>}
-                    </div>
-                </div>
-
-                <div className={style.row}>
-                    <div className={style.input_field}>
-                        <label>Discount <span>(per/hour)</span>:</label>
-                        <input
-                            type="text"
-                            name="discount"
-                            placeholder="e.g. 250"
-                            value={discount}
-                            onChange={(e) => setDiscount(e.target.value)}
-                        />
-                         {error && discount && isNaN(discount) && <span className={style.text_danger}>This field must be a number</span>}
-                    </div>
-
-                    <div className={style.input_field}>
-                        <label>Start Date:</label>
-                        <input
-                            type="Date"
-                            className="form-control"
-                            id="startDate"
-                            name="startDate"
-                            value={startDate}
-                            onChange={(e) => setStartDate(e.target.value)}
-                        />
-                    </div>
-
-                    <div className={style.input_field}>
-                        <label>End Date:</label>
-                        <input
-                            type="Date"
-                            className="form-control"
-                            id="endDate"
-                            name="endDate"
-                            value={endDate}
-                            onChange={(e) => setEndDate(e.target.value)}
-                        />
+                        {error && !price && <span className={style.text_danger}>This field is required</span>}
+                        {error && price && isNaN(price) && <span className={style.text_danger}>Price must be a number</span>}
                     </div>
                 </div>
 

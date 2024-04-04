@@ -125,3 +125,24 @@
   font-size: 11px;
   padding: 0;
 }
+
+
+/* TRUCK FORM STYLE */
+.truck_form{
+  width: 760px;
+}
+
+.truck_row{
+  display: flex;
+  gap: 90px;
+}
+
+.truck_row input, .truck_row select{
+  width: 250px;
+}
+
+.truck_selection{
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}

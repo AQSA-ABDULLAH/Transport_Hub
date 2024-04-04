@@ -2,18 +2,18 @@
 import React, { useState } from 'react';
 import Button from '../../../../components/atoms/buttons/Button';
 import style from '../cars/carstab.module.css';
-import AddCarForm from '../../../../components/sections/transport-managment/cars/add_car/AddCarForm';
 import ViewCars from '../../../../components/sections/transport-managment/cars/view_car/ViewCars';
+import AddTruck from '../../../../components/sections/transport-managment/trucks/add_truck/AddTruck';
 
 const TruckTab = () => {
-  const [isAddCarFormVisible, setAddCarFormVisible] = useState(false);
+  const [isAddTruckVisible, setAddTruckVisible] = useState(false);
 
-  const openAddCarForm = () => {
-    setAddCarFormVisible(true);
+  const openAddTruckForm = () => {
+    setAddTruckVisible(true);
   };
 
-  const closeAddCarForm = () => {
-    setAddCarFormVisible(false);
+  const closeAddTruckForm = () => {
+    setAddTruckVisible(false);
   };
 
   return (
@@ -25,7 +25,7 @@ const TruckTab = () => {
           primary
           radius={"7px"}
           size={"13px"}
-           btnClick={openAddCarForm} />
+           btnClick={openAddTruckForm} />
         </div>
         <div className={style.message}>
 
@@ -37,7 +37,7 @@ const TruckTab = () => {
         </div>
       </div>
 
-      {isAddCarFormVisible && <AddCarForm onClose={closeAddCarForm} />}
+      {isAddTruckVisible && <AddTruck onClose={closeAddTruckForm}/> }
     </>
   );
 };
