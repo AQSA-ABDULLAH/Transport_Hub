@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from 'axios';
-import Swal from 'sweetalert2';
 import style from '../add_car/addCarForm.module.css';
 import { MdCloudUpload } from "react-icons/md";
 import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
@@ -29,112 +28,17 @@ const UpdateCar = ({ onClose }) => {
     const [product, setProduct] = useState([]);
 
 
-    useEffect(() => {
-        axios.get("http://localhost:5000/api/zone/get-zone")
+    // GET CAR DATA BY ID
+    const getCarData = (id) => {
+
+        axios.get(`http://localhost:5000/api/cars/deleteCar/${id}`)
             .then(res => {
-                console.log(res.data);
-                setProduct(res.data.data);
+                console.log(data)
             })
             .catch(err => {
                 console.log(err);
             });
-    }, []); 
-
-    useEffect(() => {
-        carImage && uploadFile(carImage, "imageUrl");
-    }, [carImage]);
-
-    // FIREBASE SETUP HERE
-    const uploadFile = (file) => {
-        const storage = getStorage(app);
-        const storageRef = ref(storage, 'CarImages/' + file.name);
-        const uploadTask = uploadBytesResumable(storageRef, file);
-
-        uploadTask.on('state_changed',
-            (snapshot) => {
-                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log('Upload is ' + progress + '% done');
-                setImagePrec(progress); // Update image upload progress
-            },
-            (error) => {
-                console.error('Error uploading file:', error);
-            },
-            () => {
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    setImageUrl(downloadURL); // Update imageUrl directly
-                    console.log('File available at', downloadURL);
-                });
-
-
-            }
-        );
     }
-
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        if (!carImage || !carTitle || !carType || !numberOfSeats || !transmission || !bags || !mileLimit ||
-            !color || !fuelType || !engineType || !price || !zone) {
-            setError(true);
-            return false;
-          }
-
-          if (isNaN(price || mileLimit || discount)) {
-            setError(true);
-            return false; 
-          }
-
-        const formData = new FormData();
-        formData.append('carImage', imageUrl);
-        formData.append('carTitle', carTitle);
-        formData.append('carType', carType);
-        formData.append('numberOfSeats', numberOfSeats);
-        formData.append('transmission', transmission);
-        formData.append('bags', bags);
-        formData.append('mileLimit', mileLimit);
-        formData.append('color', color);
-        formData.append('fuelType', fuelType);
-        formData.append('engineType', engineType);
-        formData.append('price', price);
-        formData.append('zone', zone);
-        formData.append('discount', discount);
-        formData.append('startDate', startDate);
-        formData.append('endDate', endDate);
-
-
-        try {
-            const response = await axios.post("http://localhost:5000/api/cars/addCar", formData, {
-                headers: { 'Authorization': localStorage.getItem('token') }
-            });
-
-            if (response.data.status === "success") {
-                Swal.fire(
-                    'Add New Car!',
-                    'You have been added new car succesfully.',
-                    'success'
-                  );
-                  onClose();
-            } else {
-                alert("Failed to submit data. Please try again.");
-            }
-
-        } catch (error) {
-            console.log(error);
-            alert("An error occurred while submitting the data. Please try again.");
-        }
-    };
-
-    useEffect(() => {
-        axios.get("http://localhost:5000/api/zone/get-zone")
-            .then(res => {
-                console.log(res.data);
-                setProduct(res.data.data);
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    }, []);
 
 
     const overlayStyle = {
@@ -240,7 +144,7 @@ const UpdateCar = ({ onClose }) => {
                                     value={zone}
                                     onChange={(e) => setZone(e.target.value)}
                                 >
-                                     
+
                                     {product.map((item, index) =>
                                         <option key={index} value="">{item.zone}</option>
                                     )}
@@ -365,7 +269,7 @@ const UpdateCar = ({ onClose }) => {
                             value={discount}
                             onChange={(e) => setDiscount(e.target.value)}
                         />
-                         {error && discount && isNaN(discount) && <span className={style.text_danger}>This field must be a number</span>}
+                        {error && discount && isNaN(discount) && <span className={style.text_danger}>This field must be a number</span>}
                     </div>
 
                     <div className={style.input_field}>
@@ -395,8 +299,8 @@ const UpdateCar = ({ onClose }) => {
 
                 <div className={style.row}>
                     <button onClick={onClose}>CANCLE</button>
-                    <button type="button" onClick={handleSubmit}>
-                        SUBMIT
+                    <button type="button">
+                        UPDATE
                     </button>
                 </div>
             </div>
