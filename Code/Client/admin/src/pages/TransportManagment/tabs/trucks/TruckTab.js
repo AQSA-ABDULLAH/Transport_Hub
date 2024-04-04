@@ -20,7 +20,7 @@ const TruckTab = () => {
     <>
       <div className={style.transport_container}>
         <div className={style.headingContainer}>
-          <h2 className={style.heading}>Truck Management</h2>
+          <h2 className={style.heading}>TRUCK MANAGEMENT</h2>
           <Button btnText="Add New Truck" 
           primary
           radius={"7px"}

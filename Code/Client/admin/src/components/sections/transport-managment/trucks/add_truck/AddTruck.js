@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import style from './addCarForm.module.css';
+import style from '../../cars/add_car/addCarForm.module.css';
 import { MdCloudUpload } from "react-icons/md";
 import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import { getDownloadURL } from "firebase/storage";
 import { app } from "../../../../../firebase";
 
-const AddCarForm = ({ onClose }) => {
+const AddTruck = ({ onClose }) => {
     const [carImage, setCarImage] = useState('');
     const [carTitle, setCarTitle] = useState('');
     const [carType, setCarType] = useState('');
@@ -28,17 +28,6 @@ const AddCarForm = ({ onClose }) => {
     const [error, setError] = useState(false);
     const [product, setProduct] = useState([]);
 
-
-    useEffect(() => {
-        axios.get("http://localhost:5000/api/zone/get-zone")
-            .then(res => {
-                console.log(res.data);
-                setProduct(res.data.data);
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    }, []); 
 
     useEffect(() => {
         carImage && uploadFile(carImage, "imageUrl");
@@ -124,6 +113,17 @@ const AddCarForm = ({ onClose }) => {
             alert("An error occurred while submitting the data. Please try again.");
         }
     };
+
+    useEffect(() => {
+        axios.get("http://localhost:5000/api/zone/get-zone")
+            .then(res => {
+                console.log(res.data);
+                setProduct(res.data.data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }, []);
 
 
     const overlayStyle = {
@@ -231,7 +231,7 @@ const AddCarForm = ({ onClose }) => {
                                 >
                                      
                                     {product.map((item, index) =>
-                                        <option key={index} value={item.zone}>{item.zone}</option>
+                                        <option key={index} value="">{item.zone}</option>
                                     )}
                                 </select>
                                 {error && !zone && <span className={style.text_danger}>This field is required</span>}
@@ -393,4 +393,4 @@ const AddCarForm = ({ onClose }) => {
     );
 };
 
-export default AddCarForm;
+export default AddTruck;
