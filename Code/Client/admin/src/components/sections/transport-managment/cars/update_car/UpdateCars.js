@@ -28,17 +28,17 @@ const UpdateCar = ({ onClose }) => {
     const [product, setProduct] = useState([]);
 
 
-    // GET CAR DATA BY ID
-    const getCarData = (id) => {
+    // // GET CAR DATA BY ID
+    // const getCarData = (id) => {
 
-        axios.get(`http://localhost:5000/api/cars/deleteCar/${id}`)
-            .then(res => {
-                console.log(data)
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    }
+    //     axios.get(`http://localhost:5000/api/cars/deleteCar/${id}`)
+    //         .then(res => {
+    //             console.log(data)
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         });
+    // }
 
 
     const overlayStyle = {
