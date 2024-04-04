@@ -1,44 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import style from '../add_car/addCarForm.module.css';
 import { MdCloudUpload } from "react-icons/md";
-import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
-import { getDownloadURL } from "firebase/storage";
-import { app } from "../../../../../firebase";
+import { useParams } from 'react-router-dom';
 
 const UpdateCar = ({ onClose }) => {
-    const [carImage, setCarImage] = useState('');
-    const [carTitle, setCarTitle] = useState('');
-    const [carType, setCarType] = useState('');
-    const [numberOfSeats, setNumberOfSeats] = useState('');
-    const [transmission, setTransmission] = useState('');
-    const [bags, setBags] = useState('');
-    const [mileLimit, setMileLimit] = useState('');
-    const [color, setColor] = useState('');
-    const [fuelType, setFuelType] = useState('');
-    const [engineType, setEngineType] = useState('');
-    const [price, setPrice] = useState('');
-    const [zone, setZone] = useState('Select zone');
-    const [discount, setDiscount] = useState('');
-    const [startDate, setStartDate] = useState('');
-    const [endDate, setEndDate] = useState('');
-    const [imgperc, setImagePrec] = useState("");
-    const [imageUrl, setImageUrl] = useState("");
     const [error, setError] = useState(false);
-    const [product, setProduct] = useState([]);
+    const [data, setData] = useState([]);
+
+    // const [data, setData] = useState({
+    //     carImage: "", carTitle: "", carType: "", numberOfSeats: "", transmission: "", bags: "", mileLimit: "", color: "", fuelType: "", engineType: "", price: "", zone: "", discount: "", startDate: "", endDate: "", imageUrl: "",
+    // });
 
 
-    // // GET CAR DATA BY ID
-    // const getCarData = (id) => {
+    const params = useParams();
 
-    //     axios.get(`http://localhost:5000/api/cars/deleteCar/${id}`)
-    //         .then(res => {
-    //             console.log(data)
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //         });
-    // }
+    // GET CAR DATA BY ID
+    const getCarData = async () => {
+        axios.get(`http://localhost:5000/api/cars/updateCar/${params.id}`)
+            .then(res => {
+                console.log(res.data);
+                setData(res.data.data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+
+    useEffect(() => {
+        getCarData();
+    }, []);
 
 
     const overlayStyle = {
@@ -66,12 +57,12 @@ const UpdateCar = ({ onClose }) => {
                             className={style.form_image}
                             id="carImage"
                             name="carImage"
+                            value={data.carImage}
                             accept="image/png, image/jpeg"
-                            onChange={(e) => setCarImage(e.target.files[0])}
                         />
 
                         <div className={style.image_view}>
-                            {carImage ? (
+                            {/* {carImage ? (
                                 <img
                                     src={URL.createObjectURL(carImage)}
                                     alt="icon"
@@ -81,24 +72,29 @@ const UpdateCar = ({ onClose }) => {
                                     <MdCloudUpload className={style.icon} />
                                     <p>Drag and drop or click here to upload image</p>
                                 </div>
-                            )}
+                            )} */}
+
+                            <div className={style.image_container}>
+                                <MdCloudUpload className={style.icon} />
+                                <p>Drag and drop or click here to upload image</p>
+                            </div>
                         </div>
-                        {error && !carImage && <span className={style.text_danger}>Plz Select Any Image</span>}
+                        {/* {error && !carImage && <span className={style.text_danger}>Plz Select Any Image</span>} */}
 
                     </div>
 
                     <div>
                         <div className={style.input_field}>
-                            <label htmlFor="carTitle" className="form-label">Car Title:</label>
+                            <label htmlFor="carTitle" >Car Title:</label>
                             <input
                                 type="text"
                                 placeholder="Car Name/Model"
                                 id="carTitle"
                                 name="carTitle"
-                                value={carTitle}
-                                onChange={(e) => setCarTitle(e.target.value)}
+                                value={data.carTitle}
+
                             />
-                            {error && !carTitle && <span className={style.text_danger}>This field is required</span>}
+                            {/* {error && !carTitle && <span className={style.text_danger}>This field is required</span>} */}
                         </div>
 
 
@@ -108,8 +104,8 @@ const UpdateCar = ({ onClose }) => {
                                 <select
                                     id="carType"
                                     name="carType"
-                                    value={carType}
-                                    onChange={(e) => setCarType(e.target.value)}
+                                    value={data.carType}
+
                                 >
                                     <option value="car_type" disabled selected>Select car type</option>
                                     <option value="suv">SUV</option>
@@ -117,7 +113,7 @@ const UpdateCar = ({ onClose }) => {
                                     <option value="cng">Islamabad</option>
                                     <option value="electricity">Wah Cantt</option>
                                 </select>
-                                {error && !carType && <span className={style.text_danger}>This field is required</span>}
+                                {/* {error && !carType && <span className={style.text_danger}>This field is required</span>} */}
                             </div>
 
 
@@ -128,10 +124,10 @@ const UpdateCar = ({ onClose }) => {
                                     placeholder="e.g. Black"
                                     id="color"
                                     name="color"
-                                    value={color}
-                                    onChange={(e) => setColor(e.target.value)}
+                                    value={data.color}
+
                                 />
-                                {error && !color && <span className={style.text_danger}>This field is required</span>}
+                                {/* {error && !color && <span className={style.text_danger}>This field is required</span>} */}
                             </div>
                         </div>
 
@@ -141,15 +137,15 @@ const UpdateCar = ({ onClose }) => {
                                 <select
                                     id="zone"
                                     name="zone"
-                                    value={zone}
-                                    onChange={(e) => setZone(e.target.value)}
+                                    value={data.zone}
+
                                 >
 
-                                    {product.map((item, index) =>
+                                    {/* {product.map((item, index) =>
                                         <option key={index} value="">{item.zone}</option>
-                                    )}
+                                    )} */}
                                 </select>
-                                {error && !zone && <span className={style.text_danger}>This field is required</span>}
+                                {/* {error && !zone && <span className={style.text_danger}>This field is required</span>} */}
                             </div>
 
 
@@ -159,11 +155,11 @@ const UpdateCar = ({ onClose }) => {
                                     type="text"
                                     placeholder="e.g. 450"
                                     name="price"
-                                    value={price}
-                                    onChange={(e) => setPrice(e.target.value)}
+                                    value={data.price}
+
                                 />
-                                {error && !price && <span className={style.text_danger}>This field is required</span>}
-                                {error && price && isNaN(price) && <span className={style.text_danger}>Price must be a number</span>}
+                                {/* {error && !price && <span className={style.text_danger}>This field is required</span>}
+                                {error && price && isNaN(price) && <span className={style.text_danger}>Price must be a number</span>} */}
                             </div>
                         </div>
                     </div>
@@ -176,10 +172,10 @@ const UpdateCar = ({ onClose }) => {
                             type="number"
                             placeholder="Enter No. of seats"
                             name="numberOfSeats"
-                            value={numberOfSeats}
-                            onChange={(e) => setNumberOfSeats(e.target.value)}
+                            value={data.numberOfSeats}
+
                         />
-                        {error && !numberOfSeats && <span className={style.text_danger}>This field is required</span>}
+                        {/* {error && !numberOfSeats && <span className={style.text_danger}>This field is required</span>} */}
                     </div>
                     <div className={style.input_field}>
                         <label >Bags:</label>
@@ -187,10 +183,10 @@ const UpdateCar = ({ onClose }) => {
                             type="number"
                             placeholder="Enter No. of Bags"
                             name="bags"
-                            value={bags}
-                            onChange={(e) => setBags(e.target.value)}
+                            value={data.bags}
+
                         />
-                        {error && !bags && <span className={style.text_danger}>This field is required</span>}
+                        {/* {error && !bags && <span className={style.text_danger}>This field is required</span>} */}
                     </div>
                     <div className={style.input_field}>
                         <label>MileLimit <span>(per/day)</span>:</label>
@@ -198,11 +194,11 @@ const UpdateCar = ({ onClose }) => {
                             type="text"
                             placeholder="e.g. 200"
                             name="mileLimit"
-                            value={mileLimit}
-                            onChange={(e) => setMileLimit(e.target.value)}
+                            value={data.mileLimit}
+
                         />
-                        {error && !mileLimit && <span className={style.text_danger}>This field is required</span>}
-                        {error && mileLimit && isNaN(mileLimit) && <span className={style.text_danger}>MileLimit must be a number</span>}
+                        {/* {error && !mileLimit && <span className={style.text_danger}>This field is required</span>}
+                        {error && mileLimit && isNaN(mileLimit) && <span className={style.text_danger}>MileLimit must be a number</span>} */}
                     </div>
                 </div>
 
@@ -215,13 +211,13 @@ const UpdateCar = ({ onClose }) => {
                         <select
                             id="transmissionType"
                             name="transmissionType"
-                            value={transmission}
-                            onChange={(e) => setTransmission(e.target.value)}
+                            value={data.transmission}
+
                         >
                             <option value="manual">Manual</option>
                             <option value="auto">Automatic</option>
                         </select>
-                        {error && !transmission && <span className={style.text_danger}>This field is required</span>}
+                        {/* {error && !transmission && <span className={style.text_danger}>This field is required</span>} */}
                     </div>
 
 
@@ -230,15 +226,15 @@ const UpdateCar = ({ onClose }) => {
                         <select
                             id="engineType"
                             name="engineType"
-                            value={engineType}
-                            onChange={(e) => setEngineType(e.target.value)}
+                            value={data.engineType}
+
                         >
                             <option disabled>Select Engine Type</option>
                             <option value="ev">Electric Vehicle</option>
                             <option value="hev">Hybrid Engine</option>
                             <option value="ice">Internal Combustion Engine</option>
                         </select>
-                        {error && !engineType && <span className={style.text_danger}>This field is required</span>}
+                        {/* {error && !engineType && <span className={style.text_danger}>This field is required</span>} */}
                     </div>
 
                     <div className={style.input_field}>
@@ -246,8 +242,8 @@ const UpdateCar = ({ onClose }) => {
                         <select
                             id="fuelType"
                             name="fuelType"
-                            value={fuelType}
-                            onChange={(e) => setFuelType(e.target.value)}
+                            value={data.fuelType}
+
                         >
                             <option disabled>Select Fuel Type</option>
                             <option value="petrol">Gasoline (Petrol)</option>
@@ -255,7 +251,7 @@ const UpdateCar = ({ onClose }) => {
                             <option value="cng">CNG</option>
                             <option value="electricity">Electricity</option>
                         </select>
-                        {error && !fuelType && <span className={style.text_danger}>This field is required</span>}
+                        {/* {error && !fuelType && <span className={style.text_danger}>This field is required</span>} */}
                     </div>
                 </div>
 
@@ -266,10 +262,10 @@ const UpdateCar = ({ onClose }) => {
                             type="text"
                             name="discount"
                             placeholder="e.g. 250"
-                            value={discount}
-                            onChange={(e) => setDiscount(e.target.value)}
+                            value={data.discount}
+
                         />
-                        {error && discount && isNaN(discount) && <span className={style.text_danger}>This field must be a number</span>}
+                        {/* {error && discount && isNaN(discount) && <span className={style.text_danger}>This field must be a number</span>} */}
                     </div>
 
                     <div className={style.input_field}>
@@ -279,8 +275,8 @@ const UpdateCar = ({ onClose }) => {
                             className="form-control"
                             id="startDate"
                             name="startDate"
-                            value={startDate}
-                            onChange={(e) => setStartDate(e.target.value)}
+                            value={data.startDate}
+
                         />
                     </div>
 
@@ -291,8 +287,8 @@ const UpdateCar = ({ onClose }) => {
                             className="form-control"
                             id="endDate"
                             name="endDate"
-                            value={endDate}
-                            onChange={(e) => setEndDate(e.target.value)}
+                            value={data.endDate}
+
                         />
                     </div>
                 </div>
