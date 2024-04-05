@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './ExtendedDetail.module.css';
-import AddOnsCard from "../../../components/molecules/carRental/addOns/AddOnsCard"
+import AddOnsCard from "../../../components/sections/car-rental/add-ons/AddOnsCard"
 import RentalPriceCard from '../../../components/molecules/carRental/priceCard/RentalPriceCard';
 
 export default function ExtendedDetailPage() {

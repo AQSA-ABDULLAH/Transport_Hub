@@ -12,20 +12,23 @@ export default function RentalPriceCard() {
     setIsModalOpen(true);
   };
 
-
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
-  return (
+  // Fetching price data from localStorage
+  const carData = JSON.parse(localStorage.getItem('selectedCar'));
+  const totalPrice = carData ? carData.price : 0; // Default value if data is not available
+
+  return ( 
     <>
       <div className={style.contanier}>
         <div className={style.card}>
           <div className={style.header}>
             <h2>
-              GAC GS8 320T i4x4 Model 2023 (Turbo)
+              {carData ? carData.carTitle : "Car Title"}
             </h2>
-            <span>Vechical Type || SUV</span>
+            <span>{carData ? carData.carType : "Car Type"}</span>
           </div>
           <div className={style.body}>
             <p><TiTick className={style.icon} /> Included Third party insurance</p>
@@ -35,7 +38,7 @@ export default function RentalPriceCard() {
           </div>
           <div className={style.price}>
             <p>Total</p>
-            <p>RS 450</p>
+            <p>RS {totalPrice}</p> {/* Displaying total price */}
           </div>
           <div className={style.btn}>
             <Button primary btnText="Continue" btnClick={openModal} />
