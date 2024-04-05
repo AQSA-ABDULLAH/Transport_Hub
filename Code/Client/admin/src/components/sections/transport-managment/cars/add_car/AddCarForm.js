@@ -125,17 +125,6 @@ const AddCarForm = ({ onClose }) => {
         }
     };
 
-    useEffect(() => {
-        axios.get("http://localhost:5000/api/zone/get-zone")
-            .then(res => {
-                console.log(res.data);
-                setProduct(res.data.data);
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    }, []);
-
 
     const overlayStyle = {
         position: 'fixed',
@@ -242,7 +231,7 @@ const AddCarForm = ({ onClose }) => {
                                 >
                                      
                                     {product.map((item, index) =>
-                                        <option key={index} value="">{item.zone}</option>
+                                        <option key={index} value={item.zone}>{item.zone}</option>
                                     )}
                                 </select>
                                 {error && !zone && <span className={style.text_danger}>This field is required</span>}

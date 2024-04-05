@@ -18,10 +18,14 @@ const CarsTab = () => {
 
   return (
     <>
-      <div className={style.container} style={{ height: window.innerHeight }}>
+      <div className={style.transport_container}>
         <div className={style.headingContainer}>
-          <h2 className={style.heading}>Cars Management</h2>
-          <Button btnText="Add New Car" primary btnClick={openAddCarForm} />
+          <h2 className={style.heading}>CARS MANAGEMENT</h2>
+          <Button btnText="Add New Car"
+          primary
+          radius={"7px"}
+          size={"13px"}
+          btnClick={openAddCarForm} />
         </div>
         <div className={style.message}>
 

@@ -23,3 +23,18 @@
 .filterContainer{
   width: 28%;
 }
+
+/* STYLE FOR BLOG DETAILS */
+.blog_container{
+  margin: 2rem 7rem;
+}
+
+.blog_description{
+  display: flex;
+  flex-direction: row;
+  gap: 65px;
+}
+
+.blog_content{
+  width: 78%;
+}
