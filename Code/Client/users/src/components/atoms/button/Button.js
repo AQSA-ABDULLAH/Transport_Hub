@@ -1,5 +1,4 @@
 import React from "react";
-
 import "./button.css";
 
 const Button = (props) => {
@@ -23,10 +22,15 @@ const Button = (props) => {
     borderRadius: radius || "40px",
     fontSize: size || "16px",
     width: width || "auto",
+    transition: "background-color 0.3s ease, color 0.3s ease", // Transition for smoother hover effect
   };
 
   return (
-    <button className="btn" style={buttonStyle} onClick={btnClick}>
+    <button
+      className="btn"
+      style={buttonStyle}
+      onClick={btnClick}
+    >
       {icon}
       {btnText}
     </button>
@@ -34,3 +38,4 @@ const Button = (props) => {
 };
 
 export default Button;
+

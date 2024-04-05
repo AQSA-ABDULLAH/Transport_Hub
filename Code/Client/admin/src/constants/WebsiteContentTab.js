@@ -15,5 +15,9 @@ export const Tab = [
   {
     text: "Blog&News",
     onClick: '/blogs'
+  },
+  {
+    text: "Zone",
+    onClick: "/zone"
   }
 ];

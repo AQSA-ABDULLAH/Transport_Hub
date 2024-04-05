@@ -1,0 +1,49 @@
+.row, .sub_input, .parcel_row {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+.row label,
+.row input,
+.row select {
+    display: flex;
+    flex-direction: column;
+}
+
+.row label {
+    display: inline-block;
+    /* font-weight: 500; */
+    line-height: 140%;
+    text-transform: none;
+    font-size: 0.84rem;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-top: 18px;
+}
+
+.row input, .parcel_row input,
+select {
+    width: 210px;
+    font-weight: 400;
+    font-size: 0.85rem;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #cccbcb;
+    border-radius: 5px;
+    min-width: 0px;
+}
+
+.parcel_row input{
+    width: 170px;
+}
+
+.dimensions_row{
+    display: flex;
+    flex-direction: row;
+    gap: 9px;
+}
+
+.dimensions_row input{
+    width: 100px;
+}

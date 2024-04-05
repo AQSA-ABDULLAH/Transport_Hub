@@ -6,7 +6,7 @@ import ShipmentBenefits from '../../components/sections/good-shipment/shipment-l
 export default function ShipmentLandingPage() {
   return (
     <>
-      <div className={styles.container}>
+      <div className={styles.shipment_container}>
         <ShipmentMain landingVideo={"./assets/images/good-shipment/global.mp4"} />
         <ShipmentBenefits image1={"./assets/images/good-shipment/image1.png"}
           image2={"./assets/images/good-shipment/image2.png"}

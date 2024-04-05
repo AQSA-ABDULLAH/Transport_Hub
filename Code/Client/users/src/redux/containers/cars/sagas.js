@@ -1,15 +1,33 @@
-import {connect} from 'react-redux';
+import { put, takeLatest, call } from "redux-saga/effects";
 import * as type from "./constants";
 import * as actions from "./actions";
+import axiosInstance from "../../util/AxiosHeader";
 
-import ViewCars from "../../../pages/carRental/showCarsPage/ViewCars.js";
+function* bookCar(action) {
+  try {
+    const { payload: carData } = action;
 
-const mapStateToProps=state=>({
+    // Use yield to wait for the result of the async function
+    const { data } = yield call(
+      axiosInstance.post,
+      "/api/cars/getCars",
+      carData
+    );
+    const { token } = data;
+    localStorage.setItem("access_token", token);
 
-})
+    yield put({
+      type: type.BOOK_CAR_SUCCESS,
+      payload: token,
+    });
+  } catch (error) {
+    yield put({ type: type.BOOK_CAR_FAILURE, payload: error.message });
+    // console.error("Sign Up Error:", error.message);
+  }
+}
 
-const mapDispatchToProps = (dispatch) =>({
-    bookCar:data=>dispatch(bookCar(data))
-})
+function* watchBookCar() {
+  yield takeLatest(type.BOOK_CAR_REQUEST, bookCar);
+}
 
-export default connect(mapStateToProps,mapDispatchToProps)(ViewCars);
+export const carsaga = [watchBookCar()];

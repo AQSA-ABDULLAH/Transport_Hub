@@ -43,18 +43,18 @@ const RoutesStack = ({ openSidebar, setOpenSidebar }) => {
           ButtonText={headerButtons[currentPath]?.buttonText}
           onClick={headerButtons[currentPath]?.onClick} />
         <Routes>
-        <Route path="/ParcelList" element={<ParcelList />} />
-        <Route path="/manageEmployees" element={<EmployeeManagement/>} />
-        <Route path="/pickupBoy" element={<Pickupboyform/>} />
-        <Route path="/driver" element={<Driver/>} />
-          <Route path="/transporter" element={<Transporter/>} />
+          <Route path="/ParcelList" element={<ParcelList />} />
+          <Route path="/manageEmployees" element={<EmployeeManagement />} />
+          <Route path="/pickupBoy" element={<Pickupboyform />} />
+          <Route path="/driver" element={<Driver />} />
+          <Route path="/transporter" element={<Transporter />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/news" element={<News/>} />
+          <Route path="/news" element={<News />} />
           <Route path="/website-content" element={<WebsiteContent />} />
-          <Route path="/transport-managment" element={<TransportMangment/>} />
-          <Route path="/manage-trips" element={<ManageTrips />} /> 
-          <Route path="/" element={<AdminDashboard/>} />
-          <Route path="*" element={<ErrorPage/>} />
+          <Route path="/transport-managment" element={<TransportMangment />} />
+          <Route path="/manage-trips" element={<ManageTrips />} />
+          <Route path="/" element={<AdminDashboard />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>
     </>

@@ -1,8 +1,9 @@
 .container{
     background-color: #fff;
     width: auto;
-    height: 85.8vh;
-    padding: 2rem;
+    height: 81.9vh;
+    overflow-y: scroll;
+    border-bottom-right-radius: 10px;
 }
 .inner_container h1{
     margin: 20px;

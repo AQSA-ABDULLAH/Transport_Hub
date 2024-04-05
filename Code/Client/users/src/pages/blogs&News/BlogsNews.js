@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './blogsNews.module.css'
-import Blogsection1molecule from '../../components/sections/blog&new/blog&new1section/Blogs'
-import Blogsection2molecule from '../../components/sections/blog&new/blog&new2section/Blogfilter'
+import Blogsection1 from '../../components/sections/blog&new/blog&new1section/Blogs'
+import Blogsection2 from '../../components/sections/blog&new/blog&new2section/Blogfilter'
 
 export default function BlogsNews() {
   return (
@@ -11,10 +11,10 @@ export default function BlogsNews() {
       </div>
       <div className={style.blogSection}>
         <div className={style.blogContainer}>
-          <Blogsection1molecule />
+          <Blogsection1/>
         </div>
         <div className={style.filterContainer}>
-          <Blogsection2molecule />
+          <Blogsection2/>
         </div>
       </div>
     </>

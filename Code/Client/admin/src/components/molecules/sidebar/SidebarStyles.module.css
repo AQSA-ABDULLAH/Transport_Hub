@@ -1,13 +1,13 @@
 .sidebar {
     background-color: #FAFAFA;
-    height: 95vh;
+    height: 90vh;
     margin: 20px;
     color: #fff;
     border-radius: 20px 0 0 20px;
     width: 15.3rem;
     padding: 1rem;
     position: absolute;
-    min-height:630px;
+    min-height:600px;
     overflow-y: auto;
     top: 0;
     left: 0;
@@ -18,15 +18,15 @@
     border-Right-style: dashed;
 }
 
-.logo {
-    color: #fa983a;
-    text-transform: uppercase;
-    text-align: center;
+.logo img{
+   width: 10.5rem;
+   height: auto;
+   display: flex;
+   margin-left: 20px;
 }
 
 .spaceY {
-    margin-top: 1.5rem;
-
+    margin-top: 1rem;
 }
 
 .sideLink {

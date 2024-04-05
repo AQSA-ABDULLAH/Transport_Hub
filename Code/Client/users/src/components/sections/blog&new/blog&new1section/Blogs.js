@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import style from './blogs.module.css';
+import { Link } from 'react-router-dom';
 
 export default function Blogsection1molecule() {
     const [product, setProduct] = useState([]);
@@ -48,7 +49,8 @@ export default function Blogsection1molecule() {
                             <div className={style.blogBottom}>
                             <p>{formatDate(item.createdAt)}</p>
                             {item.content.length > 200 && (
-                                <button onClick={() => alert(item.content)}>Read more </button>
+                                // <button onClick={() => alert(item.content)}>Read more </button>
+                                <button> <Link to={`/blog&news/${item._id}`}>Read more</Link></button>
                             )}
                             </div>
                         </div>

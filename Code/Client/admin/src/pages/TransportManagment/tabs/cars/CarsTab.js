@@ -1,10 +1,9 @@
 // Import useEffect from React
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from '../../../../components/atoms/buttons/Button';
-import Cars from "../../../../components/molecules/cars/Cars";
-import Card from "../../../../components/atoms/randomCard/Card"
 import style from './carstab.module.css';
-import AddCarForm from './AddCarForm';
+import AddCarForm from '../../../../components/sections/transport-managment/cars/add_car/AddCarForm';
+import ViewCars from '../../../../components/sections/transport-managment/cars/view_car/ViewCars';
 
 const CarsTab = () => {
   const [isAddCarFormVisible, setAddCarFormVisible] = useState(false);
@@ -19,47 +18,20 @@ const CarsTab = () => {
 
   return (
     <>
-      <div className={style.container} style={{ height: window.innerHeight }}>
+      <div className={style.transport_container}>
         <div className={style.headingContainer}>
-          <h2 className={style.heading}>Cars Management</h2>
-          <Button btnText="Add New Car" primary btnClick={openAddCarForm} />
+          <h2 className={style.heading}>CARS MANAGEMENT</h2>
+          <Button btnText="Add New Car"
+          primary
+          radius={"7px"}
+          size={"13px"}
+          btnClick={openAddCarForm} />
         </div>
         <div className={style.message}>
 
-          {/* <Cars
-            heading="Car Model XYZ"
-            imageUrl="path/to/car-image.jpg"
-            seats="5"
-            transmission="Automatic"
-            Incl="800 KM"
-            more="More"
-            price="$100/day"
-          />
-          <Cars
-            heading="Car Model ABC"
-            imageUrl="path/to/another-car-image.jpg"
-            seats="5"
-            transmission="Automatic"
-            Incl="800 KM"
-            more="More"
-            price="$120/day"
-          />
-          <Cars
-            heading="Car Model 123"
-            imageUrl="path/to/yet-another-car-image.jpg"
-            seats="5"
-            transmission="Automatic"
-            Incl="800 KM"
-            more="More"
-            price="$90/day"
-          /> */}
-
           <div className={style.row}>
-            <Cars />
-            <Cars />
-            <Cars />
+            <ViewCars />
           </div>
-          <Card />
 
 
         </div>
