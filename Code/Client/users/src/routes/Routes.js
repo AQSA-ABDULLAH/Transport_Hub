@@ -15,8 +15,8 @@ import LandingPage from "../pages/carRental/LandingPage.js";
 import ViewCars from "../pages/carRental/showCarsPage/ViewCars.js"
 import ExtendedDetailPage from "../pages/carRental/addOnPage/ExtendedDetailPage.js"
 import RentalBookingPage from "../pages/carRental/bookingPage/RentalBookingPage.js"
-import BlogsNews from "../pages/blogs&news/BlogsNews.js";
-import BlogsDetails from "../pages/blogs&news/BlogsDetails.js";
+import BlogsNews from "../pages/blogs&News/BlogsNews.js";
+import BlogsDetails from "../pages/blogs&News/BlogsDetails.js";
 import CareerPage from "../pages/career/CareerPage.js";
 import DriverEmail from "../pages/career/driver/registration/DriverEmail.js";
 import DriverVerifyMail from "../pages/career/driver/verifymail/DriverVerifyMain.js";
@@ -31,7 +31,9 @@ import DriverCnic from "../pages/career/driver/uploadCNIC/DriverCnic.js";
 import TermsCondition from "../pages/career/driver/terms&condition/Terms&Condition.js";
 import ShipmentLandingPage from "../pages/good-shipment/ShipmentLandingPage.js";
 import ShipmentForm from "../pages/good-shipment/create-shipment/ShipmentForm.js";
+import LandingTripPage from "../pages/Trips/LandingTripPage.js";
 import ManageShipments from "../pages/good-shipment/manage-shipments/ManageShipments.js";
+
 
 
 function AppRoutes() {
@@ -108,6 +110,8 @@ function AppRoutes() {
         <Route path="/verify_transporter_mail" element={< VerifyTransporterEmail/>}/>
         <Route path="/transporter_name_section" element={<TransporterName/>}/>
         
+        {/* Trips Packages */}
+        <Route path="/trips_packages" element={<LandingTripPage/>} />
         <Route path="/404" element={<NoRoute />} />      
 
         <Route
