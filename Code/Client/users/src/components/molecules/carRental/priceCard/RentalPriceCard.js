@@ -6,29 +6,39 @@ import { TiTick } from "react-icons/ti";
 
 export default function RentalPriceCard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [addDriver, setAddDriver] = useState(false);
-  const [addInfantSeat, setAddInfantSeat] = useState(false);
-  const [addToddlerSeat, setAddToddlerSeat] = useState(false);
-  const [totalPrice, setTotalPrice] = useState(0); // Initialize totalPrice state
+  const [addDriver, setAddDriver] = useState();
+  const [addInfantSeat, setAddInfantSeat] = useState();
+  const [addToddlerSeat, setAddToddlerSeat] = useState();
+  const [totalPrice, setTotalPrice] = useState(0); 
 
   // Fetching car price data from localStorage
   const carData = JSON.parse(localStorage.getItem('selectedCar'));
   const basePrice = carData ? carData.price : 0;
+  
+// Fetch add-on states from localStorage on component mount
+useEffect(() => {
+  const storedAddons = JSON.parse(localStorage.getItem('carAddons'));
+  if (storedAddons) {
+    // Update state values only if they are present in localStorage
+    if (storedAddons.hasOwnProperty('addDriver')) {
+      setAddDriver(storedAddons.addDriver);
+    }
+    if (storedAddons.hasOwnProperty('addInfantSeat')) {
+      setAddInfantSeat(storedAddons.addInfantSeat);
+    }
+    if (storedAddons.hasOwnProperty('addToddlerSeat')) {
+      setAddToddlerSeat(storedAddons.addToddlerSeat);
+    }
+  }
+}, []);
+
 
   // Update total price when add-on states change
   useEffect(() => {
-    const storedAddons = JSON.parse(localStorage.getItem('carAddons'));
-    if (storedAddons) {
-      setAddDriver(storedAddons.addDriver || false);
-      setAddInfantSeat(storedAddons.addInfantSeat || false);
-      setAddToddlerSeat(storedAddons.addToddlerSeat || false);
-    }
-  
-    // Update total price when add-on states change
     const totalPrice = basePrice + 
-                       (addDriver ? 450 : 0) +  // Add driver price
-                       (addInfantSeat ? 320 : 0) +  // Add infant seat price
-                       (addToddlerSeat ? 300 : 0); // Add toddler seat price
+                       (addDriver ? 450 : 0) + 
+                       (addInfantSeat ? 320 : 0) + 
+                       (addToddlerSeat ? 300 : 0);
     setTotalPrice(totalPrice);
   
     // Store add-on states and total price into local storage
@@ -77,6 +87,3 @@ export default function RentalPriceCard() {
     </>
   )
 }
-
-
-

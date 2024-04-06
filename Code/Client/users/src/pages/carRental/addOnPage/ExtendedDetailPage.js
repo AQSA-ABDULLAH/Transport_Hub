@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './ExtendedDetail.module.css';
 import AddOnsCard from "../../../components/sections/car-rental/add-ons/AddOnsCard"
-import RentalPriceCard from '../../../components/molecules/carRental/priceCard/RentalPriceCard';
+import BookCarCard from '../../../components/molecules/carRental/priceCard/BookCarCard';
 
 export default function ExtendedDetailPage() {
 
@@ -13,7 +13,7 @@ export default function ExtendedDetailPage() {
                     <AddOnsCard />
                 </div>
                 <div className={style.priceContainer}>
-                    <RentalPriceCard />
+                    <BookCarCard/>
                 </div>
             </div>
         </>
