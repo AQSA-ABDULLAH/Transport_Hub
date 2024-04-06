@@ -30,22 +30,6 @@ const CarFiltering = () => {
     localStorage.setItem('filterData', JSON.stringify(filterData));
   }, [pickupLocation, dropLocation, pickupDate, pickupTime, dropDate, dropTime, totalDays]);
 
-  const handleFilter = () => {
-    // Calculate total days
-    if (pickupDate && dropDate) {
-      const pickupMoment = moment(pickupDate);
-      const dropMoment = moment(dropDate);
-      const days = dropMoment.diff(pickupMoment, "days");
-      console.log("Total days:", days);
-      setTotalDays(days); // Set total days state
-    } else {
-      setTotalDays("");
-    }
-
-    // Navigate to the next page
-    navigate('/ViewCars');
-  }
-  
   useEffect(() => {
     axios.get("http://localhost:5000/api/zone/get-zone")
       .then(res => {
@@ -56,6 +40,24 @@ const CarFiltering = () => {
         console.log(err);
       });
   }, []);
+
+  // Calculate total days whenever there is a change in pickupDate or dropDate
+  useEffect(() => {
+    if (pickupDate && dropDate) {
+      const pickupMoment = moment(pickupDate);
+      const dropMoment = moment(dropDate);
+      const days = dropMoment.diff(pickupMoment, "days");
+      console.log("Total days:", days);
+      setTotalDays(days); // Set total days state
+    } else {
+      setTotalDays("");
+    }
+  }, [pickupDate, dropDate]);
+
+  const handleFilter = () => {
+    // Navigate to the next page
+    navigate('/ViewCars');
+  }
 
   return (
     <div className={styles.filter_container}>
@@ -133,3 +135,4 @@ const CarFiltering = () => {
 };
 
 export default CarFiltering;
+
