@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { DatePicker, TimePicker } from 'antd';
+import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
 import styles from "./carrentalstyle.module.css";
 
@@ -15,17 +16,8 @@ const CarFiltering = () => {
   const [product, setProduct] = useState([]);
   const navigate = useNavigate();
 
-  const handleFilter = () => {
-    // Calculate total days
-    if (pickupDate && dropDate) {
-      const days = dropDate.diff(pickupDate, "days");
-      console.log("Total days:", days);
-      setTotalDays(days); // Set total days state
-    } else {
-      setTotalDays("");
-    }
-  
-    // Create an object to store all state variables
+  // Store state variables into local storage
+  useEffect(() => {
     const filterData = {
       pickupLocation,
       dropLocation,
@@ -33,17 +25,27 @@ const CarFiltering = () => {
       pickupTime: pickupTime ? pickupTime.toString() : null,
       dropDate: dropDate ? dropDate.toString() : null,
       dropTime: dropTime ? dropTime.toString() : null,
-      totalDays // Include totalDays in the object
+      totalDays
     };
-  
-    // Store state variables into local storage
     localStorage.setItem('filterData', JSON.stringify(filterData));
-  
+  }, [pickupLocation, dropLocation, pickupDate, pickupTime, dropDate, dropTime, totalDays]);
+
+  const handleFilter = () => {
+    // Calculate total days
+    if (pickupDate && dropDate) {
+      const pickupMoment = moment(pickupDate);
+      const dropMoment = moment(dropDate);
+      const days = dropMoment.diff(pickupMoment, "days");
+      console.log("Total days:", days);
+      setTotalDays(days); // Set total days state
+    } else {
+      setTotalDays("");
+    }
+
     // Navigate to the next page
     navigate('/ViewCars');
   }
   
-
   useEffect(() => {
     axios.get("http://localhost:5000/api/zone/get-zone")
       .then(res => {
@@ -78,17 +80,18 @@ const CarFiltering = () => {
           <div>
             <DatePicker
               className={styles.datepicker}
-              value={pickupDate}
-              onChange={(date) => setPickupDate(date)}
+              onChange={(date, dateString) => setPickupDate(dateString)} // Extract date string from the event
             />
           </div>
+  
           <div>
             <TimePicker
               className={styles.datepicker}
               format='HH:mm'
-              onChange={(time) => setPickupTime(time)}
+              onChange={(time, timeString) => setPickupTime(timeString)}
             />
           </div>
+          
           <div>
             <select
               id="dropLocation"
@@ -102,20 +105,22 @@ const CarFiltering = () => {
               )}
             </select>
           </div>
+
           <div>
             <DatePicker
               className={styles.datepicker}
-              value={dropDate}
-              onChange={(date) => setDropDate(date)}
+              onChange={(date, dateString) => setDropDate(dateString)} // Extract date string from the event
             />
           </div>
+          
           <div>
             <TimePicker
               className={styles.datepicker}
               format='HH:mm'
-              onChange={(time) => setDropTime(time)}
+              onChange={(time, timeString) => setDropTime(timeString)}
             />
           </div>
+          
           <div className={styles.search_button}>
             <button onClick={handleFilter}>
               Show Cars
