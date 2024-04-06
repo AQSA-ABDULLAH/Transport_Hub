@@ -1,18 +1,15 @@
 /* addOnsCard.module.css */
 
 .heading {
-    display: flex;
-    flex-direction: column;
     padding-left: 12px;
-    bottom: 1px solid ;
 }
 
-.h2{
-    font-size: 25px;
+.heading h2{
+    font-size: 23px;
 }
 
-.p{
-    font-size: 18px;
+.heading p{
+    font-size: 16px;
     font-weight: 500;
 }
 .Container {
@@ -21,11 +18,23 @@
 }
 
 .addOnCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     padding: 1rem 1.2rem;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     margin: 18px 12px;
-    height: 14.2rem;
+    height: 13rem;
+    width: 17rem;
     background-color: white;
+}
+
+.addOnCard h3{
+    font-size: 17px;
+}
+
+.addOnCard span{
+    font-size: 13px;
 }
 
 .cards{
@@ -37,7 +46,9 @@
     font-size: 19px;
 }
 
-.price{
+.price {
     display: flex;
     justify-content: space-between;
+    align-items: flex-end; /* Align items to the bottom */
+    margin-top: auto;
 }
