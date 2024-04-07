@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import style from "./rentalBookingForm.module.css";
+import Button from '../../../atoms/button/Button';
+import CarFeaturesModel from '../../../../pages/car-rental/carFeatureModel/CarFeaturesModel'
 
 const RentalBookingForm = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -21,9 +25,17 @@ const RentalBookingForm = () => {
     }));
   };
 
+  const openModal = () => {
+    console.log('Opening modal');
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Perform actions with form data, such as submitting to a server or storing in state
     console.log('Form submitted:', formData);
   };
 
@@ -107,15 +119,30 @@ const RentalBookingForm = () => {
         <div className={style.formfiled}>
           <label htmlFor="address" className={style.formlabel}>Address:<span className={style.msg}>(Plz provide correct delivery address, In case of need delivery):</span></label>
           <textarea
-          style={{ marginTop: '2px' }}
+            style={{ marginTop: '2px' }}
             id="address"
             name="address"
+            rows={4}
             value={formData.address}
             onChange={handleChange}
             required
           />
         </div>
-        <button type="submit" className={`btn btn-primary ${style.btn}`}>Submit</button>
+
+        <div className={style.btn}>
+          <Button
+            primary
+            size={"14px"}
+            radius={"4px"}
+            btnText="Book Rental"
+            btnClick={openModal}
+          />
+        </div>
+
+        {isModalOpen && (
+          <CarFeaturesModel onClose={closeModal} />
+        )}
+
       </form>
     </div>
 

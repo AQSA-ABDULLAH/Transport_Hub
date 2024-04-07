@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import style from './rentalPriceCard.module.css';
-import Button from '../../../atoms/button/Button';
-import CarFeaturesModel from '../../../../pages/car-rental/carFeatureModel/CarFeaturesModel';
 import { TiTick } from "react-icons/ti";
 
 export default function RentalPriceCard() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [addDriver, setAddDriver] = useState();
   const [addInfantSeat, setAddInfantSeat] = useState();
   const [addToddlerSeat, setAddToddlerSeat] = useState();
@@ -45,17 +42,7 @@ export default function RentalPriceCard() {
     // Store add-on states and total price into local storage
     const addons = { addDriver, addInfantSeat, addToddlerSeat, totalPrice };
     localStorage.setItem('carAddons', JSON.stringify(addons));
-  }, [basePrice, addDriver, addInfantSeat, addToddlerSeat]); // Watch for changes in these state variables
-
-
-  const openModal = () => {
-    console.log('Opening modal');
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  }, [basePrice, addDriver, addInfantSeat, addToddlerSeat]);
 
   return (
     <>
@@ -103,18 +90,8 @@ export default function RentalPriceCard() {
           </div>
         </div>
 
-        {/* <div className={style.btn}>
-          <Button 
-          primary 
-          size={"14px"}
-          radius={"4px"}
-          btnText="Continue" btnClick={openModal} />
-        </div> */}
-
       </div>
-      {isModalOpen && (
-        <CarFeaturesModel onClose={closeModal} />
-      )}
+      
     </>
   )
 }

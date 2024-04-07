@@ -8,41 +8,6 @@ import Button from '../../../components/atoms/button/Button';
 const CarFeaturesModel = ({ onClose }) => {
     const navigate = useNavigate();
 
-    const modalStyle = {
-        position: 'fixed',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        backgroundColor: '#fff',
-        padding: '30px',
-        borderRadius: '8px',
-        boxShadow: '0 4px 8px #6c757d',
-        maxWidth: '500px',  // Adjust as needed
-        width: '100%',
-        zIndex: '1000',
-        overflowY: 'auto',
-    };
-
-    const overlayStyle = {
-        position: 'fixed',
-        top: '0',
-        left: '0',
-        width: '100%',
-        height: '100%',
-        backgroundColor: 'rgba(0, 0, 0, 0.3)',
-        zIndex: '999',
-        backdropFilter: 'blur(2px)',
-    };
-
-    const closeButtonStyle = {
-        cursor: 'pointer',
-        position: 'absolute',
-        top: '0px',
-        right: '10px',
-        fontSize: '3rem',
-    };
-
-
     // Accordion state
     const [accordionState, setAccordionState] = useState({
         theftProtection: false,
@@ -67,12 +32,12 @@ const CarFeaturesModel = ({ onClose }) => {
 
     return (
         <>
-            <div style={overlayStyle} onClick={onClose}></div>
-            <div style={modalStyle}>
-                <div style={closeButtonStyle} onClick={onClose}>
+            <div className="overlayStyle" onClick={onClose}></div>
+            <div className="modalStyle">
+                <div className="closeButtonStyle" onClick={onClose}>
                     &times;
                 </div>
-                <h4 className='heading'>Car Features</h4>
+                <h4>Car Features</h4>
 
                 {/* Accordion menu */}
                 <div className="accordion-section">
@@ -84,7 +49,6 @@ const CarFeaturesModel = ({ onClose }) => {
                     </div>
                     {accordionState.theftProtection && (
                         <div className="accordion-details">
-                            {/* Details for Theft Protection */}
                             <p>Details about Theft Protection go here.</p>
                         </div>
                     )}
@@ -142,7 +106,14 @@ const CarFeaturesModel = ({ onClose }) => {
                     )}
                 </div>
 
-                <Button primary btnText="Continue" btnClick={handleContinue} />
+                <div className="feature_btn">
+                    <Button
+                        primary
+                        size={"14px"}
+                        radius={"4px"}
+                        btnText="Continue"
+                    />
+                </div>
 
             </div>
 
