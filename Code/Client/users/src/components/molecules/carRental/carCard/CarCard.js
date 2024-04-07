@@ -12,6 +12,7 @@ import FiltersCard from "../filterCard/FiltersCard";
 function CarCard() {
     const [product, setProduct] = useState([]);
     const navigate = useNavigate(); // Changed navigator to navigate
+    const [totalDays, setTotalDays] = useState(1); // Initialize total days to 1
 
     useEffect(() => {
         axios.get("http://localhost:5000/api/cars/getCars")
@@ -22,10 +23,22 @@ function CarCard() {
             .catch(err => {
                 console.log(err);
             });
+        
+        // Retrieve total days from local storage
+        const filterData = JSON.parse(localStorage.getItem('filterData'));
+        if (filterData && filterData.totalDays) {
+            setTotalDays(filterData.totalDays);
+        }
     }, []); 
 
     const handleBookNow = (carData) => {
-        localStorage.setItem('selectedCar', JSON.stringify(carData));
+        // Calculate total price
+        const totalPrice = carData.price * totalDays;
+
+        // Store car data along with total price in local storage
+        const carDataWithTotalPrice = { ...carData, totalPrice };
+        localStorage.setItem('selectedCar', JSON.stringify(carDataWithTotalPrice));
+
         navigate('/carAddOn'); // Changed navigator to navigate
     };
 
@@ -66,7 +79,7 @@ function CarCard() {
                             <div className={style.booking}>
                                 <div className={style.price}>
                                     <small className={style.dailyPrice}>RS {item.price} / day</small>
-                                    <small>RS {item.price} total</small>
+                                    <small>RS {item.price * totalDays} total</small> {/* Calculate total price */}
                                 </div>
                                 <Button
                                     btnText="Book Now"
@@ -83,6 +96,9 @@ function CarCard() {
 }
 
 export default CarCard;
+
+
+
 
 
 
