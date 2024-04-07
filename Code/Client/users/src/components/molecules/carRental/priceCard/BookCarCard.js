@@ -11,15 +11,20 @@ export default function BookCarCard() {
     navigate("/RentalBooking"); // Redirect to the desired page
   };
 
-  return ( 
+  return (
     <>
       <div className={style.contanier}>
         <div className={style.card}>
-          <div className={style.header}>
-            <h2>
-              {carData ? carData.carTitle : "Car Title"}
-            </h2>
-            <span>{carData ? carData.carType : "Car Type"}</span>
+          <div className={style.car_header}>
+            <div>
+              {carData && carData.carImage && (
+                <img src={carData.carImage} alt="Car" />
+              )}
+            </div>
+            <div>
+              <h2>{carData ? carData.carTitle : "Car Title"}</h2>
+              <span>{carData ? carData.carType : "Car Type"}</span>
+            </div>
           </div>
           <div className={style.price}>
             <p>Total</p>
@@ -29,7 +34,8 @@ export default function BookCarCard() {
             <Button primary btnText="Continue" btnClick={handleRedirect} />
           </div>
         </div>
-      </div >
+      </div>
     </>
-  )
+  );
 }
+
