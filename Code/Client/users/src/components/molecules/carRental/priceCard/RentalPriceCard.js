@@ -13,7 +13,7 @@ export default function RentalPriceCard() {
 
   // Fetching car price data from localStorage
   const carData = JSON.parse(localStorage.getItem('selectedCar'));
-  const basePrice = carData ? carData.price : 0;
+  const basePrice = carData ? carData.totalPrice : 0;
   
 // Fetch add-on states from localStorage on component mount
 useEffect(() => {

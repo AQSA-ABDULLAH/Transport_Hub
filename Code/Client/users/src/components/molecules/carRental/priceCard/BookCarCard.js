@@ -23,7 +23,7 @@ export default function BookCarCard() {
           </div>
           <div className={style.price}>
             <p>Total</p>
-            <p>RS {carData ? carData.price : "Car Price"}</p>
+            <p>RS {carData ? carData.totalPrice : "Car Price"}</p>
           </div>
           <div className={style.btn}>
             <Button primary btnText="Continue" btnClick={handleRedirect} />

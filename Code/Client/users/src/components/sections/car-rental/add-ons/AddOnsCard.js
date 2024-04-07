@@ -6,16 +6,6 @@ export default function AddOnsCard() {
   const [addInfantSeat, setAddInfantSeat] = useState(false);
   const [addToddlerSeat, setAddToddlerSeat] = useState(false);
 
-  // Load state from localStorage on component mount
-    // useEffect(() => {
-    //   const storedAddons = JSON.parse(localStorage.getItem('carAddons'));
-    //   if (storedAddons) {
-    //     setAddDriver(storedAddons.addDriver || false);
-    //     setAddInfantSeat(storedAddons.addInfantSeat || false);
-    //     setAddToddlerSeat(storedAddons.addToddlerSeat || false);
-    //   }
-    // }, []);
-
   // Update localStorage when state changes
   useEffect(() => {
     const addons = { addDriver, addInfantSeat, addToddlerSeat };
