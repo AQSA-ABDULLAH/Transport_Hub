@@ -3,7 +3,7 @@ const router = express.Router();
 const TrucksController = require("../controllers/transportManagment/truckController");
 
 // ROUTES
-router.post('/addCar', CarsController.addCars);
+router.post('/addTruck', TrucksController.addTrucks);
 // router.get("/getCars", CarsController.getCars);
 // router.get("/getCar/:id", CarsController.getCar);
 // router.delete("/deleteCar/:id", CarsController.deletecar);
