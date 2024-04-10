@@ -73,7 +73,7 @@ const AddTruck = ({ onClose }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!truckImage || !truckTitle || !truckMode || !vechicalType || !selectedEquipment || !equipmentLength 
+        if ( !truckTitle || !truckMode || !vechicalType || !selectedEquipment || !equipmentLength 
             ||!dimensions || !price || !zone) {
             setError(true);
             return false;
@@ -172,7 +172,7 @@ const AddTruck = ({ onClose }) => {
                                 </div>
                             )}
                         </div>
-                        {error && !truckImage && <span className={style.text_danger}>Plz Select Any Image</span>}
+                        {/* {error && !truckImage && <span className={style.text_danger}>Plz Select Any Image</span>} */}
 
                     </div>
 
