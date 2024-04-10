@@ -26,10 +26,6 @@ const truckSchema = new mongoose.Schema({
     trim: true
   },
   length: {
-    type: String,
-    trim: true
-  },
-  price: {
     type: Number,
     trim: true
   },
@@ -37,7 +33,10 @@ const truckSchema = new mongoose.Schema({
     type: String,
     trim: true
   },
-
+  price: {
+    type: Number,
+    trim: true
+  },
 },
   {
     timestamps: true
