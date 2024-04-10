@@ -15,9 +15,13 @@ const truckSchema = new mongoose.Schema({
   },
   zone: {
     type: String,
-    trim: true
+    trim: true 
   },
   vechicalType: {
+    type: String,
+    trim: true
+  },
+  equipment: {
     type: String,
     trim: true
   },
@@ -27,6 +31,10 @@ const truckSchema = new mongoose.Schema({
   },
   price: {
     type: Number,
+    trim: true
+  },
+  dimensions: {
+    type: String,
     trim: true
   },
 
