@@ -11,10 +11,12 @@ const AddTruck = ({ onClose }) => {
     const [truckImage, setTruckImage] = useState('');
     const [truckTitle, setTruckTitle] = useState('');
     const [truckMode, setTruckMode] = useState('');
+    const [vechicalType, setVechicalType] = useState('');
+    const [selectedEquipment, setSelectedEquipment] = useState('');
+    const [equipmentLength, setEquipmentLength] = useState('');
+    const [dimensions, setDimensions] = useState('');
     const [zone, setZone] = useState('Select zone');
     const [price, setPrice] = useState('');
-    const [numberOfSeats, setNumberOfSeats] = useState('');
-    const [bags, setBags] = useState('');
     const [mileLimit, setMileLimit] = useState('');
     const [imgperc, setImagePrec] = useState("");
     const [imageUrl, setImageUrl] = useState("");
@@ -22,12 +24,11 @@ const AddTruck = ({ onClose }) => {
     const [product, setProduct] = useState([]);
 
     const [selectedMode, setSelectedMode] = useState();
-    const [selectedEquipment, setSelectedEquipment] = useState();
 
     // Handle mode change event
     const handleModeChange = (event) => {
         const mode = event.target.value;
-        setTruckMode(mode); // Fixed syntax error
+        setTruckMode(mode);
         setSelectedMode(mode);
     };
 
@@ -72,13 +73,13 @@ const AddTruck = ({ onClose }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!truckImage || !truckTitle || !truckMode || !numberOfSeats || !bags || !mileLimit || !price
-            || !zone) {
+        if (!truckImage || !truckTitle || !truckMode || !vechicalType || !selectedEquipment || !equipmentLength 
+            ||!dimensions || !price || !zone) {
             setError(true);
             return false;
         }
 
-        if (isNaN(price || mileLimit)) {
+        if (isNaN(price)) {
             setError(true);
             return false;
         }
@@ -87,21 +88,22 @@ const AddTruck = ({ onClose }) => {
         formData.append('truckImage', imageUrl);
         formData.append('truckTitle', truckTitle);
         formData.append('truckMode', truckMode);
-        formData.append('numberOfSeats', numberOfSeats);
-        formData.append('bags', bags);
-        formData.append('mileLimit', mileLimit);
+        formData.append('vechicalType', vechicalType);
+        formData.append('selectedEquipment', selectedEquipment);
+        formData.append('equipmentLength', equipmentLength);
+        formData.append('dimensions', dimensions);
         formData.append('price', price);
         formData.append('zone', zone);
 
 
         try {
-            const response = await axios.post("http://localhost:5000/api/cars/addCar", formData, {
+            const response = await axios.post("http://localhost:5000/api/trucks/addTruck", formData, {
                 headers: { 'Authorization': localStorage.getItem('token') }
             });
 
             if (response.data.status === "success") {
                 Swal.fire(
-                    'Add New Car!',
+                    'Add New Truck!',
                     'You have been added new car succesfully.',
                     'success'
                 );
@@ -210,7 +212,7 @@ const AddTruck = ({ onClose }) => {
                             >
 
                                 {product.map((item, index) =>
-                                    <option key={index} value="">{item.zone}</option>
+                                    <option key={index} value={item.zone}>{item.zone}</option>
                                 )}
                             </select>
                             {error && !zone && <span className={style.text_danger}>This field is required</span>}
@@ -225,13 +227,17 @@ const AddTruck = ({ onClose }) => {
                 <div className={style.truck_selection}>
                     {selectedMode === 'LTL' && (
                         <div>
-                            <label htmlFor="equipment">Vechical Type</label>
-                            <select id="equipment">
+                            <label>Vechical Type</label>
+                            <select
+                                value={vechicalType}
+                                onChange={(e) => setVechicalType(e.target.value)}
+                            >
                                 <option value="select_option" disabled selected>Select Vechical Type</option>
                                 <option value="mazda">Mazda</option>
                                 <option value="shehzore">Shehzore</option>
                                 <option value="pickup">Pickup</option>
                             </select>
+                            {error && !vechicalType && <span className={style.text_danger}>This field is required</span>}
                         </div>
 
                     )}
@@ -240,20 +246,31 @@ const AddTruck = ({ onClose }) => {
                         <div className={style.truck_selection}>
                             <div>
                                 <label htmlFor="equipment">Equipment</label>
-                                <select id="equipment" className={style.length} value={selectedEquipment} onChange={handleEquipmentChange}>
+                                <select
+                                    id="equipment"
+                                    className={style.length}
+                                    value={selectedEquipment}
+                                    onChange={handleEquipmentChange}
+                                >
                                     <option value="select_option" disabled selected>Select Equipment</option>
                                     <option value="truck">Truck</option>
                                     <option value="reefer">Reefer</option>
                                     <option value="tanker">Tanker</option>
                                     <option value="container">Container</option>
                                 </select>
+                                {error && !selectedEquipment && <span className={style.text_danger}>This field is required</span>}
                             </div>
 
                             <div>
                                 {selectedEquipment === 'truck' &&
                                     <div>
-                                        <label htmlFor="equipment_type">Equipment Length</label>
-                                        <select id="equipment_type" className={style.length}>
+                                        <label>Equipment Length</label>
+                                        <select
+                                            id="equipment_type"
+                                            className={style.length}
+                                            value={equipmentLength}
+                                            onChange={(e) => setEquipmentLength(e.target.value)}
+                                        >
                                             <option value="small">48'</option>
                                             <option value="large">53'</option>
                                         </select>
@@ -264,7 +281,12 @@ const AddTruck = ({ onClose }) => {
                                 {selectedEquipment === 'reefer' &&
                                     <div>
                                         <label htmlFor="equipment_type">Equipment Length</label>
-                                        <select id="equipment_type" className={style.length}>
+                                        <select
+                                            id="equipment_type"
+                                            className={style.length}
+                                            value={equipmentLength}
+                                            onChange={(e) => setEquipmentLength(e.target.value)}
+                                        >
                                             <option value="small">45'</option>
                                             <option value="large">50'</option>
                                         </select>
@@ -274,7 +296,12 @@ const AddTruck = ({ onClose }) => {
                                 {selectedEquipment === 'tanker' &&
                                     <div>
                                         <label htmlFor="equipment_type">Equipment Length</label>
-                                        <select id="equipment_type" className={style.length}>
+                                        <select
+                                            id="equipment_type"
+                                            className={style.length}
+                                            value={equipmentLength}
+                                            onChange={(e) => setEquipmentLength(e.target.value)}
+                                        >
                                             <option value="small">45'</option>
                                             <option value="large">52'</option>
                                         </select>
@@ -284,7 +311,12 @@ const AddTruck = ({ onClose }) => {
                                 {selectedEquipment === 'container' &&
                                     <div>
                                         <label htmlFor="equipment_type">Container Size</label>
-                                        <select id="equipment_type" className={style.length}>
+                                        <select
+                                            id="equipment_type"
+                                            className={style.length}
+                                            value={equipmentLength}
+                                            onChange={(e) => setEquipmentLength(e.target.value)}
+                                        >
                                             <option value="small">20'</option>
                                             <option value="medium">40'</option>
                                             <option value="large">45'</option>
@@ -300,7 +332,12 @@ const AddTruck = ({ onClose }) => {
                     {selectedMode === 'flatbed' && (
                         <div>
                             <label htmlFor="dimensions">Dimensions</label>
-                            <select id="dimensions" className={style.length}>
+                            <select 
+                            id="dimensions" 
+                            className={style.length}
+                            value={dimensions}
+                            onChange={(e) => setDimensions(e.target.value)}
+                            >
                                 <option value="first">45', 10'</option>
                                 <option value="second">45', 12'</option>
                                 <option value="third">50', 10'</option>
