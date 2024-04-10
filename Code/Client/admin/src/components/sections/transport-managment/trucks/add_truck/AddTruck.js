@@ -72,12 +72,14 @@ const AddTruck = ({ onClose }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
 
-        if ( !truckTitle || !truckMode || !vechicalType || !selectedEquipment || !equipmentLength 
-            ||!dimensions || !price || !zone) {
-            setError(true);
-            return false;
-        }
+        // if ( !truckTitle || !truckMode || !vechicalType || !selectedEquipment || !equipmentLength 
+        //     ||!dimensions || !price || !zone) {
+        //     setError(true);
+        //     return false;
+        // }
+        
 
         if (isNaN(price)) {
             setError(true);
@@ -95,8 +97,8 @@ const AddTruck = ({ onClose }) => {
         formData.append('price', price);
         formData.append('zone', zone);
 
-
         try {
+            console.log("abc")
             const response = await axios.post("http://localhost:5000/api/trucks/addTruck", formData, {
                 headers: { 'Authorization': localStorage.getItem('token') }
             });
@@ -114,6 +116,7 @@ const AddTruck = ({ onClose }) => {
 
         } catch (error) {
             console.log(error);
+            console.log("hjb")
             alert("An error occurred while submitting the data. Please try again.");
         }
     };
@@ -199,7 +202,7 @@ const AddTruck = ({ onClose }) => {
                                 <option value="FTL">FTL (Full Truckload)</option>
                                 <option value="flatbed">Flatbed</option>
                             </select>
-                            {error && !truckMode && <span className={style.text_danger}>This field is required</span>}
+                            {/* {error && !truckMode && <span className={style.text_danger}>This field is required</span>} */}
                         </div>
 
                         <div className={style.input_field}>
@@ -215,7 +218,7 @@ const AddTruck = ({ onClose }) => {
                                     <option key={index} value={item.zone}>{item.zone}</option>
                                 )}
                             </select>
-                            {error && !zone && <span className={style.text_danger}>This field is required</span>}
+                            {/* {error && !zone && <span className={style.text_danger}>This field is required</span>} */}
                         </div>
 
 
@@ -237,7 +240,7 @@ const AddTruck = ({ onClose }) => {
                                 <option value="shehzore">Shehzore</option>
                                 <option value="pickup">Pickup</option>
                             </select>
-                            {error && !vechicalType && <span className={style.text_danger}>This field is required</span>}
+                            {/* {error && !vechicalType && <span className={style.text_danger}>This field is required</span>} */}
                         </div>
 
                     )}
@@ -258,7 +261,7 @@ const AddTruck = ({ onClose }) => {
                                     <option value="tanker">Tanker</option>
                                     <option value="container">Container</option>
                                 </select>
-                                {error && !selectedEquipment && <span className={style.text_danger}>This field is required</span>}
+                                {/* {error && !selectedEquipment && <span className={style.text_danger}>This field is required</span>} */}
                             </div>
 
                             <div>
@@ -359,7 +362,7 @@ const AddTruck = ({ onClose }) => {
                             value={price}
                             onChange={(e) => setPrice(e.target.value)}
                         />
-                        {error && !price && <span className={style.text_danger}>This field is required</span>}
+                        {/* {error && !price && <span className={style.text_danger}>This field is required</span>} */}
                         {error && price && isNaN(price) && <span className={style.text_danger}>Price must be a number</span>}
                     </div>
                 </div>

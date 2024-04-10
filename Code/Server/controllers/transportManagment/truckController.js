@@ -8,13 +8,14 @@ class TrucksController {
         console.log(req.body, 16)
         const { truckImage, truckTitle, truckMode, zone, vechicalType, equipment, length, dimensions, price } = req.body;
 
-        if (
-            !truckImage || !truckTitle || !truckMode || !zone || !vechicalType || !price
-        ) {
-            return res
-                .status(422)
-                .json({ error: "Please fill in all fields properly" });
-        }
+        // if (
+        //     !truckImage || !truckTitle || !truckMode || !zone || !vechicalType || !price
+        // ) 
+        // {
+        //     return res
+        //         .status(422)
+        //         .json({ error: "Please fill in all fields properly" });
+        // }
 
         try {
             const newTruck = new Trucks({
