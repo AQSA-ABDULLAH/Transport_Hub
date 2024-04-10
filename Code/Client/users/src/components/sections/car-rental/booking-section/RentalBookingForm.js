@@ -37,6 +37,9 @@ const RentalBookingForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
+
+    // Store form data into local storage
+    localStorage.setItem('formData', JSON.stringify(formData));
   };
 
   return (
