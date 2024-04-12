@@ -31,7 +31,9 @@ import DriverCnic from "../pages/career/driver/uploadCNIC/DriverCnic.js";
 import TermsCondition from "../pages/career/driver/terms&condition/Terms&Condition.js";
 import ShipmentLandingPage from "../pages/good-shipment/ShipmentLandingPage.js";
 import ShipmentForm from "../pages/good-shipment/create-shipment/ShipmentForm.js";
+import LandingTripPage from "../pages/Trips/LandingTripPage.js";
 import ManageShipments from "../pages/good-shipment/manage-shipments/ManageShipments.js";
+
 
 
 function AppRoutes() {
@@ -108,6 +110,8 @@ function AppRoutes() {
         <Route path="/verify_transporter_mail" element={< VerifyTransporterEmail/>}/>
         <Route path="/transporter_name_section" element={<TransporterName/>}/>
         
+        {/* Trips Packages */}
+        <Route path="/trips_packages" element={<LandingTripPage/>} />
         <Route path="/404" element={<NoRoute />} />      
 
         <Route
