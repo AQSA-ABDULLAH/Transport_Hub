@@ -6,23 +6,12 @@ export default function AddOnsCard() {
   const [addInfantSeat, setAddInfantSeat] = useState(false);
   const [addToddlerSeat, setAddToddlerSeat] = useState(false);
 
-  // Load state from localStorage on component mount
-    // useEffect(() => {
-    //   const storedAddons = JSON.parse(localStorage.getItem('carAddons'));
-    //   if (storedAddons) {
-    //     setAddDriver(storedAddons.addDriver || false);
-    //     setAddInfantSeat(storedAddons.addInfantSeat || false);
-    //     setAddToddlerSeat(storedAddons.addToddlerSeat || false);
-    //   }
-    // }, []);
-
   // Update localStorage when state changes
   useEffect(() => {
     const addons = { addDriver, addInfantSeat, addToddlerSeat };
     localStorage.setItem('carAddons', JSON.stringify(addons));
   }, [addDriver, addInfantSeat, addToddlerSeat]);
-  
-  
+
   return (
     <>
       <div className={style.Container}>
@@ -31,7 +20,7 @@ export default function AddOnsCard() {
           <p>Enhance Your Car</p>
         </div>
         <div className={style.cards}>
-        <div className={style.addOnCard}>
+          <div className={style.addOnCard}>
             <img src="" alt="icon"/>
             <div>
               <h3>Car driver</h3>
@@ -39,7 +28,11 @@ export default function AddOnsCard() {
             </div>
             <div className={style.price}>
               <p>RS 450 <span>Per Day</span></p>
-              <button onClick={()=> setAddDriver(true)}>Add</button>
+              {addDriver ? (
+                <button onClick={() => setAddDriver(false)}>Remove</button>
+              ) : (
+                <button onClick={() => setAddDriver(true)}>Add</button>
+              )}
             </div>
           </div>
 
@@ -49,7 +42,11 @@ export default function AddOnsCard() {
             <span>Choose an infant seat for a safer trip. Suitable for babies up to 12 months old.</span>
             <div className={style.price}>
               <p>RS 320 <span>Per Day</span></p>
-              <button onClick={()=> setAddInfantSeat(true)}>Add</button>
+              {addInfantSeat ? (
+                <button onClick={() => setAddInfantSeat(false)}>Remove</button>
+              ) : (
+                <button onClick={() => setAddInfantSeat(true)}>Add</button>
+              )}
             </div>
           </div>
 
@@ -59,13 +56,15 @@ export default function AddOnsCard() {
             <span>Choose an toddler seat for a safer trip. Suitable for child up to 1 to 3 years old.</span>
             <div className={style.price}>
               <p>RS 300 <span>Per Day</span></p>
-              <button onClick={()=> setAddToddlerSeat(true)}>Add</button>
+              {addToddlerSeat ? (
+                <button onClick={() => setAddToddlerSeat(false)}>Remove</button>
+              ) : (
+                <button onClick={() => setAddToddlerSeat(true)}>Add</button>
+              )}
             </div>
           </div>
         </div>
-
-    
       </div>
     </>
-  )
+  );
 }

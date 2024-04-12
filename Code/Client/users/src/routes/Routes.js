@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Profiler } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import './route.css'
 import Home from "../pages/Home.js";
 import Signup from "../pages/Signup";
 import Login from "../pages/Login";
-import Billing from "../pages/Billing";
+import Profile from "../pages/Profile.js";
 import Header from "../components/sections/header/Header";
 import Footer from "../components/sections/footer/Footer";
 import NoRoute from "../pages/NoRoute.js";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { setSignedIn } from "../redux/containers/auth/actions";
-import './route.css'
-import LandingPage from "../pages/carRental/LandingPage.js";
-import ViewCars from "../pages/carRental/showCarsPage/ViewCars.js"
-import ExtendedDetailPage from "../pages/carRental/addOnPage/ExtendedDetailPage.js"
-import RentalBookingPage from "../pages/carRental/bookingPage/RentalBookingPage.js"
-import BlogsNews from "../pages/blogs&News/BlogsNews.js";
-import BlogsDetails from "../pages/blogs&News/BlogsDetails.js";
+import LandingPage from "../pages/car-rental/LandingPage.js";
+import ViewCars from "../pages/car-rental/showCarsPage/ViewCars.js"
+import ExtendedDetailPage from "../pages/car-rental/addOnPage/ExtendedDetailPage.js"
+import RentalBookingPage from "../pages/car-rental/bookingPage/RentalBookingPage.js"
+import BlogsNews from "../pages/blogs&news/BlogsNews.js";
+import BlogsDetails from "../pages/blogs&news/BlogsDetails.js";
 import CareerPage from "../pages/career/CareerPage.js";
 import DriverEmail from "../pages/career/driver/registration/DriverEmail.js";
 import DriverVerifyMail from "../pages/career/driver/verifymail/DriverVerifyMain.js";
@@ -123,8 +123,8 @@ function AppRoutes() {
           element={isAuthenticated ? <Navigate to="/" replace /> : <Login />}
         />
         <Route
-          path="/billing"
-          element={isAuthenticated ? <Navigate to="/" replace /> : <Billing />}
+          path="/user-profile"
+          element={isAuthenticated ? <Navigate to="/" replace /> : <Profile/> }
         />
         <Route path="*" element={<Navigate to="/404" replace />} />
       </Routes>
