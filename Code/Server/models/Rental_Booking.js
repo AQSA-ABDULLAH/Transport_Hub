@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const RentalBookingSchema = new mongoose.Schema({
     firstName: { type: String, required: true, trim: true },
     lastName: { type: String, trim: true },
-    phoneNumber: { type: String, trim: true },
+    phoneNumber: { type: Number, trim: true },
     email: { type: String, trim: true },
     cnic: { type: String, trim: true },
     zipCode: { type: Number, trim: true },
