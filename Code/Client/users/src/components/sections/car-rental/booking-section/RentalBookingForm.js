@@ -16,52 +16,56 @@ const RentalBookingForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
+    setFormData(prevData => ({
       ...prevData,
       [name]: value,
     }));
-  
-    // Add zip code validation
-    if (name === 'zipCode' && value.trim() === '') {
-      // Show an error message or disable the submit button
+
+    // Optionally, add zip code validation
+    if (name === 'zipCode' && !value.trim()) {
       console.error('Zip code is required');
     }
   };
-  
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // if (Object.keys(errors).length > 0) {
-    //   console.error('Please correct the errors before submitting.');
-    //   return;
-    // }
-  
-    // Check if all required fields have values
-    const isEmpty = Object.values(formData).some(value => value.trim() === '');
-  
+     // Retrieve carDetails from local storage
+     const filterData = JSON.parse(localStorage.getItem('filterData'));
+     if (!filterData) {
+       console.error('Car details not found in local storage');
+       return;
+     }
+
+    // Check for empty fields in formData
+    const isEmpty = Object.values(formData).some(x => x.trim() === '');
     if (isEmpty) {
       console.error('Please fill in all required fields');
-      // You can also display an error message to the user here
       return;
     }
-  
-    localStorage.setItem('formData', JSON.stringify(formData));
-    const storedFormData = JSON.parse(localStorage.getItem('formData'));
-  
-    console.log('Sending data:', storedFormData);
-    axios.post('http://localhost:5000/api/rental-booking/book-rental', storedFormData)
+
+    // Retrieve carDetails from local storage
+    const selectedCar = JSON.parse(localStorage.getItem('selectedCar'));
+    if (!selectedCar) {
+      console.error('Car details not found in local storage');
+      return;
+    }
+
+    // Combine formData with carDetails
+    const combinedData = { ...formData, filterData: filterData };
+
+    // Log combined data to console (for debugging)
+    console.log('Sending combined data:', combinedData);
+
+    // Send combined data to server
+    axios.post('http://localhost:5000/api/rental-booking/book-rental', combinedData)
       .then(response => {
         console.log('Data sent successfully:', response.data);
       })
       .catch(error => {
         console.error('Failed to send data:', error.response ? error.response.data : error.message);
       });
-    
   };
-  
-  
 
 
 

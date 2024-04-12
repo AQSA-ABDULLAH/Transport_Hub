@@ -2,6 +2,12 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const RentalBookingSchema = new mongoose.Schema({
+    pickup_location: { type: String, trim: true },
+    pickup_date: { type: Date},
+    pickup_time: { type: Date},
+    dropLocation: { type: String, trim: true },
+    dropDate: { type: Date},
+    dropTime: { type: Date},
     firstName: { type: String, required: true, trim: true },
     lastName: { type: String, trim: true },
     phoneNumber: { type: Number, trim: true },
@@ -19,30 +25,7 @@ const RentalBookingSchema = new mongoose.Schema({
     //     required: true,
     //     ref:"Cars"
     // },
-    // pickup_location : {
-    //     type: String,
-    //     trim: true
-    // },
-    // pickup_date : {
-    //     type: Date,
-    //     required: true,
-    // },
-    // pickup_time : {
-    //     type: Date,
-    //     required: true,
-    // },
-    // drop_location : {
-    //     type: String,
-    //     trim: true
-    // },
-    // drop_date : {
-    //     type: Date,
-    //     required: true,
-    // },
-    // drop_time : {
-    //     type: Date,
-    //     required: true,
-    // },
+
 }, {
     timestamps: true
 })
