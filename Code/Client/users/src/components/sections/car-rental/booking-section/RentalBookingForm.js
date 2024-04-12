@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import style from "./rentalBookingForm.module.css";
 import Button from '../../../atoms/button/Button';
+import axios from 'axios';
 
 const RentalBookingForm = () => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
-    phoneNo: '',
+    phoneNumber: '',
     email: '',
     cnic: '',
-    zipcode: '',
+    zipCode: '',
     address: '',
-    deliveryAddress: '',
   });
 
   const handleChange = (e) => {
@@ -20,15 +20,50 @@ const RentalBookingForm = () => {
       ...prevData,
       [name]: value,
     }));
+  
+    // Add zip code validation
+    if (name === 'zipCode' && value.trim() === '') {
+      // Show an error message or disable the submit button
+      console.error('Zip code is required');
+    }
   };
+  
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
 
-    // Store form data into local storage
+    // if (Object.keys(errors).length > 0) {
+    //   console.error('Please correct the errors before submitting.');
+    //   return;
+    // }
+  
+    // Check if all required fields have values
+    const isEmpty = Object.values(formData).some(value => value.trim() === '');
+  
+    if (isEmpty) {
+      console.error('Please fill in all required fields');
+      // You can also display an error message to the user here
+      return;
+    }
+  
     localStorage.setItem('formData', JSON.stringify(formData));
+    const storedFormData = JSON.parse(localStorage.getItem('formData'));
+  
+    console.log('Sending data:', storedFormData);
+    axios.post('http://localhost:5000/api/rental-booking/book-rental', storedFormData)
+      .then(response => {
+        console.log('Data sent successfully:', response.data);
+      })
+      .catch(error => {
+        console.error('Failed to send data:', error.response ? error.response.data : error.message);
+      });
+    
   };
+  
+  
+
+
 
   return (
     <div className={`${style.bookingForm}`}>
@@ -60,12 +95,12 @@ const RentalBookingForm = () => {
         </div>
         <div className={style.formrow}>
           <div className={style.formfiled}>
-            <label htmlFor="phoneNo" className={style.formlabel}>Phone No:</label>
+            <label htmlFor="phoneNumber" className={style.formlabel}>Phone No:</label>
             <input
               type="tel"
-              id="phoneNo"
-              name="phoneNo"
-              value={formData.phoneNo}
+              id="phoneNumber"
+              name="phoneNumber"
+              value={formData.phoneNumber}
               onChange={handleChange}
               required
             />
@@ -96,11 +131,11 @@ const RentalBookingForm = () => {
             />
           </div>
           <div className={style.formfiled}>
-            <label htmlFor="zipcode" className={style.formlabel}>Zip Code:</label>
+            <label htmlFor="zipCode" className={style.formlabel}>Zip Code:</label>
             <input
-              id="zipcode"
-              name="zipcode"
-              value={formData.zipcode}
+              id="zipCode"
+              name="zipCode"
+              value={formData.zipCode}
               onChange={handleChange}
               required
             />

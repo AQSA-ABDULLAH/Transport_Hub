@@ -2,6 +2,7 @@ const Rental_Booking = require("../../models/Rental_Booking.js");
 
 class RentalBookingController {
     static async rentalBooking(req, res) {
+        console.log('Received form data:', req.body);
         const { firstName, lastName, email, phoneNumber, cnic, zipCode, address } = req.body;
         
         // Check if any of the required fields are missing
