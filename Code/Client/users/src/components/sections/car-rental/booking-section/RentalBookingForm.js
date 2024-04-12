@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import style from "./rentalBookingForm.module.css";
 import Button from '../../../atoms/button/Button';
-import CarFeaturesModel from '../../../../pages/car-rental/carFeatureModel/CarFeaturesModel'
 
 const RentalBookingForm = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -23,15 +20,6 @@ const RentalBookingForm = () => {
       ...prevData,
       [name]: value,
     }));
-  };
-
-  const openModal = () => {
-    console.log('Opening modal');
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
   };
 
   const handleSubmit = (e) => {
@@ -138,13 +126,8 @@ const RentalBookingForm = () => {
             size={"14px"}
             radius={"4px"}
             btnText="Book Rental"
-            btnClick={openModal}
           />
         </div>
-
-        {isModalOpen && (
-          <CarFeaturesModel onClose={closeModal} />
-        )}
 
       </form>
     </div>

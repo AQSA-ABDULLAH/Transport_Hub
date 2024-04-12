@@ -1,18 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import style from './rentalPriceCard.module.css';
 import Button from '../../../atoms/button/Button';
-import { useNavigate } from 'react-router-dom';
+import CarFeaturesModel from '../../../../pages/car-rental/carFeatureModel/CarFeaturesModel';
 
 export default function BookCarCard() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const carData = JSON.parse(localStorage.getItem('selectedCar'));
   const filterData = JSON.parse(localStorage.getItem('filterData'));
-  const navigate = useNavigate();
 
-  const handleRedirect = () => {
-    navigate("/RentalBooking"); // Redirect to the desired page
+  
+  const openModal = () => {
+    console.log('Opening modal');
+    setIsModalOpen(true);
   };
 
-  return (
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  return ( 
     <>
       <div className={style.price_card_contanier}>
 
@@ -57,9 +63,13 @@ export default function BookCarCard() {
           primary 
           size={"14px"}
           radius={"4px"}
-          btnText="Continue" btnClick={handleRedirect} />
+          btnText="Continue" 
+          btnClick={openModal}/>
         </div>
       </div>
+      {isModalOpen && (
+          <CarFeaturesModel onClose={closeModal} />
+        )}
     </>
   );
 }

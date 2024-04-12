@@ -112,6 +112,7 @@ const CarFeaturesModel = ({ onClose }) => {
                         size={"14px"}
                         radius={"4px"}
                         btnText="Continue"
+                        btnClick={handleContinue}
                     />
                 </div>
 
