@@ -98,8 +98,9 @@ const AddTruck = ({ onClose }) => {
         formData.append('zone', zone);
 
         try {
-            console.log("abc")
-            const response = await axios.post("http://localhost:5000/api/trucks/addTruck", formData, {
+            const response = await axios.post("http://localhost:5000/api/trucks/addTruck", {
+                formData
+            }, {
                 headers: { 'Authorization': localStorage.getItem('token') }
             });
 
