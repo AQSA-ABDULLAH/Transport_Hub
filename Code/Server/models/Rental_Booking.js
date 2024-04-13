@@ -2,13 +2,13 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const RentalBookingSchema = new mongoose.Schema({
-    pickup_location: { type: String, trim: true },
-    pickup_date: { type: Date},
-    pickup_time: { type: Date},
+    pickupLocation: { type: String, trim: true },
+    pickupDate: { type: String},
+    pickupTime: { type: String},
     dropLocation: { type: String, trim: true },
-    dropDate: { type: Date},
-    dropTime: { type: Date},
-    firstName: { type: String, required: true, trim: true },
+    dropDate: { type: String},
+    dropTime: { type: String},
+    firstName: { type: String, trim: true },
     lastName: { type: String, trim: true },
     phoneNumber: { type: Number, trim: true },
     email: { type: String, trim: true },

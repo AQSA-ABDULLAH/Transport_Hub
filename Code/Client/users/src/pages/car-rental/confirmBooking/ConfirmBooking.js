@@ -1,35 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios from 'axios';
 import style from './confirmBooking.module.css';
 import Button from '../../../components/atoms/button/Button';
-import { useNavigate } from 'react-router-dom';  // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 
 const ConfirmBooking = () => {
     const navigate = useNavigate();
-    const [formData, setFormData] = useState({
-        pickupLocation: '',
-        pickupDate: '',
-        pickupTime: '',
-        dropLocation: '',
-        dropDate: '',
-        dropTime: '',
-    });
 
-   
+
+    // Retrieve Booking from local storage
+    const filterData = JSON.parse(localStorage.getItem('filterData'));
+    const pickupLocation = filterData.pickupLocation;
+    const pickupDate = filterData.pickupDate;
+    const pickupTime = filterData.pickupTime;
+    const dropLocation = filterData.dropLocation;
+    const dropDate = filterData.pickupDate;
+    const dropTime = filterData.dropTime;
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        
-        // Retrieve carDetails from local storage
-        const filterData = JSON.parse(localStorage.getItem('filterData'));
-        const pickupLocation = filterData.pickupLocation;
-        const pickupDate = filterData.pickupDate;
-        const pickupTime = filterData.pickupTime;
-        const dropLocation = filterData.dropLocation;
-        const dropDate = filterData.pickupDate;
-        const dropTime = filterData.dropTime;
 
-        // Combine formData with carDetails
-        const combinedData = { 
+        // Combine all booking details
+        const combinedData = {
             pickupLocation: pickupLocation,
             pickupDate: pickupDate,
             pickupTime: pickupTime,
@@ -67,7 +60,7 @@ const ConfirmBooking = () => {
                         size="14px"
                         radius="4px"
                         btnText="Cancel Reservation"
-                        btnClick={() => navigate('/')} 
+                        btnClick={() => navigate('/')}
                     />
                 </div>
             </div>
@@ -90,12 +83,12 @@ export default ConfirmBooking;
 // }
 
 
-        // // Retrieve carDetails from local storage
-        // const filterData = JSON.parse(localStorage.getItem('filterData'));
-        // const dropLocation = filterData.dropLocation;
+// // Retrieve carDetails from local storage
+// const filterData = JSON.parse(localStorage.getItem('filterData'));
+// const dropLocation = filterData.dropLocation;
 
-        // // Combine formData with carDetails
-        // const combinedData = { ...formData, dropLocation: dropLocation };
+// // Combine formData with carDetails
+// const combinedData = { ...formData, dropLocation: dropLocation };
 
-        // // Log combined data to console (for debugging)
-        // console.log('Sending combined data:', combinedData);
+// // Log combined data to console (for debugging)
+// console.log('Sending combined data:', combinedData);

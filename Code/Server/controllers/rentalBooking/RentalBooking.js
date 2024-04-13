@@ -7,9 +7,9 @@ class RentalBookingController {
             lastName, email, phoneNumber, cnic, zipCode, address } = req.body;
         
         // Check if any of the required fields are missing
-        if (!firstName || !lastName || !email || !phoneNumber || !cnic || !zipCode || !address) {
-            return res.status(422).json({ error: "Please fill in all fields properly" });
-        }
+        // if (!firstName || !lastName || !email || !phoneNumber || !cnic || !zipCode || !address) {
+        //     return res.status(422).json({ error: "Please fill in all fields properly" });
+        // }
 
         try {
             // Create a new rental booking instance
