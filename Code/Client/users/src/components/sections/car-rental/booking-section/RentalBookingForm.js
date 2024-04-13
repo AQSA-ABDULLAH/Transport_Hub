@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import style from "./rentalBookingForm.module.css";
 import Button from '../../../atoms/button/Button';
+import ConfirmBooking from '../../../../pages/car-rental/confirmBooking/ConfirmBooking';
 
 const RentalBookingForm = () => {
   const [formData, setFormData] = useState({
@@ -128,6 +129,9 @@ const RentalBookingForm = () => {
           />
         </div>
       </form>
+      {isPopupOpen && (
+          <ConfirmBooking onClose={closePopup}/>
+        )}
     </div>
   );
 };
