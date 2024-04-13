@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import style from "./rentalBookingForm.module.css";
 import Button from '../../../atoms/button/Button';
-import axios from 'axios';
 
 const RentalBookingForm = () => {
   const [formData, setFormData] = useState({
@@ -11,60 +10,26 @@ const RentalBookingForm = () => {
     email: '',
     cnic: '',
     zipCode: '',
-    address: '',
+    address: ''
   });
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevData => ({
-      ...prevData,
-      [name]: value,
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData(prevFormData => ({
+      ...prevFormData,
+      [name]: value
     }));
-
-    // Optionally, add zip code validation
-    if (name === 'zipCode' && !value.trim()) {
-      console.error('Zip code is required');
-    }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    localStorage.setItem('bookingForm', JSON.stringify(formData));
+    setIsPopupOpen(true); // Show the popup after saving the data
+  };
 
-     // Retrieve carDetails from local storage
-     const filterData = JSON.parse(localStorage.getItem('filterData'));
-     if (!filterData) {
-       console.error('Car details not found in local storage');
-       return;
-     }
-
-    // Check for empty fields in formData
-    const isEmpty = Object.values(formData).some(x => x.trim() === '');
-    if (isEmpty) {
-      console.error('Please fill in all required fields');
-      return;
-    }
-
-    // Retrieve carDetails from local storage
-    const selectedCar = JSON.parse(localStorage.getItem('selectedCar'));
-    if (!selectedCar) {
-      console.error('Car details not found in local storage');
-      return;
-    }
-
-    // Combine formData with carDetails
-    const combinedData = { ...formData, filterData: filterData };
-
-    // Log combined data to console (for debugging)
-    console.log('Sending combined data:', combinedData);
-
-    // Send combined data to server
-    axios.post('http://localhost:5000/api/rental-booking/book-rental', combinedData)
-      .then(response => {
-        console.log('Data sent successfully:', response.data);
-      })
-      .catch(error => {
-        console.error('Failed to send data:', error.response ? error.response.data : error.message);
-      });
+  const closePopup = () => {
+    setIsPopupOpen(false);
   };
 
 
@@ -80,9 +45,8 @@ const RentalBookingForm = () => {
               type="text"
               id="firstName"
               name="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
               required
+              onChange={handleChange}
             />
           </div>
           <div className={style.formfiled}>
@@ -91,9 +55,8 @@ const RentalBookingForm = () => {
               type="text"
               id="lastName"
               name="lastName"
-              value={formData.lastName}
-              onChange={handleChange}
               required
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -104,9 +67,8 @@ const RentalBookingForm = () => {
               type="tel"
               id="phoneNumber"
               name="phoneNumber"
-              value={formData.phoneNumber}
-              onChange={handleChange}
               required
+              onChange={handleChange}
             />
           </div>
           <div className={style.formfiled}>
@@ -115,9 +77,8 @@ const RentalBookingForm = () => {
               type="email"
               id="email"
               name="email"
-              value={formData.email}
-              onChange={handleChange}
               required
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -129,48 +90,45 @@ const RentalBookingForm = () => {
               type="text"
               id="cnic"
               name="cnic"
-              value={formData.cnic}
-              onChange={handleChange}
               required
+              onChange={handleChange}
             />
           </div>
           <div className={style.formfiled}>
             <label htmlFor="zipCode" className={style.formlabel}>Zip Code:</label>
             <input
+              type="text"
               id="zipCode"
               name="zipCode"
-              value={formData.zipCode}
-              onChange={handleChange}
               required
+              onChange={handleChange}
             />
           </div>
         </div>
 
         <div className={style.formfiled}>
-          <label htmlFor="address" className={style.formlabel}>Address:<span className={style.msg}>(Plz provide correct delivery address, In case of need delivery):</span></label>
+          <label htmlFor="address" className={style.formlabel}>Address:</label>
           <textarea
             style={{ marginTop: '2px' }}
             id="address"
             name="address"
             rows={4}
-            value={formData.address}
-            onChange={handleChange}
             required
+            onChange={handleChange}
           />
         </div>
 
         <div className={style.btn}>
           <Button
+            type="submit"
             primary
             size={"14px"}
             radius={"4px"}
             btnText="Book Rental"
           />
         </div>
-
       </form>
     </div>
-
   );
 };
 
