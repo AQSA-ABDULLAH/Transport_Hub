@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './ExtendedDetail.module.css';
 import AddOnsCard from "../../../components/sections/car-rental/add-ons/AddOnsCard"
-import BookCarCard from '../../../components/molecules/carRental/priceCard/BookCarCard';
+import BookCarCard from '../../../components/molecules/car-rental/priceCard/BookCarCard';
 
 export default function ExtendedDetailPage() {
 
