@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 
 // Define the POST route for booking a rental
 router.post("/book-rental", upload.single('carImage'), RentalBookingController.rentalBooking);
-router.get("/get-book-rental", RentalBookingController.getRentalBooking);
+router.get("/get-book-rental", RentalBookingController.getAllRentalBookings);
 router.get("/get-book-rental/:id", RentalBookingController.getRentalBooking);
 // router.delete("/deleteCar/:id", CarsController.deletecar);
 // router.patch("/updateCar/:id", CarsController.updateCar);
