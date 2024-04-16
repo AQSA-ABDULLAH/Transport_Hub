@@ -29,7 +29,7 @@ function NewQuote() {
       <h2>New Quote</h2>
       <form>
         <h4>Freight Information :</h4>
-        <div className={styles.row}>
+        <div className={styles.qoute_row}>
           <div>
             <label htmlFor="commodity_name">Commodity name</label>
             <input

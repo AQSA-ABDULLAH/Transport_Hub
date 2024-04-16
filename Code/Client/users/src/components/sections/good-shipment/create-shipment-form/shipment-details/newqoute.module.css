@@ -9,16 +9,16 @@
     border-bottom: 2px solid ;
 }
 
-.row {
+.qoute_row {
     display: flex;
     flex-direction: row;
     gap: 20px;
     align-items: center;
 }
 
-.row label,
-.row input,
-.row select {
+.qoute_row label,
+.qoute_row input,
+.qoute_row select {
     display: flex;
     flex-direction: column;
 }
@@ -41,7 +41,7 @@
     margin-top: 15px;
 }
 
-.row input,
+.qoute_row input,
 select,
 .input_div,
 .accessorial_div {
@@ -58,7 +58,7 @@ select,
     margin: 0px;
 }
 
-.row input:focus,
+.qoute_row input:focus,
 select:focus {
     outline: none;
 }
