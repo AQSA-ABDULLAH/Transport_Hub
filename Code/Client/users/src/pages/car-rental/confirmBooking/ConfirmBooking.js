@@ -18,7 +18,18 @@ const ConfirmBooking = () => {
     const dropTime = filterData.dropTime;
 
     const selectedCar = JSON.parse(localStorage.getItem('selectedCar'));
-    const _id = selectedCar._id;
+    const car_id = selectedCar._id;
+
+    const formData = JSON.parse(localStorage.getItem('formData'));
+    const firstName = formData.firstName;
+    const lastName = formData.lastName;
+    const phoneNumber = formData.phoneNumber;
+    const email = formData.email;
+    const cnic = formData.cnic;
+    const zipCode = formData.zipCode;
+    const address = formData.address;
+
+
 
 
     const handleSubmit = (e) => {
@@ -32,7 +43,14 @@ const ConfirmBooking = () => {
             dropLocation: dropLocation,
             dropDate: dropDate,
             dropTime: dropTime,
-            _id: _id,            
+            car_id: car_id,
+            firstName: firstName,
+            lastName: lastName,
+            phoneNumber: phoneNumber,
+            email: email,
+            cnic: cnic,
+            zipCode: zipCode,
+            address: address,
         };
 
         // Send combined data to server
