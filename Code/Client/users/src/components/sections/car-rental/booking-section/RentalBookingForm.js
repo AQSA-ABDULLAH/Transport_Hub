@@ -1,46 +1,39 @@
 import React, { useState } from 'react';
 import style from "./rentalBookingForm.module.css";
 import Button from '../../../atoms/button/Button';
-import CarFeaturesModel from '../../../../pages/car-rental/carFeatureModel/CarFeaturesModel'
+import ConfirmBooking from '../../../../pages/car-rental/confirmBooking/ConfirmBooking';
 
 const RentalBookingForm = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
-    phoneNo: '',
+    phoneNumber: '',
     email: '',
     cnic: '',
-    zipcode: '',
-    address: '',
-    deliveryAddress: '',
+    zipCode: '',
+    address: ''
   });
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData(prevFormData => ({
+      ...prevFormData,
+      [name]: value
     }));
   };
 
-  const openModal = () => {
-    console.log('Opening modal');
-    setIsModalOpen(true);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    localStorage.setItem('bookingForm', JSON.stringify(formData));
+    setIsPopupOpen(true); // Show the popup after saving the data
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const closePopup = () => {
+    setIsPopupOpen(false);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
 
-    // Store form data into local storage
-    localStorage.setItem('formData', JSON.stringify(formData));
-  };
 
   return (
     <div className={`${style.bookingForm}`}>
@@ -53,9 +46,8 @@ const RentalBookingForm = () => {
               type="text"
               id="firstName"
               name="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
               required
+              onChange={handleChange}
             />
           </div>
           <div className={style.formfiled}>
@@ -64,22 +56,20 @@ const RentalBookingForm = () => {
               type="text"
               id="lastName"
               name="lastName"
-              value={formData.lastName}
-              onChange={handleChange}
               required
+              onChange={handleChange}
             />
           </div>
         </div>
         <div className={style.formrow}>
           <div className={style.formfiled}>
-            <label htmlFor="phoneNo" className={style.formlabel}>Phone No:</label>
+            <label htmlFor="phoneNumber" className={style.formlabel}>Phone No:</label>
             <input
               type="tel"
-              id="phoneNo"
-              name="phoneNo"
-              value={formData.phoneNo}
-              onChange={handleChange}
+              id="phoneNumber"
+              name="phoneNumber"
               required
+              onChange={handleChange}
             />
           </div>
           <div className={style.formfiled}>
@@ -88,9 +78,8 @@ const RentalBookingForm = () => {
               type="email"
               id="email"
               name="email"
-              value={formData.email}
-              onChange={handleChange}
               required
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -102,53 +91,48 @@ const RentalBookingForm = () => {
               type="text"
               id="cnic"
               name="cnic"
-              value={formData.cnic}
-              onChange={handleChange}
               required
+              onChange={handleChange}
             />
           </div>
           <div className={style.formfiled}>
-            <label htmlFor="zipcode" className={style.formlabel}>Zip Code:</label>
+            <label htmlFor="zipCode" className={style.formlabel}>Zip Code:</label>
             <input
-              id="zipcode"
-              name="zipcode"
-              value={formData.zipcode}
-              onChange={handleChange}
+              type="text"
+              id="zipCode"
+              name="zipCode"
               required
+              onChange={handleChange}
             />
           </div>
         </div>
 
         <div className={style.formfiled}>
-          <label htmlFor="address" className={style.formlabel}>Address:<span className={style.msg}>(Plz provide correct delivery address, In case of need delivery):</span></label>
+          <label htmlFor="address" className={style.formlabel}>Address:</label>
           <textarea
             style={{ marginTop: '2px' }}
             id="address"
             name="address"
             rows={4}
-            value={formData.address}
-            onChange={handleChange}
             required
+            onChange={handleChange}
           />
         </div>
 
         <div className={style.btn}>
           <Button
+            type="submit"
             primary
             size={"14px"}
             radius={"4px"}
             btnText="Book Rental"
-            btnClick={openModal}
           />
         </div>
-
-        {isModalOpen && (
-          <CarFeaturesModel onClose={closeModal} />
-        )}
-
       </form>
+      {isPopupOpen && (
+          <ConfirmBooking onClose={closePopup}/>
+        )}
     </div>
-
   );
 };
 

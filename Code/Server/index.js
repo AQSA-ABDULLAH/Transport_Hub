@@ -17,6 +17,7 @@ const parcelRoutes = require('./routes/parcelRoutes.js');
 const sliderRoutes  = require("./routes/sliderRoutes.js");
 const blogsRoutes = require("./routes/blogsRoutes.js")
 const zoneRoutes = require("./routes/zoneRoutes.js")
+const rentalBookingRoutes = require("./routes/bookRentalRoutes.js")
 
 // Express
 const app = express();
@@ -42,6 +43,7 @@ app.use('/api/trips', tripsRoutes);
 app.use("/api/user", sliderRoutes);
 app.use("/api/blogs",blogsRoutes);
 app.use("/api/zone",zoneRoutes);
+app.use("/api/rental-booking",rentalBookingRoutes);
 app.use(parcelRoutes);
 
 

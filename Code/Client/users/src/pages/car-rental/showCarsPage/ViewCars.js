@@ -1,6 +1,6 @@
 import React from 'react'
-import CarCard from '../../../components/molecules/carRental/carCard/CarCard';
 import style from "./viewCars.module.css"
+import CarCard from '../../../components/molecules/car-rental/carCard/CarCard'
 
 export default function ViewCars() {
     return (
@@ -9,7 +9,7 @@ export default function ViewCars() {
                 <div className={style.container}>
                 <h2>WHICH VEHICLE DO YOU WANT TO DRIVE?</h2>
                     <div className={style.carContainer}>
-                        <CarCard />
+                        <CarCard/>
                     </div>
                 </div>
             </div>

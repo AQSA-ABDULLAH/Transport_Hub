@@ -1,5 +1,5 @@
 import React from 'react';
-import RentalPriceCard from '../../../components/molecules/carRental/priceCard/RentalPriceCard';
+import RentalPriceCard from '../../../components/molecules/car-rental/priceCard/RentalPriceCard';
 import style from "./rentalBookingPage.module.css";
 import BookingFormNotice from '../../../components/atoms/customers-notice/BookingFormNotice';
 import RentalBookingForm from "../../../components/sections/car-rental/booking-section/RentalBookingForm"
@@ -14,7 +14,7 @@ export default function RentalBookingPage() {
           <RentalBookingForm />
         </div>
         <div className={style.priceContainer}>
-          <RentalPriceCard />
+         <RentalPriceCard/>
         </div>
       </div>
     </>
