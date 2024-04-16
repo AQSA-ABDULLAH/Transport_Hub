@@ -20,19 +20,20 @@ const ConfirmBooking = () => {
     const selectedCar = JSON.parse(localStorage.getItem('selectedCar'));
     const car_id = selectedCar._id;
 
-    const formData = JSON.parse(localStorage.getItem('formData'));
-    const firstName = formData.firstName;
-    const lastName = formData.lastName;
-    const phoneNumber = formData.phoneNumber;
-    const email = formData.email;
-    const cnic = formData.cnic;
-    const zipCode = formData.zipCode;
-    const address = formData.address;
+    const bookingForm = JSON.parse(localStorage.getItem('bookingForm'));
+    const firstName = bookingForm.firstName;
+    const lastName = bookingForm.lastName;
+    const phoneNumber = bookingForm.phoneNumber;
+    const email = bookingForm.email;
+    const cnic = bookingForm.cnic;
+    const zipCode = bookingForm.zipCode;
+    const address = bookingForm.address;
 
     const carAddons = JSON.parse(localStorage.getItem('carAddons'));
-    const addDriver = carAddons.firstName;
-    const addInfantSeat = carAddons.lastName;
-    const addToddlerSeat = carAddons.phoneNumber;
+    const addDriver = carAddons.addDriver;
+    const addInfantSeat = carAddons.addInfantSeat;
+    const addToddlerSeat = carAddons.addToddlerSeat;
+
 
 
 
@@ -65,6 +66,7 @@ const ConfirmBooking = () => {
         axios.post('http://localhost:5000/api/rental-booking/book-rental', combinedData)
             .then(response => {
                 console.log('Data sent successfully:', response.data);
+                console.log(combinedData)
                 navigate("/");
             })
             .catch(error => {
