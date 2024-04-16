@@ -20,7 +20,9 @@ const RentalBookingSchema = new mongoose.Schema({
         required: true,
         ref:"Cars"
     },
-
+    addDriver: { type: Boolean },
+    addInfantSeat: { type: Boolean },
+    addToddlerSeat: { type: Boolean },
 }, {
     timestamps: true
 })

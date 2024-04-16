@@ -29,6 +29,11 @@ const ConfirmBooking = () => {
     const zipCode = formData.zipCode;
     const address = formData.address;
 
+    const carAddons = JSON.parse(localStorage.getItem('carAddons'));
+    const addDriver = carAddons.firstName;
+    const addInfantSeat = carAddons.lastName;
+    const addToddlerSeat = carAddons.phoneNumber;
+
 
 
 
@@ -51,6 +56,9 @@ const ConfirmBooking = () => {
             cnic: cnic,
             zipCode: zipCode,
             address: address,
+            addDriver: addDriver,
+            addInfantSeat: addInfantSeat,
+            addToddlerSeat: addToddlerSeat
         };
 
         // Send combined data to server
