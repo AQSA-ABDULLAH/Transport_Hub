@@ -6,10 +6,12 @@ import Flatbed from '../../../../molecules/create-shipment/quote-mode/Flatbed';
 import Parcel from '../../../../molecules/create-shipment/quote-mode/Parcel';
 import PickupAddress from '../pickup-facility/PickupAddress';
 import DeliveryAddress from '../delivery-facility/DeliveryAddress';
+import StopAddress from '../stop-facility/StopAddress';
 
 function NewQuote() {
   const [isPickupFacility, setIsPickupFacility] = useState(false);
   const [isDeliveryFacility, setIsDeliveryFacility] = useState(false);
+  const [isStopFacility, setIsStopFacility] = useState(false);
   const [selectedMode, setSelectedMode] = useState();
   const [pickupDate, setPickupDate] = useState('');
   const [isAddStopOpen, setIsAddStopOpen] = useState(false);
@@ -28,6 +30,10 @@ function NewQuote() {
   // Delivery Facility Form
   const DeliveryForm = () => {
     setIsDeliveryFacility(!isDeliveryFacility);
+  };
+  // Stop Facility Form
+  const StopForm = () => {
+    setIsStopFacility(!isStopFacility);
   };
 
 
@@ -90,8 +96,9 @@ function NewQuote() {
             <div className={styles.stop_input}>
               <div className={styles.input_div}>
                 <span>Add an address or facility</span>
-                <button>+</button>
+                <button type="button" onClick={StopForm}>+</button>
               </div>
+              {isStopFacility && <StopAddress StopForm={StopForm}/> }
               <select id="stop_type">
                 <option value="select_option" disabled selected>Stop Type</option>
                 <option value="pickup">Pickup</option>
