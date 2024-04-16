@@ -4,8 +4,10 @@ import LTLForm from '../../../../molecules/create-shipment/quote-mode/LTLForm';
 import FTLForm from '../../../../molecules/create-shipment/quote-mode/FTLForm';
 import Flatbed from '../../../../molecules/create-shipment/quote-mode/Flatbed';
 import Parcel from '../../../../molecules/create-shipment/quote-mode/Parcel';
+import PickupAddress from '../pickup-facility/PickupAddress';
 
 function NewQuote() {
+  const [isPickupFacility, setIsPickupFacility] = useState(false);
   const [selectedMode, setSelectedMode] = useState();
   const [pickupDate, setPickupDate] = useState('');
   const [isAddStopOpen, setIsAddStopOpen] = useState(false);
@@ -16,6 +18,11 @@ function NewQuote() {
     const mode = event.target.value;
     setSelectedMode(mode);
   };
+
+  const togglePopup = () => {
+    setIsPickupFacility(!isPickupFacility);
+  };
+  
 
   return (
     <div className={styles.newQuote}>
@@ -62,8 +69,9 @@ function NewQuote() {
           <h4>Pickup details :</h4>
           <div className={styles.input_div}>
             <span>Add an address or facility</span>
-            <button>+</button>
+            <button type="button" onClick={togglePopup}>+</button>
           </div>
+          {isPickupFacility && <PickupAddress togglePopup={togglePopup} />}
         </div>
 
         {isAddStopOpen && (
@@ -86,7 +94,6 @@ function NewQuote() {
         )}
 
         <div className={styles.addStop}>
-          {/* Conditionally render the button based on isAddStopOpen */}
           {!isAddStopOpen && (
             <button type="button" onClick={() => setIsAddStopOpen(true)}> + Add Stop
             </button>
