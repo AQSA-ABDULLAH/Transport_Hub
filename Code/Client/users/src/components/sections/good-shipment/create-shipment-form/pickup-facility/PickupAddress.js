@@ -3,7 +3,7 @@ import Button from '../../../../atoms/button/Button';
 import styles from '../shipment-details/newqoute.module.css'
 import style from '../shipmentdetails.module.css';
 
-const PickupAddress = ({ togglePopup }) => {
+const PickupAddress = ({ PickupForm }) => {
   const overlayStyle = {
     position: 'fixed',
     top: '0',
@@ -18,7 +18,7 @@ const PickupAddress = ({ togglePopup }) => {
       <div className={style.pickup_container}>
         <div className={style.form_header}>
           <h3>Add Pickup Address or Facility</h3>
-          <span onClick={togglePopup}> &times; </span>
+          <span onClick={PickupForm}> &times; </span>
         </div>
         <form>
 
@@ -68,7 +68,7 @@ const PickupAddress = ({ togglePopup }) => {
           <div className={style.pickup_form_input}>
             <label>Facility default instructions</label>
             <textarea
-              placeholder="Type any instruction note to the carrier"
+              placeholder="Type any instruction note"
               rows={5}
               className={styles.input_div}
             ></textarea>

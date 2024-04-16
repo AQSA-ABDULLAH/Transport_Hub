@@ -5,9 +5,11 @@ import FTLForm from '../../../../molecules/create-shipment/quote-mode/FTLForm';
 import Flatbed from '../../../../molecules/create-shipment/quote-mode/Flatbed';
 import Parcel from '../../../../molecules/create-shipment/quote-mode/Parcel';
 import PickupAddress from '../pickup-facility/PickupAddress';
+import DeliveryAddress from '../delivery-facility/DeliveryAddress';
 
 function NewQuote() {
   const [isPickupFacility, setIsPickupFacility] = useState(false);
+  const [isDeliveryFacility, setIsDeliveryFacility] = useState(false);
   const [selectedMode, setSelectedMode] = useState();
   const [pickupDate, setPickupDate] = useState('');
   const [isAddStopOpen, setIsAddStopOpen] = useState(false);
@@ -19,10 +21,15 @@ function NewQuote() {
     setSelectedMode(mode);
   };
 
-  const togglePopup = () => {
+  // Pickup Facility Form
+  const PickupForm = () => {
     setIsPickupFacility(!isPickupFacility);
   };
-  
+  // Delivery Facility Form
+  const DeliveryForm = () => {
+    setIsDeliveryFacility(!isDeliveryFacility);
+  };
+
 
   return (
     <div className={styles.newQuote}>
@@ -65,15 +72,18 @@ function NewQuote() {
           {selectedMode === 'parcel' && <Parcel />}
         </div>
 
+        {/* ADD PICKUP DETAILS */}
         <div className={styles.pickup}>
           <h4>Pickup details :</h4>
           <div className={styles.input_div}>
             <span>Add an address or facility</span>
-            <button type="button" onClick={togglePopup}>+</button>
+            <button type="button" onClick={PickupForm}>+</button>
           </div>
-          {isPickupFacility && <PickupAddress togglePopup={togglePopup} />}
+          {isPickupFacility && <PickupAddress PickupForm={PickupForm} />}
         </div>
 
+
+        {/* ADD STOP DETAILS */}
         {isAddStopOpen && (
           <div className={styles.stop}>
             <h4>Stop details :</h4>
@@ -92,7 +102,6 @@ function NewQuote() {
             </div>
           </div>
         )}
-
         <div className={styles.addStop}>
           {!isAddStopOpen && (
             <button type="button" onClick={() => setIsAddStopOpen(true)}> + Add Stop
@@ -101,14 +110,18 @@ function NewQuote() {
         </div>
 
 
+        {/* ADD DELIVERY DETAILS */}
         <div className={styles.delivery}>
           <h4>Delivery details :</h4>
           <div className={styles.input_div}>
             <span>Add an address or facility</span>
-            <button>+</button>
+            <button type="button" onClick={DeliveryForm}>+</button>
           </div>
+          {isDeliveryFacility && <DeliveryAddress DeliveryForm={DeliveryForm}/> }
         </div>
 
+
+        {/* ACCESSORIAL */}
         <div>
           <h4>Accessorial :</h4>
           {!isAddAccessorial && (
