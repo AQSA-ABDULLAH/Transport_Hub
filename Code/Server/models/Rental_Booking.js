@@ -20,11 +20,11 @@ const RentalBookingSchema = new mongoose.Schema({
     //     required: true,
     //     ref:"Users"
     // },
-    // car_id: {
-    //     type:mongoose.Schema.Types.ObjectId,
-    //     required: true,
-    //     ref:"Cars"
-    // },
+    car_id: {
+        type:mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref:"Cars"
+    },
 
 }, {
     timestamps: true

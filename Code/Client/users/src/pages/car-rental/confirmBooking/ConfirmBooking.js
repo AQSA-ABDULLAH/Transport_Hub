@@ -17,6 +17,9 @@ const ConfirmBooking = () => {
     const dropDate = filterData.pickupDate;
     const dropTime = filterData.dropTime;
 
+    const selectedCar = JSON.parse(localStorage.getItem('selectedCar'));
+    const _id = selectedCar._id;
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -28,7 +31,8 @@ const ConfirmBooking = () => {
             pickupTime: pickupTime,
             dropLocation: dropLocation,
             dropDate: dropDate,
-            dropTime: dropTime
+            dropTime: dropTime,
+            _id: _id,            
         };
 
         // Send combined data to server
