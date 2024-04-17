@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './newqoute.module.css';
 import LTLForm from '../../../../molecules/create-shipment/quote-mode/LTLForm';
 import FTLForm from '../../../../molecules/create-shipment/quote-mode/FTLForm';
@@ -16,6 +16,16 @@ function NewQuote() {
   const [pickupDate, setPickupDate] = useState('');
   const [isAddStopOpen, setIsAddStopOpen] = useState(false);
   const [isAddAccessorial, setIsAddAccessorial] = useState(false);
+
+  const pickupFacility = JSON.parse(localStorage.getItem('pickupFacility'));
+  const pickupAddress = pickupFacility.pickupAddress;
+
+  const deliveryFacility = JSON.parse(localStorage.getItem('deliveryFacility'));
+  const deliveryAddress = deliveryFacility.deliveryAddress;
+
+  const stopFacility = JSON.parse(localStorage.getItem('stopFacility'));
+  const stopAddress = stopFacility.stopAddress;
+
 
   // Handle mode change event
   const handleModeChange = (event) => {
@@ -82,10 +92,14 @@ function NewQuote() {
         <div className={styles.pickup}>
           <h4>Pickup details :</h4>
           <div className={styles.input_div}>
-            <span>Add an address or facility</span>
+            {pickupAddress ? (
+              <span>{pickupAddress}</span>
+            ) : (
+              <span>Add an address or facility</span>
+            )}
             <button type="button" onClick={PickupForm}>+</button>
           </div>
-          {isPickupFacility && <PickupAddress PickupForm={PickupForm} />}
+          {isPickupFacility && <PickupAddress PickupForm={() => setIsPickupFacility(false)} />}
         </div>
 
 
@@ -95,10 +109,14 @@ function NewQuote() {
             <h4>Stop details :</h4>
             <div className={styles.stop_input}>
               <div className={styles.input_div}>
-                <span>Add an address or facility</span>
+                {stopAddress ? (
+                  <span>{stopAddress}</span>
+                ) : (
+                  <span>Add an address or facility</span>
+                )}
                 <button type="button" onClick={StopForm}>+</button>
               </div>
-              {isStopFacility && <StopAddress StopForm={StopForm}/> }
+              {isStopFacility && <StopAddress StopForm={StopForm} />}
               <select id="stop_type">
                 <option value="select_option" disabled selected>Stop Type</option>
                 <option value="pickup">Pickup</option>
@@ -121,10 +139,14 @@ function NewQuote() {
         <div className={styles.delivery}>
           <h4>Delivery details :</h4>
           <div className={styles.input_div}>
-            <span>Add an address or facility</span>
+            {deliveryAddress ? (
+              <span>{deliveryAddress}</span>
+            ) : (
+              <span>Add an address or facility</span>
+            )}
             <button type="button" onClick={DeliveryForm}>+</button>
           </div>
-          {isDeliveryFacility && <DeliveryAddress DeliveryForm={DeliveryForm}/> }
+          {isDeliveryFacility && <DeliveryAddress DeliveryForm={DeliveryForm} />}
         </div>
 
 
