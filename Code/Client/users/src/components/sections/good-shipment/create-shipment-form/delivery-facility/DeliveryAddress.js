@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../../../../atoms/button/Button';
-import styles from '../shipment-details/newqoute.module.css'
+import styles from '../shipment-details/newqoute.module.css';
 import style from '../shipmentdetails.module.css';
 
 export default function DeliveryAddress({ DeliveryForm }) {
@@ -12,6 +12,33 @@ export default function DeliveryAddress({ DeliveryForm }) {
     height: '100%',
     backgroundColor: 'rgba(0, 0, 0, 0.3)',
   };
+
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    city: '',
+    zipcode: '',
+    deliveryAddress: '',
+    defaultInstructions: ''
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Prevents the default form submission
+    localStorage.setItem('deliveryFacility', JSON.stringify(formData));
+    alert('Delivery facility data saved!');
+    DeliveryForm(); // Assuming this is to close the modal or form
+  };
+
   return (
     <>
       <div style={overlayStyle}></div>
@@ -21,69 +48,75 @@ export default function DeliveryAddress({ DeliveryForm }) {
           <span onClick={DeliveryForm}> &times; </span>
         </div>
         <form>
-
           <div className={styles.qoute_row}>
             <div className={style.pickup_form_input}>
               <label>First name</label>
-              <input type="text" placeholder="Insert pickup facility address" />
+              <input type="text" name="firstName" placeholder="Enter first name" value={formData.firstName} onChange={handleChange} />
             </div>
             <div className={style.pickup_form_input}>
               <label>Last name</label>
-              <input type="text" placeholder="Insert pickup facility address" />
+              <input type="text" name="lastName" placeholder="Enter last name" value={formData.lastName} onChange={handleChange} />
             </div>
           </div>
 
           <div className={styles.qoute_row}>
             <div className={style.pickup_form_input}>
               <label>Email</label>
-              <input type="text" placeholder="Insert pickup facility address" />
+              <input type="text" name="email" placeholder="Enter email" value={formData.email} onChange={handleChange} />
             </div>
             <div className={style.pickup_form_input}>
               <label>Phone no</label>
-              <input type="text" placeholder="Insert pickup facility address" />
+              <input type="text" name="phone" placeholder="Enter phone number" value={formData.phone} onChange={handleChange} />
             </div>
           </div>
-
 
           <div className={styles.qoute_row}>
             <div className={style.pickup_form_input}>
               <label>City</label>
-              <input type="text" placeholder="Insert pickup facility address" />
+              <input type="text" name="city" placeholder="Enter city" value={formData.city} onChange={handleChange} />
             </div>
             <div className={style.pickup_form_input}>
               <label>Zipcode</label>
-              <input type="text" placeholder="Insert pickup facility address" />
+              <input type="text" name="zipcode" placeholder="Enter zipcode" value={formData.zipcode} onChange={handleChange} />
             </div>
           </div>
 
           <div className={style.pickup_form_input}>
             <label>Delivery address</label>
             <textarea
-              placeholder="Insert pickup facility address"
+              name="deliveryAddress"
+              placeholder="Insert delivery address"
               rows={3}
               className={styles.input_div}
+              value={formData.deliveryAddress}
+              onChange={handleChange}
             ></textarea>
           </div>
 
           <div className={style.pickup_form_input}>
             <label>Facility default instructions</label>
             <textarea
-              placeholder="Type any instruction note about delivery facality"
+              name="defaultInstructions"
+              placeholder="Type any instruction note about delivery facility"
               rows={5}
               className={styles.input_div}
+              value={formData.defaultInstructions}
+              onChange={handleChange}
             ></textarea>
           </div>
+
+          <div className={style.facility_button}>
+            <Button
+              btnClick={handleSubmit}
+              primary
+              size={"14px"}
+              radius={"4px"}
+              btnText="Add Delivery Facility"
+            />
+          </div>
         </form>
-       <div className={style.facility_button}>
-        <Button
-            type="submit"
-            primary
-            size={"14px"}
-            radius={"4px"}
-            btnText="Add Delivery Facility"
-          />
-       </div>
       </div>
     </>
-  )
+  );
 }
+
