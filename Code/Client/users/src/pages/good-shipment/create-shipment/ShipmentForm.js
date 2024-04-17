@@ -13,7 +13,6 @@ function ShipmentForm() {
           <div className={styles.quote_form}>
             <NewQoute />
           </div>
-          <QouteFooter />
         </section>
         <section>
           <div>
