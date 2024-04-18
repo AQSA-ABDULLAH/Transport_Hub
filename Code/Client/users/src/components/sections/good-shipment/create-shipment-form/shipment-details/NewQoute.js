@@ -20,6 +20,7 @@ function NewQuote() {
   const [commodityName, setCommodityName] = useState('');
   const [moreDetails, setMoreDetails] = useState('');
   const [stopType, setStopType] = useState('');
+  const [selectedEquipment, setSelectedEquipment] = useState('');
 
   const pickupFacility = JSON.parse(localStorage.getItem('pickupFacility'));
   const pickupAddress = pickupFacility.pickupAddress;
@@ -39,6 +40,11 @@ function NewQuote() {
       moreDetails,
     };
     localStorage.setItem('formData', JSON.stringify(formData));
+  };
+
+  const saveFTLEquipment = (equipment, details) => {
+    const data = { equipment, details };
+    localStorage.setItem('ftlEquipmentData', JSON.stringify(data));
   };
 
 
@@ -101,7 +107,13 @@ function NewQuote() {
 
           <div>
             {selectedMode === 'LTL' && <LTLForm />}
-            {selectedMode === 'FTL' && <FTLForm />}
+            {selectedMode === 'FTL' && (
+            <FTLForm
+              selectedEquipment={selectedEquipment}
+              setSelectedEquipment={setSelectedEquipment}
+              saveFTLEquipment={saveFTLEquipment}
+            />
+          )}
             {selectedMode === 'flatbed' && <Flatbed />}
             {selectedMode === 'parcel' && <Parcel />}
           </div>
