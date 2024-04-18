@@ -21,7 +21,10 @@ function NewQuote() {
   const [moreDetails, setMoreDetails] = useState('');
   const [stopType, setStopType] = useState('');
   const [selectedEquipment, setSelectedEquipment] = useState('');
-  const [selectedVehicle, setSelectedVehicle] = useState('')
+  const [selectedVehicle, setSelectedVehicle] = useState('');
+  const [selectedDimensions, setSelectedDimensions] = useState('');
+  const [selectedTrapSize, setSelectedTrapSize] = useState('');
+  const [trapSize, setTrapSize] = useState('');
 
   const pickupFacility = JSON.parse(localStorage.getItem('pickupFacility'));
   const pickupAddress = pickupFacility.pickupAddress;
@@ -54,7 +57,7 @@ function NewQuote() {
     localStorage.setItem('ftlEquipmentData', JSON.stringify(data));
   };
 
-   useEffect(() => {
+  useEffect(() => {
     if (selectedMode !== 'LTL') {
       setSelectedVehicle('');
       localStorage.removeItem('ltlVehicleType');
@@ -62,6 +65,20 @@ function NewQuote() {
       localStorage.setItem('ltlVehicleType', selectedVehicle);
     }
   }, [selectedMode, selectedVehicle]);
+
+  useEffect(() => {
+    if (selectedMode === 'flatbed') {
+      const flatbedData = {
+        dimensions: selectedDimensions,
+        trap: selectedTrapSize,
+        trapSize: selectedTrapSize === 'with trap' ? trapSize : '',
+      };
+      localStorage.setItem('flatbedData', JSON.stringify(flatbedData));
+    } else {
+      localStorage.removeItem('flatbedData');
+    }
+  }, [selectedMode, selectedDimensions, selectedTrapSize, trapSize]);
+
 
 
 
@@ -136,7 +153,17 @@ function NewQuote() {
                 saveFTLEquipment={saveFTLEquipment}
               />
             )}
-            {selectedMode === 'flatbed' && <Flatbed />}
+            {selectedMode === 'flatbed' && (
+              <Flatbed
+                setSelectedDimensions={setSelectedDimensions}
+                setSelectedTrapSize={setSelectedTrapSize}
+                setTrapSize={setTrapSize}
+                selectedDimensions={selectedDimensions}
+                selectedTrapSize={selectedTrapSize}
+                trapSize={trapSize}
+              />
+            )}
+
             {selectedMode === 'parcel' && <Parcel />}
           </div>
 
