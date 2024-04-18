@@ -25,6 +25,9 @@ function NewQuote() {
   const [selectedDimensions, setSelectedDimensions] = useState('');
   const [selectedTrapSize, setSelectedTrapSize] = useState('');
   const [trapSize, setTrapSize] = useState('');
+  const [handlingItems, setHandlingItems] = useState('');
+  const [itemWeight, setItemWeight] = useState('');
+  const [dimensions, setDimensions] = useState({ length: '', width: '', height: '' });
 
   const pickupFacility = JSON.parse(localStorage.getItem('pickupFacility'));
   const pickupAddress = pickupFacility.pickupAddress;
@@ -57,6 +60,7 @@ function NewQuote() {
     localStorage.setItem('ftlEquipmentData', JSON.stringify(data));
   };
 
+
   useEffect(() => {
     if (selectedMode !== 'LTL') {
       setSelectedVehicle('');
@@ -65,6 +69,7 @@ function NewQuote() {
       localStorage.setItem('ltlVehicleType', selectedVehicle);
     }
   }, [selectedMode, selectedVehicle]);
+
 
   useEffect(() => {
     if (selectedMode === 'flatbed') {
@@ -78,6 +83,23 @@ function NewQuote() {
       localStorage.removeItem('flatbedData');
     }
   }, [selectedMode, selectedDimensions, selectedTrapSize, trapSize]);
+
+
+  useEffect(() => {
+    if (selectedMode === 'parcel') {
+      const parcelData = {
+        handlingItems,
+        itemWeight,
+        dimensions
+      };
+      localStorage.setItem('parcelData', JSON.stringify(parcelData));
+    } else {
+      localStorage.removeItem('parcelData');
+    }
+  }, [handlingItems, itemWeight, dimensions, selectedMode]);
+  const handleDimensionChange = (field) => (event) => {
+    setDimensions(prev => ({ ...prev, [field]: event.target.value }));
+  };
 
 
 
@@ -163,8 +185,16 @@ function NewQuote() {
                 trapSize={trapSize}
               />
             )}
-
-            {selectedMode === 'parcel' && <Parcel />}
+            {selectedMode === 'parcel' && (
+              <Parcel
+                handlingItems={handlingItems}
+                setHandlingItems={setHandlingItems}
+                itemWeight={itemWeight}
+                setItemWeight={setItemWeight}
+                dimensions={dimensions}
+                handleDimensionChange={handleDimensionChange}
+              />
+            )}
           </div>
 
           {/* ADD PICKUP DETAILS */}
