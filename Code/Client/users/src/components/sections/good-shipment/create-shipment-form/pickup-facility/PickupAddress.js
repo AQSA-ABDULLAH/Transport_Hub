@@ -33,7 +33,6 @@ const PickupAddress = ({ PickupForm }) => {
   };
 
   const handleSubmit = () => {
-    console.log("hhjj")
     localStorage.setItem('pickupFacility', JSON.stringify(formData));
     alert('Pickup facility data saved!');
     PickupForm(); // Assuming this is meant to close the form.
