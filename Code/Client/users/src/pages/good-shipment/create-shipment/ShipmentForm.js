@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '../shipmentstyle.module.css'
 import ShipmentHeader from '../../../components/sections/header-medium/ShipmentHeader';
 import NewQoute from '../../../components/sections/good-shipment/create-shipment-form/shipment-details/NewQoute';
-import QouteFooter from '../../../components/molecules/create-shipment/quote-footer/QouteFooter';
+import ViewShipment from '../../../components/sections/good-shipment/manage-shipment/view-shipment/ViewShipment';
 
 function ShipmentForm() {
   return (
@@ -16,9 +16,8 @@ function ShipmentForm() {
         </section>
         <section>
           <div>
-            sjfhsj
+            <ViewShipment/>
           </div>
-          <QouteFooter />
         </section>
       </div>
     </>
