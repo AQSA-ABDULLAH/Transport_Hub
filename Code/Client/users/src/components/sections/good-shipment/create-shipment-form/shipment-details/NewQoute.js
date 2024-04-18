@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import QouteFooter from '../../../../molecules/create-shipment/quote-footer/QouteFooter'
+import React, { useState, useEffect } from 'react';
+import QouteFooter from '../../../../molecules/create-shipment/quote-footer/QouteFooter';
 import styles from './newqoute.module.css';
 import LTLForm from '../../../../molecules/create-shipment/quote-mode/LTLForm';
 import FTLForm from '../../../../molecules/create-shipment/quote-mode/FTLForm';
@@ -21,6 +21,7 @@ function NewQuote() {
   const [moreDetails, setMoreDetails] = useState('');
   const [stopType, setStopType] = useState('');
   const [selectedEquipment, setSelectedEquipment] = useState('');
+  const [selectedVehicle, setSelectedVehicle] = useState('')
 
   const pickupFacility = JSON.parse(localStorage.getItem('pickupFacility'));
   const pickupAddress = pickupFacility.pickupAddress;
@@ -42,10 +43,26 @@ function NewQuote() {
     localStorage.setItem('formData', JSON.stringify(formData));
   };
 
+  useEffect(() => {
+    if (selectedMode !== 'FTL') {
+      setSelectedEquipment('');
+      localStorage.removeItem('ftlEquipmentData');
+    }
+  }, [selectedMode, selectedEquipment]);
   const saveFTLEquipment = (equipment, details) => {
     const data = { equipment, details };
     localStorage.setItem('ftlEquipmentData', JSON.stringify(data));
   };
+
+   useEffect(() => {
+    if (selectedMode !== 'LTL') {
+      setSelectedVehicle('');
+      localStorage.removeItem('ltlVehicleType');
+    } else {
+      localStorage.setItem('ltlVehicleType', selectedVehicle);
+    }
+  }, [selectedMode, selectedVehicle]);
+
 
 
   // Handle mode change event
@@ -106,14 +123,19 @@ function NewQuote() {
           </div>
 
           <div>
-            {selectedMode === 'LTL' && <LTLForm />}
+            {selectedMode === 'LTL' && (
+              <LTLForm
+                selectedVehicle={selectedVehicle}
+                setSelectedVehicle={setSelectedVehicle}
+              />
+            )}
             {selectedMode === 'FTL' && (
-            <FTLForm
-              selectedEquipment={selectedEquipment}
-              setSelectedEquipment={setSelectedEquipment}
-              saveFTLEquipment={saveFTLEquipment}
-            />
-          )}
+              <FTLForm
+                selectedEquipment={selectedEquipment}
+                setSelectedEquipment={setSelectedEquipment}
+                saveFTLEquipment={saveFTLEquipment}
+              />
+            )}
             {selectedMode === 'flatbed' && <Flatbed />}
             {selectedMode === 'parcel' && <Parcel />}
           </div>
