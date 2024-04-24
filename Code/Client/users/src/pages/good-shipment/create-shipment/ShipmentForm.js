@@ -14,10 +14,8 @@ function ShipmentForm() {
             <NewQoute />
           </div>
         </section>
-        <section>
-          <div>
+        <section className={styles.view_quote_section}>
             <ViewShipment/>
-          </div>
         </section>
       </div>
     </>

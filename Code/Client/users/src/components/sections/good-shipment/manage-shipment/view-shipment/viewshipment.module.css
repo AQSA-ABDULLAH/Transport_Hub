@@ -1,0 +1,31 @@
+.view_shipment{
+    height: 80vh;
+    padding: 25px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.shipment_row{
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+    padding-bottom: 10px;
+}
+.shipment_row > * {
+    flex: 1; 
+}
+.shipment_row > .arrow {
+    flex: 0 0 auto;
+}
+.shipment_content h3, 
+.shipment_details h3{
+    font-size: 14px;
+    font-weight: 600;
+    color: #3B3B4f;
+}
+.shipment_content p,
+.shipment_details p{
+    font-size: 13px;
+    font-weight: 400;
+    color: #686868;
+}
