@@ -4,7 +4,7 @@ const { hashPassword } = require("../../helpers/hashPassword");
 const { createToken } = require("../../helpers/jwt");
 const compileEmailTemplate = require("../../helpers/compile-email-template.js");
 const mailer = require("../../libs/mailer.js");
-const SaveOTP = require("../../models/OTP_Verfication.js"); 
+const SaveOTP = require("../../models/OTP_Verfication.js");
 
 class TransporterController {
     static async transporterRegistration(req, res) {
@@ -88,10 +88,10 @@ class TransporterController {
                 return res.status(400).json({ error: "Already Verified" });
             }
 
-            const OTP = await TransporterController.generateOTP(); // Use proper reference
-
+            // Generate OTP
+            const OTP = await TransporterController.generateOTP();
             const saveOTP = new SaveOTP({
-                user_id: transporter._id,
+                transporter_id: transporter._id,
                 otp: OTP
             });
 

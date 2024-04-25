@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const OTPVerificationSchema = new mongoose.Schema({
-    user_id : {
+    transporter_id : {
         type:mongoose.Schema.Types.ObjectId,
         required: true,
-        ref:"Users"
+        ref:"Transporter"
     },
     otp: {
         type:Number,
