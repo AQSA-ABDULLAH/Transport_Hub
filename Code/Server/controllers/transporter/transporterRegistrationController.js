@@ -3,7 +3,6 @@ const { hashPassword } = require("../../helpers/hashPassword");
 const { createToken } = require("../../helpers/jwt");
 const compileEmailTemplate = require("../../helpers/compile-email-template.js");
 const mailer = require("../../libs/mailer.js");
-const SaveOTP = require("../../models/OTP_Verfication.js");
 
 class TransporterController {
     static async generateOTP() {
@@ -88,11 +87,8 @@ class TransporterController {
 
     static async verifyOTP(req, res) {
         try {
-            const { transporter_id, otp } = req.body;
-            const otpData = await SaveOTP.findOne({
-                transporter_id,
-                otp
-            });
+            const { email, otp } = req.body;
+            const otpData = await Transport.findOne({ email, otp });
             if (!otpData) {
                 return res.status(400).send({
                     status: "error",
@@ -100,7 +96,7 @@ class TransporterController {
                 });
             }
 
-            await Transport.updateOne({ _id: transporter_id }, {
+            await Transport.updateOne({ email: email }, {
                 $set: {
                     is_verified: true
                 }
