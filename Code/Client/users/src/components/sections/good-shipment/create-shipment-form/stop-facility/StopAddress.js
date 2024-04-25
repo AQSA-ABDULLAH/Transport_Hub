@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Button from '../../../../atoms/button/Button';
-import styles from '../shipment-details/newqoute.module.css'
+import styles from '../shipment-details/newqoute.module.css';
 import style from '../shipmentdetails.module.css';
 
-const PickupAddress = ({ PickupForm }) => {
+function StopAddress({ StopForm }) {
   const overlayStyle = {
     position: 'fixed',
     top: '0',
@@ -20,7 +20,7 @@ const PickupAddress = ({ PickupForm }) => {
     phone: '',
     city: '',
     zipcode: '',
-    pickupAddress: '',
+    stopAddress: '',
     defaultInstructions: ''
   });
 
@@ -32,10 +32,11 @@ const PickupAddress = ({ PickupForm }) => {
     }));
   };
 
-  const handleSubmit = () => {
-    localStorage.setItem('pickupFacility', JSON.stringify(formData));
-    alert('Pickup facility data saved!');
-    PickupForm(); // Assuming this is meant to close the form.
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Prevents the default form submission
+    localStorage.setItem('stopFacility', JSON.stringify(formData));
+    alert('Stop facility data saved!');
+    StopForm(); // Assuming this is to close the modal or form
   };
 
   return (
@@ -43,10 +44,10 @@ const PickupAddress = ({ PickupForm }) => {
       <div style={overlayStyle}></div>
       <div className={style.pickup_container}>
         <div className={style.form_header}>
-          <h3>Add Pickup Address or Facility</h3>
-          <span onClick={PickupForm}> &times; </span>
+          <h3>Add Stop Address or Facility</h3>
+          <span onClick={StopForm}> &times; </span>
         </div>
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form>
           <div className={styles.qoute_row}>
             <div className={style.pickup_form_input}>
               <label>First name</label>
@@ -81,13 +82,13 @@ const PickupAddress = ({ PickupForm }) => {
           </div>
 
           <div className={style.pickup_form_input}>
-            <label>Pickup address</label>
+            <label>Stop address</label>
             <textarea
-              name="pickupAddress"
-              placeholder="Insert pickup facility address"
+              name="stopAddress"
+              placeholder="Insert stop facility address"
               rows={3}
               className={styles.input_div}
-              value={formData.pickupAddress}
+              value={formData.stopAddress}
               onChange={handleChange}
             ></textarea>
           </div>
@@ -103,19 +104,20 @@ const PickupAddress = ({ PickupForm }) => {
               onChange={handleChange}
             ></textarea>
           </div>
+
+          <div className={style.facility_button}>
+            <Button
+              btnClick={handleSubmit}
+              primary
+              size="14px"
+              radius="4px"
+              btnText="Add Stop Facility"
+            />
+          </div>
         </form>
-        <div className={style.facility_button}>
-          <Button
-            btnClick={handleSubmit}
-            primary
-            size={"14px"}
-            radius={"4px"}
-            btnText="Add Pickup Facility"
-          />
-        </div>
       </div>
     </>
   );
 }
 
-export default PickupAddress;
+export default StopAddress;
