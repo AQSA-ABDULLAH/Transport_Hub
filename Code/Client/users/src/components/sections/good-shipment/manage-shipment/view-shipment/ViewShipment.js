@@ -5,12 +5,7 @@ export default function ViewShipment() {
     return (
         <>
             <div className={styles.view_shipment}>
-                <div className={styles.shipment_row}>
-                    <div>Item 1</div>
-                    <div class="arrow">→</div>
-                    <div>Item 2</div>
-                </div>
-
+                <h1>Quotes / QT5BYDLKH</h1>
                 <div className={styles.shipment_row}>
                     <div className={styles.shipment_content}>
                         <h3>Mode</h3>
@@ -33,7 +28,7 @@ export default function ViewShipment() {
                     </div>
                 </div>
 
-                <div className={styles.shipment_details}>
+                <div className={styles.bid_deadline}>
                     <h3>Bid deadline</h3>
                     <p>Apr 22, 2024 @ 4:59 AM</p>
                 </div>
