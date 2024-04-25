@@ -1,4 +1,3 @@
-
 const Transport = require("../../models/Transporter.js");
 const { hashPassword } = require("../../helpers/hashPassword");
 const { createToken } = require("../../helpers/jwt");
@@ -40,7 +39,7 @@ class TransporterController {
                 savedTransporter.tokens = savedTransporter.tokens.concat({ token });
                 await savedTransporter.save();
 
-                //Send Registration mail to transporter
+                // Send Registration mail to transporter
                 const template = await compileEmailTemplate({
                     fileName: "register.mjml",
                     data: {
@@ -49,7 +48,7 @@ class TransporterController {
                 });
                 if (savedTransporter._id) {
                     try {
-                        await sendMail(email, "Your Account on Transport Hub is Created Successfully", template);
+                        await mailer.send(savedTransporter.email, "Your Account on Transport Hub is Created Successfully", template);
                         return res.status(201).send({
                             status: "success",
                             message: "Transporter created successfully",
@@ -98,7 +97,7 @@ class TransporterController {
             await saveOTP.save();
 
             const msg = `<p> Hi <b>${transporter.email}</b>, </br> <h4>${OTP}</h4> </p>`;
-            mailer.sendMail(transporter.email, 'OTP VERIFICATION', msg);
+            await mailer.send(transporter.email, 'OTP VERIFICATION', msg);
 
             return res.status(200).json({
                 success: true,
@@ -114,9 +113,41 @@ class TransporterController {
             });
         }
     }
+
+    static async verifyOTP(req, res) {
+        try {
+            const { transporter_id, otp } = req.body;
+            const otpData = await SaveOTP.findOne({
+                transporter_id,
+                otp
+            });
+            if (!otpData) {
+                return res.status(400).send({
+                    status: "error",
+                    message: "Incorrect OTP",
+                });
+            }
+
+            await Transport.updateOne({ _id: transporter_id }, {
+                $set: {
+                    is_verified: true
+                }
+            });
+
+            return res.status(200).send({
+                status: "success",
+                message: "Account Verified Successfully!.",
+            });
+
+        } catch (error) {
+            console.error("Error verifying OTP:", error);
+            return res.status(500).send({
+                status: "error",
+                message: "Failed to verify OTP.",
+                error: error.message,
+            });
+        }
+    }
 }
 
 module.exports = { TransporterController };
-
-
-

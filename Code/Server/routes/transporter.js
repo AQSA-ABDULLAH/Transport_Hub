@@ -6,6 +6,7 @@ require("../db/connection")
 
 router.post("/registration", TransporterController.transporterRegistration);
 router.post("/send-otp", TransporterController.sendOTP)
+router.post("/verify-otp", TransporterController.verifyOTP)
 router.post('/signIn', transporterLogin);
 
 module.exports = router;
