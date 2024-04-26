@@ -7,7 +7,11 @@ import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import MediumHeader from '../../../../components/sections/header-medium/MediumHeader';
 
 export default function DriverVechicalSection() {
+    const [selectedType, setSelectedType] = useState('');
 
+    const handleTypeSelection = (type) => {
+        setSelectedType(type);
+    };
     const navigate = useNavigate();
 
     const backRedirect = () => {
@@ -15,14 +19,13 @@ export default function DriverVechicalSection() {
     };
 
     const nextRedirect = () => {
-      navigate('/driver_application_form'); 
+        // Store the selected vehicle type in local storage
+        localStorage.setItem('driverVehicleType', selectedType);
+    
+        // Navigate to the next section of the form (/driver_application_form)
+        navigate('/driver_application_form'); 
     };
-
-    const [selectedType, setSelectedType] = useState('');
-
-    const handleTypeSelection = (type) => {
-        setSelectedType(type);
-    };
+    
 
     return (
         <>
