@@ -5,13 +5,12 @@ import parcelpickupimg1 from "./parcelpickupimages/parcelpickupimg1.jpeg";
 import parcelpickupimg2 from "./parcelpickupimages/parcelpickupimg2.jpeg";
 import parcelpickupimg3 from "./parcelpickupimages/parcelpickupimg3.jpeg";
 import images from "./parcelpickupimages/images.jpeg";
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const PickupboysLandingPage = () => {
-    // const navigate = useNavigate();
-
-    // const handleRedirect = () => {
-    //   navigate('/create_shipment_form'); 
-    // };
+     const navigate = useNavigate()
+     const handleRedirect = () => {
+       navigate('/parcelform'); 
+     };
         
    
     return (
@@ -27,7 +26,7 @@ const PickupboysLandingPage = () => {
                         <p>Send your parcel from your door to any delivery service of your choice</p>
                         {/* delivery service company images 
                         rate calculate for sending*/}
-                       <button >Send Parcel</button>
+                       <button onClick={handleRedirect}>Send Parcel</button>
                     </section>
                     <section className={styles.landing_video}>
                     <img className={styles.side_parcel_image} src={parcelpickupimg1} alt="Example" />
@@ -35,6 +34,10 @@ const PickupboysLandingPage = () => {
                 </div>
                 </div>
                 <hr></hr>
+
+
+
+
 
 
                 <div className={styles.main}>

@@ -17,19 +17,22 @@ const upload = multer({ storage: storage });
 
 router.post('/create', parcelFormController.createParcelForm);
 
-router.post('/register', upload.fields([
-  { name: 'picture', maxCount: 1 },
-  { name: 'drivingLicense', maxCount: 1 },
-  { name: 'vehiclePapers', maxCount: 1 },
-]), async (req, res) => {
-  try {
-    await parcelFormController.registerPickupBoy(req, res);
-    console.log(res)
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
+
+
+router.post('/register',parcelFormController.registerPickupBoy);
+//  upload.fields([
+//   { name: 'picture', maxCount: 1 },
+//   { name: 'drivingLicense', maxCount: 1 },
+//   { name: 'vehiclePapers', maxCount: 1 },
+// ]), async (req, res) => {
+//   try {
+//     await parcelFormController.registerPickupBoy(req, res);
+//     console.log(res)
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// });
 router.get('/getParcels', parcelFormController.getParcels);
 router.delete('/parcelforms/:id', async (req, res) => {
   const parcelId = req.params.id;
