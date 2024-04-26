@@ -14,8 +14,19 @@ export default function DriverName() {
     };
 
     const nextRedirect = () => {
-      navigate('/driver_location_section'); 
+        const firstNameInput = document.querySelector('input[type="text"][placeholder="Enter first name"]');
+        const lastNameInput = document.querySelector('input[type="text"][placeholder="Enter last name"]');
+    
+        const firstName = firstNameInput.value;
+        const lastName = lastNameInput.value;
+    
+        // Store first and last name in local storage
+        localStorage.setItem('driverFirstName', firstName);
+        localStorage.setItem('driverLastName', lastName);
+    
+        navigate('/driver_location_section'); 
     };
+    
     return (
         <>
             <MediumHeader />
