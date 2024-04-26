@@ -14,8 +14,20 @@ export default function DriverLocation() {
     };
 
     const nextRedirect = () => {
-      navigate('/driver_vechical_selection'); 
+        // Retrieve the input element for the city
+        const cityInput = document.querySelector('input[type="text"][placeholder="City"]');
+    
+        // Retrieve the value entered by the user for the city
+        const city = cityInput.value;
+    
+        // Store the city in local storage
+        localStorage.setItem('driverLocation', city);
+    
+        // Navigate to the next section of the form (/driver_vechical_selection)
+        navigate('/driver_vechical_selection'); 
     };
+
+    
     return (
         <>
             <div className={careerStyles.container}>
