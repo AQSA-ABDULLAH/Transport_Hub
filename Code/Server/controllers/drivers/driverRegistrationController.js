@@ -42,10 +42,6 @@ class DriverController {
           otp: OTP
         });
 
-        // Send OTP
-        const msg = `<p> Hi <b>${driver.driverEmail}</b>, </br> <h4>${OTP}</h4> </p>`;
-        await mailer.sendMail(driver.driverEmail, 'OTP VERIFICATION', msg);
-
 
         const savedDriver = await driver.save();
 
@@ -57,16 +53,11 @@ class DriverController {
         await savedDriver.save();
 
         // Send Registration mail to driver
-        const template = await compileEmailTemplate({
-          fileName: "register.mjml",
-          data: {
-            fullName: savedDriver.fullName,
-          },
-        });
-
         if (savedDriver._id) {
           try {
-            await mailer.send(savedDriver.driverEmail, "Your Driver Account on Transport Hub is Created Successfully", template);
+            // Send OTP
+            const msg = `<p> Hi <b>${driver.driverEmail}</b>, </br> <h4>${OTP}</h4> </p>`;
+            await mailer.sendMail(driver.driverEmail, 'OTP VERIFICATION', msg);
             return res.status(201).send({
               status: "success",
               message: "Driver created successfully",
@@ -91,8 +82,8 @@ class DriverController {
   static async verifyOTP(req, res) {
     console.log('Received form data:', req.body);
     try {
-      const { email, otp } = req.body;
-      const driver = await Driver.findOne({ email });
+      const { driverEmail, otp } = req.body;
+      const driver = await Driver.findOne({ driverEmail });
 
       if (!driver) {
         return res.status(400).send({
