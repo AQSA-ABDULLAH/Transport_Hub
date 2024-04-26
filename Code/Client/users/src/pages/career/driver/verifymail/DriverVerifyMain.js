@@ -2,13 +2,39 @@ import React, { useEffect, useState } from "react";
 import SideSection from '../../../../components/sections/career/sidesection/SideSection';
 import styles from "../registration/drivermail.module.css";
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 export default function DriverVerifyMail() {
     const navigate = useNavigate();
 
-    const handleRedirect = () => {
-      navigate('/driver_name_section'); 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const driverEmail = localStorage.getItem("driverEmail");
+
+
+        // Select the specific OTP input elements
+        const inputs = document.querySelectorAll("input");
+        const otp = Array.from(inputs).map(input => input.value).join('');
+        console.log("Merged input data:", otp);
+
+
+        try {
+            const response = await axios.post("http://localhost:5000/api/driver/verify-otp", { driverEmail: driverEmail, otp: otp });
+            if (response.data.status === "success") {
+                navigate('/driver_name_section');
+            } else {
+                throw new Error("Failed to submit data. Please try again.");
+            }
+        } catch (error) {
+            console.log(error);
+            if (error.response && error.response.status === 422) {
+                alert("Validation error: Please check your email and try again.");
+            } else {
+                alert("An error occurred while submitting the data. Please try again.");
+            }
+        }
     };
+
 
     useEffect(() => {
         const inputs = document.querySelectorAll("input");
@@ -94,9 +120,9 @@ export default function DriverVerifyMail() {
                                 </div>
 
                                 <span className={styles.text}>Tip: Make sure to check your inbox and spam folders</span>
-                                <button onClick={handleRedirect}>Verify OTP</button>
+                                <button onClick={handleSubmit}>Verify OTP</button>
 
-                                
+
                             </form>
                         </div>
                     </section>

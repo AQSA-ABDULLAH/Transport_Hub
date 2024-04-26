@@ -80,10 +80,10 @@ class DriverController {
   }
 
   static async verifyOTP(req, res) {
-    console.log('Received form data:', req.body);
     try {
-      const { driverEmail, otp } = req.body;
-      const driver = await Driver.findOne({ driverEmail });
+      const { driverEmail, otp } = req.body; // Destructure driverEmail and otp from req.body
+        console.log("Received form data:", { driverEmail, otp });
+        const driver = await Driver.findOne({ driverEmail });
 
       if (!driver) {
         return res.status(400).send({
