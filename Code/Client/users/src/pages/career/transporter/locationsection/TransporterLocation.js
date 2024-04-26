@@ -16,7 +16,7 @@ export default function TransportLocation() {
 
     const nextRedirect = () => {
         localStorage.setItem('transporter_location', location);
-        navigate('/transporter_location_section');
+        navigate('/transporter_vechical_selection');
     };
 
     return (

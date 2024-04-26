@@ -34,6 +34,7 @@ import ShipmentForm from "../pages/good-shipment/create-shipment/ShipmentForm.js
 import LandingTripPage from "../pages/Trips/LandingTripPage.js";
 import ManageShipments from "../pages/good-shipment/manage-shipments/ManageShipments.js";
 import TransportLocation from "../pages/career/transporter/locationsection/TransporterLocation.js";
+import TransporterVechicalSection from "../pages/career/transporter/vechicalselection/TransporterVechicalSelection.js";
 
 
 
@@ -46,7 +47,8 @@ function AppRoutes() {
   const noHeaderPaths = ["/login", "/signup", "/404", "/profile", "/driverRegistration", "/verify_transporter_mail",
   "/transporterRegistration", "/transporter_name_section", "/driver_name_section", "/driver_location_section",
   "/driver_vechical_selection", "/driver_application_form", "/trems_and_conditions", "/upload_driver_cnic", 
-  "/driver_verify_mail", "/create_shipment_form", "/manage_shipments", "/transporter_location_section" ];
+  "/driver_verify_mail", "/create_shipment_form", "/manage_shipments", "/transporter_location_section", 
+  "/transporter_vechical_selection" ];
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -111,6 +113,7 @@ function AppRoutes() {
         <Route path="/verify_transporter_mail" element={< VerifyTransporterEmail/>}/>
         <Route path="/transporter_name_section" element={<TransporterName/>}/>
         <Route path="/transporter_location_section" element={<TransportLocation/>}/>
+        <Route path="/transporter_vechical_selection" element={<TransporterVechicalSection/>}/>
         
         {/* Trips Packages */}
         <Route path="/trips_packages" element={<LandingTripPage/>} />
