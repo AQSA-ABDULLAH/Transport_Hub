@@ -11,7 +11,6 @@ class SliderController {
         try {
             const newSlider = new SliderModal({ image, heading, content });
             await newSlider.save();
-
             res.status(201).send({ status: "success", message: "Data saved successfully"});
         } catch (error) {
             console.log(error);

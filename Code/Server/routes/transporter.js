@@ -4,7 +4,8 @@ const transporterLogin = require('../controllers/transporter/transporterLoginCon
 const router = express.Router();
 require("../db/connection")
 
-router.post("/registration", TransporterController.transporterRegistration); // Corrected function name
+router.post("/registration", TransporterController.transporterRegistration);
+router.post("/send-otp", TransporterController.sendOTP)
 router.post('/signIn', transporterLogin);
 
 module.exports = router;

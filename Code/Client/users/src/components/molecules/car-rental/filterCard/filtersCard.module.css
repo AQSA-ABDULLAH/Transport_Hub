@@ -1,0 +1,27 @@
+.filters_card{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 7px;
+}
+
+.filter_item{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    margin-right: 20px;
+    border: 1px solid white;
+    background-color: white;
+    border-radius: 610px;
+    padding: 7px 13px;
+    white-space: nowrap;
+}
+
+.filter_item select{
+    border: none;
+    padding: 0;
+    width: auto;
+}
+
+.filter_item select:focus{
+    outline: none;
+}

@@ -11,7 +11,7 @@ export default function CareerPage() {
             <div className={styles.careerPage}>
                 <Header
                     bgImage={
-                        "./assets/images/career/carrerPage2.jpg"
+                        "./assets/images/career/career.jpg"
                     } />
 
                 <CareerSection2 />
