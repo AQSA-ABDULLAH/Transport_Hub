@@ -13,9 +13,6 @@
     border-right: solid 1px rgba(var(--m-color-neutral-20,230,237,242),1);
 }
 
-.quote_form{
-    height: 80vh;
-    padding: 25px 85px;
-    overflow-x: hidden;
-    overflow-y: scroll;
+.view_quote_section{
+    width: 40%;
 }

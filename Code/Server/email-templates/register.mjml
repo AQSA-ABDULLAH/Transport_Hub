@@ -21,17 +21,17 @@ color: #FFFFFF;
     <mj-section>
       <mj-column>
          
-        <mj-text  font-family="Poppins, sans-serif"font-style="normal" font-size="24px" color="#121A26" font-weight="600"> The Body Doctor</mj-text>
+        <mj-text  font-family="Poppins, sans-serif"font-style="normal" font-size="24px" color="#121A26" font-weight="600"> The Transport Hub</mj-text>
                 
 
       </mj-column>
        <mj-column>
         <mj-social font-size="15px" icon-size="25px" mode="horizontal">
-          <mj-social-element name="facebook" href="https://www.facebook.com/CapregSoft/">
+          <mj-social-element name="facebook" href="https://www.facebook.com/">
           </mj-social-element>
-          <mj-social-element name="instagram" href="https://www.instagram.com/capregsoft/">
+          <mj-social-element name="instagram" href="https://www.instagram.com/">
           </mj-social-element>
-          <mj-social-element name="twitter" href="https://twitter.com/capregsoft">   
+          <mj-social-element name="twitter" href="https://twitter.com/">   
           </mj-social-element>
         </mj-social>
       </mj-column>
@@ -46,14 +46,16 @@ color: #FFFFFF;
       <mj-column>
        
         <mj-text font-family="Poppins, sans-serif" font-style="normal" font-weight="700" font-size="24px" line-height="140%" color="#121A26">Registration Success</mj-text>
-        <mj-text font-family="Poppins, sans-serif" font-size="16px" font-style="normal" line-height="150%" font-weight="400" letter-spacing="0.2px">Hi <strong>{{name}}</strong> 👋<br><br> Thanks for Joinng The Body Doctor <br><br> Welcome! If there’s anything you need.<br></br> Thanks, <br>The Body Doctor Team</mj-text>
+        <mj-text font-family="Poppins, sans-serif" font-size="16px" font-style="normal" line-height="150%" font-weight="400" letter-spacing="0.2px">Hi <strong>{{name}}</strong> 👋<br><br>In order to proceed, Please verfiy your Account.</mj-text>
           
-          <mj-button href="{{url}}" font-family="Poppins, sans-serif" height="57px" padding="20px 32px"css-class="gradient-button" align="left" border-radius="0px" background-color="#2C5364" color="#FFFFFF">Registration successfull</mj-button>
+          <mj-button href="http://localhost:3000" font-family="Poppins, sans-serif" height="57px" padding="20px 32px"css-class="gradient-button" align="left" border-radius="0px" background-color="#2C5364" color="#FFFFFF">Verify Account</mj-button>
+       <mj-text font-family="Poppins, sans-serif" font-size="16px" font-style="normal" line-height="150%" font-weight="400" letter-spacing="0.2px">Thanks, <br>TransportHub</mj-text>
+      
       </mj-column>
       </mj-section>
     <mj-section>
       <mj-column>
-        <mj-text font-family="Poppins, sans-serif" font-style="normal" font-size="16px" font-weight="400" line-height="150%" letter-spacing="0.2px">This email was sent to <a href={{email}}>{{email}}</a>. If you'd rather not receive this kind of email, Don’t want any more emails from The Body Doctor? <a href="https://www.gmail.com//">Unsubscribe</a>.<br></br>03435006050</br> © 2023 The Body Doctor</mj-text>
+        <mj-text font-family="Poppins, sans-serif" font-style="normal" font-size="16px" font-weight="400" line-height="150%" letter-spacing="0.2px">We are pleased about your inquiry and will be happy to serve you.<br></br><br></br>Kind regards, <br> </br>Transport Hub <br></br><br></br><br></br> © 2023 Transport Hub</mj-text>
       </mj-column>
     </mj-section>
   </mj-body>

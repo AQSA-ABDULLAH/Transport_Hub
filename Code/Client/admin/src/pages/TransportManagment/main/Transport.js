@@ -16,7 +16,7 @@ const Transport = () => {
     const params = new URLSearchParams(location.search);
     const tabName = params.get("tab");
     if (tabName == null) {
-      document.title = "Transport Managment"
+      document.title = "Transport Management"
     }
     if (tabName) {
       const tabIndex = Tab.findIndex(tab => tab.text.toLowerCase() === tabName.toLowerCase());
@@ -64,7 +64,7 @@ const Transport = () => {
                   btnClick={() => handleTabClick(index)}
                   bgColor={isActive === index ? "#7E22CE" : "transparent"}
                   textColor={isActive === index ? "#fff" : "#000"}
-                  radius={"10px"}
+                  radius={"5px"}
                   padding="8px"
                 />
               </div>

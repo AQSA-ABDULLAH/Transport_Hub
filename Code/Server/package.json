@@ -10,7 +10,7 @@
     "mjml": "^4.14.1",
     "mongoose": "^8.0.1",
     "multer": "^1.4.5-lts.1",
-    "nodemailer": "^6.9.7",
+    "nodemailer": "^6.9.13",
     "nodemon": "^3.0.1",
     "validator": "^13.11.0"
   }

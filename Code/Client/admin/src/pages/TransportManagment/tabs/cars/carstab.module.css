@@ -1,4 +1,4 @@
-.container {
+.transport_container {
   overflow: scroll;
   display: flex;
   flex-direction: column;
@@ -14,18 +14,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* border-bottom: 3.5px solid #8713BD; */
-  padding-bottom: 10px;
+  padding-bottom: 20px;
 }
 
 .heading {
-  font-family: Kaisei Opti;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
+  font-weight: 600;
   line-height: normal;
-  padding-bottom: 10px;
-  padding-left: 4px;
-  padding-right: 10px;
-  border-bottom: 3.5px solid #8713BD;
+  padding-bottom: 0px;
+  padding-right: 5px;
+  border-bottom: 2px solid #8713BD;
 }
 
 .message {
