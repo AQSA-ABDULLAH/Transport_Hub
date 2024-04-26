@@ -13,42 +13,29 @@ export default function VerifyTransporterEmail() {
       
         const transporterEmail = localStorage.getItem("transporterEmail");
       
-        // Ensure each OTP input has a unique "name" attribute
+        // Select the specific OTP input elements
         const otpInputs = document.querySelectorAll(".otp-input"); 
       
         const formData = new FormData();
-      
-        // Add a slight delay (optional)
-        setTimeout(() => {
-          otpInputs.forEach((input) => {
-              formData.append(input.name, input.value);
-          });
-        }, 100);
+        otpInputs.forEach((input) => {
+            formData.append(input.name, input.value);
+        });
       
         formData.append('email', transporterEmail);
+        navigate('/transporter_name_section');
       
-        try {
-          const response = await axios.post("http://localhost:5000/api/transporter/verify-otp", formData, {
-            headers: {
-              'Authorization': localStorage.getItem('token'),
-              'Content-Type': 'multipart/form-data'
-            }
-          });
-          // ... handle response
-        } catch (error) {
-          console.error(error);
-          alert("An error occurred while submitting the data. Please try again.");
-        }
+        // try {
+        //   const response = await axios.post("http://localhost:5000/api/transporter/verify-otp", formData);
+        //   if (response.data.status === "success") {
+        //     navigate('/transporter_name_section');
+        // } else {
+        //     throw new Error("Failed to submit data. Please try again.");
+        // }
+        // } catch (error) {
+        //   console.error(error);
+        //   alert("An error occurred while submitting the data. Please try again.");
+        // }
       };
-      
-
-
-
-    //   if (response.data.status === "success") {
-    //     navigate('/transporter_name_section');
-    // } else {
-    //     throw new Error("Failed to submit data. Please try again.");
-    // }
       
     
 
