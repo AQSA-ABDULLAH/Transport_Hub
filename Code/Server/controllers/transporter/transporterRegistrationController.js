@@ -6,10 +6,11 @@ const mailer = require("../../libs/mailer.js");
 
 class TransporterController {
     static async generateOTP() {
-        return Math.floor(1000 + Math.random() * 9000);
+        return Math.floor(100000 + Math.random() * 9000);
     }
 
     static async transporterRegistration(req, res) {
+        console.log('Received form data:', req.body);
         try {
             const { email } = req.body;
 
@@ -86,27 +87,40 @@ class TransporterController {
     }
 
     static async verifyOTP(req, res) {
+        console.log('Received form data:', req.body);
         try {
             const { email, otp } = req.body;
-            const otpData = await Transport.findOne({ email, otp });
-            if (!otpData) {
+            const transporter = await Transport.findOne({ email });
+    
+            if (!transporter) {
                 return res.status(400).send({
                     status: "error",
-                    message: "Incorrect OTP",
+                    message: "Transporter not found with the provided email.",
                 });
             }
-
-            await Transport.updateOne({ email: email }, {
-                $set: {
-                    is_verified: true
-                }
-            });
-
+    
+            if (transporter.is_verified) {
+                return res.status(400).send({
+                    status: "error",
+                    message: "Transporter account is already verified.",
+                });
+            }
+    
+            if (transporter.otp !== otp) {
+                return res.status(400).send({
+                    status: "error",
+                    message: "Incorrect OTP.",
+                });
+            }
+    
+            // Update transporter's is_verified status
+            transporter.is_verified = true;
+            await transporter.save();
+    
             return res.status(200).send({
                 status: "success",
-                message: "Account Verified Successfully!.",
+                message: "Account Verified Successfully!",
             });
-
         } catch (error) {
             console.error("Error verifying OTP:", error);
             return res.status(500).send({
@@ -116,6 +130,7 @@ class TransporterController {
             });
         }
     }
+    
 }
 
 module.exports = { TransporterController };
