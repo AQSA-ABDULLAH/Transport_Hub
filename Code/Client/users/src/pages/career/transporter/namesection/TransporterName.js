@@ -14,7 +14,7 @@ export default function TransporterName() {
     const nextRedirect = () => {
         localStorage.setItem('transporter_first_name', firstName);
         localStorage.setItem('transporter_last_name', lastName);
-        navigate('/transporterRegistration'); 
+        navigate('/transporter_location_section'); 
     };
 
     const backRedirect = () => {
