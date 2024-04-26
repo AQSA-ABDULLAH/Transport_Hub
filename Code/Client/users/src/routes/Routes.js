@@ -6,6 +6,7 @@ import Login from "../pages/Login";
 import Billing from "../pages/Billing";
 import Header from "../components/sections/header/Header";
 import Footer from "../components/sections/footer/Footer";
+import axios from 'axios';
 import NoRoute from "../pages/NoRoute.js";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -15,8 +16,8 @@ import LandingPage from "../pages/carRental/LandingPage.js";
 import ViewCars from "../pages/carRental/showCarsPage/ViewCars.js"
 import ExtendedDetailPage from "../pages/carRental/addOnPage/ExtendedDetailPage.js"
 import RentalBookingPage from "../pages/carRental/bookingPage/RentalBookingPage.js"
-import BlogsNews from "../pages/blogs&news/BlogsNews.js";
-import BlogsDetails from "../pages/blogs&news/BlogsDetails.js";
+import BlogsNews from "../pages/blogs&News/BlogsNews.js";
+import BlogsDetails from "../pages//blogs&News/BlogsDetails.js";
 import CareerPage from "../pages/career/CareerPage.js";
 import DriverEmail from "../pages/career/driver/registration/DriverEmail.js";
 import DriverVerifyMail from "../pages/career/driver/verifymail/DriverVerifyMain.js";
@@ -32,9 +33,29 @@ import TermsCondition from "../pages/career/driver/terms&condition/Terms&Conditi
 import ShipmentLandingPage from "../pages/good-shipment/ShipmentLandingPage.js";
 import ShipmentForm from "../pages/good-shipment/create-shipment/ShipmentForm.js";
 import ManageShipments from "../pages/good-shipment/manage-shipments/ManageShipments.js";
-
-
+import Parcelform from "../components/Parcel/Parcelform.js";
+import PickupBoyForm from "../components/Parcel/PickupBoyForm.js";
+import Showpickupboy from "../components/Parcel/showpickupboysforms.js";
+import Userdashboard from "../user-dashboard/User-dashboard.js";
+import PickupboysLandingPage from "../pages/pickupboylandingpage/PickupboysLandingPage.js";
+import PickupBoyEmail from "../components/pickupboyregistration/emailpage/PickupboyEmail.js";
+import PickupBoyVerifyMail from "../components/pickupboyregistration/verifyemailpage/PickupBoyVerifyMain.js";
 function AppRoutes() {
+  const [pickupBoy, setpickupBoy] = useState([]);
+  const fetchData = async () => {
+    try {
+      const {response} = await axios.get('http://localhost:5000/getAllData');
+      setpickupBoy(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+
   const dispatch = useDispatch();
   const reduxState = useSelector((state) => state.signIn);
 
@@ -76,6 +97,7 @@ function AppRoutes() {
   {!noHeaderPaths.includes(location.pathname) && <Header />}
 </div>
       <Routes>
+
         <Route path="/" element={<Home />} />
         <Route path="/blog&news" element={<BlogsNews/>}/>
         <Route path="/blog&news/:id" element={<BlogsDetails/>}/>
@@ -123,6 +145,23 @@ function AppRoutes() {
           element={isAuthenticated ? <Navigate to="/" replace /> : <Billing />}
         />
         <Route path="*" element={<Navigate to="/404" replace />} />
+
+          {/* Parcel Pickup Routes */}
+          <Route path="/parcelform" element={<Parcelform/>}/> 
+          <Route path="/pickupboyform" element={<PickupBoyForm/>}/>
+
+          <Route path="/pickupboy-email" element={<PickupBoyEmail/>}/>
+          <Route path="/pickupboyverifymail" element={<PickupBoyVerifyMail/>}/>
+          
+           {pickupBoy.map((pickupBoy) => (
+           <Route
+             path="/getpickupBoy"
+             element={<Showpickupboy pickupBoy={pickupBoy} key={pickupBoy._id} />}
+           />
+          ))} 
+          <Route path="/userdashboard" element={<Userdashboard/>} />
+          <Route path="/pickupboyslandingpage" element={<PickupboysLandingPage/>} />
+
       </Routes>
       {!noHeaderPaths.includes(location.pathname) && <Footer />}
     </>

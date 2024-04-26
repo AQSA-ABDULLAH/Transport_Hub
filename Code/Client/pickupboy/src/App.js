@@ -3,6 +3,7 @@ import PickupBoyDashboard from "./pages/PickupBoyDashboard.js"
 import LoginDetails from "./pages/SidebarPages/LoginDetails.js";
 import PickupRequests from "./pages/SidebarPages/PickupRequests.js";
 import Settings from "./pages/SidebarPages/Settings.js";
+
 function App() {
   return (
     <div className="App">
