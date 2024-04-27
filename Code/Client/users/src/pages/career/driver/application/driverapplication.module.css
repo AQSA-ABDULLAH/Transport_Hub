@@ -1,6 +1,33 @@
-.container{
-    height: 88vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.application_container {
+  height: 88vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.welcome_section {
+  width: 91vh;
+  padding: 10px 0px;
+}
+.application_form {
+  width: 90vh;
+  padding: 10px 0px;
+  display: flex;
+  flex-direction: column;
+}
+.application_form h4 {
+  padding: 10px 5px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.application_form h4::after {
+  content: '>';
+  margin-left: 5px;
+}
+.application_form hr {
+  border-color: rgb(253, 253, 253);
+  margin: 10px 0;
+}
+
