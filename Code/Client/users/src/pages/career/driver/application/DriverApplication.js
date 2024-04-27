@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './driverapplication.module.css';
 import MediumHeader from '../../../../components/sections/header-medium/MediumHeader';
+import { Link } from 'react-router-dom';
 
 export default function DriverApplication() {
     const [driverFirstName, setDriverFirstName] = useState('');
@@ -21,15 +22,13 @@ export default function DriverApplication() {
                 </div>
 
                 <div className={styles.application_form}>
-                    <h4>Terms and Conditions</h4>
+                    <Link to={"/driver_terms_and_conditions"}><h4>Terms and Conditions</h4></Link>
                     <hr />
-                    <h4>CNIC Front Side</h4>
+                    <Link to={"/driver_terms_and_conditions"}><h4>Partner Photo</h4></Link>
                     <hr />
-                    <h4>CNIC Back Side</h4>
+                    <Link to={"/upload_driver_cnic"}><h4>Upload Driver CNIC</h4></Link>
                     <hr />
-                    <h4>Partner Photo</h4>
-                    <hr />
-                    <h4>Driving License Photo</h4>
+                    <Link to={"/driver_terms_and_conditions"}><h4>Driving License Photo</h4></Link>
                 </div>
 
                 <div className={styles.welcome_section}>

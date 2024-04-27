@@ -44,10 +44,10 @@ function AppRoutes() {
 
   const location = useLocation();
   const [isAuthenticated, setisAuthenticated] = useState(false);
-  const noHeaderPaths = ["/login", "/signup", "/404", "/profile", "/driverRegistration", "/verify_transporter_mail",
-  "/transporterRegistration", "/transporter_name_section", "/driver_name_section", "/driver_location_section",
-  "/driver_vechical_selection", "/driver_application_form", "/trems_and_conditions", "/upload_driver_cnic", 
-  "/driver_verify_mail", "/create_shipment_form", "/manage_shipments", "/transporter_location_section", 
+  const noHeaderPaths = ["/login", "/signup", "/404", "/profile", "/driverRegistration", "/driver_verify_mail", 
+  "/driver_name_section", "/driver_location_section", "/driver_vechical_selection", "/driver_application_form", 
+  "/driver_terms_and_conditions", "/upload_driver_cnic",  "/create_shipment_form", "/manage_shipments", 
+  "/transporterRegistration", "/verify_transporter_mail", "/transporter_name_section", "/transporter_location_section",
   "/transporter_vechical_selection" ];
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -105,8 +105,8 @@ function AppRoutes() {
         <Route path="/driver_location_section" element={<DriverLocation/>}/>
         <Route path="/driver_vechical_selection" element={<DriverVechicalSection/>}/>
         <Route path="/driver_application_form" element={<DriverApplication/>}/>
+        <Route path="/driver_terms_and_conditions" element={<TermsCondition/>}/>
         <Route path="/upload_driver_cnic" element={<DriverCnic/>}/>
-        <Route path="/trems_and_conditions" element={<TermsCondition/>}/>
 
         {/* TRANSPORTER REGISTRATION */}
         <Route path="/transporterRegistration" element={<TransporterEmail/>}/>
