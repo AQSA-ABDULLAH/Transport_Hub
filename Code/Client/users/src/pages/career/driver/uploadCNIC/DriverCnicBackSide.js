@@ -2,7 +2,7 @@ import React from 'react';
 import careerStyles from '../../careerpage.module.css';
 import MediumHeader from '../../../../components/sections/header-medium/MediumHeader';
 
-export default function DriverCnic() {
+export default function DriverCnicBackSide() {
     return (
         <>
             <div className={careerStyles.container}>

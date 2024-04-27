@@ -27,7 +27,8 @@ import VerifyTransporterEmail from "../pages/career/transporter/verifymail/Verif
 import DriverLocation from "../pages/career/driver/locationsection/DriverLocation.js";
 import DriverVechicalSection from "../pages/career/driver/vechicalselection/DriverVechicalSelection.js";
 import DriverApplication from "../pages/career/driver/application/DriverApplication.js";
-import DriverCnic from "../pages/career/driver/uploadCNIC/DriverCnic.js";
+import DriverCnicFrontSide from "../pages/career/driver/uploadCNIC/DriverCnicFrontSide.js";
+import DriverCnicBackSide from "../pages/career/driver/uploadCNIC/DriverCnicBackSide.js";
 import TermsCondition from "../pages/career/driver/terms&condition/Terms&Condition.js";
 import ShipmentLandingPage from "../pages/good-shipment/ShipmentLandingPage.js";
 import ShipmentForm from "../pages/good-shipment/create-shipment/ShipmentForm.js";
@@ -46,8 +47,9 @@ function AppRoutes() {
   const [isAuthenticated, setisAuthenticated] = useState(false);
   const noHeaderPaths = ["/login", "/signup", "/404", "/profile", "/driverRegistration", "/driver_verify_mail", 
   "/driver_name_section", "/driver_location_section", "/driver_vechical_selection", "/driver_application_form", 
-  "/driver_terms_and_conditions", "/upload_driver_cnic",  "/create_shipment_form", "/manage_shipments", 
-  "/transporterRegistration", "/verify_transporter_mail", "/transporter_name_section", "/transporter_location_section",
+  "/driver_terms_and_conditions", "/upload_driver_cnic_front_side", "/upload_driver_cnic_back_side", 
+  "/create_shipment_form", "/manage_shipments", "/transporterRegistration", "/verify_transporter_mail", 
+  "/transporter_name_section", "/transporter_location_section",
   "/transporter_vechical_selection" ];
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -106,7 +108,8 @@ function AppRoutes() {
         <Route path="/driver_vechical_selection" element={<DriverVechicalSection/>}/>
         <Route path="/driver_application_form" element={<DriverApplication/>}/>
         <Route path="/driver_terms_and_conditions" element={<TermsCondition/>}/>
-        <Route path="/upload_driver_cnic" element={<DriverCnic/>}/>
+        <Route path="/upload_driver_cnic_front_side" element={<DriverCnicFrontSide/>}/>
+        <Route path="/upload_driver_cnic_back_side" element={<DriverCnicBackSide/>}/>
 
         {/* TRANSPORTER REGISTRATION */}
         <Route path="/transporterRegistration" element={<TransporterEmail/>}/>

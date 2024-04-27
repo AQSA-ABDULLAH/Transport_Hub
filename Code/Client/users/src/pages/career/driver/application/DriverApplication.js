@@ -26,7 +26,9 @@ export default function DriverApplication() {
                     <hr />
                     <Link to={"/driver_terms_and_conditions"}><h4>Partner Photo</h4></Link>
                     <hr />
-                    <Link to={"/upload_driver_cnic"}><h4>Upload Driver CNIC</h4></Link>
+                    <Link to={"/upload_driver_cnic_front_side"}><h4>Upload CNIC Front Side</h4></Link>
+                    <hr />
+                    <Link to={"/upload_driver_cnic_back_side"}><h4>Upload CNIC Back Side</h4></Link>
                     <hr />
                     <Link to={"/driver_terms_and_conditions"}><h4>Driving License Photo</h4></Link>
                 </div>
