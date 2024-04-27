@@ -22,11 +22,9 @@ export default function TermsCondition() {
                             <Link to={"/driver_terms_and_conditions"}><h4>Services Agreement</h4></Link>
                             <hr />
                         </div>
-
-                        <div className={styles.welcome_section}>
-                            <button>Submit Application</button>
-                        </div>
-
+                    </div>
+                    <div className={careerStyles.application_footer}>
+                        <button>Yes, I agree</button>
                     </div>
                 </div>
             </div>
