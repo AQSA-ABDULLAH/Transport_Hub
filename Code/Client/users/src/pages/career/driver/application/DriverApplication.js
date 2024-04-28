@@ -8,33 +8,33 @@ import { Link } from 'react-router-dom';
 export default function DriverApplication() {
     const navigate = useNavigate();
 
-    // const driver_Email = JSON.parse(localStorage.getItem('driverEmail'));
-    // const driverEmail = driver_Email.driverEmail;
+    const driver_Email = JSON.parse(localStorage.getItem('driverEmail'));
+    const driverEmail = driver_Email.email;
 
     const driver_name = JSON.parse(localStorage.getItem('driver_name'));
-    const driverFirstName = driver_name.firstName;
-    const driverLastName = driver_name.lastName;
+    const driverFirstName = driver_name.driverFirstName;
+    const driverLastName = driver_name.driverLastName;
 
-    // const driverLocation = JSON.parse(localStorage.getItem('driverLocation'));
-    // const driver_location = driverLocation.driverLocation;
+    const driverLocation = JSON.parse(localStorage.getItem('driver_location'));
+    const driver_location = driverLocation.driverLocation;
 
-    // const driverVehicleType = JSON.parse(localStorage.getItem('driverVehicleType'));
-    // const vechicalType = driverVehicleType.driverVehicleType;
+    const driverVehicleType = JSON.parse(localStorage.getItem('driverVehicleType'));
+    const vechicalType = driverVehicleType.selectedType;
 
-    // const driver_terms_condition = JSON.parse(localStorage.getItem('driver_terms_condition'));
-    // const termsAndCondition = driver_terms_condition.driver_terms_condition;
+    const driver_terms_condition = JSON.parse(localStorage.getItem('driver_terms_condition'));
+    const termsAndCondition = driver_terms_condition.termsandcondition;
 
-    // const driver_photo = JSON.parse(localStorage.getItem('driver_photo'));
-    // const profilePhoto = driver_photo.driver_photo;
+    const driver_photo = JSON.parse(localStorage.getItem('driver_photo'));
+    const profilePhoto = driver_photo.imageUrl;
 
-    // const driver_Cnic_front = JSON.parse(localStorage.getItem('driver_Cnic_front'));
-    // const cnicFrontSide = driver_Cnic_front.driver_Cnic_front;
+    const driver_Cnic_front = JSON.parse(localStorage.getItem('driver_Cnic_front'));
+    const cnicFrontSide = driver_Cnic_front.imageUrl;
 
-    // const driver_Cnic_back = JSON.parse(localStorage.getItem('driver_Cnic_back'));
-    // const cnicBackSide = driver_Cnic_back.driver_Cnic_back;
+    const driver_Cnic_back = JSON.parse(localStorage.getItem('driver_Cnic_back'));
+    const cnicBackSide = driver_Cnic_back.imageUrl;
 
-    // const driver_driving_license = JSON.parse(localStorage.getItem('driver_driving_license'));
-    // const drivingLicense = driver_driving_license.driver_driving_license;
+    const driver_driving_license = JSON.parse(localStorage.getItem('driver_driving_license'));
+    const drivingLicense = driver_driving_license.imageUrl;
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -43,25 +43,27 @@ export default function DriverApplication() {
         const combinedData = {
             driverFirstName: driverFirstName,
             driverLastName: driverLastName,
-            // driverLocation: driver_location,
-            // driverVehicleType: vechicalType,
-            // driver_terms_condition: termsAndCondition,
-            // driver_photo: profilePhoto,
-            // driver_Cnic_front: cnicFrontSide,
-            // driver_Cnic_back: cnicBackSide,
-            // driver_driving_license: drivingLicense,
+            driverLocation: driver_location,
+            driverVehicleType: vechicalType,
+            driver_terms_condition: termsAndCondition,
+            driver_photo: profilePhoto,
+            driver_Cnic_front: cnicFrontSide,
+            driver_Cnic_back: cnicBackSide,
+            driver_driving_license: drivingLicense,
         };
+        console.log(driverFirstName, driverLastName, driver_location, vechicalType, termsAndCondition, profilePhoto,
+            cnicFrontSide, cnicBackSide, drivingLicense );
 
         // Send combined data to server
-        // axios.post(`http://localhost:5000/api/driver/updateDriver/${driverEmail}`, combinedData)
-        //     .then(response => {
-        //         console.log('Data sent successfully:', response.data);
-        //         console.log(combinedData)
-        //         navigate("/");
-        //     })
-        //     .catch(error => {
-        //         console.error('Failed to send data:', error.response ? error.response.data : error.message);
-        //     });
+        axios.post(`http://localhost:5000/api/driver/updateDriver/${driverEmail}`, combinedData)
+            .then(response => {
+                console.log('Data sent successfully:', response.data);
+                console.log(combinedData)
+                navigate("/");
+            })
+            .catch(error => {
+                console.error('Failed to send data:', error.response ? error.response.data : error.message);
+            });
     };
 
     return ( 

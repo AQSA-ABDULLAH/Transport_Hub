@@ -43,7 +43,7 @@ export default function DriverCnicBackSide() {
 
     const handleUploadPhoto = () => {
         console.log(imageUrl)
-        localStorage.setItem('driver_driving_license', JSON.stringify(imageUrl));
+        localStorage.setItem('driver_driving_license', JSON.stringify({ imageUrl }));
 
          // Show SweetAlert2 confirmation
          Swal.fire({

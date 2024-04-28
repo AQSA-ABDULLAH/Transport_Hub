@@ -42,8 +42,7 @@ export default function DriverPhoto() {
     }
 
     const handleUploadPhoto = () => {
-        console.log(imageUrl)
-        localStorage.setItem('driver_photo', JSON.stringify(imageUrl));
+        localStorage.setItem('driver_photo', JSON.stringify({ imageUrl }));
          // Show SweetAlert2 confirmation
          Swal.fire({
             icon: 'success',

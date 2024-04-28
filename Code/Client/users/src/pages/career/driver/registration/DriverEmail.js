@@ -6,11 +6,22 @@ import styles from "./drivermail.module.css";
 
 export default function DriverEmail() {
   const [email, setEmail] = useState("");
+  const [formData, setFormData] = useState({
+    email: ''
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData(prevFormData => ({
+      ...prevFormData,
+      [name]: value
+    }));
+  };
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    localStorage.setItem('driverEmail', JSON.stringify(email));
+    localStorage.setItem('driverEmail', JSON.stringify(formData));
 
     try {
       const response = await axios.post("http://localhost:5000/api/driver/registration", { driverEmail: email });
@@ -51,9 +62,12 @@ export default function DriverEmail() {
             <div>
               <form className={styles.form}>
                 <h2>What's your email?</h2>
-                <input type="email" required placeholder='@gmail.com'
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                <input type="email"
+                  required
+                  placeholder='@gmail.com'
+                  id="email"
+                  name="email"
+                  onChange={handleChange}
                 />
                 <button onClick={handleSubmit}>Send OTP</button>
               </form>

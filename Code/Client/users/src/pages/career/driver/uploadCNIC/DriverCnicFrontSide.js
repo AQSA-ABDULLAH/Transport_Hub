@@ -43,7 +43,7 @@ export default function DriverCnicFrontSide() {
 
     const handleUploadPhoto = () => {
 
-        localStorage.setItem('driver_Cnic_front', JSON.stringify(imageUrl));
+        localStorage.setItem('driver_Cnic_front', JSON.stringify({ imageUrl }));
         
          // Show SweetAlert2 confirmation
          Swal.fire({

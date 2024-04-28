@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import careerStyles from '../../careerpage.module.css';
 import styles from './terms&condition.module.css'
@@ -8,10 +8,14 @@ import Swal from 'sweetalert2';
 
 export default function TermsCondition() {
     const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        termsandcondition: "true",
+    });
+
     
     const handleAgreeButtonClick = () => {
         // Set driver_terms_condition to true in local storage
-        localStorage.setItem('driver_terms_condition', JSON.stringify('true'));
+        localStorage.setItem('driver_terms_condition', JSON.stringify(formData));
         
         // Show SweetAlert2 confirmation
         Swal.fire({
