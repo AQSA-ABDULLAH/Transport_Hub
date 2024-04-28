@@ -27,16 +27,17 @@ import VerifyTransporterEmail from "../pages/career/transporter/verifymail/Verif
 import DriverLocation from "../pages/career/driver/locationsection/DriverLocation.js";
 import DriverVechicalSection from "../pages/career/driver/vechicalselection/DriverVechicalSelection.js";
 import DriverApplication from "../pages/career/driver/application/DriverApplication.js";
+import DriverPhoto from "../pages/career/driver/patnerphoto/DriverPhoto.js";
 import DriverCnicFrontSide from "../pages/career/driver/uploadCNIC/DriverCnicFrontSide.js";
 import DriverCnicBackSide from "../pages/career/driver/uploadCNIC/DriverCnicBackSide.js";
 import TermsCondition from "../pages/career/driver/terms&condition/Terms&Condition.js";
+import DriverLicense from "../pages/career/driver/driving-license/DriverLicense.js";
 import ShipmentLandingPage from "../pages/good-shipment/ShipmentLandingPage.js";
 import ShipmentForm from "../pages/good-shipment/create-shipment/ShipmentForm.js";
 import LandingTripPage from "../pages/Trips/LandingTripPage.js";
 import ManageShipments from "../pages/good-shipment/manage-shipments/ManageShipments.js";
 import TransportLocation from "../pages/career/transporter/locationsection/TransporterLocation.js";
 import TransporterVechicalSection from "../pages/career/transporter/vechicalselection/TransporterVechicalSelection.js";
-import DriverPhoto from "../pages/career/driver/patnerphoto/DriverPhoto.js";
 
 
 
@@ -48,8 +49,8 @@ function AppRoutes() {
   const [isAuthenticated, setisAuthenticated] = useState(false);
   const noHeaderPaths = ["/login", "/signup", "/404", "/profile", "/driverRegistration", "/driver_verify_mail", 
   "/driver_name_section", "/driver_location_section", "/driver_vechical_selection", "/driver_application_form", 
-  "/driver_terms_and_conditions", "/driver_photo", "/upload_driver_cnic_front_side", "/upload_driver_cnic_back_side", 
-  "/create_shipment_form", "/manage_shipments", "/transporterRegistration", "/verify_transporter_mail", 
+  "/driver_terms_and_conditions", "/driver_photo", "/upload_driver_cnic_front_side", "/upload_driver_cnic_back_side",
+  "/driver_driving_license", "/create_shipment_form", "/manage_shipments", "/transporterRegistration", "/verify_transporter_mail", 
   "/transporter_name_section", "/transporter_location_section",
   "/transporter_vechical_selection" ];
   const [isScrolled, setIsScrolled] = useState(false);
@@ -112,6 +113,7 @@ function AppRoutes() {
         <Route path="/driver_photo" element={<DriverPhoto/>}/>
         <Route path="/upload_driver_cnic_front_side" element={<DriverCnicFrontSide/>}/>
         <Route path="/upload_driver_cnic_back_side" element={<DriverCnicBackSide/>}/>
+        <Route path="/driver_driving_license" element={<DriverLicense/>}/>
 
         {/* TRANSPORTER REGISTRATION */}
         <Route path="/transporterRegistration" element={<TransporterEmail/>}/>

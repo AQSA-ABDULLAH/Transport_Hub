@@ -30,7 +30,7 @@ export default function DriverApplication() {
                     <hr />
                     <Link to={"/upload_driver_cnic_back_side"}><h4>Upload CNIC Back Side</h4></Link>
                     <hr />
-                    <Link to={"/driver_terms_and_conditions"}><h4>Driving License Photo</h4></Link>
+                    <Link to={"/driver_driving_license"}><h4>Driving License Photo</h4></Link>
                 </div>
 
                 <div className={styles.welcome_section}>
