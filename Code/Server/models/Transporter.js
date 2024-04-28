@@ -4,6 +4,10 @@ const jwt = require('jsonwebtoken')
 const transporterSchema = new mongoose.Schema({
     email: { type: String, trim: true },
     password: { type: String, required: true, trim: true },
+    otp: {
+        type:Number,
+        required:true
+    },
     is_verified: { type: Boolean, default: false },
     tokens: [
         {

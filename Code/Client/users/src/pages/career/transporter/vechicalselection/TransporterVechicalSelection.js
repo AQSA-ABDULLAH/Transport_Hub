@@ -1,39 +1,28 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import careerStyles from '../../careerpage.module.css';
-import styles from './drivervechicalsection.module.css';
+import styles from "../../driver/vechicalselection/drivervechicalsection.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import MediumHeader from '../../../../components/sections/header-medium/MediumHeader';
 
-export default function DriverVechicalSection() {
-    const [selectedType, setSelectedType] = useState('');
+export default function TransporterVechicalSection() {
+
     const navigate = useNavigate();
-    const [formData, setFormData] = useState({
-        selectedType: ''
-    });
-
-
-    const handleTypeSelection = (value) => {
-        setSelectedType(value);
-
-        setFormData(prevFormData => ({
-            ...prevFormData,
-            selectedType: value
-        }));
-    };
-
 
     const backRedirect = () => {
-        navigate('/driver_location_section');
+      navigate('/transporter_location_section'); 
     };
 
     const nextRedirect = () => {
-        // Store the selected vehicle type in local storage
-        localStorage.setItem('driverVehicleType', JSON.stringify(formData));
-        navigate('/driver_application_form');
+      navigate('/driver_application_form'); 
     };
 
+    const [selectedType, setSelectedType] = useState('');
+
+    const handleTypeSelection = (type) => {
+        setSelectedType(type);
+    };
 
     return (
         <>

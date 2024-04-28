@@ -10,17 +10,14 @@ export default function DriverEmail() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    console.log(email);
-  
+    localStorage.setItem("transporterEmail", email);
+
+
     try {
-      const response = await axios.post("http://localhost:5000/api/transporter/registration", { email: email });
-  
-      if (response.data.status === "success") {
-        navigate("/verify_transporter_mail")
-      } else {
-        alert("Failed to submit data. Please try again.");
-      }
+      axios.post("http://localhost:5000/api/transporter/registration", { email: email })
+          console.log(email);
+          navigate("/verify_transporter_mail");
+
     } catch (error) {
       console.log(error);
       if (error.response && error.response.status === 422) {
@@ -30,7 +27,8 @@ export default function DriverEmail() {
       }
     }
   };
-  
+
+
 
 
   return (

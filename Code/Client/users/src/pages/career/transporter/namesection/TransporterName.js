@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from "../../driver/namesection/drivername.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,14 +8,19 @@ import MediumHeader from '../../../../components/sections/header-medium/MediumHe
 
 export default function TransporterName() {
     const navigate = useNavigate();
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
 
     const nextRedirect = () => {
-      navigate('/transporterRegistration'); 
+        localStorage.setItem('transporter_first_name', firstName);
+        localStorage.setItem('transporter_last_name', lastName);
+        navigate('/transporter_location_section'); 
     };
 
     const backRedirect = () => {
-      navigate('/transporterRegistration'); 
+        navigate('/transporterRegistration'); 
     };
+
     return (
         <>
             <MediumHeader />
@@ -25,8 +30,8 @@ export default function TransporterName() {
                     <p>Let us know how to properly address you</p>
 
                     <form className={`${transporterStyles.input_field} ${styles.inputForm}`}>
-                        <input type='text' placeholder='Enter first name' />
-                        <input type='text' placeholder='Enter last name' />
+                        <input type='text' placeholder='Enter first name' onChange={(e) => setFirstName(e.target.value)} />
+                        <input type='text' placeholder='Enter last name' onChange={(e) => setLastName(e.target.value)} />
 
                         <div className={`${transporterStyles.button} ${styles.formbutton}`}>
                             <button onClick={backRedirect}><FontAwesomeIcon icon={faArrowLeft} /> BACK</button>
@@ -38,6 +43,7 @@ export default function TransporterName() {
         </>
     )
 }
+
 
 
 

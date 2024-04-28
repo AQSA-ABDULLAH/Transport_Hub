@@ -1,38 +1,23 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import careerStyles from '../../careerpage.module.css';
-import styles from './driverlocation.module.css';
+import styles from "../../driver/locationsection/driverlocation.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import MediumHeader from '../../../../components/sections/header-medium/MediumHeader';
 
-export default function DriverLocation() {
+export default function TransportLocation() {
     const navigate = useNavigate();
-    const [formData, setFormData] = useState({
-        driverLocation: ''
-    });
-
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFormData(prevFormData => ({
-            ...prevFormData,
-            [name]: value
-        }));
-    };
+    const [location, setLocation] = useState('');
 
     const backRedirect = () => {
-        navigate('/driver_name_section');
+        navigate('/transporter_name_section');
     };
 
-    const nextRedirect = (event) => {
-        event.preventDefault();
-
-        // Store location in local storage
-        localStorage.setItem('driver_location', JSON.stringify(formData));
-
-        navigate('/driver_vechical_selection');
+    const nextRedirect = () => {
+        localStorage.setItem('transporter_location', location);
+        navigate('/transporter_vechical_selection');
     };
-
 
     return (
         <>
@@ -44,16 +29,10 @@ export default function DriverLocation() {
                         <p>Decide when, where, and how you want to earn.</p>
                         <form className={`${careerStyles.input_field} ${styles.inputForm}`}>
                             <h4>Where would you like to earn?</h4>
-                            <input placeholder='City'
-                                type="text"
-                                id="driverLocation"
-                                name="driverLocation"
-                                required
-                                onChange={handleChange}
-                            />
+                            <input type='text' placeholder='City' onChange={(e) => setLocation(e.target.value)} />
                         </form>
                         <div className={styles.notice}>
-                            <h4>By proceeding, I agree that Transport Hub or its representatives may contact me by email
+                            <h4>By proceeding, I agree that Transport Hub or its representatives may contact me by email 
                                 or SMS (including by automatic telephone dialing system) at the email address
                                 or number I provide, including for marketing purposes.</h4>
                         </div>
