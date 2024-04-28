@@ -16,14 +16,6 @@ const driversSchema = new mongoose.Schema({
     status:{ type: Boolean, default:false, trim: true },
     otp: { type:String, trim: true },
     is_verified: { type: Boolean, default: false },
-    tokens: [
-        {
-            token: {
-                type: String,
-                required: true
-            }
-        }
-    ],
     createdAt: {
         type: Date,
         default: Date.now

@@ -1,4 +1,5 @@
 const Driver = require("../../models/Drivers.js");
+const mongoose = require('mongoose');
 const { hashPassword } = require("../../helpers/hashPassword");
 const { createToken } = require("../../helpers/jwt");
 const mailer = require("../../libs/mailer.js");
@@ -128,33 +129,36 @@ class DriverController {
   // UPDATE DRIVER
 
   static updateDriver = async (req, res) => {
-    const { driverEmail } = req.params;
+    const { id } = req.params;
     const { password, firstName, lastName, driver_location, vechicalType, termsAndCondition, profilePhoto,
       cnicFrontSide, cnicBackSide, drivingLicense, status } = req.body;
-
-    if (!isValidEmail(driverEmail)) {
-      return res.status(400).send({ status: "failed", message: "Invalid driverEmail" });
+  
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).send({ status: "failed", message: `Invalid Car ID: ${id}` });
     }
 
+  
     const updatedDriver = {
       password, firstName, lastName, driver_location, vechicalType,
       termsAndCondition, profilePhoto, cnicFrontSide, cnicBackSide, drivingLicense, status
     };
-
+  
     try {
-      const updatedData = await Driver.findOneAndUpdate({ email: driverEmail }, updatedDriver, { new: true });
-
+      const updatedData = await Driver.findByIdAndUpdate(id, updatedDriver, { new: true });
+  
       if (!updatedData) {
-        return res.status(404).send({ status: "failed", message: `No Driver found with Email: ${driverEmail}` });
+        return res.status(404).send({ status: "failed", message: `No Driver found with Email: ${id}` });
       }
-
+  
       res.status(200).send({ status: "success", message: "Driver updated successfully", data: updatedData });
     } catch (error) {
       console.error("Error updating driver:", error);
       res.status(500).send({ status: "failed", message: "Failed to update driver" });
     }
   };
-
+  
+  
+  
 
 }
 
