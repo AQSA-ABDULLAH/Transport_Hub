@@ -123,12 +123,13 @@ class DriverController {
 
   // Function to validate an email address
   static isValidEmail(email) {
-    // Regular expression for email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   }
 
+  // UPDATE DRIVER
   static updateDriver = async (req, res) => {
+    console.log('Received form data:', req.body);
     const { driverEmail } = req.params;
     const { password, firstName, lastName, driver_location, vechicalType, termsAndCondition, profilePhoto,
       cnicFrontSide, cnicBackSide, drivingLicense, status } = req.body;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './drivername.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,25 +8,32 @@ import MediumHeader from '../../../../components/sections/header-medium/MediumHe
 
 export default function DriverName() {
     const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        driverFirstName: '',
+        driverLastName: ''
+    });
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            [name]: value
+        }));
+    };
 
     const backRedirect = () => {
-      navigate('/driverRegistration'); 
+        navigate('/driverRegistration');
     };
 
-    const nextRedirect = () => {
-        const firstNameInput = document.querySelector('input[type="text"][placeholder="Enter first name"]');
-        const lastNameInput = document.querySelector('input[type="text"][placeholder="Enter last name"]');
-    
-        const firstName = firstNameInput.value;
-        const lastName = lastNameInput.value;
-    
+    const nextRedirect = (event) => {
+        event.preventDefault();
+
         // Store first and last name in local storage
-        localStorage.setItem('driverFirstName', firstName);
-        localStorage.setItem('driverLastName', lastName);
-    
-        navigate('/driver_location_section'); 
+        localStorage.setItem('driver_name', JSON.stringify(formData));
+
+        navigate('/driver_location_section');
     };
-    
+
     return (
         <>
             <MediumHeader />
@@ -36,8 +43,19 @@ export default function DriverName() {
                     <p>Let us know how to properly address you</p>
 
                     <form className={`${careerStyles.input_field} ${styles.inputForm}`}>
-                        <input type='text' placeholder='Enter first name' />
-                        <input type='text' placeholder='Enter last name' />
+                        <input placeholder='Enter first name'
+                            type="text"
+                            id="driverFirstName"
+                            name="driverFirstName"
+                            required
+                            onChange={handleChange} />
+                        <input placeholder='Enter last name'
+                            type="text"
+                            id="driverLastName"
+                            name="driverLastName"
+                            required
+                            onChange={handleChange}
+                        />
 
                         <div className={`${careerStyles.button} ${styles.formbutton}`}>
                             <button onClick={backRedirect}><FontAwesomeIcon icon={faArrowLeft} /> BACK</button>

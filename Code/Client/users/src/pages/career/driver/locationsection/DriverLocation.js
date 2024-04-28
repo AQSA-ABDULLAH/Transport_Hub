@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import careerStyles from '../../careerpage.module.css';
 import styles from './driverlocation.module.css';
@@ -8,26 +8,32 @@ import MediumHeader from '../../../../components/sections/header-medium/MediumHe
 
 export default function DriverLocation() {
     const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        driverLocation: ''
+    });
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            [name]: value
+        }));
+    };
 
     const backRedirect = () => {
-      navigate('/driver_name_section'); 
+        navigate('/driver_name_section');
     };
 
-    const nextRedirect = () => {
-        // Retrieve the input element for the city
-        const cityInput = document.querySelector('input[type="text"][placeholder="City"]');
-    
-        // Retrieve the value entered by the user for the city
-        const city = cityInput.value;
-    
-        // Store the city in local storage
-        localStorage.setItem('driverLocation', city);
-    
-        // Navigate to the next section of the form (/driver_vechical_selection)
-        navigate('/driver_vechical_selection'); 
+    const nextRedirect = (event) => {
+        event.preventDefault();
+
+        // Store location in local storage
+        localStorage.setItem('driver_location', JSON.stringify(formData));
+
+        navigate('/driver_vechical_selection');
     };
 
-    
+
     return (
         <>
             <div className={careerStyles.container}>
@@ -38,10 +44,16 @@ export default function DriverLocation() {
                         <p>Decide when, where, and how you want to earn.</p>
                         <form className={`${careerStyles.input_field} ${styles.inputForm}`}>
                             <h4>Where would you like to earn?</h4>
-                            <input type='text' placeholder='City'/>
+                            <input placeholder='City'
+                                type="text"
+                                id="driverLocation"
+                                name="driverLocation"
+                                required
+                                onChange={handleChange}
+                            />
                         </form>
                         <div className={styles.notice}>
-                            <h4>By proceeding, I agree that Transport Hub or its representatives may contact me by email 
+                            <h4>By proceeding, I agree that Transport Hub or its representatives may contact me by email
                                 or SMS (including by automatic telephone dialing system) at the email address
                                 or number I provide, including for marketing purposes.</h4>
                         </div>
