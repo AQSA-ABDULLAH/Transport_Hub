@@ -7,6 +7,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { MdCloudUpload } from "react-icons/md";
 import Swal from 'sweetalert2';
+
 const UpdateTrips = ({ onClose, tripId }) => {
   const [errors, setErrors] = useState(false);
   const [categoryData, setCategoryData] = useState([]);
@@ -28,7 +29,6 @@ const UpdateTrips = ({ onClose, tripId }) => {
     CheckIn: '',
     Checkout: '',
     BookingCloseDate: '',
-    images:''
   });
   const {category, tripTitle, location, description, extraInformation, price, noOfGuest, noOfDays,noOfNights, departureCity, startDate, endDate, status, Ages,CheckIn,Checkout, BookingCloseDate } = formData;
 
@@ -53,6 +53,7 @@ const UpdateTrips = ({ onClose, tripId }) => {
         console.error('Error fetching trip details:', error);
       }
     };
+
     fetchTripDetails();
   }, [tripId]);
 
@@ -64,10 +65,6 @@ const UpdateTrips = ({ onClose, tripId }) => {
       [name]: formattedDateString,
     }));
   };
-  
-  
-  
-
   const handleInputChange = (event) => {
     setFormData(prevFormData => {
       return {
@@ -76,12 +73,16 @@ const UpdateTrips = ({ onClose, tripId }) => {
       }
   })
   };
+
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       setImageFile(file);
     }
   };
+
+
   const handleSubmit = async() => {
     const errors = {};
     if (isNaN(price || Ages || noOfGuest || noOfDays || noOfNights )) {
@@ -107,7 +108,7 @@ const UpdateTrips = ({ onClose, tripId }) => {
     updatedFormData.append('CheckIn', formData.CheckIn);
     updatedFormData.append('Checkout', formData.Checkout);
     updatedFormData.append('BookingCloseDate', formData.BookingCloseDate);
-    //Proceed with data submission
+
     try {
       const response = await axios.put(`http://localhost:5000/api/trips/updatePackage/${tripId}`, formData);
 
@@ -134,7 +135,7 @@ const UpdateTrips = ({ onClose, tripId }) => {
   }
     
   };
-  
+
 
   return (
     <div className={style.popupForm}>
@@ -147,9 +148,8 @@ const UpdateTrips = ({ onClose, tripId }) => {
   name="category"
   
   onChange={(e) => handleInputChange(e)} // Assuming handleInputChange is your existing change handler
-value={formData.category}
+  value={formData.category}
 >
-  
   <option >Select</option>
   <option value="Family">Family</option>
   <option value="Group">Group</option>
@@ -175,16 +175,7 @@ value={formData.category}
             onChange={handleInputChange}
           />
         </div>
-        {/* <div className={style.formField}>
-                <label htmlFor="images">Image</label>
-                <input
-                    type="file" // Change type to 'file'
-                    id="images"
-                    name="images"
-                    onChange={handleImageChange}
-                />
-            </div> */}
-            <div className={style.formField}>
+        <div className={style.formField}>
         <label htmlFor="">
           <input
               type="file" // Change type to 'file'
@@ -207,7 +198,7 @@ value={formData.category}
           )}
         </div>
       </div>
-      
+
 
         <div>
           <label>Description</label>
@@ -262,7 +253,7 @@ value={formData.category}
             value={formData.price}
             onChange={handleInputChange}
           />
-          {errors && price && isNaN(price) && <span class-Name={style.error}>Price must be a number</span>}
+          {errors && price && isNaN(price) && <span className={style.error}>Price must be a number</span>}
            <div>
             <label>No of Guests</label>
             <input
@@ -287,8 +278,8 @@ value={formData.category}
             value={formData.price}
             onChange={handleInputChange}
           />
-          {errors && price && isNaN(price) && <span class-Name={style.error}>Price must be a number</span>}
         </div>
+        {errors && price && isNaN(price) && <span className={style.error}>Price must be a number</span>}
          
             <label>No of Days</label>
             <input
@@ -297,7 +288,7 @@ value={formData.category}
               value={formData.noOfDays}
               onChange={handleInputChange}
             />
-            {errors && noOfDays && isNaN(noOfDays) && <span class-Name={style.error}>No of Days must be a number</span>}
+        {errors && noOfDays && isNaN(noOfDays) && <span className={style.error}>No of Days must be a number</span>}
             <label>No of Nights</label>
             <input
               type="text"
@@ -305,7 +296,7 @@ value={formData.category}
               value={formData.noOfNights}
               onChange={handleInputChange}
             />
-            {errors && noOfNights && isNaN(noOfNights) && <span class-Name={style.error}>No Of Nights must be a number</span>}
+        {errors && noOfNights && isNaN(noOfNights) && <span class-Name={style.error}>No Of Nights must be a number</span>}
             <label>Start Date</label>
             <DatePicker
             value={startDate}
@@ -318,7 +309,6 @@ value={formData.category}
           />
             <label>End Date</label>
             <DatePicker
-                
                 value={endDate}
                 dateFormat="dd/MM/yyyy"
                 onChange={(date) => handleDateChange(date, 'endDate')}
@@ -327,25 +317,25 @@ value={formData.category}
                 placeholderText="Click to select a End Date"
                 minDate={currentDate}
               />
-            <label>CheckIn Time</label>
+             <label>CheckIn Time</label>
             <input
-              type="time"
+              type="text"
               name="CheckIn"
-              value={CheckIn}
+              value={formData.CheckIn}
               onChange={handleInputChange}
             />
              <label>CheckOut Time</label>
             <input
-              type="time"
+              type="text"
               name="Checkout"
-              value={Checkout}
+              value={formData.Checkout}
               onChange={handleInputChange}
             />
-            <label>Booking Close Date</label>
+            <label>Booking Clsoe Date</label>
             <DatePicker
           
               value={formData.BookingCloseDate}
-              onChange={(date) => handleDateChange(date, 'Book-ingCloseDate')}
+              onChange={(date) => handleDateChange(date, 'BookingCloseDate')}
               name="BookingCloseDate"
               className="form-control custom-date-picker"
               placeholderText="Click to select a closing Date"
@@ -372,10 +362,10 @@ value={formData.category}
               value={formData.Ages}
               onChange={handleInputChange}
             />
-            {errors && Ages && isNaN(Ages) && <span class-Name={style.error}>Age must be a number</span>}
+            {errors && Ages && isNaN(Ages) && <span className={style.error}>Age must be a number</span>}
           </div>
         )}
-        <button type="button" className="btn btn-success" on-Click={handleSubmit}>
+        <button type="button" className="btn btn-success" onClick={handleSubmit}>
           UPDATE
         </button>
         <Button btnText="Close" primary btnClick={onClose} />

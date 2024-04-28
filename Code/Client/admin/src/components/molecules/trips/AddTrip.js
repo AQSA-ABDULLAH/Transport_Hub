@@ -1,287 +1,162 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '../../atoms/buttons/Button';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import style from './addTrip.module.css';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { storage } from '../../../firebase';
-import { ref, uploadBytes } from 'firebase/storage';
-import { v4 } from 'uuid';
-import { getDownloadURL } from 'firebase/storage';
-import Swal from 'sweetalert2';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import { MdCloudUpload } from "react-icons/md";
+import Swal from 'sweetalert2';
 
-const AddTrip = ({ onClose }) => {
+const UpdateTrips = ({ onClose, tripId }) => {
+  const [errors, setErrors] = useState(false);
+  const [categoryData, setCategoryData] = useState([]);
+  const [formData, setFormData] = useState({
+    category: '',
+    tripTitle: '',
+    location: '',
+    description: '',
+    extraInformation: '',
+    price: '',
+    noOfGuest: '',
+    noOfDays: '',
+    noOfNights: '',
+    departureCity: '',
+    startDate: '',
+    endDate: '',
+    status: '',
+    Ages: '',
+    CheckIn: '',
+    Checkout: '',
+    BookingCloseDate: '',
+  });
+  const {category, tripTitle, location, description, extraInformation, price, noOfGuest, noOfDays,noOfNights, departureCity, startDate, endDate, status, Ages,CheckIn,Checkout, BookingCloseDate } = formData;
 
-  const [imageUpload, setImageUpload] = useState(null);
-  const [errors, setErrors] = useState(null);
-   
-    const currentDate = new Date();
-    const handleDateChange = (date, name) => {
+  const [imageFile, setImageFile] = useState(null);
+  const [images, setImages] = useState(null);
+  const currentDate = new Date();
+
+  useEffect(() => {
+    // Fetch trip details based on tripId and populate the form
+    const fetchTripDetails = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/trips/tripDetails/${tripId}`);
+        const tripDetails = response.data.data;
+        if (tripDetails.images) {
+          setImages(tripDetails.images);
+        }
         setFormData((prevData) => ({
           ...prevData,
-          [name]: date,
+          ...tripDetails,
         }));
-      };
-      
-  const [formData, setFormData] = useState({
-    category: "",
-    tripTitle: "",
-    location: "",
-    images: "",
-    description: "",
-    extraInformation: "",
-    price: "",
-    noOfGuest: "",
-    noOfDays: "",
-    noOfNights: "",
-    departureCity: "",
-    startDate: "",
-    endDate: "",
-    status: "",
-    Ages: "",
-    CheckIn:"",
-    Checkout:"",
-    BookingCloseDate:"",
-    
-  });
-  const {category, tripTitle, location,images, description, extraInformation, price, noOfGuest, noOfDays,noOfNights, departureCity, startDate, endDate, status, Ages,CheckIn,Checkout, BookingCloseDate } = formData;
-  const handleInputChange = (event) => {
-    const { name, value, type, files } = event.target;
+      } catch (error) {
+        console.error('Error fetching trip details:', error);
+      }
+    };
 
-    if (type === 'file') {
-      setImageUpload(files[0]);
-    } else {
-      setFormData((prevData) => ({ ...prevData, [name]: value }));
+    fetchTripDetails();
+  }, [tripId]);
+
+  const handleDateChange = (date, name) => {
+    const formattedDate = new Date(date);
+    const formattedDateString = `${formattedDate.getDate()}/${formattedDate.getMonth() + 1}/${formattedDate.getFullYear()}`;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: formattedDateString,
+    }));
+  };
+  const handleInputChange = (event) => {
+    setFormData(prevFormData => {
+      return {
+          ...prevFormData,
+          [event.target.name]: event.target.value
+      }
+  })
+  };
+
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImageFile(file);
     }
   };
-   const navigate = useNavigate();
-   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent the default form submission
-    
-    const errors = {}; // Object to store error messages
-    
-    // Validate each field
-    if (!formData.category) {
-      setErrors(true);
-      return false;
-    }
-    if (!formData.tripTitle) {
-      setErrors(true);
-      return false;
-    }
-    if (!formData.location) {
-      setErrors(true);
-      return false;
-    }
-    if (!imageUpload) {
-      setErrors(true);
-      return false;
-    }
-    if (!formData.description) {
-      setErrors(true);
-      return false;
-    }
-    if (!formData.extraInformation) {
-      setErrors(true);
-      return false;
-    }
-  
-    // Check if category-specific fields are required and validate them
-    if (formData.category === "Family") {
-      if (!formData.price) {
-        setErrors(true);
-      return false;
-      }
-      if (!formData.noOfGuest) {
-        setErrors(true);
-        return false;
-      }
-    } else if (formData.category === "Group") {
-      if (!formData.price) {
-        setErrors(true);
-      return false;
-      }
-      if (!formData.noOfGuest) {
-        setErrors(true);
-      return false;
-      }
-    } else if (formData.category === "Individual") {
-      if (!formData.price) {
-        setErrors(true);
-      return false;
-      }
-      if (!formData.noOfDays) {
-        setErrors(true);
-      return false;
-      }
-      if (!formData.noOfNights) {
-        setErrors(true);
-      return false;
-      }
-      if (!formData.departureCity) {
-        setErrors(true);
-      return false;
-      }
-      if (!formData.startDate) {
-        setErrors(true);
-      return false;
-      }
-      if (!formData.endDate) {
-        setErrors(true);
-      return false;
-      }
-      if (!formData.status) {
-        setErrors(true);
-      return false;
-      }
-      if (!formData.Ages) {
-        setErrors(true);
-      return false;
-      }
-      if (!formData.CheckIn) {
-        setErrors(true);
-      return false;
-      }
-      if (!formData.Checkout) {
-        setErrors(true);
-      return false;
-      }
-      if (!formData.BookingCloseDate) {
-        setErrors(true);
-      return false;
-      }
-    }
-  
+
+
+  const handleSubmit = async() => {
+    const errors = {};
     if (isNaN(price || Ages || noOfGuest || noOfDays || noOfNights )) {
       setErrors(true);
       return false; 
     }
-  
-    // If there are no errors, submit the form
-    if (Object.keys(errors).length === 0) {
-      // Proceed with data submission
-      const formData = new FormData();
-      formData.append('category', category);
-      formData.append('tripTitle', tripTitle);
-      formData.append('location', location);
-      
-      if (imageUpload === '') {
-        alert('Please select an image to upload');
-        return;
-      }
-      const imageRef = ref(storage, `tripImages/${imageUpload.name + v4()}`);
+    const updatedFormData = new FormData();
+    updatedFormData.append('category', formData.category);
+    updatedFormData.append('tripTitle', formData.tripTitle);
+    updatedFormData.append('location', formData.location);
+    imageFile && updatedFormData.append('images', imageFile);
+    updatedFormData.append('description', formData.description);
+    updatedFormData.append('extraInformation', formData.extraInformation);
+    updatedFormData.append('noOfGuest', formData.noOfGuest);
+    updatedFormData.append('price', formData.price);
+    updatedFormData.append('noOfDays', formData.noOfDays);
+    updatedFormData.append('noOfNights', formData.noOfNights);
+    updatedFormData.append('departureCity', formData.departureCity);
+    updatedFormData.append('startDate', formData.startDate);
+    updatedFormData.append('endDate', formData.endDate);
+    updatedFormData.append('status', formData.status);
+    updatedFormData.append('Ages', formData.Ages);
+    updatedFormData.append('CheckIn', formData.CheckIn);
+    updatedFormData.append('Checkout', formData.Checkout);
+    updatedFormData.append('BookingCloseDate', formData.BookingCloseDate);
 
-      uploadBytes(imageRef, imageUpload).then((snapshot) => {
-          console.log("Image Uploaded");
-          
-          getDownloadURL(imageRef).then((downloadURL) => {
-            console.log('File available at', downloadURL);
-            // Update the formData with the image URL
-       
-        formData.append('images', downloadURL);
-      formData.append('description', description);
-      formData.append('extraInformation', extraInformation);
-      
-      
-    
-      if (category === 'Family') {
-       
-        if (!price || !noOfGuest) {
-          alert('Please fill in all required fields for Family category.');
-          return; 
-        }
-        formData.append('price', price);
-        formData.append('noOfGuest', noOfGuest);
+    try {
+      const response = await axios.put(`http://localhost:5000/api/trips/updatePackage/${tripId}`, formData);
 
-      } else if (category === 'Individual') {
-        
-        if (!price || !noOfDays || !noOfNights || !departureCity || !startDate || !endDate || !status || !Ages || !CheckIn || !Checkout || !BookingCloseDate) {
-          alert('Please fill in all required fields for Group category.');
-          return; 
-        }
-        
-        formData.append('price', price);
-        formData.append('noOfDays', noOfDays);
-        formData.append('noOfNights', noOfNights);
-        formData.append('departureCity', departureCity);
-        formData.append('startDate', startDate);
-        formData.append('endDate', endDate);
-        formData.append('status', status);
-        formData.append('Ages', Ages);
-        formData.append('CheckIn', CheckIn);
-        formData.append('Checkout', Checkout);
-        formData.append('BookingCloseDate', BookingCloseDate);
-      }
-      else if (category === 'Group') {
-        
-        if (!price || !noOfGuest ) {
-          alert('Please fill in all required fields for Group category.');
-          return; 
-        }
-        
-        formData.append('price', price);
-        formData.append('noOfGuest', noOfGuest);
-      
-      }
-    
-      // Proceed with data submission
-      axios
-        .post('http://localhost:5000/api/trips/addTrip', formData, {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        }).then((res) => {
-          console.log(res.data);
+      if (response.data.status === "success") {
           Swal.fire(
-            'New Trip Added Successfully',
-            'Go to trips management tab to see the results',
-            'success'
-          );
-          
-          onclose();
-        })
-        .catch((err) => {
-          console.log(err, 'err');
-          if (err.response && err.response.status === 400) {
-            // Validation error(s) from the server
-            const validationErrors = err.response.data.errors;
-        const errorMessages = `Validation failed:\n${validationErrors.map((error) => error.message).join('\n')}`;
-        // setErrors({ server: errorMessages });
-        
-          } else {
-            // Other errors
-            alert('Error submitting data. Please try again.');
-          }
-        })
-        
-      });
-  });
-};
-   }
-   
-   
-    return (
-      <>
-      
-        <div className={style.popupForm}>
-            <h3>Add New Trip Form</h3>
-           
-            <form onSubmit={handleSubmit}>
-        <div>
+              'Data Updated Successfully',
+              'Go to trips tab to see the changes',
+              'success'
+            );
+            onClose();
+            const response = await axios.get('http://localhost:5000/api/trips/TripPackages', {
+          params: { category },
+        });
+        console.log('Response:', response.data);
+        setCategoryData(response.data.data);
+
+      } else {
+          alert("Failed to submit data. Please try again.");
+      }
+
+  } catch (error) {
+      console.log(error);
+      alert("An error occurred while submitting the data. Please try again.");
+  }
+    
+  };
+
+
+  return (
+    <div className={style.popupForm}>
+      <h3>Update Trip Form</h3>
+
+      <form onSubmit={handleSubmit}>
+      <div>
         <label>Select Category:</label>
 <select
   name="category"
   
   onChange={(e) => handleInputChange(e)} // Assuming handleInputChange is your existing change handler
+  value={formData.category}
 >
-  
   <option >Select</option>
   <option value="Family">Family</option>
   <option value="Group">Group</option>
   <option value="Individual">Individual</option>
 </select>
-{errors && !category && <span className={style.error}>This field is re-quired</span>}
         </div>
+
         <div>
           <label>Trip Title</label>
           <input
@@ -289,8 +164,7 @@ const AddTrip = ({ onClose }) => {
             name="tripTitle"
             value={formData.tripTitle}
             onChange={handleInputChange}
-            />
-            {errors && !tripTitle && <span className={style.error}>This field is required</span>}
+          />
         </div>
         <div>
           <label>Location</label>
@@ -301,24 +175,31 @@ const AddTrip = ({ onClose }) => {
             onChange={handleInputChange}
           />
         </div>
-        {errors && !location && <span className={style.error}>This field is required</span>}
-       
-        <div className={style.image}>
-        <label htmlFor="images">Image:</label>
-        <input type="file" className={style.form_image} accept="image/png, image/jpeg" onChange={handleInputChange}
-        />
-      <div className={style.image_view}>
-        {imageUpload ? (
-          <img src={URL.createObjectURL(imageUpload)} alt="icon" />
-        ) : (
-          <div className={style.image_container}>
-          <MdCloudUpload className={style.icon} />
-          <p>Drag and drop or click here to upload image</p>
-          </div>
-        )}
+        <div className={style.formField}>
+        <label htmlFor="">
+          <input
+              type="file" // Change type to 'file'
+              id="images"
+              name="images"
+              onChange={(e) => setImages(URL.createObjectURL(e.target.files[0]))}
+              />
+             
+        </label>
+        <div>
+          {images ? (
+            <div>
+              <img src={images} alt="Image" style={{ maxWidth: '200px', maxHeight: '200px' }} />
+            </div>
+          ) : (
+            <div className={style.image_container}>
+              <MdCloudUpload className={style.icon} />
+              <p>Drag and drop or click here to upload image</p>
+            </div>
+          )}
+        </div>
       </div>
-      {errors && !imageUpload && <span className={style.error}>Upload an Image</span>}
-      </div>
+
+
         <div>
           <label>Description</label>
           <input
@@ -327,7 +208,6 @@ const AddTrip = ({ onClose }) => {
             value={formData.description}
             onChange={handleInputChange}
           />
-         {errors && !description && <span className={style.error}>This field is required</span>}
         </div>
         <div>
           <label>Extra Information</label>
@@ -337,7 +217,6 @@ const AddTrip = ({ onClose }) => {
             value={formData.extraInformation}
             onChange={handleInputChange}
           />
-          {errors && !extraInformation && <span class-Name={style.error}>This field is required</span>}
         </div>
          
         {category === "Family" && (
@@ -349,7 +228,6 @@ const AddTrip = ({ onClose }) => {
             value={formData.price}
             onChange={handleInputChange}
           />
-          {errors && !price && <span className={style.error}>This field is required</span>}
           {errors && price && isNaN(price) && <span class-Name={style.error}>Price must be a number</span>}
            <div>
             <label>No of Guests</label>
@@ -359,9 +237,7 @@ const AddTrip = ({ onClose }) => {
               value={formData.noOfGuest}
               onChange={handleInputChange}
             />
-            {errors && !noOfGuest && <span className={style.error}>This field is required</span>}
-            {errors && noOfGuest && isNaN(noOfGuest) && <span class-Name={style.error}>No of Guests must be a number</span>}
-            
+            {errors && noOfGuest && isNaN(noOfGuest) && <span class-Name={style.error}>No of Guest must be a number</span>}
           </div>
         </div>
         
@@ -377,8 +253,7 @@ const AddTrip = ({ onClose }) => {
             value={formData.price}
             onChange={handleInputChange}
           />
-          {errors && !price && <span className={style.error}>This field is required</span>}
-          {errors && price && isNaN(price) && <span class-Name={style.error}>Price must be a number</span>}
+          {errors && price && isNaN(price) && <span className={style.error}>Price must be a number</span>}
            <div>
             <label>No of Guests</label>
             <input
@@ -387,8 +262,7 @@ const AddTrip = ({ onClose }) => {
               value={formData.noOfGuest}
               onChange={handleInputChange}
             />
-            {errors && !noOfGuest && <span className={style.error}>This field is required</span>}
-            {errors && noOfGuest && isNaN(noOfGuest) && <span class-Name={style.error}>No of Guests must be a number</span>}
+            {errors && noOfGuest && isNaN(noOfGuest) && <span class-Name={style.error}>No of Guest must be a number</span>}
           </div>
         </div>
          
@@ -404,9 +278,8 @@ const AddTrip = ({ onClose }) => {
             value={formData.price}
             onChange={handleInputChange}
           />
-          {errors && !price && <span className={style.error}>This field is required</span>}
-          {errors && price && isNaN(price) && <span class-Name={style.error}>No of Guests must be a number</span>}
         </div>
+        {errors && price && isNaN(price) && <span className={style.error}>Price must be a number</span>}
          
             <label>No of Days</label>
             <input
@@ -415,71 +288,59 @@ const AddTrip = ({ onClose }) => {
               value={formData.noOfDays}
               onChange={handleInputChange}
             />
-            {errors && !noOfDays && <span className={style.error}>This field is required</span>}
-            {errors && noOfDays && isNaN(noOfDays) && <span class-Name={style.error}>No of Guests must be a number</span>}
-            <label>No of Night</label>
+        {errors && noOfDays && isNaN(noOfDays) && <span className={style.error}>No of Days must be a number</span>}
+            <label>No of Nights</label>
             <input
               type="text"
               name="noOfNights"
               value={formData.noOfNights}
               onChange={handleInputChange}
             />
-           {errors && !noOfNights && <span className={style.error}>This field is required</span>}
-            {errors && noOfNights && isNaN(noOfNights) && <span class-Name={style.error}>No of Guests must be a number</span>}
+        {errors && noOfNights && isNaN(noOfNights) && <span class-Name={style.error}>No Of Nights must be a number</span>}
             <label>Start Date</label>
             <DatePicker
-              selected={formData.startDate}
-              onChange={(date) => handleDateChange(date, 'startDate')}
-              name="startDate"
-              className="form-control custom-date-picker"
-              placeholderText="Click to select a Start Date"
-              minDate={currentDate}
-            />
-            {errors && !startDate && <span className={style.error}>This field is required</span>}
+            value={startDate}
+            dateFormat="dd/MM/yyyy"
+            onChange={(date) => handleDateChange(date, 'startDate')}
+            name="startDate"
+            className="form-control custom-date-picker"
+            placeholderText="Click to select a Start Date"
+            minDate={currentDate}
+          />
             <label>End Date</label>
             <DatePicker
-                selected={formData.endDate}
+                value={endDate}
+                dateFormat="dd/MM/yyyy"
                 onChange={(date) => handleDateChange(date, 'endDate')}
                 name="endDate"
                 className="form-control custom-date-picker"
                 placeholderText="Click to select a End Date"
                 minDate={currentDate}
               />
-           {errors && !endDate && <span className={style.error}>This field is required</span>}
-            <div class="cs-form">
-            <label>Check In Time</label>
+             <label>CheckIn Time</label>
             <input
-          type="time"
-          className="form-control"
-          name="CheckIn"
-          value={formData.CheckIn}
-          onChange={handleInputChange}
-        />
-        {errors && !CheckIn && <span className={style.error}>This field is required</span>}
-            </div>
-            <div class="cs-form">
-            <label>Check Out Time</label>
+              type="text"
+              name="CheckIn"
+              value={formData.CheckIn}
+              onChange={handleInputChange}
+            />
+             <label>CheckOut Time</label>
             <input
-          type="time"
-          className="form-control"
-          name="Checkout"
-          value={formData.Checkout}
-          onChange={handleInputChange}
-        />
-        {errors && !Checkout && <span className={style.error}>This field is required</span>}
-            </div>
-          
-            
-            <label>Booking Close Date</label>
+              type="text"
+              name="Checkout"
+              value={formData.Checkout}
+              onChange={handleInputChange}
+            />
+            <label>Booking Clsoe Date</label>
             <DatePicker
-              selected={formData.BookingCloseDate}
-              onChange={(date) => handleDateChange(date, 'Book-ingCloseDate')}
+          
+              value={formData.BookingCloseDate}
+              onChange={(date) => handleDateChange(date, 'BookingCloseDate')}
               name="BookingCloseDate"
               className="form-control custom-date-picker"
               placeholderText="Click to select a closing Date"
               minDate={currentDate}
             />
-            {errors && !BookingCloseDate && <span class-Name={style.error}>This field is required</span>}
             <label>Departure City</label>
             <input
               type="text"
@@ -487,7 +348,6 @@ const AddTrip = ({ onClose }) => {
               value={formData.departureCity}
               onChange={handleInputChange}
             />
-            {errors && !departureCity && <span className={style.error}>This field is required</span>}
             <label>Status</label>
             <input
               type="text"
@@ -495,7 +355,6 @@ const AddTrip = ({ onClose }) => {
               value={formData.status}
               onChange={handleInputChange}
             />
-            {errors && !status && <span className={style.error}>This field is required</span>}
             <label>Age</label>
             <input
               type="text"
@@ -503,20 +362,16 @@ const AddTrip = ({ onClose }) => {
               value={formData.Ages}
               onChange={handleInputChange}
             />
-            {errors && !Ages && <span className={style.error}>This field is required</span>}
-            {errors && Ages && isNaN(Ages) && <span class-Name={style.error}>Age must be a number</span>}
+            {errors && Ages && isNaN(Ages) && <span className={style.error}>Age must be a number</span>}
           </div>
         )}
-         <button type="button" className="btn btn-success" on-Click={handleSubmit}>
-                SUBMIT
-              </button>
-            <Button btnText="Close" primary btnClick={onClose} />
-        </form>
-
-       
-        </div>
-        </>
-    );
+        <button type="button" className="btn btn-success" onClick={handleSubmit}>
+          UPDATE
+        </button>
+        <Button btnText="Close" primary btnClick={onClose} />
+      </form>
+    </div>
+  );
 };
 
-export default AddTrip;
+export default UpdateTrips;
