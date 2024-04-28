@@ -30,13 +30,13 @@ function NewQuote() {
   const [dimensions, setDimensions] = useState({ length: '', width: '', height: '' });
 
   const pickupFacility = JSON.parse(localStorage.getItem('pickupFacility'));
-  const pickupAddress = pickupFacility.pickupAddress;
-
+  const pickupAddress = pickupFacility ? pickupFacility.pickupAddress : null;
+  
   const deliveryFacility = JSON.parse(localStorage.getItem('deliveryFacility'));
-  const deliveryAddress = deliveryFacility.deliveryAddress;
+  const deliveryAddress = deliveryFacility?.deliveryAddress;  
 
   const stopFacility = JSON.parse(localStorage.getItem('stopFacility'));
-  const stopAddress = stopFacility.stopAddress;
+  const stopAddress = stopFacility ? stopFacility.stopAddress : null;  
 
   const saveQoute = () => {
     const formData = {
