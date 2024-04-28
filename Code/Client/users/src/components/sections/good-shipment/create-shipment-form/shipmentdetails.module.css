@@ -1,0 +1,28 @@
+.pickup_container {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 640px;
+    height: 100%;
+    background-color: #FCFCFF;
+    padding: 12px 28px;
+    z-index: 1000;
+  }
+
+.form_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}  
+.form_header span{
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+.pickup_container input{
+    width: 282px;
+}
+.facility_button{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 28px;
+}

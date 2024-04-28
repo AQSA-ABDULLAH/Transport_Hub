@@ -1,87 +1,128 @@
-import React, { useState } from "react";
-import DatePicker from "react-datepicker";
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
+import { DatePicker, TimePicker } from 'antd';
+import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
-import "react-datepicker/dist/react-datepicker.css";
-import styles from "./carrentalstyle.module.css"; // Create a new CSS file for custom styles
+import styles from "./carrentalstyle.module.css";
 
-const CarFiltering = ({ onFilter, onFilterApplied }) => {
+const CarFiltering = () => {
   const [pickupLocation, setPickupLocation] = useState("");
   const [dropLocation, setDropLocation] = useState("");
   const [pickupDate, setPickupDate] = useState(null);
+  const [pickupTime, setPickupTime] = useState(null);
   const [dropDate, setDropDate] = useState(null);
+  const [dropTime, setDropTime] = useState(null);
+  const [totalDays, setTotalDays] = useState("");
+  const [product, setProduct] = useState([]);
   const navigate = useNavigate();
 
-  const handleFilter = () => {
-    const filterCriteria = {
+  // Store state variables into local storage
+  useEffect(() => {
+    const filterData = {
       pickupLocation,
       dropLocation,
-      pickupDate,
-      dropDate,
+      pickupDate: pickupDate ? pickupDate.toString() : null,
+      pickupTime: pickupTime ? pickupTime.toString() : null,
+      dropDate: dropDate ? dropDate.toString() : null,
+      dropTime: dropTime ? dropTime.toString() : null,
+      totalDays
     };
+    localStorage.setItem('filterData', JSON.stringify(filterData));
+  }, [pickupLocation, dropLocation, pickupDate, pickupTime, dropDate, dropTime, totalDays]);
+
+  useEffect(() => {
+    axios.get("http://localhost:5000/api/zone/get-zone")
+      .then(res => {
+        console.log(res.data);
+        setProduct(res.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
+  // Calculate total days whenever there is a change in pickupDate or dropDate
+  useEffect(() => {
+    if (pickupDate && dropDate) {
+      const pickupMoment = moment(pickupDate);
+      const dropMoment = moment(dropDate);
+      const days = dropMoment.diff(pickupMoment, "days");
+      console.log("Total days:", days);
+      setTotalDays(days); // Set total days state
+    } else {
+      setTotalDays("");
+    }
+  }, [pickupDate, dropDate]);
+
+  const handleFilter = () => {
+    // Navigate to the next page
     navigate('/ViewCars');
-    // const handleFilter = () => {
-    //   const filterCriteria = {
-    //     pickupLocation,
-    //     // ... (other filter criteria)
-    //   };
-    //   onFilterApplied(filterCriteria);
-    //   // Trigger the callback when the filter is applied
-    //   navigate('/ExtendedDetailPage');
-    // };
-  };
-  const currentDate = new Date();
+  }
 
   return (
     <div className={styles.filter_container}>
-
       <div className={styles.search_container}>
         <h2>Search for Cars</h2>
         <p>Find the best and most affordable cars</p>
-
         <div className={styles.search}>
-
           <div>
             <select
+              id="pickupLocation"
+              name="pickupLocation"
               value={pickupLocation}
               onChange={(e) => setPickupLocation(e.target.value)}
             >
-              <option value="location1">Location 1</option>
-              <option value="location2">Location 2</option>
-              <option value="location3">Location 3</option>
+              <option value="" disabled selected>Select location</option>
+              {product.map((item, index) =>
+                <option key={index} value={item.zone}>{item.zone}</option>
+              )}
             </select>
           </div>
 
           <div>
             <DatePicker
-              selected={pickupDate}
-              onChange={(date) => setPickupDate(date)}
               className={styles.datepicker}
-              placeholderText="Click to select a date"
-              minDate={currentDate}
+              onChange={(date, dateString) => setPickupDate(dateString)} // Extract date string from the event
             />
           </div>
-
+  
+          <div>
+            <TimePicker
+              className={styles.datepicker}
+              format='HH:mm'
+              onChange={(time, timeString) => setPickupTime(timeString)}
+            />
+          </div>
+          
           <div>
             <select
+              id="dropLocation"
+              name="dropLocation"
               value={dropLocation}
               onChange={(e) => setDropLocation(e.target.value)}
             >
-              <option value="locationA">Location A</option>
-              <option value="locationB">Location B</option>
-              <option value="locationC">Location C</option>
+              <option value="" disabled selected>Select location</option>
+              {product.map((item, index) =>
+                <option key={index} value={item.zone}>{item.zone}</option>
+              )}
             </select>
           </div>
 
-          <div className="col mb-3">
+          <div>
             <DatePicker
-              selected={dropDate}
-              onChange={(date) => setDropDate(date)}
               className={styles.datepicker}
-              placeholderText="Click to select a date"
-              minDate={currentDate}
+              onChange={(date, dateString) => setDropDate(dateString)} // Extract date string from the event
             />
           </div>
-
+          
+          <div>
+            <TimePicker
+              className={styles.datepicker}
+              format='HH:mm'
+              onChange={(time, timeString) => setDropTime(timeString)}
+            />
+          </div>
+          
           <div className={styles.search_button}>
             <button onClick={handleFilter}>
               Show Cars
@@ -94,3 +135,4 @@ const CarFiltering = ({ onFilter, onFilterApplied }) => {
 };
 
 export default CarFiltering;
+

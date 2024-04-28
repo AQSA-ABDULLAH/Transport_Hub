@@ -4,7 +4,9 @@ import styles from "./Header.module.css";
 import Button from "../../atoms/button/Button";
 import { FaBars, FaUser, FaAngleDown } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
-
+import Parcelform from "../../Parcel/Parcelform";
+import PickupBoyForm from "../../Parcel/PickupBoyForm";
+import PickupboysLandingPage from "../../../pages/pickupboylandingpage/PickupboysLandingPage";
 import useUserAction from "../../../utils/customHooks/useUserAction";
 
 const Navbar = () => {
@@ -12,7 +14,14 @@ const Navbar = () => {
   const [Mobile, setMobile] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const { reduxState, dispatch, actions } = useUserAction();
-
+  const [showParcelForm, setShowParcelForm] = useState(false);
+  const [showPickupBoyForm, setShowPickupBoyForm] = useState(false);
+  const handlePickupBoyItemClick = () => {
+    setShowPickupBoyForm(true);
+    setShowParcelForm(false); // Close ParcelForm if open
+  };
+    
+  
   return (
     <>
       <nav className={styles.navbar}>
@@ -50,9 +59,10 @@ const Navbar = () => {
                   <Link to="/shipment_landing_page">
                     <li>Good Shipment</li>
                   </Link>
-                  <Link to="">
+                  <Link to="/pickupboyslandingpage">
                     <li>Parcel Pickup</li>
                   </Link>
+                  {/* <Dropdown.Item as={Link} to="/parcelform">Parcel pickup</Dropdown.Item> */}
                 </ul>
               )}
             </li>
