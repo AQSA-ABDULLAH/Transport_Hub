@@ -10,7 +10,7 @@ export default function DriverEmail() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    localStorage.setItem("driverEmail", email);
+    localStorage.setItem('driverEmail', JSON.stringify(email));
 
     try {
       const response = await axios.post("http://localhost:5000/api/driver/registration", { driverEmail: email });

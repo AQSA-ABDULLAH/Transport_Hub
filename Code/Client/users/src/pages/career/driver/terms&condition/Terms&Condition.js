@@ -11,7 +11,7 @@ export default function TermsCondition() {
     
     const handleAgreeButtonClick = () => {
         // Set driver_terms_condition to true in local storage
-        localStorage.setItem('driver_terms_condition', 'true');
+        localStorage.setItem('driver_terms_condition', JSON.stringify('true'));
         
         // Show SweetAlert2 confirmation
         Swal.fire({
