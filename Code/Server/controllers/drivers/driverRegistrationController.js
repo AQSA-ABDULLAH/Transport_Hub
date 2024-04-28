@@ -1,7 +1,6 @@
 const Driver = require("../../models/Drivers.js");
 const { hashPassword } = require("../../helpers/hashPassword");
 const { createToken } = require("../../helpers/jwt");
-const compileEmailTemplate = require("../../helpers/compile-email-template.js");
 const mailer = require("../../libs/mailer.js");
 
 class DriverController {
@@ -79,11 +78,13 @@ class DriverController {
     }
   }
 
+  // VERIFY OTP
+
   static async verifyOTP(req, res) {
     try {
       const { driverEmail, otp } = req.body; // Destructure driverEmail and otp from req.body
-        console.log("Received form data:", { driverEmail, otp });
-        const driver = await Driver.findOne({ driverEmail });
+      console.log("Received form data:", { driverEmail, otp });
+      const driver = await Driver.findOne({ driverEmail });
 
       if (!driver) {
         return res.status(400).send({
@@ -123,6 +124,37 @@ class DriverController {
       });
     }
   }
+
+  // UPDATE DRIVER
+
+  static updateDriver = async (req, res) => {
+    const { driverEmail } = req.params;
+    const { password, firstName, lastName, driver_location, vechicalType, termsAndCondition, profilePhoto,
+      cnicFrontSide, cnicBackSide, drivingLicense, status } = req.body;
+
+    if (!isValidEmail(driverEmail)) {
+      return res.status(400).send({ status: "failed", message: "Invalid driverEmail" });
+    }
+
+    const updatedDriver = {
+      password, firstName, lastName, driver_location, vechicalType,
+      termsAndCondition, profilePhoto, cnicFrontSide, cnicBackSide, drivingLicense, status
+    };
+
+    try {
+      const updatedData = await Driver.findOneAndUpdate({ email: driverEmail }, updatedDriver, { new: true });
+
+      if (!updatedData) {
+        return res.status(404).send({ status: "failed", message: `No Driver found with Email: ${driverEmail}` });
+      }
+
+      res.status(200).send({ status: "success", message: "Driver updated successfully", data: updatedData });
+    } catch (error) {
+      console.error("Error updating driver:", error);
+      res.status(500).send({ status: "failed", message: "Failed to update driver" });
+    }
+  };
+
 
 }
 
