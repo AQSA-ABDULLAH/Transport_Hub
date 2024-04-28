@@ -4,7 +4,6 @@ import Trips from "../../components/molecules/trips/Trips"
 import { Tab } from "../../constants/ManageTabs";
 import styles from "./manageTrips.module.css";
 
-
 const ManageTrips = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -14,7 +13,7 @@ const ManageTrips = () => {
     const params = new URLSearchParams(location.search);
     const tabName = params.get("tab");
     if (tabName == null) {
-      document.title = "Transport Managment"
+      document.title = "Trips management"
     }
     if (tabName) {
       const tabIndex = Tab.findIndex(tab => tab.text.toLowerCase() === tabName.toLowerCase());
@@ -27,10 +26,9 @@ const ManageTrips = () => {
     }
   }, [location]);
 
-
   return (
     <div className={styles.container}>
-        <div className={styles.scrollableTab}>
+        <div >
              <Trips/>
         </div>
     </div>

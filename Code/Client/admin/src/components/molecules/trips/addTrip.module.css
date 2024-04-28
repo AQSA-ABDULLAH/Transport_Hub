@@ -1,65 +1,107 @@
 .popupForm {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 400px;
-    max-height: 80vh;
-    overflow-y: auto;
-  }
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.formField {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+/* Style the buttons */
+button {
+  padding: 10px 15px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.primary {
+  background-color: #007bff;
+}
+
+.primary:hover {
+  background-color: #0056b3;
+}
+.customTimePickerContainer {
+  width: auto;
   
-  .formField {
-    margin-bottom: 15px;
-  }
-  
-  label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  input {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-  
-  /* Style the buttons */
-  button {
-    padding: 10px 15px;
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  .primary {
-    background-color: #007bff;
-  }
-  
-  .primary:hover {
-    background-color: #0056b3;
-  }
-  .customTimePickerContainer {
-    width: auto;
-    
-  }
-  
-  .customTimePickerInput {
-    width: 80px !important;
-  }
-  
-  
+}
+
+.customTimePickerInput {
+  width: 80px !important;
+}
+
+.image {
+  width: 50%;
+  position: relative;
+}
+
+.form_image {
+  opacity: 0;
+  position: absolute;
+  height: 14.5rem;
+  cursor: pointer;
+}
+
+.image_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 50px;
+}
+
+.image_view{
+  border: 2px dotted #333;
+  border-radius: 6px;
+  height: 14.5rem;
+   width: 24.25rem;
+}
+
+.image_view img{
+  width: 24rem;
+  height: 14.3rem;
+}
+
+
+.icon {
+  font-size: 5rem;
+  color: #7E22CE;
+}
+
+.error{
+  color: red;
+  font-size: 15px;
+  margin-left: 15px;
+}

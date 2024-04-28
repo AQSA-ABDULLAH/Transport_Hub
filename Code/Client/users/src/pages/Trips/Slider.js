@@ -6,7 +6,7 @@ const Slider = () => {
     <Carousel>
       <Carousel.Item>
         <img
-          className="d-block w-100 vh-70"
+          className="d-block w-100 "
           src="./assets/images/Intro/trip1.png"
           alt="First slide"
         />
@@ -17,7 +17,7 @@ const Slider = () => {
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <img className="d-block w-100" src="./assets/images/Intro/trip2.png" alt="Second slide" />
+        <img className="d-block w-100 " src="./assets/images/Intro/trip2.png" alt="Second slide" />
         <Carousel.Caption className="caption-style">
           <p className="caption-description">
             See the world through fresh eyes
@@ -26,7 +26,7 @@ const Slider = () => {
       </Carousel.Item>
 
       <Carousel.Item>
-        <img className="d-block w-100" src="./assets/images/Intro/trip3.png" alt="Third slide" />
+        <img className="d-block w-100 " src="./assets/images/Intro/trip3.png" alt="Third slide" />
         <Carousel.Caption className="caption-style">
           <p className="caption-description">Fly The Friendly Skies</p>
         </Carousel.Caption>
@@ -36,3 +36,4 @@ const Slider = () => {
 };
 
 export default Slider;
+
