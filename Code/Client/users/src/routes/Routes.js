@@ -36,6 +36,7 @@ import LandingTripPage from "../pages/Trips/LandingTripPage.js";
 import ManageShipments from "../pages/good-shipment/manage-shipments/ManageShipments.js";
 import TransportLocation from "../pages/career/transporter/locationsection/TransporterLocation.js";
 import TransporterVechicalSection from "../pages/career/transporter/vechicalselection/TransporterVechicalSelection.js";
+import DriverPhoto from "../pages/career/driver/patnerphoto/DriverPhoto.js";
 
 
 
@@ -47,7 +48,7 @@ function AppRoutes() {
   const [isAuthenticated, setisAuthenticated] = useState(false);
   const noHeaderPaths = ["/login", "/signup", "/404", "/profile", "/driverRegistration", "/driver_verify_mail", 
   "/driver_name_section", "/driver_location_section", "/driver_vechical_selection", "/driver_application_form", 
-  "/driver_terms_and_conditions", "/upload_driver_cnic_front_side", "/upload_driver_cnic_back_side", 
+  "/driver_terms_and_conditions", "/driver_photo", "/upload_driver_cnic_front_side", "/upload_driver_cnic_back_side", 
   "/create_shipment_form", "/manage_shipments", "/transporterRegistration", "/verify_transporter_mail", 
   "/transporter_name_section", "/transporter_location_section",
   "/transporter_vechical_selection" ];
@@ -108,6 +109,7 @@ function AppRoutes() {
         <Route path="/driver_vechical_selection" element={<DriverVechicalSection/>}/>
         <Route path="/driver_application_form" element={<DriverApplication/>}/>
         <Route path="/driver_terms_and_conditions" element={<TermsCondition/>}/>
+        <Route path="/driver_photo" element={<DriverPhoto/>}/>
         <Route path="/upload_driver_cnic_front_side" element={<DriverCnicFrontSide/>}/>
         <Route path="/upload_driver_cnic_back_side" element={<DriverCnicBackSide/>}/>
 

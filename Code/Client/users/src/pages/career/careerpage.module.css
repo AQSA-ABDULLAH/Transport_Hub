@@ -64,6 +64,7 @@
   font-size: 24px;
   font-weight: 700;
   line-height: 32px;
+  margin-bottom: 10px;
 }
 .application_container p{
   font-size: 14px;
@@ -101,16 +102,34 @@
   padding: 50px;
 }
 
-.image_view{
+.image_view,
+.driver_image_view{
   border: 2px dashed #afacac;
   border-radius: 6px;
   height: 14.5rem;
+}
+
+.image_view{
    width: 24.25rem;
 }
 
 .image_view img{
   width: 24rem;
   height: 14.3rem;
+}
+
+/* DRIVER / TRANSPORTER PHOTO */
+.driver_image {
+  width: 0%;
+}
+
+.driver_image_view{
+  width: 16rem;
+}
+
+.driver_image_view img{
+  width: 15.75rem;
+  height: 14.2rem;
 }
 
 

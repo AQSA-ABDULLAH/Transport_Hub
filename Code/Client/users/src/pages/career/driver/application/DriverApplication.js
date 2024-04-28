@@ -24,7 +24,7 @@ export default function DriverApplication() {
                 <div className={styles.application_form}>
                     <Link to={"/driver_terms_and_conditions"}><h4>Terms and Conditions</h4></Link>
                     <hr />
-                    <Link to={"/driver_terms_and_conditions"}><h4>Partner Photo</h4></Link>
+                    <Link to={"/driver_photo"}><h4>Partner Photo</h4></Link>
                     <hr />
                     <Link to={"/upload_driver_cnic_front_side"}><h4>Upload CNIC Front Side</h4></Link>
                     <hr />
