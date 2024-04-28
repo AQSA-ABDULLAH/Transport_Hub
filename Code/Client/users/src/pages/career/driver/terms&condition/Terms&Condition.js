@@ -4,7 +4,7 @@ import careerStyles from '../../careerpage.module.css';
 import styles from './terms&condition.module.css'
 import MediumHeader from '../../../../components/sections/header-medium/MediumHeader';
 import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2'; // Import SweetAlert2
+import Swal from 'sweetalert2';
 
 export default function TermsCondition() {
     const navigate = useNavigate();

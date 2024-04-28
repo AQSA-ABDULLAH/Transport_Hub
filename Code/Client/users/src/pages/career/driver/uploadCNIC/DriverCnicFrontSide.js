@@ -4,11 +4,14 @@ import MediumHeader from '../../../../components/sections/header-medium/MediumHe
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { MdCloudUpload } from "react-icons/md";
 import { app } from "../../../../firebase";
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 export default function DriverCnicFrontSide() {
     const [image, setImage] = useState('');
     const [imgperc, setImagePrec] = useState("");
     const [imageUrl, setImageUrl] = useState("");
+    const navigate = useNavigate();
 
     useEffect(() => {
         image && uploadFile(image, "imageUrl");
@@ -34,18 +37,30 @@ export default function DriverCnicFrontSide() {
                     setImageUrl(downloadURL);
                     console.log('File available at', downloadURL);
                 });
-
-
             }
         );
     }
 
+    const handleUploadPhoto = () => {
+        localStorage.setItem("driver_Cnic_front", imageUrl);
+         // Show SweetAlert2 confirmation
+         Swal.fire({
+            icon: 'success',
+            title: 'Photo Uploaded',
+            text: 'Your CNIC Front side has been uploaded successfully.',
+        });
+
+        // Navigate to driver application form
+        navigate('/driver_application_form');
+    };
 
     return (
         <>
             <div className={careerStyles.container}>
                 <div className={careerStyles.subContainer}>
-                    <MediumHeader />
+                    <section className={careerStyles.application_header}>
+                        <MediumHeader />
+                    </section>
                     <div className={careerStyles.application_container}>
                         <h2>Take a photo of your CNIC Front Side</h2>
                         <p>Take a picture of the front side of your national ID card (include all corners).</p>
@@ -85,12 +100,12 @@ export default function DriverCnicFrontSide() {
                         </section>
                     </div>
 
-
                     <div className={careerStyles.application_footer}>
-                        <button>Upload Photo</button>
+                        <button onClick={handleUploadPhoto}>Upload Photo</button>
                     </div>
                 </div>
             </div >
         </>
     )
 }
+
