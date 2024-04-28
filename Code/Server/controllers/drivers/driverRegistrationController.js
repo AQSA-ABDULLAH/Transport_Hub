@@ -129,8 +129,9 @@ class DriverController {
 
   // UPDATE DRIVER
   static updateDriver = async (req, res) => {
-    console.log('Received form data:', req.body);
+  
     const { driverEmail } = req.params;
+    console.log('Received form data:', req.body);
     const { password, firstName, lastName, driver_location, vechicalType, termsAndCondition, profilePhoto,
       cnicFrontSide, cnicBackSide, drivingLicense, status } = req.body;
 

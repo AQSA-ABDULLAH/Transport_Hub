@@ -41,14 +41,14 @@ export default function DriverApplication() {
 
         // Combine all booking details
         const combinedData = {
-            driverFirstName: driverFirstName,
-            driverLastName: driverLastName,
-            driverLocation: driver_location,
-            driverVehicleType: vechicalType,
-            driver_terms_condition: termsAndCondition,
-            driver_photo: profilePhoto,
-            driver_Cnic_front: cnicFrontSide,
-            driver_Cnic_back: cnicBackSide,
+            firstName: driverFirstName,
+            lastName: driverLastName,
+            driver_location: driver_location,
+            vechicalType: vechicalType,
+            termsAndCondition: termsAndCondition,
+            profilePhoto: profilePhoto,
+            cnicFrontSide: cnicFrontSide,
+            cnicBackSide: cnicBackSide,
             driver_driving_license: drivingLicense,
         };
         console.log(driverFirstName, driverLastName, driver_location, vechicalType, termsAndCondition, profilePhoto,
