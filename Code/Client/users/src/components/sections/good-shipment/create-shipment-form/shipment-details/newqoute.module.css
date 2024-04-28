@@ -1,3 +1,9 @@
+.newQuote{
+    height: 80vh;
+    padding: 25px 85px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
 .newQuote h2 {
     display: inline-block;
     font-size: 23px;
@@ -9,16 +15,16 @@
     border-bottom: 2px solid ;
 }
 
-.row {
+.qoute_row {
     display: flex;
     flex-direction: row;
     gap: 20px;
     align-items: center;
 }
 
-.row label,
-.row input,
-.row select {
+.qoute_row label,
+.qoute_row input,
+.qoute_row select {
     display: flex;
     flex-direction: column;
 }
@@ -32,7 +38,6 @@
 
 .newQuote label {
     display: inline-block;
-    /* font-weight: 500; */
     line-height: 140%;
     text-transform: none;
     font-size: 0.84rem;
@@ -41,7 +46,7 @@
     margin-top: 15px;
 }
 
-.row input,
+.qoute_row input,
 select,
 .input_div,
 .accessorial_div {
@@ -58,7 +63,7 @@ select,
     margin: 0px;
 }
 
-.row input:focus,
+.qoute_row input:focus,
 select:focus {
     outline: none;
 }

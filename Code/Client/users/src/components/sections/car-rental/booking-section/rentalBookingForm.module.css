@@ -1,8 +1,9 @@
 .bookingForm {
   background-color: #fff;
   width: 43rem;
-  margin-top: 3rem;
+  margin-top: 2.5rem;
   padding: 3rem 3.5rem;
+  border-radius: 4px;
 }
 
 .text_spacing {
@@ -25,18 +26,20 @@
 .formlabel {
   display: block;
   margin-bottom: 0.3rem;
-  margin-top: 0.5rem;
-  font-size: 0.96rem;
+  margin-top: 0rem;
+  font-size: 0.9rem;
+  font-weight: 500;
   color: #333;
 }
 
 .formrow input, textarea {
   padding: 0.5rem;
-  font-size: 1rem;
+  font-size: 0.9rem;
   border: 1px solid #ccc;
   border-radius: 0.3rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   margin-bottom: 1rem; 
+  color: #85858a;
 }
 
 .formrow input:focus{
@@ -56,9 +59,7 @@
   letter-spacing: 0.2px;
   color: #6b6a6a;
 }
-
-.btn {
-  background-color: #7e22ce;
-  width: 8rem;
-  font-size: 16px;
+.btn{
+  display: flex;
+  justify-content: flex-end;
 }
