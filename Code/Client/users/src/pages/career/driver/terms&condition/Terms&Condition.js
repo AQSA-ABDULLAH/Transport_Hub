@@ -1,10 +1,29 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import careerStyles from '../../careerpage.module.css';
 import styles from './terms&condition.module.css'
 import MediumHeader from '../../../../components/sections/header-medium/MediumHeader';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2'; // Import SweetAlert2
 
 export default function TermsCondition() {
+    const navigate = useNavigate();
+    
+    const handleAgreeButtonClick = () => {
+        // Set driver_terms_condition to true in local storage
+        localStorage.setItem('driver_terms_condition', 'true');
+        
+        // Show SweetAlert2 confirmation
+        Swal.fire({
+            icon: 'success',
+            title: 'Agreement Confirmed',
+            text: 'You have agreed to the terms and conditions.',
+        });
+
+        // Navigate to driver application form
+        navigate('/driver_application_form');
+    }
+
     return (
         <>
             <div className={careerStyles.container}>
@@ -17,14 +36,14 @@ export default function TermsCondition() {
                         </div>
 
                         <div className={styles.terms_condition}>
-                            <Link to={"/driver_terms_and_conditions"}><h4>Subscription Pass Terms and Conditions</h4></Link>
+                            <Link to={"#"}><h4>Subscription Pass Terms and Conditions</h4></Link>
                             <hr />
-                            <Link to={"/driver_terms_and_conditions"}><h4>Services Agreement</h4></Link>
+                            <Link to={"#"}><h4>Services Agreement</h4></Link>
                             <hr />
                         </div>
                     </div>
                     <div className={careerStyles.application_footer}>
-                        <button>Yes, I agree</button>
+                        <button onClick={handleAgreeButtonClick}>Yes, I agree</button>
                     </div>
                 </div>
             </div>
