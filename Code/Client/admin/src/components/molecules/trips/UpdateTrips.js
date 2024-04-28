@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Button from '../../atoms/buttons/Button';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import style from './addTrip.module.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-
+import { MdCloudUpload } from "react-icons/md";
+import Swal from 'sweetalert2';
 const UpdateTrips = ({ onClose, tripId }) => {
+  const [errors, setErrors] = useState(false);
+  const [categoryData, setCategoryData] = useState([]);
   const [formData, setFormData] = useState({
     category: '',
     tripTitle: '',
@@ -25,19 +28,23 @@ const UpdateTrips = ({ onClose, tripId }) => {
     CheckIn: '',
     Checkout: '',
     BookingCloseDate: '',
+    images:''
   });
   const {category, tripTitle, location, description, extraInformation, price, noOfGuest, noOfDays,noOfNights, departureCity, startDate, endDate, status, Ages,CheckIn,Checkout, BookingCloseDate } = formData;
 
-
   const [imageFile, setImageFile] = useState(null);
+  const [images, setImages] = useState(null);
   const currentDate = new Date();
 
   useEffect(() => {
     // Fetch trip details based on tripId and populate the form
     const fetchTripDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/trips/getTrip/${tripId}`);
+        const response = await axios.get(`http://localhost:5000/api/trips/tripDetails/${tripId}`);
         const tripDetails = response.data.data;
+        if (tripDetails.images) {
+          setImages(tripDetails.images);
+        }
         setFormData((prevData) => ({
           ...prevData,
           ...tripDetails,
@@ -46,106 +53,88 @@ const UpdateTrips = ({ onClose, tripId }) => {
         console.error('Error fetching trip details:', error);
       }
     };
-
     fetchTripDetails();
   }, [tripId]);
 
-
   const handleDateChange = (date, name) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: date,
+    const formattedDate = new Date(date);
+    const formattedDateString = `${formattedDate.getDate()}/${formattedDate.getMonth() + 1}/${formattedDate.getFullYear()}`;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: formattedDateString,
     }));
   };
+  
+  
+  
 
   const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setFormData(prevFormData => {
+      return {
+          ...prevFormData,
+          [event.target.name]: event.target.value
+      }
+  })
   };
-
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       setImageFile(file);
     }
   };
-
-
-
-  const handleSubmit = () => {
+  const handleSubmit = async() => {
+    const errors = {};
+    if (isNaN(price || Ages || noOfGuest || noOfDays || noOfNights )) {
+      setErrors(true);
+      return false; 
+    }
     const updatedFormData = new FormData();
     updatedFormData.append('category', formData.category);
     updatedFormData.append('tripTitle', formData.tripTitle);
     updatedFormData.append('location', formData.location);
-    updatedFormData.append('images', imageFile);
+    imageFile && updatedFormData.append('images', imageFile);
     updatedFormData.append('description', formData.description);
     updatedFormData.append('extraInformation', formData.extraInformation);
     updatedFormData.append('noOfGuest', formData.noOfGuest);
+    updatedFormData.append('price', formData.price);
+    updatedFormData.append('noOfDays', formData.noOfDays);
+    updatedFormData.append('noOfNights', formData.noOfNights);
+    updatedFormData.append('departureCity', formData.departureCity);
+    updatedFormData.append('startDate', formData.startDate);
+    updatedFormData.append('endDate', formData.endDate);
+    updatedFormData.append('status', formData.status);
+    updatedFormData.append('Ages', formData.Ages);
+    updatedFormData.append('CheckIn', formData.CheckIn);
+    updatedFormData.append('Checkout', formData.Checkout);
+    updatedFormData.append('BookingCloseDate', formData.BookingCloseDate);
+    //Proceed with data submission
+    try {
+      const response = await axios.put(`http://localhost:5000/api/trips/updatePackage/${tripId}`, formData);
 
-    if (formData.category === 'Family') {
-      if (!formData.price) {
-        alert('Please fill in all required fields for Family category.');
-        return;
-      }
-      updatedFormData.append('price', formData.price);
-    } else if (formData.category === 'Individual') {
-      if (
-        !formData.price ||
-        !formData.noOfDays ||
-        !formData.noOfNights ||
-        !formData.departureCity ||
-        !formData.startDate ||
-        !formData.endDate ||
-        !formData.status ||
-        !formData.Ages
-      ) {
-        alert('Please fill in all required fields for Individual category.');
-        return;
-      }
-      updatedFormData.append('price', formData.price);
-      updatedFormData.append('noOfDays', formData.noOfDays);
-      updatedFormData.append('noOfNights', formData.noOfNights);
-      updatedFormData.append('departureCity', formData.departureCity);
-      updatedFormData.append('startDate', formData.startDate);
-      updatedFormData.append('endDate', formData.endDate);
-      updatedFormData.append('status', formData.status);
-      updatedFormData.append('Ages', formData.Ages);
-      updatedFormData.append('CheckIn', formData.CheckIn);
-      updatedFormData.append('Checkout', formData.Checkout);
-      updatedFormData.append('BookingCloseDate', formData.BookingCloseDate);
-    } else if (formData.category === 'Group') {
-      if (!formData.price) {
-        alert('Please fill in all required fields for Group category.');
-        return;
-      }
-      updatedFormData.append('price', formData.price);
-    }
+      if (response.data.status === "success") {
+          Swal.fire(
+              'Data Updated Successfully',
+              'Go to trips tab to see the changes',
+              'success'
+            );
+            onClose();
+            const response = await axios.get('http://localhost:5000/api/trips/TripPackages', {
+          params: { category },
+        });
+        console.log('Response:', response.data);
+        setCategoryData(response.data.data);
 
-    // Proceed with data submission
-    axios
-      .put(`http://localhost:5000/api/trips/updateTrip/${tripId}`, updatedFormData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      })
-      .then((res) => {
-        console.log(res.data);
-        alert('Data updated successfully!');
-        onClose();
-      })
-      .catch((err) => {
-        console.log(err, 'err');
-        if (err.response && err.response.status === 400) {
-          // Validation error(s) from the server
-          const validationErrors = err.response.data.errors;
-          alert(`Validation failed:\n${validationErrors.map((error) => error.message).join('\n')}`);
-        } else {
-          // Other errors
-          alert('Error updating data. Please try again.');
-        }
-      });
+      } else {
+          alert("Failed to submit data. Please try again.");
+      }
+
+  } catch (error) {
+      console.log(error);
+      alert("An error occurred while submitting the data. Please try again.");
+  }
+    
   };
+  
 
   return (
     <div className={style.popupForm}>
@@ -158,6 +147,7 @@ const UpdateTrips = ({ onClose, tripId }) => {
   name="category"
   
   onChange={(e) => handleInputChange(e)} // Assuming handleInputChange is your existing change handler
+value={formData.category}
 >
   
   <option >Select</option>
@@ -185,7 +175,7 @@ const UpdateTrips = ({ onClose, tripId }) => {
             onChange={handleInputChange}
           />
         </div>
-        <div className={style.formField}>
+        {/* <div className={style.formField}>
                 <label htmlFor="images">Image</label>
                 <input
                     type="file" // Change type to 'file'
@@ -193,7 +183,31 @@ const UpdateTrips = ({ onClose, tripId }) => {
                     name="images"
                     onChange={handleImageChange}
                 />
+            </div> */}
+            <div className={style.formField}>
+        <label htmlFor="">
+          <input
+              type="file" // Change type to 'file'
+              id="images"
+              name="images"
+              onChange={(e) => setImages(URL.createObjectURL(e.target.files[0]))}
+              />
+             
+        </label>
+        <div>
+          {images ? (
+            <div>
+              <img src={images} alt="Image" style={{ maxWidth: '200px', maxHeight: '200px' }} />
             </div>
+          ) : (
+            <div className={style.image_container}>
+              <MdCloudUpload className={style.icon} />
+              <p>Drag and drop or click here to upload image</p>
+            </div>
+          )}
+        </div>
+      </div>
+      
 
         <div>
           <label>Description</label>
@@ -223,6 +237,7 @@ const UpdateTrips = ({ onClose, tripId }) => {
             value={formData.price}
             onChange={handleInputChange}
           />
+          {errors && price && isNaN(price) && <span class-Name={style.error}>Price must be a number</span>}
            <div>
             <label>No of Guests</label>
             <input
@@ -231,7 +246,7 @@ const UpdateTrips = ({ onClose, tripId }) => {
               value={formData.noOfGuest}
               onChange={handleInputChange}
             />
-            
+            {errors && noOfGuest && isNaN(noOfGuest) && <span class-Name={style.error}>No of Guest must be a number</span>}
           </div>
         </div>
         
@@ -247,6 +262,7 @@ const UpdateTrips = ({ onClose, tripId }) => {
             value={formData.price}
             onChange={handleInputChange}
           />
+          {errors && price && isNaN(price) && <span class-Name={style.error}>Price must be a number</span>}
            <div>
             <label>No of Guests</label>
             <input
@@ -255,7 +271,7 @@ const UpdateTrips = ({ onClose, tripId }) => {
               value={formData.noOfGuest}
               onChange={handleInputChange}
             />
-            
+            {errors && noOfGuest && isNaN(noOfGuest) && <span class-Name={style.error}>No of Guest must be a number</span>}
           </div>
         </div>
          
@@ -271,6 +287,7 @@ const UpdateTrips = ({ onClose, tripId }) => {
             value={formData.price}
             onChange={handleInputChange}
           />
+          {errors && price && isNaN(price) && <span class-Name={style.error}>Price must be a number</span>}
         </div>
          
             <label>No of Days</label>
@@ -280,73 +297,60 @@ const UpdateTrips = ({ onClose, tripId }) => {
               value={formData.noOfDays}
               onChange={handleInputChange}
             />
-            <label>No of Days</label>
+            {errors && noOfDays && isNaN(noOfDays) && <span class-Name={style.error}>No of Days must be a number</span>}
+            <label>No of Nights</label>
             <input
               type="text"
               name="noOfNights"
               value={formData.noOfNights}
               onChange={handleInputChange}
             />
+            {errors && noOfNights && isNaN(noOfNights) && <span class-Name={style.error}>No Of Nights must be a number</span>}
             <label>Start Date</label>
             <DatePicker
-              selected={formData.startDate}
-              onChange={(date) => handleDateChange(date, 'startDate')}
-              name="startDate"
-              className="form-control custom-date-picker"
-              placeholderText="Click to select a Start Date"
-              minDate={currentDate}
-            />
+            value={startDate}
+            dateFormat="dd/MM/yyyy"
+            onChange={(date) => handleDateChange(date, 'startDate')}
+            name="startDate"
+            className="form-control custom-date-picker"
+            placeholderText="Click to select a Start Date"
+            minDate={currentDate}
+          />
             <label>End Date</label>
             <DatePicker
-                selected={formData.endDate}
+                
+                value={endDate}
+                dateFormat="dd/MM/yyyy"
                 onChange={(date) => handleDateChange(date, 'endDate')}
                 name="endDate"
                 className="form-control custom-date-picker"
                 placeholderText="Click to select a End Date"
                 minDate={currentDate}
               />
-             <label>CheckIn Time</label>
+            <label>CheckIn Time</label>
             <input
-              type="text"
+              type="time"
               name="CheckIn"
-              value={formData.CheckIn}
+              value={CheckIn}
               onChange={handleInputChange}
             />
              <label>CheckOut Time</label>
             <input
-              type="text"
+              type="time"
               name="Checkout"
-              value={formData.Checkout}
+              value={Checkout}
               onChange={handleInputChange}
             />
-            {/* <div class="cs-form">
-            <label>Check In Time</label>
-            <input
-          type="time"
-          className="form-control"
-          name="CheckIn"
-          value={time.CheckIn}
-          onChange={handleInputChange}
-        />
-            </div>
-          
-            <div class="cs-form">
-            <label>Check Out Time</label>
-              <input type="time" class="form-control"  />
-            </div> */}
-            <label>Booking Clsoe Date</label>
+            <label>Booking Close Date</label>
             <DatePicker
-              selected={formData.BookingCloseDate}
-              onChange={(date) => handleDateChange(date, 'BookingCloseDate')}
+          
+              value={formData.BookingCloseDate}
+              onChange={(date) => handleDateChange(date, 'Book-ingCloseDate')}
               name="BookingCloseDate"
               className="form-control custom-date-picker"
               placeholderText="Click to select a closing Date"
               minDate={currentDate}
             />
-
-          
-            
-          
             <label>Departure City</label>
             <input
               type="text"
@@ -368,9 +372,10 @@ const UpdateTrips = ({ onClose, tripId }) => {
               value={formData.Ages}
               onChange={handleInputChange}
             />
+            {errors && Ages && isNaN(Ages) && <span class-Name={style.error}>Age must be a number</span>}
           </div>
         )}
-        <button type="button" className="btn btn-success" onClick={handleSubmit}>
+        <button type="button" className="btn btn-success" on-Click={handleSubmit}>
           UPDATE
         </button>
         <Button btnText="Close" primary btnClick={onClose} />

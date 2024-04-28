@@ -13,12 +13,20 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { setSignedIn } from "../redux/containers/auth/actions";
 
+import LandingPage from '../pages/carRental/LandingPage.js';
+import ViewCars from '../pages/carRental/showCarsPage/ViewCars.js';
+import ExtendedDetailPage from '../pages/carRental/addOnPage/ExtendedDetailPage.js';
+import RentalBookingPage from '../pages/carRental/bookingPage/RentalBookingPage.js';
+import BlogsNews from "../pages/blogs&News/BlogsNews.js";
+import BlogsDetails from "../pages/blogs&News/BlogsDetails.js";
+
 import LandingPage from "../pages/car-rental/LandingPage.js";
 import ViewCars from "../pages/car-rental/showCarsPage/ViewCars.js"
 import ExtendedDetailPage from "../pages/car-rental/addOnPage/ExtendedDetailPage.js"
 import RentalBookingPage from "../pages/car-rental/bookingPage/RentalBookingPage.js"
 import BlogsNews from "../pages/blogs&news/BlogsNews.js";
 import BlogsDetails from "../pages/blogs&news/BlogsDetails.js";
+
 
 import CareerPage from "../pages/career/CareerPage.js";
 import DriverEmail from "../pages/career/driver/registration/DriverEmail.js";
@@ -43,7 +51,6 @@ import Userdashboard from "../user-dashboard/User-dashboard.js";
 import PickupboysLandingPage from "../pages/pickupboylandingpage/PickupboysLandingPage.js";
 import PickupBoyEmail from "../components/pickupboyregistration/emailpage/PickupboyEmail.js";
 import PickupBoyVerifyMail from "../components/pickupboyregistration/verifyemailpage/PickupBoyVerifyMain.js";
-
 
 
 
@@ -117,19 +124,18 @@ function AppRoutes() {
         <Route path="/RentalBooking" element={<RentalBookingPage/>}/>
 
         {/* GOOD SHIPMENT ROUTES */}
-        <Route path="/shipment_landing_page" element={<ShipmentLandingPage/>}/>
+        <Route path="/shipment_landing_page" ele-ment={<ShipmentLandingPage/>}/>
         <Route path="/create_shipment_form" element={<ShipmentForm/>}/>
         <Route path="/manage_shipments" element={<ManageShipments/>}/>
-
 
         <Route path="/career" element={<CareerPage/>}/>
         {/* DRIVER REGISTRATION */}
         <Route path="/driverRegistration" element={<DriverEmail/>}/>
         <Route path="/driver_verify_mail" element={<DriverVerifyMail/>}/>
         <Route path="/driver_name_section" element={<DriverName/>}/>
-        <Route path="/driver_location_section" element={<DriverLocation/>}/>
-        <Route path="/driver_vechical_selection" element={<DriverVechicalSection/>}/>
-        <Route path="/driver_application_form" element={<DriverApplication/>}/>
+        <Route path="/driver_location_section" ele-ment={<DriverLocation/>}/>
+        <Route path="/driver_vechical_selection" ele-ment={<DriverVechicalSection/>}/>
+        <Route path="/driver_application_form" ele-ment={<DriverApplication/>}/>
         <Route path="/upload_driver_cnic" element={<DriverCnic/>}/>
         <Route path="/trems_and_conditions" element={<TermsCondition/>}/>
 

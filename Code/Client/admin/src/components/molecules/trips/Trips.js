@@ -4,6 +4,7 @@ import style from './trips.module.css';
 import AddTrip from './AddTrip';
 import { useActionData } from 'react-router-dom';
 import ShowTrips from './ShowTrips';
+import EditUser from './EditUser';
 
 const Trips = () => {
   const [isAddTripVisible, setAddTripVisible] = useState(false);
