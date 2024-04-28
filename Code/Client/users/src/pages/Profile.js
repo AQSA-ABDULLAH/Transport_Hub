@@ -7,8 +7,7 @@ const Profile = () => {
   return (
     <>
 
-      <section >
-
+     
       <section>
 
         <UserProfile />
