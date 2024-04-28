@@ -6,7 +6,7 @@ require("../db/connection")
 
 router.post("/registration", DriverController.driverRegistration);
 router.post("/verify-otp", DriverController.verifyOTP)
-router.patch("/updateDriver/:id", DriverController.updateDriver);
+router.patch("/updateDriver/:driverEmail", DriverController.updateDriver);
 router.post('/driver_signIn', driverLogin);
 
 module.exports = router;

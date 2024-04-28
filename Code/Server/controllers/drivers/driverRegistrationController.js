@@ -1,5 +1,4 @@
 const Driver = require("../../models/Drivers.js");
-const mongoose = require('mongoose');
 const { hashPassword } = require("../../helpers/hashPassword");
 const { createToken } = require("../../helpers/jwt");
 const mailer = require("../../libs/mailer.js");
@@ -42,7 +41,6 @@ class DriverController {
           otp: OTP
         });
 
-
         const savedDriver = await driver.save();
 
         // Generate JWT Token using the saved driver object
@@ -71,7 +69,6 @@ class DriverController {
             });
           }
         }
-
       }
     } catch (error) {
       console.error("Error in driver registration:", error);
@@ -79,11 +76,9 @@ class DriverController {
     }
   }
 
-  // VERIFY OTP
-
   static async verifyOTP(req, res) {
     try {
-      const { driverEmail, otp } = req.body; // Destructure driverEmail and otp from req.body
+      const { driverEmail, otp } = req.body;
       console.log("Received form data:", { driverEmail, otp });
       const driver = await Driver.findOne({ driverEmail });
 
@@ -126,40 +121,37 @@ class DriverController {
     }
   }
 
-  // UPDATE DRIVER
+  // Function to validate an email address
+  static isValidEmail(email) {
+    // Regular expression for email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
 
   static updateDriver = async (req, res) => {
-    const { id } = req.params;
+    const { driverEmail } = req.params;
     const { password, firstName, lastName, driver_location, vechicalType, termsAndCondition, profilePhoto,
       cnicFrontSide, cnicBackSide, drivingLicense, status } = req.body;
-  
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(404).send({ status: "failed", message: `Invalid Car ID: ${id}` });
+
+    if (!DriverController.isValidEmail(driverEmail)) {
+      return res.status(400).send({ status: "failed", message: "Invalid driverEmail" });
     }
 
-  
-    const updatedDriver = {
-      password, firstName, lastName, driver_location, vechicalType,
-      termsAndCondition, profilePhoto, cnicFrontSide, cnicBackSide, drivingLicense, status
-    };
-  
+    const updatedDriver = { password, firstName, lastName, driver_location, vechicalType, termsAndCondition, profilePhoto, cnicFrontSide, cnicBackSide, drivingLicense, status };
+
     try {
-      const updatedData = await Driver.findByIdAndUpdate(id, updatedDriver, { new: true });
-  
+      const updatedData = await Driver.findOneAndUpdate({ driverEmail }, updatedDriver, { new: true });
+
       if (!updatedData) {
-        return res.status(404).send({ status: "failed", message: `No Driver found with Email: ${id}` });
+        return res.status(404).send({ status: "failed", message: `No Driver found with Email: ${driverEmail}` });
       }
-  
+
       res.status(200).send({ status: "success", message: "Driver updated successfully", data: updatedData });
     } catch (error) {
       console.error("Error updating driver:", error);
       res.status(500).send({ status: "failed", message: "Failed to update driver" });
     }
   };
-  
-  
-  
-
 }
 
 module.exports = { DriverController };
