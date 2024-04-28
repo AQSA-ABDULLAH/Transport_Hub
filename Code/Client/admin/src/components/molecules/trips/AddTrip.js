@@ -12,11 +12,11 @@ import { getDownloadURL } from 'firebase/storage';
 import Swal from 'sweetalert2';
 import { MdCloudUpload } from "react-icons/md";
 
+
 const AddTrip = ({ onClose }) => {
 
   const [imageUpload, setImageUpload] = useState(null);
   const [errors, setErrors] = useState(null);
-   
     const currentDate = new Date();
     const handleDateChange = (date, name) => {
         setFormData((prevData) => ({
@@ -49,7 +49,7 @@ const AddTrip = ({ onClose }) => {
   const {category, tripTitle, location,images, description, extraInformation, price, noOfGuest, noOfDays,noOfNights, departureCity, startDate, endDate, status, Ages,CheckIn,Checkout, BookingCloseDate } = formData;
   const handleInputChange = (event) => {
     const { name, value, type, files } = event.target;
-
+  
     if (type === 'file') {
       setImageUpload(files[0]);
     } else {
@@ -57,215 +57,217 @@ const AddTrip = ({ onClose }) => {
     }
   };
    const navigate = useNavigate();
-   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent the default form submission
+
+   
+
+    const handleSubmit = (e) => {
+      e.preventDefault(); // Prevent the default form submission
     
-    const errors = {}; // Object to store error messages
-    
-    // Validate each field
-    if (!formData.category) {
-      setErrors(true);
-      return false;
-    }
-    if (!formData.tripTitle) {
-      setErrors(true);
-      return false;
-    }
-    if (!formData.location) {
-      setErrors(true);
-      return false;
-    }
-    if (!imageUpload) {
-      setErrors(true);
-      return false;
-    }
-    if (!formData.description) {
-      setErrors(true);
-      return false;
-    }
-    if (!formData.extraInformation) {
-      setErrors(true);
-      return false;
-    }
-  
-    // Check if category-specific fields are required and validate them
-    if (formData.category === "Family") {
-      if (!formData.price) {
-        setErrors(true);
-      return false;
-      }
-      if (!formData.noOfGuest) {
+      const errors = {}; // Object to store error messages
+      
+      // Validate each field
+      if (!category) {
         setErrors(true);
         return false;
       }
-    } else if (formData.category === "Group") {
-      if (!formData.price) {
+      if (!tripTitle) {
         setErrors(true);
-      return false;
+        return false;
       }
-      if (!formData.noOfGuest) {
+      if (!location) {
         setErrors(true);
-      return false;
+        return false;
       }
-    } else if (formData.category === "Individual") {
-      if (!formData.price) {
+      if (!imageUpload) {
         setErrors(true);
-      return false;
+        return false;
       }
-      if (!formData.noOfDays) {
+      if (!description) {
         setErrors(true);
-      return false;
+        return false;
       }
-      if (!formData.noOfNights) {
+      if (!extraInformation) {
         setErrors(true);
-      return false;
-      }
-      if (!formData.departureCity) {
-        setErrors(true);
-      return false;
-      }
-      if (!formData.startDate) {
-        setErrors(true);
-      return false;
-      }
-      if (!formData.endDate) {
-        setErrors(true);
-      return false;
-      }
-      if (!formData.status) {
-        setErrors(true);
-      return false;
-      }
-      if (!formData.Ages) {
-        setErrors(true);
-      return false;
-      }
-      if (!formData.CheckIn) {
-        setErrors(true);
-      return false;
-      }
-      if (!formData.Checkout) {
-        setErrors(true);
-      return false;
-      }
-      if (!formData.BookingCloseDate) {
-        setErrors(true);
-      return false;
-      }
-    }
-  
-    if (isNaN(price || Ages || noOfGuest || noOfDays || noOfNights )) {
-      setErrors(true);
-      return false; 
-    }
-  
-    // If there are no errors, submit the form
-    if (Object.keys(errors).length === 0) {
-      // Proceed with data submission
-      const formData = new FormData();
-      formData.append('category', category);
-      formData.append('tripTitle', tripTitle);
-      formData.append('location', location);
-      
-      if (imageUpload === '') {
-        alert('Please select an image to upload');
-        return;
-      }
-      const imageRef = ref(storage, `tripImages/${imageUpload.name + v4()}`);
-
-      uploadBytes(imageRef, imageUpload).then((snapshot) => {
-          console.log("Image Uploaded");
-          
-          getDownloadURL(imageRef).then((downloadURL) => {
-            console.log('File available at', downloadURL);
-            // Update the formData with the image URL
-       
-        formData.append('images', downloadURL);
-      formData.append('description', description);
-      formData.append('extraInformation', extraInformation);
-      
-      
-    
-      if (category === 'Family') {
-       
-        if (!price || !noOfGuest) {
-          alert('Please fill in all required fields for Family category.');
-          return; 
-        }
-        formData.append('price', price);
-        formData.append('noOfGuest', noOfGuest);
-
-      } else if (category === 'Individual') {
-        
-        if (!price || !noOfDays || !noOfNights || !departureCity || !startDate || !endDate || !status || !Ages || !CheckIn || !Checkout || !BookingCloseDate) {
-          alert('Please fill in all required fields for Group category.');
-          return; 
-        }
-        
-        formData.append('price', price);
-        formData.append('noOfDays', noOfDays);
-        formData.append('noOfNights', noOfNights);
-        formData.append('departureCity', departureCity);
-        formData.append('startDate', startDate);
-        formData.append('endDate', endDate);
-        formData.append('status', status);
-        formData.append('Ages', Ages);
-        formData.append('CheckIn', CheckIn);
-        formData.append('Checkout', Checkout);
-        formData.append('BookingCloseDate', BookingCloseDate);
-      }
-      else if (category === 'Group') {
-        
-        if (!price || !noOfGuest ) {
-          alert('Please fill in all required fields for Group category.');
-          return; 
-        }
-        
-        formData.append('price', price);
-        formData.append('noOfGuest', noOfGuest);
-      
+        return false;
       }
     
-      // Proceed with data submission
-      axios
-        .post('http://localhost:5000/api/trips/addTrip', formData, {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        }).then((res) => {
-          console.log(res.data);
-          Swal.fire(
-            'New Trip Added Successfully',
-            'Go to trips management tab to see the results',
-            'success'
-          );
-          
-          onclose();
-        })
-        .catch((err) => {
-          console.log(err, 'err');
-          if (err.response && err.response.status === 400) {
-            // Validation error(s) from the server
-            const validationErrors = err.response.data.errors;
-        const errorMessages = `Validation failed:\n${validationErrors.map((error) => error.message).join('\n')}`;
-        // setErrors({ server: errorMessages });
+      // Check if category-specific fields are required and validate them
+      if (category === "Family") {
+        if (!price) {
+          setErrors(true);
+        return false;
+        }
+        if (!noOfGuest) {
+          setErrors(true);
+          return false;
+        }
+      } else if (category === "Group") {
+        if (!price) {
+          setErrors(true);
+        return false;
+        }
+        if (!noOfGuest) {
+          setErrors(true);
+        return false;
+        }
+      } else if (category === "Individual") {
+        if (!price) {
+          setErrors(true);
+        return false;
+        }
+        if (!noOfDays) {
+          setErrors(true);
+        return false;
+        }
+        if (!noOfNights) {
+          setErrors(true);
+        return false;
+        }
+        if (!departureCity) {
+          setErrors(true);
+        return false;
+        }
+        if (!startDate) {
+          setErrors(true);
+        return false;
+        }
+        if (!endDate) {
+          setErrors(true);
+        return false;
+        }
+        if (!status) {
+          setErrors(true);
+        return false;
+        }
+        if (!Ages) {
+          setErrors(true);
+        return false;
+        }
+        if (!CheckIn) {
+          setErrors(true);
+        return false;
+        }
+        if (!Checkout) {
+          setErrors(true);
+        return false;
+        }
+        if (!BookingCloseDate) {
+          setErrors(true);
+        return false;
+        }
+      }
+    
+      if (isNaN(price || Ages || noOfGuest || noOfDays || noOfNights )) {
+        setErrors(true);
+        return false; 
+      }
+  
+      if (Object.keys(errors).length === 0) {
+        // Proceed with data submission
+        const formData = new FormData();
+        formData.append('category', category);
+        formData.append('tripTitle', tripTitle);
+        formData.append('location', location);
         
-          } else {
-            // Other errors
-            alert('Error submitting data. Please try again.');
+        if (imageUpload === '') {
+          alert('Please select an image to upload');
+          return;
+        }
+        const imageRef = ref(storage, `tripImages/${imageUpload.name + v4()}`);
+  
+        uploadBytes(imageRef, imageUpload).then((snapshot) => {
+            console.log("Image Uploaded");
+            
+            getDownloadURL(imageRef).then((downloadURL) => {
+              console.log('File available at', downloadURL);
+              // Update the formData with the image URL
+         
+          formData.append('images', downloadURL);
+        formData.append('description', description);
+        formData.append('extraInformation', extraInformation);
+        
+        
+      
+        if (category === 'Family') {
+         
+          if (!price || !noOfGuest) {
+            alert('Please fill in all required fields for Family category.');
+            return; 
           }
-        })
+          formData.append('price', price);
+          formData.append('noOfGuest', noOfGuest);
+  
+        } else if (category === 'Individual') {
+          
+          if (!price || !noOfDays || !noOfNights || !departureCity || !startDate || !endDate || !status || !Ages || !CheckIn || !Checkout || !BookingCloseDate) {
+            alert('Please fill in all required fields for Group category.');
+            return; 
+          }
+          
+          formData.append('price', price);
+          formData.append('noOfDays', noOfDays);
+          formData.append('noOfNights', noOfNights);
+          formData.append('departureCity', departureCity);
+          formData.append('startDate', startDate);
+          formData.append('endDate', endDate);
+          formData.append('status', status);
+          formData.append('Ages', Ages);
+          formData.append('CheckIn', CheckIn);
+          formData.append('Checkout', Checkout);
+          formData.append('BookingCloseDate', BookingCloseDate);
+        }
+        else if (category === 'Group') {
+          
+          if (!price || !noOfGuest ) {
+            alert('Please fill in all required fields for Group category.');
+            return; 
+          }
+          
+          formData.append('price', price);
+          formData.append('noOfGuest', noOfGuest);
         
-      });
-  });
-};
-   }
-   
-   
+        }
+      
+        // Proceed with data submission
+        axios
+          .post('http://localhost:5000/api/trips/addTrip', formData, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+          }).then((res) => {
+            console.log(res.data);
+            Swal.fire(
+              'New Trip Added Successfully',
+              'Go to trips management tab to see the results',
+              'success'
+            );
+            
+            onclose();
+          })
+          .catch((err) => {
+            console.log(err, 'err');
+            if (err.response && err.response.status === 400) {
+              // Validation error(s) from the server
+              const validationErrors = err.response.data.errors;
+          const errorMessages = `Validation failed:\n${validationErrors.map((error) => error.message).join('\n')}`;
+          // setErrors({ server: errorMessages });
+          
+            } else {
+              // Other errors
+              alert('Error submitting data. Please try again.');
+            }
+          })
+          
+        });
+    });
+  };
+     }
+     
+  
+    
     return (
       <>
-      
         <div className={style.popupForm}>
             <h3>Add New Trip Form</h3>
-           
+
             <form onSubmit={handleSubmit}>
         <div>
         <label>Select Category:</label>
@@ -280,8 +282,9 @@ const AddTrip = ({ onClose }) => {
   <option value="Group">Group</option>
   <option value="Individual">Individual</option>
 </select>
-{errors && !category && <span className={style.error}>This field is re-quired</span>}
+{errors && !category && <span className={style.error}>This field is required</span>}
         </div>
+
         <div>
           <label>Trip Title</label>
           <input
@@ -289,8 +292,8 @@ const AddTrip = ({ onClose }) => {
             name="tripTitle"
             value={formData.tripTitle}
             onChange={handleInputChange}
-            />
-            {errors && !tripTitle && <span className={style.error}>This field is required</span>}
+          />
+          {errors && !tripTitle && <span className={style.error}>This field is required</span>}
         </div>
         <div>
           <label>Location</label>
@@ -300,9 +303,8 @@ const AddTrip = ({ onClose }) => {
             value={formData.location}
             onChange={handleInputChange}
           />
+          {errors && !location && <span className={style.error}>This field is required</span>}
         </div>
-        {errors && !location && <span className={style.error}>This field is required</span>}
-       
         <div className={style.image}>
         <label htmlFor="images">Image:</label>
         <input type="file" className={style.form_image} accept="image/png, image/jpeg" onChange={handleInputChange}
@@ -318,7 +320,8 @@ const AddTrip = ({ onClose }) => {
         )}
       </div>
       {errors && !imageUpload && <span className={style.error}>Upload an Image</span>}
-      </div>
+</div>
+
         <div>
           <label>Description</label>
           <input
@@ -327,8 +330,8 @@ const AddTrip = ({ onClose }) => {
             value={formData.description}
             onChange={handleInputChange}
           />
-         {errors && !description && <span className={style.error}>This field is required</span>}
         </div>
+        {errors && !description && <span className={style.error}>This field is required</span>}
         <div>
           <label>Extra Information</label>
           <input
@@ -337,9 +340,8 @@ const AddTrip = ({ onClose }) => {
             value={formData.extraInformation}
             onChange={handleInputChange}
           />
-          {errors && !extraInformation && <span class-Name={style.error}>This field is required</span>}
         </div>
-         
+        {errors && !extraInformation && <span className={style.error}>This field is required</span>}
         {category === "Family" && (
         <div>
           <label>Price Per Person</label>
@@ -350,7 +352,7 @@ const AddTrip = ({ onClose }) => {
             onChange={handleInputChange}
           />
           {errors && !price && <span className={style.error}>This field is required</span>}
-          {errors && price && isNaN(price) && <span class-Name={style.error}>Price must be a number</span>}
+          {errors && price && isNaN(price) && <span className={style.error}>Price must be a number</span>}
            <div>
             <label>No of Guests</label>
             <input
@@ -361,7 +363,6 @@ const AddTrip = ({ onClose }) => {
             />
             {errors && !noOfGuest && <span className={style.error}>This field is required</span>}
             {errors && noOfGuest && isNaN(noOfGuest) && <span class-Name={style.error}>No of Guests must be a number</span>}
-            
           </div>
         </div>
         
@@ -379,6 +380,7 @@ const AddTrip = ({ onClose }) => {
           />
           {errors && !price && <span className={style.error}>This field is required</span>}
           {errors && price && isNaN(price) && <span class-Name={style.error}>Price must be a number</span>}
+
            <div>
             <label>No of Guests</label>
             <input
@@ -389,6 +391,7 @@ const AddTrip = ({ onClose }) => {
             />
             {errors && !noOfGuest && <span className={style.error}>This field is required</span>}
             {errors && noOfGuest && isNaN(noOfGuest) && <span class-Name={style.error}>No of Guests must be a number</span>}
+
           </div>
         </div>
          
@@ -415,8 +418,9 @@ const AddTrip = ({ onClose }) => {
               value={formData.noOfDays}
               onChange={handleInputChange}
             />
-            {errors && !noOfDays && <span className={style.error}>This field is required</span>}
+                        {errors && !noOfDays && <span className={style.error}>This field is required</span>}
             {errors && noOfDays && isNaN(noOfDays) && <span class-Name={style.error}>No of Guests must be a number</span>}
+
             <label>No of Night</label>
             <input
               type="text"
@@ -424,8 +428,9 @@ const AddTrip = ({ onClose }) => {
               value={formData.noOfNights}
               onChange={handleInputChange}
             />
-           {errors && !noOfNights && <span className={style.error}>This field is required</span>}
+             {errors && !noOfNights && <span className={style.error}>This field is required</span>}
             {errors && noOfNights && isNaN(noOfNights) && <span class-Name={style.error}>No of Guests must be a number</span>}
+
             <label>Start Date</label>
             <DatePicker
               selected={formData.startDate}
@@ -445,7 +450,7 @@ const AddTrip = ({ onClose }) => {
                 placeholderText="Click to select a End Date"
                 minDate={currentDate}
               />
-           {errors && !endDate && <span className={style.error}>This field is required</span>}
+            {errors && !endDate && <span className={style.error}>This field is required</span>}
             <div class="cs-form">
             <label>Check In Time</label>
             <input
@@ -470,16 +475,16 @@ const AddTrip = ({ onClose }) => {
             </div>
           
             
-            <label>Booking Close Date</label>
+            <label>Booking Clsoe Date</label>
             <DatePicker
               selected={formData.BookingCloseDate}
-              onChange={(date) => handleDateChange(date, 'Book-ingCloseDate')}
+              onChange={(date) => handleDateChange(date, 'BookingCloseDate')}
               name="BookingCloseDate"
               className="form-control custom-date-picker"
               placeholderText="Click to select a closing Date"
               minDate={currentDate}
             />
-            {errors && !BookingCloseDate && <span class-Name={style.error}>This field is required</span>}
+            {errors && !BookingCloseDate && <span className={style.error}>This field is required</span>}       
             <label>Departure City</label>
             <input
               type="text"
@@ -504,10 +509,9 @@ const AddTrip = ({ onClose }) => {
               onChange={handleInputChange}
             />
             {errors && !Ages && <span className={style.error}>This field is required</span>}
-            {errors && Ages && isNaN(Ages) && <span class-Name={style.error}>Age must be a number</span>}
           </div>
         )}
-         <button type="button" className="btn btn-success" on-Click={handleSubmit}>
+         <button type="button" className="btn btn-success" onClick={handleSubmit}>
                 SUBMIT
               </button>
             <Button btnText="Close" primary btnClick={onClose} />
