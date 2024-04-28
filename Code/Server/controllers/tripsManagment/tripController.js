@@ -22,7 +22,7 @@ class TripsController {
         'any.required': '{#label} is required',
     }),
     images: Joi.string().trim().required().label('Images').messages({
-        'string.base': '{#label} must be a string',
+        'string.base': '{#label} must be a file',
         'any.required': '{#label} is required',
     }),
     price: Joi.number().required().label('Price').messages({
@@ -69,14 +69,12 @@ class TripsController {
         'string.base': '{#label} must be a string',
     }),
     
-
-    
 });
 
   // Create a new trip
   static addTrips = async (req, res) => {
     const data = req.body;
-    data.images = req?.file?.filename;
+
     const { error } = this.tripPackageValidationSchema.validate(data);
 
     if (error) {
@@ -90,7 +88,7 @@ class TripsController {
     try {
       const newTrip = await Trips.create(data);
       console.log("Data saved");
-      res.status(201).send({ status: "success", message: "Trip saved successfully", data: newTrip });
+      res.status(201).send({ status: "success", message: "Trip saved suc-cessfully", data: newTrip });
     } catch (error) {
       console.error(error); // Log the error
       res.status(500).send({ status: "failed", message: "Internal Server Error" });
@@ -138,8 +136,9 @@ class TripsController {
        
       }
       res.status(200).send({ status: "success", data: package1 });
+      
     } catch (err) {
-      console.error(error);
+      console.error(err);
       res.status(500).send({ status: "failed", message: "Internal Server Error" });
     }
  
@@ -147,25 +146,28 @@ class TripsController {
 
   // Update a trip by ID
   static updateTripById = async (req, res) => {
-    const tripId = req.params.id;
+    const tripId = req.params.id; // Assuming tripId is passed in the URL params
+
     try {
       const tripPackage1 = await Trips.findById(tripId);
       
       if (!tripPackage1) {
         return res.status(404).send({ status: "failed", message: "Trip not found" });
       }
-  
-      // Assuming you have some update data in req.body, modify this as needed
-      const updateData = req.body;
-  
+    
+      // Modify updateData to include tripId
+      const updateData = { ...req.body, _id: tripId };
+      delete updateData._id; // Remove _id if it exists in req.body
+    
       const updatedTrip = await Trips.findByIdAndUpdate(tripId, updateData, { new: true });
-  
-      res.status(200).send({ status: "success", message: "Trip updated successfully", data: updatedTrip });
+    
+      res.status(200).send({ status: "success", message: "Trip updated suc-cessfully", data: updatedTrip });
       console.log(updatedTrip);
     } catch (error) {
       console.error(error);
       res.status(500).send({ status: "failed", message: "Internal Server Error" });
     }
+    
   };
   
 
@@ -179,7 +181,7 @@ class TripsController {
       if (!tripPackage1) {
         return res.status(404).send({ status: "failed", message: "Trip not found" });
       }
-      res.status(200).send({ status: "success", message: "Trip deleted successfully", data: tripPackage1 });
+      res.status(200).send({ status: "success", message: "Trip deleted suc-cessfully", data: tripPackage1 });
     } catch (error) {
       console.error(error);
       res.status(500).send({ status: "failed", message: "Internal Server Error" });

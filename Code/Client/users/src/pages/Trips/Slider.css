@@ -1,11 +1,16 @@
 .caption-style {
-    padding: 10px;
-    border-radius: 5px;
-    text-align: top;
-  }
-  
-  .caption-description {
-    font-size: 1.4em;
-    margin-bottom: 10px;
-  }
-  
+  padding: 10px;
+  border-radius: 5px;
+  text-align: top;
+}
+
+.caption-description {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+.carousel-item img {
+  height: 300px; /* Adjust the height as needed */
+  object-fit: cover; /* Maintain aspect ratio and crop if necessary */
+}
+
