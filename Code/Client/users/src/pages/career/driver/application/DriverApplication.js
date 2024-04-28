@@ -52,7 +52,7 @@ export default function DriverApplication() {
             driver_driving_license: drivingLicense,
         };
         console.log(driverFirstName, driverLastName, driver_location, vechicalType, termsAndCondition, profilePhoto,
-            cnicFrontSide, cnicBackSide, drivingLicense );
+            cnicFrontSide, cnicBackSide, drivingLicense);
 
         // Send combined data to server
         axios.post(`http://localhost:5000/api/driver/updateDriver/${driverEmail}`, combinedData)
@@ -66,31 +66,32 @@ export default function DriverApplication() {
             });
     };
 
-    return ( 
+    return (
         <>
             <MediumHeader />
             <div className={styles.application_container}>
-                <div className={styles.welcome_section}>
-                    <h1>Welcome, {driverFirstName}</h1>
-                    <p>Here's what you need to do to set up your account.</p>
-                </div>
+                <div className={styles.application_subcontainer}>
+                    <div className={styles.welcome_section}>
+                        <h1>Welcome, {driverFirstName}</h1>
+                        <p>Here's what you need to do to set up your account.</p>
+                    </div>
 
-                <div className={styles.application_form}>
-                    <Link to={"/driver_terms_and_conditions"}><h4>Terms and Conditions</h4></Link>
-                    <hr />
-                    <Link to={"/driver_photo"}><h4>Partner Photo</h4></Link>
-                    <hr />
-                    <Link to={"/upload_driver_cnic_front_side"}><h4>Upload CNIC Front Side</h4></Link>
-                    <hr />
-                    <Link to={"/upload_driver_cnic_back_side"}><h4>Upload CNIC Back Side</h4></Link>
-                    <hr />
-                    <Link to={"/driver_driving_license"}><h4>Driving License Photo</h4></Link>
-                </div>
+                    <div className={styles.application_form}>
+                        <Link to={"/driver_terms_and_conditions"}><h4>Terms and Conditions</h4></Link>
+                        <hr />
+                        <Link to={"/driver_photo"}><h4>Partner Photo</h4></Link>
+                        <hr />
+                        <Link to={"/upload_driver_cnic_front_side"}><h4>Upload CNIC Front Side</h4></Link>
+                        <hr />
+                        <Link to={"/upload_driver_cnic_back_side"}><h4>Upload CNIC Back Side</h4></Link>
+                        <hr />
+                        <Link to={"/driver_driving_license"}><h4>Driving License Photo</h4></Link>
+                    </div>
 
-                <div className={styles.welcome_section}>
-                    <button onClick={handleSubmit}>Submit Application</button>
+                    <div className={styles.footer_section}>
+                        <button onClick={handleSubmit}>Submit Application</button>
+                    </div>
                 </div>
-
             </div>
         </>
     );
