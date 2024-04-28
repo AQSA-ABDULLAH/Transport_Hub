@@ -8,24 +8,32 @@ import MediumHeader from '../../../../components/sections/header-medium/MediumHe
 
 export default function DriverVechicalSection() {
     const [selectedType, setSelectedType] = useState('');
-
-    const handleTypeSelection = (type) => {
-        setSelectedType(type);
-    };
     const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        selectedType: ''
+    });
+
+
+    const handleTypeSelection = (value) => {
+        setSelectedType(value);
+
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            selectedType: value
+        }));
+    };
+
 
     const backRedirect = () => {
-      navigate('/driver_location_section'); 
+        navigate('/driver_location_section');
     };
 
     const nextRedirect = () => {
         // Store the selected vehicle type in local storage
-        localStorage.setItem('driverVehicleType', selectedType);
-    
-        // Navigate to the next section of the form (/driver_application_form)
-        navigate('/driver_application_form'); 
+        localStorage.setItem('driverVehicleType', JSON.stringify(formData));
+        navigate('/driver_application_form');
     };
-    
+
 
     return (
         <>
