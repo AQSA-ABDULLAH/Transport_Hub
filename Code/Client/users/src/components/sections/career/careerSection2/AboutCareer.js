@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
+import styles from "../header/header.module.css";
 
 export default function AboutCareer() {
     return (
-        <div>
+        <div className={styles.about_section}>
             <h2>JOIN OUR TEAM</h2>
             <p>
-                Welcome to Truck It In! We are transforming Pakistan's road freight industry
+                Welcome to Transport Hub! We are transforming Pakistan's road freight industry
                 with innovative technology and efficient operations. Our core values drive us
                 every step of the way, guiding us toward success. We firmly believe we can only
                 win together, making a positive impact through our fast-moving and determined

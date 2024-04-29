@@ -4,9 +4,6 @@ import styles from "./Header.module.css";
 import Button from "../../atoms/button/Button";
 import { FaBars, FaUser, FaAngleDown } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
-import Parcelform from "../../Parcel/Parcelform";
-import PickupBoyForm from "../../Parcel/PickupBoyForm";
-import PickupboysLandingPage from "../../../pages/pickupboylandingpage/PickupboysLandingPage";
 import useUserAction from "../../../utils/customHooks/useUserAction";
 
 const Navbar = () => {

@@ -122,7 +122,7 @@ function AppRoutes() {
         <Route path="/RentalBooking" element={<RentalBookingPage/>}/>
 
         {/* GOOD SHIPMENT ROUTES */}
-        <Route path="/shipment_landing_page" ele-ment={<ShipmentLandingPage/>}/>
+        <Route path="/shipment_landing_page" element={<ShipmentLandingPage/>}/>
         <Route path="/create_shipment_form" element={<ShipmentForm/>}/>
         <Route path="/manage_shipments" element={<ManageShipments/>}/>
 
