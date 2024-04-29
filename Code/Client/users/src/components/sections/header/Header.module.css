@@ -68,16 +68,16 @@ li {
 }
 
 .navDropdown:hover .dropdownMenu {
-  display: block; /* Show the dropdown menu on hover */
+  display: block;
 }
 
 
 .dropdownMenu li {
-  padding: 8px 20px; /* Padding for dropdown items */
+  padding: 8px 20px;
   font-size: 14px;
-  color: #333; /* Text color for dropdown items */
+  color: #333;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out; /* Smooth background color transition */
+  transition: background-color 0.3s ease-in-out;
 }
 
 .dropdownMenu li:hover {
