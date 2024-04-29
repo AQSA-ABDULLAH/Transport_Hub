@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import Cookies from 'js-cookie';
 const PriceCalculator = ({ handleClose, tripId }) => {
   const QuantitySelector = ({ label, value, onIncrease, onDecrease }) => {
     return (
@@ -55,7 +56,7 @@ const PriceCalculator = ({ handleClose, tripId }) => {
       setInfants(infants - 1);
     }
   };
-  const totalGuests = adults * 300 + children * 200 + infants * 100;
+  const totalPrice = adults * 300 + children * 200 + infants * 100;
 
   const handleDateChange = (date) => {
     setStDate(date);
@@ -82,6 +83,26 @@ const PriceCalculator = ({ handleClose, tripId }) => {
 
     fetchTripDetails();
   }, [tripId]);
+  useEffect(() => {
+    if (depareCity !== null) {
+        Cookies.set('depareCity', depareCity);
+    }
+    if (stDate !== null) {
+        Cookies.set('departureDate', stDate.toString());
+    }
+    if (adults !== null) {
+        Cookies.set('adults', adults.toString());
+    }
+    if (children !== null) {
+        Cookies.set('children', children.toString());
+    }
+    if (infants !== null) {
+        Cookies.set('infants', infants.toString());
+    }
+    if (totalPrice !== null) {
+        Cookies.set('totalPrice', totalPrice.toString());
+    }
+}, [depareCity, stDate, adults, children, infants, totalPrice]);
 
   return (
     <Modal show={true} onHide={handleClose} animation={false} dialogClassName="custom-modal">
@@ -114,9 +135,9 @@ const PriceCalculator = ({ handleClose, tripId }) => {
             onChange={(e) => setDepareCity(e.target.value)}
           >
             <option>Select City</option>
-            <option>City 1</option>
-            <option>City 2</option>
-            <option>City 3</option>
+            <option value="Lahore">Lahore</option>
+            <option value="Islamabad">Islamabad</option>
+            <option value="faisalabad">faisalabad</option>
           </Form.Select>
         </div>
 
@@ -166,7 +187,7 @@ const PriceCalculator = ({ handleClose, tripId }) => {
 
         <div>
           <h5>Total Price:</h5>
-          <p>Rs{totalGuests}</p>
+          <p>Rs{totalPrice}</p>
         </div>
 
         <Button variant="primary">Book Now</Button>
@@ -210,11 +231,10 @@ const PriceCalculator = ({ handleClose, tripId }) => {
           Close
         </Button>
         
-        <Link to="/BookingForm">
-        <Button variant="primary">
-          Confirm Booking
-        </Button>
-        </Link>
+        <Link to={`/BookingForm/${tripId}`}>
+  <Button variant="primary">Confirm Booking</Button>
+</Link>
+
       </Modal.Footer>
     
     </Modal>

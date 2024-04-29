@@ -48,6 +48,8 @@ import PickupboysLandingPage from "../pages/pickupboylandingpage/PickupboysLandi
 import PickupBoyEmail from "../components/pickupboyregistration/emailpage/PickupboyEmail.js";
 import PickupBoyVerifyMail from "../components/pickupboyregistration/verifyemailpage/PickupBoyVerifyMain.js";
 import TripDetails from "../components/molecules/trips/TripDetails.js";
+import BookingForm from "../pages/Trips/BookingForm.js";
+import BookingPage from "../pages/Booking/BookingPage.js";
 
 
 
@@ -151,6 +153,10 @@ function AppRoutes() {
         <Route path="/trips_packages" element={<LandingTripPage/>} />
         <Route path="/tripDetails/:tripId" element={<TripDetails/>} />
         <Route path="/404" element={<NoRoute />} />      
+
+        {/* Booking  */}
+        <Route path="/BookingPage" element={<BookingPage/>} />
+        <Route path="/BookingForm/:tripId" element={<BookingForm/>} />
 
         <Route
           path="/signup"
