@@ -15,7 +15,6 @@ import { setSignedIn } from "../redux/containers/auth/actions";
 
 import LandingPage from "../pages/car-rental/LandingPage.js";
 import ViewCars from "../pages/car-rental/showCarsPage/ViewCars.js";
-import ExtendedDetailPage from '../pages/car-rental/showCarsPage/ViewCars.js';
 import RentalBookingPage from '../pages/car-rental/bookingPage/RentalBookingPage.js';
 import BlogsNews from "../pages/blogs&news/BlogsNews.js";
 import BlogsDetails from "../pages/blogs&news/BlogsDetails.js";
@@ -48,6 +47,7 @@ import PickupboysLandingPage from "../pages/pickupboylandingpage/PickupboysLandi
 import PickupBoyEmail from "../components/pickupboyregistration/emailpage/PickupboyEmail.js";
 import PickupBoyVerifyMail from "../components/pickupboyregistration/verifyemailpage/PickupBoyVerifyMain.js";
 import TripDetails from "../components/molecules/trips/TripDetails.js";
+import AddOnPage from "../pages/car-rental/addOnPage/AddOnPage.js";
 
 
 
@@ -118,7 +118,7 @@ function AppRoutes() {
         {/* CAR RENTAL ROUTES */}
         <Route path="/rental_landing_page" element={<LandingPage/>}/>
         <Route path="/viewCars" element={<ViewCars/>}/>
-        <Route path="/carAddOn" element={<ExtendedDetailPage/>}/>
+        <Route path="/carAddOn" element={<AddOnPage/>}/>
         <Route path="/RentalBooking" element={<RentalBookingPage/>}/>
 
         {/* GOOD SHIPMENT ROUTES */}
