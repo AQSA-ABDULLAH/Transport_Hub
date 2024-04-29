@@ -21,7 +21,11 @@ export default function DriverSection() {
                 </div>
                 <div className={style.content_section}>
                     <h2>We help Drivers with:</h2>
-                    <p>This is the driver section content.</p>
+                    <p>Hassle-free onboarding</p>
+                    <p>Largest load availability</p>
+                    <p>Transporter welfare</p>
+                    <p>Simplified ontime payments and settlements</p>
+                    <p>Most advanced Transporter dashboard</p>
                     <button onClick={handleRedirect}>Become a Driver</button>
                 </div>
             </div>
