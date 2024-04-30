@@ -16,13 +16,15 @@ export default function DriverEmail() {
       ...prevFormData,
       [name]: value
     }));
+    setEmail(value); // Update the email state separately
   };
+  
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     localStorage.setItem('driverEmail', JSON.stringify(formData));
-
+  
     try {
       const response = await axios.post("http://localhost:5000/api/driver/registration", { driverEmail: email });
       if (response.data.status === "success") {
@@ -39,6 +41,8 @@ export default function DriverEmail() {
       }
     }
   };
+  
+  
 
   return (
     <>
