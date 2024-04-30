@@ -37,7 +37,7 @@ export default function DriverLocation() {
     return (
         <>
             <div className={careerStyles.container}>
-                <div className={careerStyles.subContainer}>
+                <div className={`${careerStyles.subContainer} ${careerStyles.initialContainer}`}>
                     <MediumHeader />
                     <div className={styles.location}>
                         <h2>Earn with Transport Hub</h2>
