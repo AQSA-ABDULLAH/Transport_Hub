@@ -58,8 +58,8 @@ const TripsMain = () => {
         <div className="row mt-4 mx-3">
           {categoryData.map((item, index) => (
             <div className="col-md-4" key={index}>
-              <Card>
-                <Card.Img variant="top" src={item.images} />
+              <Card className="m-4">
+                <Card.Img variant="top" src={item.images} style={{ height: '150px' }}  />
                 <Card.Body>
                   <Card.Title className="fw-bold text-start">{item.category}</Card.Title>
                   <Card.Title className="fw-bold text-start">{item.tripTitle}</Card.Title>
