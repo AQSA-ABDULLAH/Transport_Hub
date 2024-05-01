@@ -29,15 +29,19 @@ function NewQuote() {
   const [itemWeight, setItemWeight] = useState('');
   const [dimensions, setDimensions] = useState({ length: '', width: '', height: '' });
 
+  // GET DATA FROM LOCAL STORAGE
   const pickupFacility = JSON.parse(localStorage.getItem('pickupFacility'));
   const pickupAddress = pickupFacility ? pickupFacility.pickupAddress : null;
-  
+
   const deliveryFacility = JSON.parse(localStorage.getItem('deliveryFacility'));
-  const deliveryAddress = deliveryFacility?.deliveryAddress;  
+  const deliveryAddress = deliveryFacility?.deliveryAddress;
 
   const stopFacility = JSON.parse(localStorage.getItem('stopFacility'));
-  const stopAddress = stopFacility ? stopFacility.stopAddress : null;  
+  const stopAddress = stopFacility ? stopFacility.stopAddress : null;
 
+
+
+  // SAVE DATA TO LOCAL STORAGE
   const saveQoute = () => {
     const formData = {
       commodityName,
@@ -49,6 +53,8 @@ function NewQuote() {
     localStorage.setItem('formData', JSON.stringify(formData));
   };
 
+
+  // CHANGE LOCAL STORAGE DAT ACCORDING TO MODE
   useEffect(() => {
     if (selectedMode !== 'FTL') {
       setSelectedEquipment('');
@@ -60,7 +66,6 @@ function NewQuote() {
     localStorage.setItem('ftlEquipmentData', JSON.stringify(data));
   };
 
-
   useEffect(() => {
     if (selectedMode !== 'LTL') {
       setSelectedVehicle('');
@@ -69,7 +74,6 @@ function NewQuote() {
       localStorage.setItem('ltlVehicleType', selectedVehicle);
     }
   }, [selectedMode, selectedVehicle]);
-
 
   useEffect(() => {
     if (selectedMode === 'flatbed') {
@@ -83,7 +87,6 @@ function NewQuote() {
       localStorage.removeItem('flatbedData');
     }
   }, [selectedMode, selectedDimensions, selectedTrapSize, trapSize]);
-
 
   useEffect(() => {
     if (selectedMode === 'parcel') {
@@ -100,7 +103,6 @@ function NewQuote() {
   const handleDimensionChange = (field) => (event) => {
     setDimensions(prev => ({ ...prev, [field]: event.target.value }));
   };
-
 
 
 

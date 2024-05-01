@@ -47,7 +47,7 @@ const Navbar = () => {
               SERVICES <FaAngleDown />
               {showDropdown && (
                 <ul className={styles.dropdownMenu}>
-                  <Link to="">
+                  <Link to="/trips_packages">
                     <li>Trip Packages</li>
                   </Link>
                   <Link to="/rental_landing_page">
