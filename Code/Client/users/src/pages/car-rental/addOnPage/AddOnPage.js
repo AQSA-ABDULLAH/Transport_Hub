@@ -3,12 +3,10 @@ import style from './ExtendedDetail.module.css';
 import AddOnsCard from "../../../components/sections/car-rental/add-ons/AddOnsCard"
 import BookCarCard from '../../../components/molecules/car-rental/priceCard/BookCarCard';
 
-export default function ExtendedDetailPage() {
-
-
-    return (
-        <>
-            <div className={style.container}>
+function AddOnPage() {
+  return (
+    <div>
+        <div className={style.container}>
                 <div className={style.addOnContainer}>
                     <AddOnsCard />
                 </div>
@@ -16,7 +14,8 @@ export default function ExtendedDetailPage() {
                     <BookCarCard/>
                 </div>
             </div>
-        </>
-    );
+    </div>
+  )
 }
 
+export default AddOnPage

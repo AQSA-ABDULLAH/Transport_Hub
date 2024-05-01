@@ -3,9 +3,9 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Tab } from "../../constants/EmployeesManagmentTab";
 import styles from "./employee.module.css";
 import Pickupboyform from "../../components/molecules/pickupboyforms/Pickupboyform"
-import Driver from "../../components/molecules/pickupboyforms/Driver";
-import Transporter from "../../components/molecules/pickupboyforms/Transporter"
 import Button from "../../components/atoms/buttons/Button"
+import DriverTab from "./tabs/drivers/DriverTab";
+import TransporterTab from "./tabs/transporters/TransporterTab";
 
 const EmployeeManagement= () => {
     const navigate = useNavigate();
@@ -47,16 +47,16 @@ const EmployeeManagement= () => {
         case 0:
           return <Pickupboyform/>
         case 1:
-          return <Driver/>
+          return <DriverTab/>
         case 2:
-          return <Transporter/>
+          return <TransporterTab/>
         default:
           return null;
       }
     };
   
     return (
-      <div className={styles.container}>
+      <div className={styles.employee_container}>
         <div className={styles.tabBar}>
           <div className={styles.scrollableTab}>
             {Tab.map((item, index) => {

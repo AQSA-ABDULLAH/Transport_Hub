@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 
 export default function DriverPhoto() {
     const [image, setImage] = useState('');
-    const [imgperc, setImagePrec] = useState("");
+    const [imgperc, setImagePrec] = useState(0); // Initialize progress to 0
     const [imageUrl, setImageUrl] = useState("");
     const navigate = useNavigate();
 
@@ -81,6 +81,9 @@ export default function DriverPhoto() {
                                 />
 
                                 <div className={careerStyles.driver_image_view}>
+                                    {imgperc > 0 && imgperc < 100 ? (
+                                        <progress value={imgperc} max="100" />
+                                    ) : null}
                                     {image ? (
                                         <img
                                             src={URL.createObjectURL(image)}
