@@ -1,15 +1,37 @@
 const Shipment = require("../../models/Shipment");
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const axios = require("axios")
 
 class ShipmentController {
     static async shipment(req, res) {
         console.log('Received form data:', req.body);
-        const { commodityName, selectedMode, pickupDate, moreDetails } = req.body;
+        const { commodityName, selectedMode, pickupDate, moreDetails, pickupFirstName, pickupLastName,
+            pickupEmail, pickupPhone, pickupCity, pickupZipcode, pickupAddress, pickupInstruction,
+            deliveryFirstName, deliveryLastName, deliveryEmail, deliveryPhone, deliveryCity, deliveryZipcode,
+            deliveryAddress, deliveryInstruction } = req.body;
 
         try {
             const shipment = new Shipment({
-                commodityName, selectedMode, pickupDate, moreDetails
+                commodityName, selectedMode, pickupDate, moreDetails, pickupFirstName, pickupLastName,
+                pickupEmail, pickupPhone, pickupCity, pickupZipcode, pickupAddress, pickupInstruction,
+                deliveryFirstName, deliveryLastName, deliveryEmail, deliveryPhone, deliveryCity, deliveryZipcode,
+                deliveryAddress, deliveryInstruction
             });
+
+            try{
+                const apikey = process.env.GOOGLE_API_KEY;
+
+                const apiUrl = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${pickupCity}&destinations=${deliveryCity}&key=${apikey}`;
+
+
+            const response = await axios.get(apiUrl);
+            console.log(response.data)
+            console.log(response.data.rows[0].elements);
+            }catch (error){
+                console.log(error);
+            }
+            
 
             await shipment.save();
             res.status(201).json({ status: "success", message: "Data saved successfully" });
