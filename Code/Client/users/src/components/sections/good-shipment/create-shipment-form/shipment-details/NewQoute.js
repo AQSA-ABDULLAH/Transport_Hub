@@ -47,13 +47,18 @@ function NewQuote() {
 
 
   // SAVE DATA TO LOCAL STORAGE
+  // SAVE DATA TO LOCAL STORAGE
   const saveQoute = () => {
-    // Get pickup facility data from local storage
+    // Get data from local storage
     const pickupFacility = JSON.parse(localStorage.getItem('pickupFacility'));
+    const deliveryFacility = JSON.parse(localStorage.getItem('deliveryFacility')); // Corrected variable name
+    const stopFacility = JSON.parse(localStorage.getItem('stopFacility'));
 
-    // Combine pickup facility data with form data
+    // Combine local storage data with form data
     const formData = {
-      ...pickupFacility, // Include pickup facility data
+      ...pickupFacility,
+      ...deliveryFacility,
+      ...stopFacility,
       commodityName,
       selectedMode,
       pickupDate,
@@ -67,7 +72,7 @@ function NewQuote() {
         console.log('Data sent successfully:', response.data);
         console.log(formData);
         Swal.fire('Success!', 'Your Shipment has been create succesfully created.', 'success');
-        navigate("/");
+        navigate("/create_shipment_form");
       })
       .catch(error => {
         console.error('Failed to send data:', error.response ? error.response.data : error.message);

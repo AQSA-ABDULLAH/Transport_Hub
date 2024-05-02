@@ -14,6 +14,7 @@ const ShipmentSchema = new mongoose.Schema({
     pickupZipcode: { type: Number, trim: true },
     pickupAddress: { type: String, trim: true },
     pickupInstruction: { type: String, trim: true },
+
     deliveryFirstName: { type: String, trim: true },
     deliveryLastName: { type: String, trim: true },
     deliveryEmail: { type: String, trim: true },
@@ -22,8 +23,18 @@ const ShipmentSchema = new mongoose.Schema({
     deliveryZipcode: { type: Number, trim: true },
     deliveryAddress: { type: String, trim: true },
     deliveryInstruction: { type: String, trim: true },
-    deliveryDate: { type: Date },
 
+    stopFirstName: { type: String, trim: true },
+    stopLastName: { type: String, trim: true },
+    stopEmail: { type: String, trim: true },
+    stopPhone: { type: Number, trim: true },
+    stopCity: { type: String, trim: true },
+    stopZipcode: { type: Number, trim: true },
+    stopAddress: { type: String, trim: true },
+    stopInstruction: { type: String, trim: true },
+    stopType: { type: String, trim: true },
+
+    deliveryDate: {type: Date},
     duration: { type: Number, default: 300 },
     timer: { type: Number, default: 300 },
     
