@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const ShipmentSchema = new mongoose.Schema({
     commodityName: { type: String, trim: true },
-    selectedMode: { type: String},
-    pickupDate: { type: String},
+    selectedMode: { type: String },
+    pickupDate: { type: Date },
     moreDetails: { type: String, trim: true },
     pickupFirstName: { type: String, trim: true },
     pickupLastName: { type: String, trim: true },
@@ -22,6 +22,42 @@ const ShipmentSchema = new mongoose.Schema({
     deliveryZipcode: { type: Number, trim: true },
     deliveryAddress: { type: String, trim: true },
     deliveryInstruction: { type: String, trim: true },
+    deliveryDate: { type: Date },
+
+    duration: { type: Number, default: 300 },
+    timer: { type: Number, default: 300 },
+    
+    biddingEnded: {
+        type: Boolean,
+        default: false,
+      },
+    bids: [
+        {
+            transporter: {
+                type:  mongoose.Schema.Types.ObjectId,
+                ref: 'Transporter',
+            },
+            bidamount: {
+                type: Number,
+            },
+            status: {
+                type: Boolean,
+                default: false
+            },
+            time: {
+                type: Date,
+                default: Date.now,
+            },
+        },
+    ],
+    createShipment: {
+        type:  mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+    },
+    shippedBy: {
+        type:  mongoose.Schema.Types.ObjectId,
+        ref: 'Transporter',
+    },
 
 }, {
     timestamps: true

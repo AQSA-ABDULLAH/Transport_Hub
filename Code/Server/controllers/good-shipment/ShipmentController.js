@@ -9,28 +9,28 @@ class ShipmentController {
         const { commodityName, selectedMode, pickupDate, moreDetails, pickupFirstName, pickupLastName,
             pickupEmail, pickupPhone, pickupCity, pickupZipcode, pickupAddress, pickupInstruction,
             deliveryFirstName, deliveryLastName, deliveryEmail, deliveryPhone, deliveryCity, deliveryZipcode,
-            deliveryAddress, deliveryInstruction } = req.body;
+            deliveryAddress, deliveryInstruction, bids  } = req.body;
 
         try {
             const shipment = new Shipment({
                 commodityName, selectedMode, pickupDate, moreDetails, pickupFirstName, pickupLastName,
                 pickupEmail, pickupPhone, pickupCity, pickupZipcode, pickupAddress, pickupInstruction,
                 deliveryFirstName, deliveryLastName, deliveryEmail, deliveryPhone, deliveryCity, deliveryZipcode,
-                deliveryAddress, deliveryInstruction
+                deliveryAddress, deliveryInstruction, bids 
             });
 
-            try{
-                const apikey = process.env.GOOGLE_API_KEY;
+            // try{
+            //     const apikey = process.env.GOOGLE_API_KEY;
 
-                const apiUrl = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${pickupCity}&destinations=${deliveryCity}&key=${apikey}`;
+            //     const apiUrl = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${pickupCity}&destinations=${deliveryCity}&key=${apikey}`;
 
 
-            const response = await axios.get(apiUrl);
-            console.log(response.data)
-            console.log(response.data.rows[0].elements);
-            }catch (error){
-                console.log(error);
-            }
+            // const response = await axios.get(apiUrl);
+            // console.log(response.data)
+            // console.log(response.data.rows[0].elements);
+            // }catch (error){
+            //     console.log(error);
+            // }
             
 
             await shipment.save();

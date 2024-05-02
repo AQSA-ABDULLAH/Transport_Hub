@@ -5,8 +5,8 @@ const transporterSchema = new mongoose.Schema({
     email: { type: String, trim: true },
     password: { type: String, required: true, trim: true },
     otp: {
-        type:Number,
-        required:true
+        type: Number,
+        required: true
     },
     is_verified: { type: Boolean, default: false },
     tokens: [
@@ -16,6 +16,18 @@ const transporterSchema = new mongoose.Schema({
                 required: true
             }
         }
+    ],
+    bids: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: 'ad',
+        },
+    ],
+    shipment: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: 'ad',
+        },
     ],
     createdAt: {
         type: Date,
