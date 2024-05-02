@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 import QouteFooter from '../../../../molecules/create-shipment/quote-footer/QouteFooter';
 import styles from './newqoute.module.css';
 import LTLForm from '../../../../molecules/create-shipment/quote-mode/LTLForm';
@@ -8,8 +10,11 @@ import Parcel from '../../../../molecules/create-shipment/quote-mode/Parcel';
 import PickupAddress from '../pickup-facility/PickupAddress';
 import DeliveryAddress from '../delivery-facility/DeliveryAddress';
 import StopAddress from '../stop-facility/StopAddress';
+import { useNavigate } from 'react-router-dom';
 
 function NewQuote() {
+  const navigate = useNavigate();
+
   const [isPickupFacility, setIsPickupFacility] = useState(false);
   const [isDeliveryFacility, setIsDeliveryFacility] = useState(false);
   const [isStopFacility, setIsStopFacility] = useState(false);
@@ -43,15 +48,32 @@ function NewQuote() {
 
   // SAVE DATA TO LOCAL STORAGE
   const saveQoute = () => {
+    // Get pickup facility data from local storage
+    const pickupFacility = JSON.parse(localStorage.getItem('pickupFacility'));
+
+    // Combine pickup facility data with form data
     const formData = {
+      ...pickupFacility, // Include pickup facility data
       commodityName,
       selectedMode,
       pickupDate,
       stopType,
       moreDetails,
     };
-    localStorage.setItem('formData', JSON.stringify(formData));
+
+    // Send combined data to server
+    axios.post('http://localhost:5000/api/shipment/book-shipment', formData)
+      .then(response => {
+        console.log('Data sent successfully:', response.data);
+        console.log(formData);
+        Swal.fire('Success!', 'Your Shipment has been create succesfully created.', 'success');
+        navigate("/");
+      })
+      .catch(error => {
+        console.error('Failed to send data:', error.response ? error.response.data : error.message);
+      });
   };
+
 
 
   // CHANGE LOCAL STORAGE DAT ACCORDING TO MODE
