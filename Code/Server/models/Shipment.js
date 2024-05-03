@@ -37,6 +37,7 @@ const ShipmentSchema = new mongoose.Schema({
     deliveryDate: {type: Date},
     duration: { type: Number, default: 300 },
     timer: { type: Number, default: 300 },
+    status: { type: String, default: "pending" },
     
     biddingEnded: {
         type: Boolean,

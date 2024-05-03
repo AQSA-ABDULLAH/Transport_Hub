@@ -1,5 +1,7 @@
 .view_shipment h1{
     padding-bottom: 18px;
+    font-size: 25px;
+    font-weight: 700;
 }
 .view_shipment{
     height: 80vh;

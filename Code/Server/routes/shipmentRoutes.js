@@ -6,8 +6,8 @@ require("../db/connection");
 
 // Define the POST route for booking a rental
 router.post("/book-shipment", ShipmentController.shipment);
-router.get("/get-shipment", ShipmentController.getShipment );
-router.get("/get-shipment/:id", ShipmentController.getAllShipments);
+router.get("/get-shipment/:id", ShipmentController.getShipment );
+router.get("/get-shipment", ShipmentController.getAllShipments);
 // router.delete("/deleteCar/:id", CarsController.deletecar);
 // router.patch("/updateCar/:id", CarsController.updateCar);
 

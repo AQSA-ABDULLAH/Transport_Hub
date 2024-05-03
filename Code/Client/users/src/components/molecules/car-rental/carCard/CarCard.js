@@ -11,8 +11,8 @@ import FiltersCard from "../filterCard/FiltersCard";
 
 function CarCard() {
     const [product, setProduct] = useState([]);
-    const navigate = useNavigate(); // Changed navigator to navigate
-    const [totalDays, setTotalDays] = useState(1); // Initialize total days to 1
+    const navigate = useNavigate();
+    const [totalDays, setTotalDays] = useState(1);
 
     useEffect(() => {
         axios.get("http://localhost:5000/api/cars/getCars")

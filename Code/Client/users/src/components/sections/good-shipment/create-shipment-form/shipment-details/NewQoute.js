@@ -45,15 +45,13 @@ function NewQuote() {
   const stopAddress = stopFacility ? stopFacility.stopAddress : null;
 
 
-
-  // SAVE DATA TO LOCAL STORAGE
-  // SAVE DATA TO LOCAL STORAGE
+  // SEND DATA TO SERVER STORAGE
   const saveQoute = () => {
     // Get data from local storage
     const pickupFacility = JSON.parse(localStorage.getItem('pickupFacility'));
     const deliveryFacility = JSON.parse(localStorage.getItem('deliveryFacility')); // Corrected variable name
     const stopFacility = JSON.parse(localStorage.getItem('stopFacility'));
-
+  
     // Combine local storage data with form data
     const formData = {
       ...pickupFacility,
@@ -65,20 +63,24 @@ function NewQuote() {
       stopType,
       moreDetails,
     };
-
+  
     // Send combined data to server
     axios.post('http://localhost:5000/api/shipment/book-shipment', formData)
       .then(response => {
         console.log('Data sent successfully:', response.data);
         console.log(formData);
-        Swal.fire('Success!', 'Your Shipment has been create succesfully created.', 'success');
-        navigate("/create_shipment_form");
+        Swal.fire('Success!', 'Your Shipment has been create succesfully created.', 'success')
+          .then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload(); // Reload the page
+            }
+          });
       })
       .catch(error => {
         console.error('Failed to send data:', error.response ? error.response.data : error.message);
       });
   };
-
+  
 
 
   // CHANGE LOCAL STORAGE DAT ACCORDING TO MODE
