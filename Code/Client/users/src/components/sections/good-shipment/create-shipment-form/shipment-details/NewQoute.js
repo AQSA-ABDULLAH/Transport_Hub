@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Swal from 'sweetalert2';
 import QouteFooter from '../../../../molecules/create-shipment/quote-footer/QouteFooter';
 import styles from './newqoute.module.css';
 import LTLForm from '../../../../molecules/create-shipment/quote-mode/LTLForm';
@@ -45,41 +43,24 @@ function NewQuote() {
   const stopAddress = stopFacility ? stopFacility.stopAddress : null;
 
 
-  // SEND DATA TO SERVER STORAGE
-  const saveQoute = () => {
-    // Get data from local storage
-    const pickupFacility = JSON.parse(localStorage.getItem('pickupFacility'));
-    const deliveryFacility = JSON.parse(localStorage.getItem('deliveryFacility')); // Corrected variable name
-    const stopFacility = JSON.parse(localStorage.getItem('stopFacility'));
-  
-    // Combine local storage data with form data
-    const formData = {
-      ...pickupFacility,
-      ...deliveryFacility,
-      ...stopFacility,
-      commodityName,
-      selectedMode,
-      pickupDate,
-      stopType,
-      moreDetails,
-    };
-  
-    // Send combined data to server
-    axios.post('http://localhost:5000/api/shipment/book-shipment', formData)
-      .then(response => {
-        console.log('Data sent successfully:', response.data);
-        console.log(formData);
-        Swal.fire('Success!', 'Your Shipment has been create succesfully created.', 'success')
-          .then((result) => {
-            if (result.isConfirmed) {
-              window.location.reload(); // Reload the page
-            }
-          });
-      })
-      .catch(error => {
-        console.error('Failed to send data:', error.response ? error.response.data : error.message);
-      });
+// SEND DATA TO LOCAL STORAGE
+const saveQoute = () => {
+  const formData = {
+    commodityName,
+    selectedMode,
+    pickupDate,
+    stopType,
+    moreDetails,
   };
+
+  // Save form data to local storage
+  localStorage.setItem('quoteData', JSON.stringify(formData));
+
+  // Reload the page
+  window.location.reload();
+};
+
+  
   
 
 

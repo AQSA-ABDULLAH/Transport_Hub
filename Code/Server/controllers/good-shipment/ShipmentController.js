@@ -10,7 +10,7 @@ class ShipmentController {
             pickupEmail, pickupPhone, pickupCity, pickupZipcode, pickupAddress, pickupInstruction,
             deliveryFirstName, deliveryLastName, deliveryEmail, deliveryPhone, deliveryCity, deliveryZipcode,
             deliveryAddress, deliveryInstruction, stopFirstName, stopLastName, stopEmail, stopPhone, stopCity, 
-            stopZipcode, stopAddress, stopInstruction, stopType, bids  } = req.body;
+            stopZipcode, stopAddress, stopInstruction, stopType, bids, status  } = req.body;
 
         try {
             const shipment = new Shipment({
@@ -18,7 +18,7 @@ class ShipmentController {
                 pickupEmail, pickupPhone, pickupCity, pickupZipcode, pickupAddress, pickupInstruction,
                 deliveryFirstName, deliveryLastName, deliveryEmail, deliveryPhone, deliveryCity, deliveryZipcode,
                 deliveryAddress, deliveryInstruction, stopFirstName, stopLastName, stopEmail, stopPhone, stopCity, 
-                stopZipcode, stopAddress, stopInstruction, stopType, bids 
+                stopZipcode, stopAddress, stopInstruction, stopType, bids, status
             });
 
             // try{
