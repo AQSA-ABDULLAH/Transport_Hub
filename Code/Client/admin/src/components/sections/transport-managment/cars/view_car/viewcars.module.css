@@ -51,3 +51,26 @@
 }
 
   
+/* SHIPMENT STLYE */
+.shipment_container{
+  padding: 40px 70px;
+}
+.shipmentID{
+  width: 20%;
+  word-break: break-all;
+}
+
+.cancel_button{
+  border-radius: 3px;
+    border: 1px solid;
+    padding: 2px 4px;
+    font-size: 13px;
+    font-weight: 500;
+    background-color: white;
+    color: black;
+}
+
+.shipment_container button:hover {
+  background-color: #dad8d8;
+  cursor: pointer;
+}

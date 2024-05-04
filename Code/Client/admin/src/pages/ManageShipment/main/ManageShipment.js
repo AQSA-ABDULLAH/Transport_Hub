@@ -5,6 +5,7 @@ import styles from "../../TransportManagment/main/Transport.module.css";
 import Button from "../../../components/atoms/buttons/Button";
 import Qoute from "../tabs/qoute/Qoute";
 import Shipments from "../tabs/shipments/Shipments";
+import ActiveBidding from "../tabs/bidding/ActiveBidding";
 
 const ManageShipment = () => {
   const navigate = useNavigate();
@@ -47,6 +48,8 @@ const ManageShipment = () => {
         return <Shipments/>
       case 1:
         return <Qoute/>
+      case 2:
+        return <ActiveBidding/>
       default:
         return null;
     }

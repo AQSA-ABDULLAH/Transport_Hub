@@ -1,6 +1,6 @@
 export const Tab = [
     {
-        text: "Shipment",
+        text: "Shipment : All",
         onClick: '/shipment'
     },
     {

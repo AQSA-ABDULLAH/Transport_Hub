@@ -3,7 +3,7 @@ import axios from 'axios';
 import { FaEdit } from "react-icons/fa";
 import styles from "../../../../components/sections/transport-managment/cars/view_car/viewcars.module.css";
 
-export default function Shipments() {
+export default function ActiveBidding() {
   const [product, setProduct] = useState([]);
 
   // Function to format date
@@ -20,7 +20,9 @@ export default function Shipments() {
     axios.get("http://localhost:5000/api/shipment/get-shipment")
       .then(res => {
         console.log(res.data);
-        setProduct(res.data.data);
+        // Filter shipments with status "booked by admin"
+        const bookedShipments = res.data.data.filter(item => item.status === "active bidding");
+        setProduct(bookedShipments);
       })
       .catch(err => {
         console.log(err);
