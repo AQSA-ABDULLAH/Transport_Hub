@@ -34,6 +34,7 @@ function NewQuote() {
   const [width, setWidth] = useState('');
   const [height, setHeight] = useState('');
   const [formData, setFormData] = useState('');
+  const [temperature, setTemperature] = useState('');
 
 
 
@@ -48,22 +49,22 @@ function NewQuote() {
   const stopAddress = stopFacility ? stopFacility.stopAddress : null;
 
 
-// SEND DATA TO LOCAL STORAGE
-const saveQoute = () => {
-  const formData = {
-    commodityName,
-    selectedMode,
-    pickupDate,
-    stopType,
-    moreDetails,
+  // SEND DATA TO LOCAL STORAGE
+  const saveQoute = () => {
+    const formData = {
+      commodityName,
+      selectedMode,
+      pickupDate,
+      stopType,
+      moreDetails,
+    };
+
+    // Save form data to local storage
+    localStorage.setItem('quoteData', JSON.stringify(formData));
   };
 
-  // Save form data to local storage
-  localStorage.setItem('quoteData', JSON.stringify(formData));
-};
 
-  
-  
+
 
 
   // CHANGE LOCAL STORAGE DAT ACCORDING TO MODE
@@ -73,8 +74,8 @@ const saveQoute = () => {
       localStorage.removeItem('ftlEquipmentData');
     }
   }, [selectedMode, selectedEquipment]);
-  const saveFTLEquipment = (equipment, details) => {
-    const data = { equipment, details };
+  const saveFTLEquipment = (equipment, length, temperature) => {
+    const data = { equipment, length, temperature };
     localStorage.setItem('ftlEquipmentData', JSON.stringify(data));
   };
 
@@ -176,20 +177,23 @@ const saveQoute = () => {
           </div>
 
           <div>
-             {selectedMode === 'LTL' && (
+            {selectedMode === 'LTL' && (
               <LTLForm
                 formData={formData}
                 setFormData={setFormData}
               />
-            
+
             )}
-            {selectedMode === 'FTL' && (
-              <FTLForm
-                selectedEquipment={selectedEquipment}
-                setSelectedEquipment={setSelectedEquipment}
-                saveFTLEquipment={saveFTLEquipment}
-              />
-            )}
+            <FTLForm
+              selectedEquipment={selectedEquipment}
+              setSelectedEquipment={setSelectedEquipment}
+              saveFTLEquipment={saveFTLEquipment}
+              length={length}  
+              setLength={setLength}
+              temperature={temperature}
+              setTemperature={setTemperature} 
+            />
+
             {selectedMode === 'flatbed' && (
               <Flatbed
                 setSelectedDimensions={setSelectedDimensions}
@@ -200,23 +204,23 @@ const saveQoute = () => {
                 trapSize={trapSize}
               />
             )}
-  
-              {selectedMode === 'parcel' && (
-                <Parcel
-                  handlingItems={handlingItems}
-                  setHandlingItems={setHandlingItems}
-                  itemWeight={itemWeight}
-                  setItemWeight={setItemWeight}
-                  length={length}
-                  setLength={setLength}
-                  width={width}
-                  setWidth={setWidth}
-                  height={height}
-                  setHeight={setHeight}
-                />
-              )}
-              
-          
+
+            {selectedMode === 'parcel' && (
+              <Parcel
+                handlingItems={handlingItems}
+                setHandlingItems={setHandlingItems}
+                itemWeight={itemWeight}
+                setItemWeight={setItemWeight}
+                length={length}
+                setLength={setLength}
+                width={width}
+                setWidth={setWidth}
+                height={height}
+                setHeight={setHeight}
+              />
+            )}
+
+
           </div>
 
           {/* ADD PICKUP DETAILS */}
