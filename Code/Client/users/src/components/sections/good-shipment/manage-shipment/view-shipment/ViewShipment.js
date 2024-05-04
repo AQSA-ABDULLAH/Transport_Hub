@@ -7,6 +7,16 @@ import { useNavigate } from 'react-router-dom';
 export default function ViewShipment() {
     const navigate = useNavigate();
 
+    const pickupFacility = JSON.parse(localStorage.getItem('pickupFacility'));
+    const deliveryFacility = JSON.parse(localStorage.getItem('deliveryFacility'));
+    const stopFacility = JSON.parse(localStorage.getItem('stopFacility'));
+    const qouteData = JSON.parse(localStorage.getItem('quoteData'));
+    const ltlVehicleType = JSON.parse(localStorage.getItem('ltlVehicleType'));
+    const ftlEquipmentData = JSON.parse(localStorage.getItem('ftlEquipmentData'));
+    const flatbedData = JSON.parse(localStorage.getItem('flatbedData'));
+    const parcelData = JSON.parse(localStorage.getItem('parcelData'));
+
+
     const bookShipment = () => {
         console.log("Book Shipment");
         const pickupFacility = JSON.parse(localStorage.getItem('pickupFacility'));
@@ -96,153 +106,221 @@ export default function ViewShipment() {
         <>
             <div className={styles.view_shipment}>
                 <h1>Quotes / QT5BYDLKH</h1>
-                <div className={styles.shipment_row}>
-                    <div className={styles.shipment_content}>
-                        <h3>Mode</h3>
-                        <p>fgdgd</p>
+                <div className={styles.shipment_details}>
+                    <h2>Quote Details:</h2>
+                    <div className={styles.shipment_row}>
+                        <div className={styles.shipment_content}>
+                            <h3>Commodity Name</h3>
+                            <p>{qouteData.commodityName}</p>
+                        </div>
+                        <div className={styles.shipment_content}>
+                            <h3>Selected Mode</h3>
+                            <p>{qouteData.selectedMode}</p>
+                        </div>
                     </div>
-                    <div className={styles.shipment_content}>
-                        <h3>Pickup date</h3>
-                        <p>fdgd</p>
+                    <div className={styles.shipment_row}>
+                        <div className={styles.shipment_content}>
+                            <h3>Pickup Date</h3>
+                            <p>{qouteData.pickupDate}</p>
+                        </div>
+                        <div className={styles.bid_deadline}>
+                            <h3>Bid deadline</h3>
+                            <p>Apr 22, 2024 @ 4:59 AM</p>
+                        </div>
                     </div>
-                </div>
 
-                <div className={styles.shipment_row}>
-                    <div className={styles.shipment_content}>
-                        <h3>Pickup city</h3>
-                        <p>dgfdg</p>
-                    </div>
-                    <div className={styles.shipment_content}>
-                        <h3>Delivery city</h3>
-                        <p>fdgd</p>
-                    </div>
-                </div>
+                    {qouteData.selectedMode === "LTL" && (
+                        <div className={styles.shipment_row}>
+                            <div className={styles.shipment_content}>
+                                <h3>Vechical type</h3>
+                                <p>Buckets</p>
+                            </div>
+                        </div>
+                    )}
+                    {qouteData.selectedMode === "FTL" && (
+                        <div className={styles.shipment_row}>
+                            <div className={styles.shipment_content}>
+                                <h3> Equipment </h3>
+                                <p>Buckets</p>
+                            </div>
+                            <div className={styles.shipment_content}>
+                                <h3>Length</h3>
+                                <p>fdgd</p>
+                            </div>
+                            <div className={styles.shipment_content}>
+                                <h3> Temperature </h3>
+                                <p>fdgd</p>
+                            </div>
+                        </div>
 
-                <div className={styles.bid_deadline}>
-                    <h3>Bid deadline</h3>
-                    <p>Apr 22, 2024 @ 4:59 AM</p>
+                    )}
+
+                    {qouteData.selectedMode === "Flatbed" && (
+
+                        <div className={styles.shipment_row}>
+                            <div className={styles.shipment_content}>
+                                <h3> Dimensions </h3>
+                                <p>Buckets</p>
+                            </div>
+                            <div className={styles.shipment_content}>
+                                <h3>Trap</h3>
+                                <p>fdgd</p>
+                            </div>
+                            <div className={styles.shipment_content}>
+                                <h3> Trap Size </h3>
+                                <p>fdgd</p>
+                            </div>
+                        </div>
+                    )}
+
+                    {qouteData.selectedMode === "Parcel" && (
+                        <div className={styles.shipment_row}>
+                            <div className={styles.shipment_content}>
+                                <h3> Handling items</h3>
+                                <p>Buckets</p>
+                            </div>
+                            <div className={styles.shipment_content}>
+                                <h3>Item weight</h3>
+                                <p>fdgd</p>
+                            </div>
+                            <div className={styles.shipment_content}>
+                                <h3> Length </h3>
+                                <p>fdgd</p>
+                            </div>
+                            <div className={styles.shipment_content}>
+                                <h3> Width </h3>
+                                <p>fdgd</p>
+                            </div>
+                            <div className={styles.shipment_content}>
+                                <h3> Height </h3>
+                                <p>fdgd</p>
+                            </div>
+                        </div>
+                    )}
+
+                    <div className={styles.shipment_content}>
+                        <h3>More Details</h3>
+                        <p>{qouteData.moreDetails}</p>
+                    </div>
                 </div>
 
                 <div className={styles.shipment_details}>
-                    <h2>Shipment Details</h2>
-                    <div>
-                        <h3>Commodity name</h3>
-                        <p>Buckets</p>
-                    </div>
-                </div>
-
-                <div>
-                    <h2>Pickup Details</h2>
+                    <h2>Pickup Details:</h2>
                     <div className={styles.shipment_row}>
                         <div className={styles.shipment_content}>
                             <h3>First name</h3>
-                            <p>Aqsa</p>
+                            <p>{pickupFacility.pickupFirstName}</p>
                         </div>
                         <div className={styles.shipment_content}>
                             <h3>Last name</h3>
-                            <p>Abdullah</p>
+                            <p>{pickupFacility.pickupLastName}</p>
                         </div>
                     </div>
                     <div className={styles.shipment_row}>
                         <div className={styles.shipment_content}>
                             <h3>Email</h3>
-                            <p>aqsaabdullah38403@gmail.com</p>
+                            <p>{pickupFacility.pickupEmail}</p>
                         </div>
                         <div className={styles.shipment_content}>
                             <h3>Phone no</h3>
-                            <p>0321-6023836</p>
+                            <p>{pickupFacility.pickupPhone}</p>
                         </div>
                     </div>
                     <div className={styles.shipment_row}>
                         <div className={styles.shipment_content}>
                             <h3>City</h3>
-                            <p>Wah Cantt</p>
+                            <p>{pickupFacility.pickupCity}</p>
                         </div>
                         <div className={styles.shipment_content}>
                             <h3>Zipcode</h3>
-                            <p>40075</p>
+                            <p>{pickupFacility.pickupZipcode}</p>
                         </div>
                     </div>
                     <div className={styles.shipment_content}>
                         <h3>Pickup address</h3>
-                        <p>Sector 23 G / Quarter 12 Wah Cantt</p>
+                        <p>{pickupFacility.pickupAddress}</p>
                     </div>
                 </div>
 
-                <div className={styles.shipment_content}>
-                    <h2>Delivery Details</h2>
+
+                <div className={styles.shipment_details}>
+                    <h2>Delivery Details:</h2>
                     <div className={styles.shipment_row}>
                         <div className={styles.shipment_content}>
                             <h3>First name</h3>
-                            <p>Aqsa</p>
+                            <p>{deliveryFacility.deliveryFirstName}</p>
                         </div>
                         <div className={styles.shipment_content}>
                             <h3>Last name</h3>
-                            <p>Abdullah</p>
+                            <p>{deliveryFacility.deliveryLastName}</p>
                         </div>
                     </div>
                     <div className={styles.shipment_row}>
                         <div className={styles.shipment_content}>
                             <h3>Email</h3>
-                            <p>aqsaabdullah38403@gmail.com</p>
+                            <p>{deliveryFacility.deliveryEmail}</p>
                         </div>
                         <div className={styles.shipment_content}>
                             <h3>Phone no</h3>
-                            <p>0321-6023836</p>
+                            <p>{deliveryFacility.deliveryPhone}</p>
                         </div>
                     </div>
                     <div className={styles.shipment_row}>
                         <div className={styles.shipment_content}>
                             <h3>City</h3>
-                            <p>Wah Cantt</p>
+                            <p>{deliveryFacility.deliveryCity}</p>
                         </div>
                         <div className={styles.shipment_content}>
                             <h3>Zipcode</h3>
-                            <p>40075</p>
+                            <p>{deliveryFacility.deliveryZipcode}</p>
                         </div>
                     </div>
                     <div className={styles.shipment_content}>
                         <h3>Delivery address</h3>
-                        <p>Sector 23 G / Quarter 12 Wah Cantt</p>
+                        <p>{deliveryFacility.deliveryAddress}</p>
                     </div>
                 </div>
-                <div className={styles.shipment_content}>
-                    <h2>Stop Details</h2>
+
+
+
+                <div className={styles.shipment_details}>
+                    <h2>Stop Details:</h2>
                     <div className={styles.shipment_row}>
                         <div className={styles.shipment_content}>
                             <h3>First name</h3>
-                            <p>Aqsa</p>
+                            <p>{stopFacility.stopFirstName}</p>
                         </div>
                         <div className={styles.shipment_content}>
                             <h3>Last name</h3>
-                            <p>Abdullah</p>
+                            <p>{stopFacility.stopLastName}</p>
                         </div>
                     </div>
                     <div className={styles.shipment_row}>
                         <div className={styles.shipment_content}>
                             <h3>Email</h3>
-                            <p>aqsaabdullah38403@gmail.com</p>
+                            <p>{stopFacility.stopEmail}</p>
                         </div>
                         <div className={styles.shipment_content}>
                             <h3>Phone no</h3>
-                            <p>0321-6023836</p>
+                            <p>{stopFacility.stopPhone}</p>
                         </div>
                     </div>
                     <div className={styles.shipment_row}>
                         <div className={styles.shipment_content}>
                             <h3>City</h3>
-                            <p>Wah Cantt</p>
+                            <p>{stopFacility.stopCity}</p>
                         </div>
                         <div className={styles.shipment_content}>
                             <h3>Zipcode</h3>
-                            <p>40075</p>
+                            <p>{stopFacility.stopZipcode}</p>
                         </div>
                     </div>
                     <div className={styles.shipment_content}>
                         <h3>Stop address</h3>
-                        <p>Sector 23 G / Quarter 12 Wah Cantt</p>
+                        <p>{stopFacility.stopAddress}</p>
                     </div>
                 </div>
+
             </div>
 
             <div className={styles.footer_container}>

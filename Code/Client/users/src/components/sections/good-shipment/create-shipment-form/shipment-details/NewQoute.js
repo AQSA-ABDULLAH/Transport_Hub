@@ -51,18 +51,29 @@ function NewQuote() {
 
   // SEND DATA TO LOCAL STORAGE
   const saveQoute = () => {
+    // Get additional data from localStorage
+    const ltlVehicleType = JSON.parse(localStorage.getItem('ltlVehicleType'));
+    const ftlEquipmentData = JSON.parse(localStorage.getItem('ftlEquipmentData'));
+    const flatbedData = JSON.parse(localStorage.getItem('flatbedData'));
+    const parcelData = JSON.parse(localStorage.getItem('parcelData'));
+  
+    // Combine additional data with the quote data
     const formData = {
       commodityName,
       selectedMode,
       pickupDate,
       stopType,
       moreDetails,
+      ltlVehicleType, // Add ltlVehicleType data
+      ftlEquipmentData, // Add ftlEquipmentData
+      flatbedData, // Add flatbedData
+      parcelData, // Add parcelData
     };
-
+  
     // Save form data to local storage
     localStorage.setItem('quoteData', JSON.stringify(formData));
   };
-
+  
 
 
 
