@@ -6,7 +6,7 @@ export default function Parcel({ handlingItems, setHandlingItems, itemWeight,
   return (
     <>
       <div className={styles.parcel_row}>
-        <div>
+        <div className={styles.parcel_input}> 
           <label>Handling items</label>
           <input
             type='number'
@@ -15,7 +15,7 @@ export default function Parcel({ handlingItems, setHandlingItems, itemWeight,
             onChange={(e) => setHandlingItems(e.target.value)}
           />
         </div>
-        <div>
+        <div className={styles.parcel_input}>
           <label>Item weight</label>
           <input
             type='number'

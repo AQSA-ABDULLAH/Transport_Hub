@@ -9,7 +9,6 @@ export default function ViewShipment() {
 
     const bookShipment = () => {
         console.log("Book Shipment");
-
         const pickupFacility = JSON.parse(localStorage.getItem('pickupFacility'));
         const deliveryFacility = JSON.parse(localStorage.getItem('deliveryFacility'));
         const stopFacility = JSON.parse(localStorage.getItem('stopFacility'));
@@ -20,21 +19,11 @@ export default function ViewShipment() {
         const parcelData = JSON.parse(localStorage.getItem('parcelData'));
 
         const formData = {
-            ...pickupFacility,
-            ...deliveryFacility,
-            ...stopFacility,
-            ...qouteData,
-            ...ltlVehicleType,
-            ...ftlEquipmentData,
-            ...flatbedData,
-            ...parcelData,
-            status: "booked by admin"
+            ...pickupFacility, ...deliveryFacility, ...stopFacility, ...qouteData, ...ltlVehicleType,
+            ...ftlEquipmentData, ...flatbedData, ...parcelData, status: "booked by admin"
         };
-        console.log("sjdj")
 
-        console.log("dsjda",parcelData)
 
-        
         // Send combined data to server
         axios.post('http://localhost:5000/api/shipment/book-shipment', formData)
             .then(response => {
@@ -55,8 +44,6 @@ export default function ViewShipment() {
                 console.error('Failed to send data:', error.response ? error.response.data : error.message);
             });
     };
-
-
 
     // INVITE TRANSPORTER TO BID
     const inviteTransporterToBid = () => {
@@ -79,14 +66,11 @@ export default function ViewShipment() {
             ...ltlVehicleType,
             ...ftlEquipmentData,
             ...flatbedData,
-            ...parcelData, // Include parcel data here
-            status: "booked by admin"
+            ...parcelData,
+            status: "active bidding"
         };
-        console.log("sjdj")
 
-        console.log("dsjda",parcelData)
 
-        
         // Send combined data to server
         axios.post('http://localhost:5000/api/shipment/book-shipment', formData)
             .then(response => {
@@ -99,14 +83,13 @@ export default function ViewShipment() {
                             // localStorage.removeItem('deliveryFacility');
                             // localStorage.removeItem('stopFacility');
                             // localStorage.removeItem('quoteData');
-                            // localStorage.removeItem('parcelData'); // Remove parcelData from localStorage after use
+                            // localStorage.removeItem('parcelData');
                         }
                     });
             })
             .catch(error => {
                 console.error('Failed to send data:', error.response ? error.response.data : error.message);
             });
-
     };
 
     return (
@@ -262,13 +245,11 @@ export default function ViewShipment() {
                 </div>
             </div>
 
-
-            <div className={styles.footer_conatainer}>
+            <div className={styles.footer_container}>
                 <button type="button" onClick={bookShipment}>Book Shipment</button>
-                <button type='button' onClick={inviteTransporterToBid}>Invite Transporter To Bid</button>
+                <button type="button" onClick={inviteTransporterToBid}>Invite Transporter To Bid</button>
             </div>
-
-
         </>
     )
 }
+
