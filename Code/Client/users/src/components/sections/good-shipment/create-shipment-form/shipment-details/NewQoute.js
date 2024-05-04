@@ -184,15 +184,17 @@ function NewQuote() {
               />
 
             )}
-            <FTLForm
-              selectedEquipment={selectedEquipment}
-              setSelectedEquipment={setSelectedEquipment}
-              saveFTLEquipment={saveFTLEquipment}
-              length={length}  
-              setLength={setLength}
-              temperature={temperature}
-              setTemperature={setTemperature} 
-            />
+            {selectedMode === 'FTL' && (
+              <FTLForm
+                selectedEquipment={selectedEquipment}
+                setSelectedEquipment={setSelectedEquipment}
+                saveFTLEquipment={saveFTLEquipment}
+                length={length}
+                setLength={setLength}
+                temperature={temperature}
+                setTemperature={setTemperature}
+              />
+            )}
 
             {selectedMode === 'flatbed' && (
               <Flatbed
