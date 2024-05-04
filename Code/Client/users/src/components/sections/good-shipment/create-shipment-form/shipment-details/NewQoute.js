@@ -72,6 +72,8 @@ function NewQuote() {
   
     // Save form data to local storage
     localStorage.setItem('quoteData', JSON.stringify(formData));
+
+    navigate("/create_shipment_form")
   };
   
 

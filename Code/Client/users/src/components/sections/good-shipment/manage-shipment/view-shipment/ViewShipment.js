@@ -42,13 +42,14 @@ export default function ViewShipment() {
                 Swal.fire('Success!', 'Your Shipment has been created successfully.', 'success')
                     .then((result) => {
                         if (result.isConfirmed) {
-                            // localStorage.removeItem('pickupFacility');
-                            // localStorage.removeItem('deliveryFacility');
-                            // localStorage.removeItem('stopFacility');
-                            // localStorage.removeItem('quoteData');
-                            // localStorage.removeItem('parcelData'); 
+                            localStorage.removeItem('pickupFacility');
+                            localStorage.removeItem('deliveryFacility');
+                            localStorage.removeItem('stopFacility');
+                            localStorage.removeItem('quoteData');
                         }
                     });
+
+                    navigate("/manage_shipments")
             })
             .catch(error => {
                 console.error('Failed to send data:', error.response ? error.response.data : error.message);
@@ -89,13 +90,13 @@ export default function ViewShipment() {
                 Swal.fire('Success!', 'Your Shipment has been created successfully.', 'success')
                     .then((result) => {
                         if (result.isConfirmed) {
-                            // localStorage.removeItem('pickupFacility');
-                            // localStorage.removeItem('deliveryFacility');
-                            // localStorage.removeItem('stopFacility');
-                            // localStorage.removeItem('quoteData');
-                            // localStorage.removeItem('parcelData');
+                            localStorage.removeItem('pickupFacility');
+                            localStorage.removeItem('deliveryFacility');
+                            localStorage.removeItem('stopFacility');
+                            localStorage.removeItem('quoteData');
                         }
                     });
+                    navigate("/manage_shipments")
             })
             .catch(error => {
                 console.error('Failed to send data:', error.response ? error.response.data : error.message);
@@ -106,221 +107,236 @@ export default function ViewShipment() {
         <>
             <div className={styles.view_shipment}>
                 <h1>Quotes / QT5BYDLKH</h1>
-                <div className={styles.shipment_details}>
-                    <h2>Quote Details:</h2>
-                    <div className={styles.shipment_row}>
-                        <div className={styles.shipment_content}>
-                            <h3>Commodity Name</h3>
-                            <p>{qouteData.commodityName}</p>
-                        </div>
-                        <div className={styles.shipment_content}>
-                            <h3>Selected Mode</h3>
-                            <p>{qouteData.selectedMode}</p>
-                        </div>
-                    </div>
-                    <div className={styles.shipment_row}>
-                        <div className={styles.shipment_content}>
-                            <h3>Pickup Date</h3>
-                            <p>{qouteData.pickupDate}</p>
-                        </div>
-                        <div className={styles.bid_deadline}>
-                            <h3>Bid deadline</h3>
-                            <p>Apr 22, 2024 @ 4:59 AM</p>
-                        </div>
-                    </div>
 
-                    {qouteData.selectedMode === "LTL" && (
+                {qouteData && (
+                    <div className={styles.shipment_details}>
+
+                        <h2>Quote Details:</h2>
                         <div className={styles.shipment_row}>
                             <div className={styles.shipment_content}>
-                                <h3>Vechical type</h3>
-                                <p>Buckets</p>
+                                <h3>Commodity Name</h3>
+                                <p>{qouteData.commodityName}</p>
+                            </div>
+                            <div className={styles.shipment_content}>
+                                <h3>Selected Mode</h3>
+                                <p>{qouteData.selectedMode}</p>
                             </div>
                         </div>
-                    )}
-                    {qouteData.selectedMode === "FTL" && (
                         <div className={styles.shipment_row}>
                             <div className={styles.shipment_content}>
-                                <h3> Equipment </h3>
-                                <p>Buckets</p>
+                                <h3>Pickup Date</h3>
+                                <p>{qouteData.pickupDate}</p>
                             </div>
-                            <div className={styles.shipment_content}>
-                                <h3>Length</h3>
-                                <p>fdgd</p>
-                            </div>
-                            <div className={styles.shipment_content}>
-                                <h3> Temperature </h3>
-                                <p>fdgd</p>
+                            <div className={styles.bid_deadline}>
+                                <h3>Bid deadline</h3>
+                                <p>Apr 22, 2024 @ 4:59 AM</p>
                             </div>
                         </div>
 
-                    )}
+                        {qouteData.selectedMode === "LTL" && (
+                            <div className={styles.shipment_row}>
+                                <div className={styles.shipment_content}>
+                                    <h3>Vechical type</h3>
+                                    <p>{ltlVehicleType.ltlVehicleType}</p>
+                                </div>
+                            </div>
+                        )}
+                        {qouteData.selectedMode === "FTL" && (
+                            <div className={styles.shipment_row}>
+                                <div className={styles.shipment_content}>
+                                    <h3> Equipment </h3>
+                                    <p>{ftlEquipmentData && ftlEquipmentData.equipment}</p>
+                                </div>
+                                <div className={styles.shipment_content}>
+                                    <h3>Length</h3>
+                                    <p>{ftlEquipmentData && ftlEquipmentData.length}</p>
+                                </div>
+                                <div className={styles.shipment_content}>
+                                    <h3> Temperature </h3>
+                                    <p>{ftlEquipmentData && ftlEquipmentData.temperature ? ftlEquipmentData.temperature : 'Not available'}</p>
+                                </div>
 
-                    {qouteData.selectedMode === "Flatbed" && (
+                            </div>
+                        )}
 
+                        {qouteData.selectedMode === "flatbed" && (
+                            <div className={styles.shipment_row}>
+                                <div className={styles.shipment_content}>
+                                    <h3> Dimensions </h3>
+                                    <p>{flatbedData && flatbedData.dimensions}</p>
+                                </div>
+                                <div className={styles.shipment_content}>
+                                    <h3>Trap</h3>
+                                    <p>{flatbedData && flatbedData.trap}</p>
+                                </div>
+                                <div className={styles.shipment_content}>
+                                    <h3> Trap Size </h3>
+                                    <p>{flatbedData && flatbedData.trapSize ? flatbedData.trapSize : 'Not available'}</p>
+                                </div>
+                            </div>
+                        )}
+
+                        {qouteData.selectedMode === "parcel" && (
+                            <div>
+                                <div className={styles.shipment_row}>
+                                    <div className={styles.shipment_content}>
+                                        <h3> Handling items</h3>
+                                        <p>{parcelData && parcelData.handlingItems} items</p>
+                                    </div>
+                                    <div className={styles.shipment_content}>
+                                        <h3>Item weight</h3>
+                                        <p>{parcelData && parcelData.itemWeight} lbs</p>
+                                    </div>
+                                </div>
+
+                                <div className={styles.shipment_row}>
+                                    <div className={styles.shipment_content}>
+                                        <h3> Length </h3>
+                                        <p>{parcelData && parcelData.length} inches</p>
+                                    </div>
+                                    <div className={styles.shipment_content}>
+                                        <h3> Width </h3>
+                                        <p>{parcelData && parcelData.width} inches</p>
+                                    </div>
+                                    <div className={styles.shipment_content}>
+                                        <h3> Height </h3>
+                                        <p>{parcelData && parcelData.height} inches</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        )}
+
+
+                        <div className={styles.shipment_content}>
+                            <h3>More Details</h3>
+                            <p>{qouteData.moreDetails}</p>
+                        </div>
+                    </div>
+                )}
+
+                {pickupFacility && (
+                    <div className={styles.shipment_details}>
+                        <h2>Pickup Details:</h2>
                         <div className={styles.shipment_row}>
                             <div className={styles.shipment_content}>
-                                <h3> Dimensions </h3>
-                                <p>Buckets</p>
+                                <h3>First name</h3>
+                                <p>{pickupFacility.pickupFirstName}</p>
                             </div>
                             <div className={styles.shipment_content}>
-                                <h3>Trap</h3>
-                                <p>fdgd</p>
-                            </div>
-                            <div className={styles.shipment_content}>
-                                <h3> Trap Size </h3>
-                                <p>fdgd</p>
+                                <h3>Last name</h3>
+                                <p>{pickupFacility.pickupLastName}</p>
                             </div>
                         </div>
-                    )}
-
-                    {qouteData.selectedMode === "Parcel" && (
                         <div className={styles.shipment_row}>
                             <div className={styles.shipment_content}>
-                                <h3> Handling items</h3>
-                                <p>Buckets</p>
+                                <h3>Email</h3>
+                                <p>{pickupFacility.pickupEmail}</p>
                             </div>
                             <div className={styles.shipment_content}>
-                                <h3>Item weight</h3>
-                                <p>fdgd</p>
+                                <h3>Phone no</h3>
+                                <p>{pickupFacility.pickupPhone}</p>
+                            </div>
+                        </div>
+                        <div className={styles.shipment_row}>
+                            <div className={styles.shipment_content}>
+                                <h3>City</h3>
+                                <p>{pickupFacility.pickupCity}</p>
                             </div>
                             <div className={styles.shipment_content}>
-                                <h3> Length </h3>
-                                <p>fdgd</p>
+                                <h3>Zipcode</h3>
+                                <p>{pickupFacility.pickupZipcode}</p>
+                            </div>
+                        </div>
+                        <div className={styles.shipment_content}>
+                            <h3>Pickup address</h3>
+                            <p>{pickupFacility.pickupAddress}</p>
+                        </div>
+                    </div>
+                )}
+
+                {deliveryFacility && (
+
+                    <div className={styles.shipment_details}>
+                        <h2>Delivery Details:</h2>
+                        <div className={styles.shipment_row}>
+                            <div className={styles.shipment_content}>
+                                <h3>First name</h3>
+                                <p>{deliveryFacility.deliveryFirstName}</p>
                             </div>
                             <div className={styles.shipment_content}>
-                                <h3> Width </h3>
-                                <p>fdgd</p>
+                                <h3>Last name</h3>
+                                <p>{deliveryFacility.deliveryLastName}</p>
+                            </div>
+                        </div>
+                        <div className={styles.shipment_row}>
+                            <div className={styles.shipment_content}>
+                                <h3>Email</h3>
+                                <p>{deliveryFacility.deliveryEmail}</p>
                             </div>
                             <div className={styles.shipment_content}>
-                                <h3> Height </h3>
-                                <p>fdgd</p>
+                                <h3>Phone no</h3>
+                                <p>{deliveryFacility.deliveryPhone}</p>
                             </div>
                         </div>
-                    )}
+                        <div className={styles.shipment_row}>
+                            <div className={styles.shipment_content}>
+                                <h3>City</h3>
+                                <p>{deliveryFacility.deliveryCity}</p>
+                            </div>
+                            <div className={styles.shipment_content}>
+                                <h3>Zipcode</h3>
+                                <p>{deliveryFacility.deliveryZipcode}</p>
+                            </div>
+                        </div>
+                        <div className={styles.shipment_content}>
+                            <h3>Delivery address</h3>
+                            <p>{deliveryFacility.deliveryAddress}</p>
+                        </div>
+                    </div>
 
-                    <div className={styles.shipment_content}>
-                        <h3>More Details</h3>
-                        <p>{qouteData.moreDetails}</p>
-                    </div>
-                </div>
+                )}
 
-                <div className={styles.shipment_details}>
-                    <h2>Pickup Details:</h2>
-                    <div className={styles.shipment_row}>
-                        <div className={styles.shipment_content}>
-                            <h3>First name</h3>
-                            <p>{pickupFacility.pickupFirstName}</p>
-                        </div>
-                        <div className={styles.shipment_content}>
-                            <h3>Last name</h3>
-                            <p>{pickupFacility.pickupLastName}</p>
-                        </div>
-                    </div>
-                    <div className={styles.shipment_row}>
-                        <div className={styles.shipment_content}>
-                            <h3>Email</h3>
-                            <p>{pickupFacility.pickupEmail}</p>
-                        </div>
-                        <div className={styles.shipment_content}>
-                            <h3>Phone no</h3>
-                            <p>{pickupFacility.pickupPhone}</p>
-                        </div>
-                    </div>
-                    <div className={styles.shipment_row}>
-                        <div className={styles.shipment_content}>
-                            <h3>City</h3>
-                            <p>{pickupFacility.pickupCity}</p>
-                        </div>
-                        <div className={styles.shipment_content}>
-                            <h3>Zipcode</h3>
-                            <p>{pickupFacility.pickupZipcode}</p>
-                        </div>
-                    </div>
-                    <div className={styles.shipment_content}>
-                        <h3>Pickup address</h3>
-                        <p>{pickupFacility.pickupAddress}</p>
-                    </div>
-                </div>
+                {stopFacility && (
 
-
-                <div className={styles.shipment_details}>
-                    <h2>Delivery Details:</h2>
-                    <div className={styles.shipment_row}>
-                        <div className={styles.shipment_content}>
-                            <h3>First name</h3>
-                            <p>{deliveryFacility.deliveryFirstName}</p>
+                    <div className={styles.shipment_details}>
+                        <h2>Stop Details:</h2>
+                        <div className={styles.shipment_row}>
+                            <div className={styles.shipment_content}>
+                                <h3>First name</h3>
+                                <p>{stopFacility.stopFirstName}</p>
+                            </div>
+                            <div className={styles.shipment_content}>
+                                <h3>Last name</h3>
+                                <p>{stopFacility.stopLastName}</p>
+                            </div>
+                        </div>
+                        <div className={styles.shipment_row}>
+                            <div className={styles.shipment_content}>
+                                <h3>Email</h3>
+                                <p>{stopFacility.stopEmail}</p>
+                            </div>
+                            <div className={styles.shipment_content}>
+                                <h3>Phone no</h3>
+                                <p>{stopFacility.stopPhone}</p>
+                            </div>
+                        </div>
+                        <div className={styles.shipment_row}>
+                            <div className={styles.shipment_content}>
+                                <h3>City</h3>
+                                <p>{stopFacility.stopCity}</p>
+                            </div>
+                            <div className={styles.shipment_content}>
+                                <h3>Zipcode</h3>
+                                <p>{stopFacility.stopZipcode}</p>
+                            </div>
                         </div>
                         <div className={styles.shipment_content}>
-                            <h3>Last name</h3>
-                            <p>{deliveryFacility.deliveryLastName}</p>
-                        </div>
-                    </div>
-                    <div className={styles.shipment_row}>
-                        <div className={styles.shipment_content}>
-                            <h3>Email</h3>
-                            <p>{deliveryFacility.deliveryEmail}</p>
-                        </div>
-                        <div className={styles.shipment_content}>
-                            <h3>Phone no</h3>
-                            <p>{deliveryFacility.deliveryPhone}</p>
-                        </div>
-                    </div>
-                    <div className={styles.shipment_row}>
-                        <div className={styles.shipment_content}>
-                            <h3>City</h3>
-                            <p>{deliveryFacility.deliveryCity}</p>
-                        </div>
-                        <div className={styles.shipment_content}>
-                            <h3>Zipcode</h3>
-                            <p>{deliveryFacility.deliveryZipcode}</p>
-                        </div>
-                    </div>
-                    <div className={styles.shipment_content}>
-                        <h3>Delivery address</h3>
-                        <p>{deliveryFacility.deliveryAddress}</p>
-                    </div>
-                </div>
-
-
-
-                <div className={styles.shipment_details}>
-                    <h2>Stop Details:</h2>
-                    <div className={styles.shipment_row}>
-                        <div className={styles.shipment_content}>
-                            <h3>First name</h3>
-                            <p>{stopFacility.stopFirstName}</p>
-                        </div>
-                        <div className={styles.shipment_content}>
-                            <h3>Last name</h3>
-                            <p>{stopFacility.stopLastName}</p>
+                            <h3>Stop address</h3>
+                            <p>{stopFacility.stopAddress}</p>
                         </div>
                     </div>
-                    <div className={styles.shipment_row}>
-                        <div className={styles.shipment_content}>
-                            <h3>Email</h3>
-                            <p>{stopFacility.stopEmail}</p>
-                        </div>
-                        <div className={styles.shipment_content}>
-                            <h3>Phone no</h3>
-                            <p>{stopFacility.stopPhone}</p>
-                        </div>
-                    </div>
-                    <div className={styles.shipment_row}>
-                        <div className={styles.shipment_content}>
-                            <h3>City</h3>
-                            <p>{stopFacility.stopCity}</p>
-                        </div>
-                        <div className={styles.shipment_content}>
-                            <h3>Zipcode</h3>
-                            <p>{stopFacility.stopZipcode}</p>
-                        </div>
-                    </div>
-                    <div className={styles.shipment_content}>
-                        <h3>Stop address</h3>
-                        <p>{stopFacility.stopAddress}</p>
-                    </div>
-                </div>
-
+                )}
             </div>
 
             <div className={styles.footer_container}>
