@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styles from './viewshipment.module.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
