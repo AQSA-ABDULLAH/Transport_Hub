@@ -30,10 +30,10 @@ function NewQuote() {
   const [trapSize, setTrapSize] = useState('');
   const [handlingItems, setHandlingItems] = useState('');
   const [itemWeight, setItemWeight] = useState('');
-  const [dimensions, setDimensions] = useState({ length: '', width: '', height: '' });
-  const [length, setLength] = useState(''); // Define length state
-  const [width, setWidth] = useState(''); // Define width state
-  const [height, setHeight] = useState(''); // Define height state
+  const [length, setLength] = useState('');
+  const [width, setWidth] = useState('');
+  const [height, setHeight] = useState('');
+  const [formData, setFormData] = useState('');
 
 
 
@@ -83,7 +83,7 @@ const saveQoute = () => {
       setSelectedVehicle('');
       localStorage.removeItem('ltlVehicleType');
     } else {
-      localStorage.setItem('ltlVehicleType', selectedVehicle);
+      localStorage.setItem('ltlVehicleType', JSON.stringify(formData));
     }
   }, [selectedMode, selectedVehicle]);
 
@@ -114,9 +114,7 @@ const saveQoute = () => {
       localStorage.removeItem('parcelData');
     }
   }, [handlingItems, itemWeight, length, width, height, selectedMode]);
-  const handleDimensionChange = (field) => (event) => {
-    setDimensions(prev => ({ ...prev, [field]: event.target.value }));
-  };
+
 
 
 
@@ -178,11 +176,12 @@ const saveQoute = () => {
           </div>
 
           <div>
-            {selectedMode === 'LTL' && (
+             {selectedMode === 'LTL' && (
               <LTLForm
-                selectedVehicle={selectedVehicle}
-                setSelectedVehicle={setSelectedVehicle}
+                formData={formData}
+                setFormData={setFormData}
               />
+            
             )}
             {selectedMode === 'FTL' && (
               <FTLForm
