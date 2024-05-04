@@ -6,16 +6,18 @@ const axios = require("axios")
 class ShipmentController {
     static async shipment(req, res) {
         console.log('Received form data:', req.body);
-        const { commodityName, selectedMode, pickupDate, moreDetails, pickupFirstName, pickupLastName,
-            pickupEmail, pickupPhone, pickupCity, pickupZipcode, pickupAddress, pickupInstruction,
+        const { commodityName, selectedMode, ltlVehicleType, equipment, length, width, height, temperature, 
+            dimensions, trap, trapSize, handlingItems, itemWeight, pickupDate, moreDetails, pickupFirstName,
+            pickupLastName, pickupEmail, pickupPhone, pickupCity, pickupZipcode, pickupAddress, pickupInstruction,
             deliveryFirstName, deliveryLastName, deliveryEmail, deliveryPhone, deliveryCity, deliveryZipcode,
             deliveryAddress, deliveryInstruction, stopFirstName, stopLastName, stopEmail, stopPhone, stopCity, 
             stopZipcode, stopAddress, stopInstruction, stopType, bids, status  } = req.body;
 
         try {
             const shipment = new Shipment({
-                commodityName, selectedMode, pickupDate, moreDetails, pickupFirstName, pickupLastName,
-                pickupEmail, pickupPhone, pickupCity, pickupZipcode, pickupAddress, pickupInstruction,
+                commodityName, selectedMode, ltlVehicleType, equipment, length, width, height, temperature, 
+                dimensions, trap, trapSize, handlingItems, itemWeight, pickupDate, moreDetails, pickupFirstName, 
+                pickupLastName, pickupEmail, pickupPhone, pickupCity, pickupZipcode, pickupAddress, pickupInstruction,
                 deliveryFirstName, deliveryLastName, deliveryEmail, deliveryPhone, deliveryCity, deliveryZipcode,
                 deliveryAddress, deliveryInstruction, stopFirstName, stopLastName, stopEmail, stopPhone, stopCity, 
                 stopZipcode, stopAddress, stopInstruction, stopType, bids, status

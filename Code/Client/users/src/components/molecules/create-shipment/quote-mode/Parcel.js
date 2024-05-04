@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from "./quotemode.module.css";
 
-export default function Parcel({ handlingItems, setHandlingItems, itemWeight, setItemWeight, dimensions, handleDimensionChange }) {
+export default function Parcel({ handlingItems, setHandlingItems, itemWeight, 
+  setItemWeight, length, setLength, width, setWidth, height, setHeight }) {
   return (
     <>
       <div className={styles.parcel_row}>
@@ -30,8 +31,8 @@ export default function Parcel({ handlingItems, setHandlingItems, itemWeight, se
             <input
               type='number'
               placeholder='Inches'
-              value={dimensions.length}
-              onChange={handleDimensionChange('length')}
+              value={length}
+              onChange={(e) => setLength(e.target.value)}
             />
           </div>
           <div>
@@ -39,8 +40,8 @@ export default function Parcel({ handlingItems, setHandlingItems, itemWeight, se
             <input
               type='number'
               placeholder='Inches'
-              value={dimensions.width}
-              onChange={handleDimensionChange('width')}
+              value={width}
+              onChange={(e) => setWidth(e.target.value)}
             />
           </div>
           <div>
@@ -48,8 +49,8 @@ export default function Parcel({ handlingItems, setHandlingItems, itemWeight, se
             <input
               type='number'
               placeholder='Inches'
-              value={dimensions.height}
-              onChange={handleDimensionChange('height')}
+              value={height}
+              onChange={(e) => setHeight(e.target.value)}
             />
           </div>
         </div>

@@ -31,6 +31,11 @@ function NewQuote() {
   const [handlingItems, setHandlingItems] = useState('');
   const [itemWeight, setItemWeight] = useState('');
   const [dimensions, setDimensions] = useState({ length: '', width: '', height: '' });
+  const [length, setLength] = useState(''); // Define length state
+  const [width, setWidth] = useState(''); // Define width state
+  const [height, setHeight] = useState(''); // Define height state
+
+
 
   // GET DATA FROM LOCAL STORAGE
   const pickupFacility = JSON.parse(localStorage.getItem('pickupFacility'));
@@ -55,9 +60,6 @@ const saveQoute = () => {
 
   // Save form data to local storage
   localStorage.setItem('quoteData', JSON.stringify(formData));
-
-  // Reload the page
-  window.location.reload();
 };
 
   
@@ -103,13 +105,15 @@ const saveQoute = () => {
       const parcelData = {
         handlingItems,
         itemWeight,
-        dimensions
+        length,
+        width,
+        height
       };
       localStorage.setItem('parcelData', JSON.stringify(parcelData));
     } else {
       localStorage.removeItem('parcelData');
     }
-  }, [handlingItems, itemWeight, dimensions, selectedMode]);
+  }, [handlingItems, itemWeight, length, width, height, selectedMode]);
   const handleDimensionChange = (field) => (event) => {
     setDimensions(prev => ({ ...prev, [field]: event.target.value }));
   };
@@ -197,16 +201,23 @@ const saveQoute = () => {
                 trapSize={trapSize}
               />
             )}
-            {selectedMode === 'parcel' && (
-              <Parcel
-                handlingItems={handlingItems}
-                setHandlingItems={setHandlingItems}
-                itemWeight={itemWeight}
-                setItemWeight={setItemWeight}
-                dimensions={dimensions}
-                handleDimensionChange={handleDimensionChange}
-              />
-            )}
+  
+              {selectedMode === 'parcel' && (
+                <Parcel
+                  handlingItems={handlingItems}
+                  setHandlingItems={setHandlingItems}
+                  itemWeight={itemWeight}
+                  setItemWeight={setItemWeight}
+                  length={length}
+                  setLength={setLength}
+                  width={width}
+                  setWidth={setWidth}
+                  height={height}
+                  setHeight={setHeight}
+                />
+              )}
+              
+          
           </div>
 
           {/* ADD PICKUP DETAILS */}
