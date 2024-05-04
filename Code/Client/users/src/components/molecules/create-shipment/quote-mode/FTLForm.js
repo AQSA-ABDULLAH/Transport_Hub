@@ -1,23 +1,16 @@
-import React, { useState, useEffect } from 'react'; // Import useEffect
+import React, { useEffect } from 'react'; // Import useEffect
 import styles from "./quotemode.module.css";
 
-export default function FTLForm({ selectedEquipment, setSelectedEquipment, saveFTLEquipment }) {
-  const [equipmentDetails, setEquipmentDetails] = useState({
-    length: '',
-    temperature: ''
-  });
+export default function FTLForm({ selectedEquipment, setSelectedEquipment, saveFTLEquipment, length, setLength, 
+  temperature, setTemperature
+ }) {
 
   useEffect(() => {
-    saveFTLEquipment(selectedEquipment, equipmentDetails);
-  }, [selectedEquipment, equipmentDetails, saveFTLEquipment]);
+    saveFTLEquipment(selectedEquipment, length, temperature);
+  }, [selectedEquipment, length, temperature, saveFTLEquipment]);
 
   const handleEquipmentChange = (event) => {
     setSelectedEquipment(event.target.value);
-    setEquipmentDetails({ length: '', temperature: '' }); // Reset details when equipment changes
-  };
-
-  const handleDetailChange = (field) => (event) => {
-    setEquipmentDetails(prev => ({ ...prev, [field]: event.target.value }));
   };
 
   return (
@@ -37,7 +30,9 @@ export default function FTLForm({ selectedEquipment, setSelectedEquipment, saveF
         {selectedEquipment === 'truck' && (
           <div>
             <label htmlFor="truck_length">Equipment Length</label>
-            <select id="truck_length" value={equipmentDetails.length} onChange={handleDetailChange('length')}>
+            <select id="truck_length"
+              value={length}
+              onChange={(e) => setLength(e.target.value)}>
               <option value="">Select Length</option>
               <option value="48'">48'</option>
               <option value="53'">53'</option>
@@ -49,7 +44,9 @@ export default function FTLForm({ selectedEquipment, setSelectedEquipment, saveF
           <div className={styles.sub_input}>
             <div>
               <label htmlFor="reefer_length">Equipment Length</label>
-              <select id="reefer_length" value={equipmentDetails.length} onChange={handleDetailChange('length')}>
+              <select id="reefer_length"
+                value={length}
+                onChange={(e) => setLength(e.target.value)}>
                 <option value="">Select Length</option>
                 <option value="45'">45'</option>
                 <option value="50'">50'</option>
@@ -57,7 +54,9 @@ export default function FTLForm({ selectedEquipment, setSelectedEquipment, saveF
             </div>
             <div>
               <label htmlFor="temp">Temperature</label>
-              <input type='number' id="temp" placeholder='F' value={equipmentDetails.temperature} onChange={handleDetailChange('temperature')} />
+              <input type='number' id="temp" placeholder='F'
+                value={temperature}
+                onChange={(e) => setTemperature(e.target.value)} />
             </div>
           </div>
         )}
@@ -65,7 +64,9 @@ export default function FTLForm({ selectedEquipment, setSelectedEquipment, saveF
         {selectedEquipment === 'tanker' && (
           <div>
             <label htmlFor="tanker_length">Equipment Length</label>
-            <select id="tanker_length" value={equipmentDetails.length} onChange={handleDetailChange('length')}>
+            <select id="tanker_length"
+              value={length}
+              onChange={(e) => setLength(e.target.value)}>
               <option value="">Select Length</option>
               <option value="45'">45'</option>
               <option value="52'">52'</option>
@@ -76,7 +77,9 @@ export default function FTLForm({ selectedEquipment, setSelectedEquipment, saveF
         {selectedEquipment === 'container' && (
           <div>
             <label htmlFor="container_size">Container Size</label>
-            <select id="container_size" value={equipmentDetails.length} onChange={handleDetailChange('length')}>
+            <select id="container_size"
+              value={length}
+              onChange={(e) => setLength(e.target.value)}>
               <option value="">Select Size</option>
               <option value="20'">20'</option>
               <option value="40'">40'</option>

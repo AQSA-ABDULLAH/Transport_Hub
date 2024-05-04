@@ -1,5 +1,7 @@
 .view_shipment h1{
     padding-bottom: 18px;
+    font-size: 25px;
+    font-weight: 700;
 }
 .view_shipment{
     height: 80vh;
@@ -37,6 +39,26 @@
     margin: 15px 0px;
     padding: 5px 10px;
 }
-.shipment_details h2{
-    
+.footer_container{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+    height: 10vh;
+    background-color: #FCFCFF;
+    padding: 0px 40px;
+    border-top: solid 1px rgba(var(--m-color-neutral-20,230,237,242),1);
+}
+
+.footer_container button{
+    border-radius: 5px;
+    border: 1px solid;
+    padding: 6px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.footer_container button:hover {
+    background-color: #dddcdc;
+    cursor: pointer;
 }
