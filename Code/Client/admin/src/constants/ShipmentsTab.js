@@ -20,11 +20,11 @@ export const Tab = [
         onClick: '/shipped_by_transporter'
     },
     {
-        text: "Deliverd",
-        onClick: '/deliverd'
+        text: "Delivered",
+        onClick: '/delivered'
     },
     {
-        text: "Cancled",
-        onClick: '/cancled'
+        text: "Canceled",
+        onClick: '/canceled'
     }
 ];
