@@ -3,7 +3,8 @@
     align-items: center;
     margin: 0rem 0rem 0rem 15rem;
     background-color: #e0e0e058;
-    height: 80px;
+    padding-left: 20px;
+    height: 65px;
     flex-shrink: 0;
 }
 .hamburger {

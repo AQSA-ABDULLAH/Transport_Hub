@@ -23,7 +23,6 @@ const PickupAddress = ({ PickupForm }) => {
     pickupAddress: '',
     pickupInstruction: ''
   });
-  
 
   const handleChange = (event) => {
     const { name, value } = event.target;

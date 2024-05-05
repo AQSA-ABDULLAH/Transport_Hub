@@ -75,6 +75,47 @@ class ShipmentController {
         }
     };
 
+
+    // UPDATE METHOD
+  static updateShipment = async (req, res) => {
+    const { id } = req.params;
+    const {
+        commodityName, selectedMode, ltlVehicleType, equipment, length, width, height, temperature, 
+        dimensions, trap, trapSize, handlingItems, itemWeight, pickupDate, moreDetails, pickupFirstName, 
+        pickupLastName, pickupEmail, pickupPhone, pickupCity, pickupZipcode, pickupAddress, pickupInstruction,
+        deliveryFirstName, deliveryLastName, deliveryEmail, deliveryPhone, deliveryCity, deliveryZipcode,
+        deliveryAddress, deliveryInstruction, stopFirstName, stopLastName, stopEmail, stopPhone, stopCity, 
+        stopZipcode, stopAddress, stopInstruction, stopType, bids, status
+    } = req.body;
+  
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).send({ status: "failed", message: `Invalid Shipment ID: ${id}` });
+    }
+  
+    const updatedShipment = {
+        commodityName, selectedMode, ltlVehicleType, equipment, length, width, height, temperature, 
+        dimensions, trap, trapSize, handlingItems, itemWeight, pickupDate, moreDetails, pickupFirstName, 
+        pickupLastName, pickupEmail, pickupPhone, pickupCity, pickupZipcode, pickupAddress, pickupInstruction,
+        deliveryFirstName, deliveryLastName, deliveryEmail, deliveryPhone, deliveryCity, deliveryZipcode,
+        deliveryAddress, deliveryInstruction, stopFirstName, stopLastName, stopEmail, stopPhone, stopCity, 
+        stopZipcode, stopAddress, stopInstruction, stopType, bids, status
+    };
+  
+    try {
+      const updatedData = await Shipment.findByIdAndUpdate(id, updatedShipment, { new: true });
+  
+      if (!updatedData) {
+        return res.status(404).send({ status: "failed", message: `No Shipment found with ID: ${id}` });
+      }
+  
+      res.status(200).send({ status: "success", message: "Shipment updated successfully", data: updatedData });
+    } catch (error) {
+      console.error("Error updating Shipment:", error);
+      res.status(500).send({ status: "failed", message: "Failed to update Shipment" });
+    }
+  };
+  
+
 }
 
 module.exports = { ShipmentController };

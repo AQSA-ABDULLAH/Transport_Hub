@@ -1,12 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Tab } from "../../../constants/TransportManagmentTab";
-import styles from "./Transport.module.css";
+import { Tab } from "../../../constants/ShipmentsTab";
+import styles from "./Shipments.module.css";
 import Button from "../../../components/atoms/buttons/Button";
-import Cars from "../tabs/cars/CarsTab"
-import Trucks from "../tabs/trucks/TruckTab";
+import Qoute from "../tabs/qoute/Qoute";
+import Shipments from "../tabs/shipments/Shipments";
+import ActiveBidding from "../tabs/bidding/ActiveBidding";
+import Bidded from "../tabs/bidding/Bidded";
+import CanceledShipments from "../tabs/shipments/CanceledShipments";
 
-const Transport = () => {
+const ManageShipment = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isActive, setIsActive] = useState(0);
@@ -16,7 +19,7 @@ const Transport = () => {
     const params = new URLSearchParams(location.search);
     const tabName = params.get("tab");
     if (tabName == null) {
-      document.title = "Transport Management"
+      document.title = "Manage Shipments"
     }
     if (tabName) {
       const tabIndex = Tab.findIndex(tab => tab.text.toLowerCase() === tabName.toLowerCase());
@@ -44,9 +47,15 @@ const Transport = () => {
   const renderTabContent = () => {
     switch (isActive) {
       case 0:
-        return <Cars/>
+        return <Shipments/>
       case 1:
-        return <Trucks/>
+        return <Qoute/>
+      case 2:
+        return <ActiveBidding/>
+      case 3:
+        return <Bidded/>
+      case 7:
+        return <CanceledShipments/>
       default:
         return null;
     }
@@ -79,4 +88,4 @@ const Transport = () => {
   );
 };
 
-export default Transport;
+export default ManageShipment;

@@ -1,7 +1,12 @@
 .view_shipment h1{
-    padding-bottom: 18px;
-    font-size: 25px;
+    display: inline-block;
+    font-size: 23px;
     font-weight: 700;
+    letter-spacing: normal;
+    margin-bottom: -2px;
+    padding-left: 1px;
+    padding-right: 3px;
+    border-bottom: 2px solid ;
 }
 .view_shipment{
     height: 80vh;
@@ -9,13 +14,16 @@
     overflow-x: hidden;
     overflow-y: scroll;
 }
+.first_row{
+    margin-top: 25px;
+}
 .shipment_row{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     gap: 80px;
     align-items: center;
-    padding-bottom: 10px;
+    padding-top: 3px;
 }
 .shipment_row > * {
     flex: 1; 
@@ -24,7 +32,7 @@
 .bid_deadline h3,
 .shipment_details h3{
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
     color: #3B3B4f;
 }
 .shipment_content p,
@@ -32,12 +40,13 @@
 .shipment_details p{
     font-size: 13px;
     font-weight: 400;
-    color: #686868;
+    color: #858585;
 }
-.shipment_details{
-    border: 1px solid #cccbcb;
-    margin: 15px 0px;
-    padding: 5px 10px;
+.shipment_details h2{
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 30px;
+    margin-bottom: 12px;
 }
 .footer_container{
     display: flex;

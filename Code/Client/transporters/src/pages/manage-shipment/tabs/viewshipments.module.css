@@ -1,6 +1,5 @@
 .table {
   width: 100%;
-  /* border-collapse: collapse; */
 }
 
 .table th{
@@ -53,7 +52,7 @@
   
 /* SHIPMENT STLYE */
 .shipment_container{
-  padding: 40px 70px;
+  padding: 30px 60px;
 }
 .shipmentID{
   width: 20%;

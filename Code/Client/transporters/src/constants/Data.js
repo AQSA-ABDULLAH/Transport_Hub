@@ -10,8 +10,8 @@ import {CgWebsite} from 'react-icons/cg'
 export const Main = [
   {
     icon: <GiGymBag  size={20}/>,
-    text: "Classes",
-    route:'/classes'
+    text: "Manage Shipments",
+    route:'/manage-shipments'
   },
   {
     icon: <BsCreditCard2FrontFill size={20} />,
@@ -25,7 +25,7 @@ export const Main = [
   },
   {
     icon: <BiSolidContact size={20}/>,
-    text: "Contact Messages",
+    text: "Seller Support",
     route:'/contact-messages'
   },
 ];

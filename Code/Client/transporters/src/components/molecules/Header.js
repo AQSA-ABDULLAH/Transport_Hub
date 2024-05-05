@@ -2,7 +2,7 @@ import React from "react";
 import { LiaBarsSolid } from "react-icons/lia";
 import styles from "./Header.module.css";
 import { useLocation } from "react-router-dom";
-import Button from '../atoms/button/Button'
+import Button from '../atoms/buttons/Button'
 const capitalizeFirstLetter = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
