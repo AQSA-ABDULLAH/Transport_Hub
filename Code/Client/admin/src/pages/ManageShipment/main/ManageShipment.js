@@ -7,6 +7,7 @@ import Qoute from "../tabs/qoute/Qoute";
 import Shipments from "../tabs/shipments/Shipments";
 import ActiveBidding from "../tabs/bidding/ActiveBidding";
 import Bidded from "../tabs/bidding/Bidded";
+import CanceledShipments from "../tabs/shipments/CanceledShipments";
 
 const ManageShipment = () => {
   const navigate = useNavigate();
@@ -53,6 +54,8 @@ const ManageShipment = () => {
         return <ActiveBidding/>
       case 3:
         return <Bidded/>
+      case 6:
+        return <CanceledShipments/>
       default:
         return null;
     }
