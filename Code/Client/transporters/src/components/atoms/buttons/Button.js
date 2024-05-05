@@ -1,5 +1,6 @@
+// Button.js
 import React from "react";
-import "./button.css";
+import "./Button.module.css";
 
 const Button = (props) => {
   const {
@@ -12,21 +13,23 @@ const Button = (props) => {
     bgColor,
     textColor,
     bw,
-    width,
+    width, 
     btnClick,
     hoverColor,
+    padding,
   } = props;
 
   const buttonStyle = {
     backgroundColor:
-      bgColor || (primary ? "#7E22CE" : secondary ? "#e0e0e058" : "transparent"),
+      bgColor || (primary ? "#7E22CE" : secondary ? "#6c757d" : "transparent"),
     color: textColor || "#ffffff",
     borderRadius: radius || "40px",
     fontSize: size || "16px",
     width: width || "auto",
     fontWeight: fontWeight || "400",
     border: bw || "0px",
-    transition: "0.3s", // to smooth out the effect
+    padding: padding || "8px 11px",
+    transition: "0.3s",
   };
 
   const [hovered, setHovered] = React.useState(false);
