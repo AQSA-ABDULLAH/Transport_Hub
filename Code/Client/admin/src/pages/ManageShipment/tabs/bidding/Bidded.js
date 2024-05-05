@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaEdit } from "react-icons/fa";
-import Swal from 'sweetalert2';
 import styles from "../../../../components/sections/transport-managment/cars/view_car/viewcars.module.css";
 
-export default function Qoute() {
+export default function Bidded() {
   const [product, setProduct] = useState([]);
 
   // Function to format date
@@ -22,54 +21,13 @@ export default function Qoute() {
       .then(res => {
         console.log(res.data);
         // Filter shipments with status "booked by admin"
-        const bookedShipments = res.data.data.filter(item => item.status === "booked by admin");
+        const bookedShipments = res.data.data.filter(item => item.status === "bidded");
         setProduct(bookedShipments);
       })
       .catch(err => {
         console.log(err);
       });
   }, []);
-
-
-  // DELETE CAR DATA
-  const updateStatus = (id) => {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You want to cancle this Shipment!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Cancled!'
-    })
-
-      .then((result) => {
-        if (result.isConfirmed) {
-          axios.patch(`http://localhost:5000/api/cars/deleteCar/${id}`)
-            .then(res => {
-              Swal.fire(
-                'Delete Car!',
-                'You data have been delete.',
-                'success'
-              );
-              if (res.status === 200) {
-                axios.get("http://localhost:5000/api/cars/getCars")
-                  .then(res => {
-                    console.log(res.data);
-                    setProduct(res.data.data);
-                  })
-                  .catch(err => {
-                    console.log(err);
-                  });
-              }
-            })
-            .catch(err => {
-              console.log(err);
-            });
-        }
-      });
-
-  }
 
   return (
     <div className={styles.shipment_container}>
@@ -83,8 +41,6 @@ export default function Qoute() {
             <th>Delivery City</th>
             <th>Pickup Date</th>
             <th>StopType</th>
-            <th>Price</th>
-            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -97,10 +53,6 @@ export default function Qoute() {
               <td>{item.deliveryCity}</td>
               <td>{formatDate(item.pickupDate)}</td>
               <td>{item.stopType ? item.stopType : "no stop"}</td>
-              <td>{item.price}</td>
-              <td>
-                <button className={styles.cancel_button} onClick={() => updateStatus(`${item._id}`)}>cancel</button>
-              </td>
             </tr>
           ))}
         </tbody>

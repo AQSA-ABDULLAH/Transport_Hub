@@ -6,6 +6,7 @@ import Button from "../../../components/atoms/buttons/Button";
 import Qoute from "../tabs/qoute/Qoute";
 import Shipments from "../tabs/shipments/Shipments";
 import ActiveBidding from "../tabs/bidding/ActiveBidding";
+import Bidded from "../tabs/bidding/Bidded";
 
 const ManageShipment = () => {
   const navigate = useNavigate();
@@ -50,6 +51,8 @@ const ManageShipment = () => {
         return <Qoute/>
       case 2:
         return <ActiveBidding/>
+      case 3:
+        return <Bidded/>
       default:
         return null;
     }

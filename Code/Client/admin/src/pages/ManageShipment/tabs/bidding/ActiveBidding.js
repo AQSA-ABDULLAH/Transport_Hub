@@ -41,7 +41,6 @@ export default function ActiveBidding() {
             <th>Delivery City</th>
             <th>Pickup Date</th>
             <th>StopType</th>
-            <th>Price</th>
           </tr>
         </thead>
         <tbody>
@@ -54,7 +53,6 @@ export default function ActiveBidding() {
               <td>{item.deliveryCity}</td>
               <td>{formatDate(item.pickupDate)}</td>
               <td>{item.stopType ? item.stopType : "no stop"}</td>
-              <td>{item.price}</td>
             </tr>
           ))}
         </tbody>

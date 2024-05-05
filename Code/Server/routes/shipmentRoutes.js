@@ -8,7 +8,7 @@ require("../db/connection");
 router.post("/book-shipment", ShipmentController.shipment);
 router.get("/get-shipment/:id", ShipmentController.getShipment );
 router.get("/get-shipment", ShipmentController.getAllShipments);
-// router.delete("/deleteCar/:id", CarsController.deletecar);
-// router.patch("/updateCar/:id", CarsController.updateCar);
+// router.delete("/deleteCar/:id", ShipmentController.deletecar);
+router.patch("/update-shipment/:id", ShipmentController.updateShipment);
 
 module.exports = router;
