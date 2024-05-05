@@ -54,7 +54,7 @@ const ManageShipment = () => {
         return <ActiveBidding/>
       case 3:
         return <Bidded/>
-      case 6:
+      case 7:
         return <CanceledShipments/>
       default:
         return null;
