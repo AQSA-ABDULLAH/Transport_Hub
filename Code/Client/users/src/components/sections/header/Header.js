@@ -8,7 +8,6 @@ import Parcelform from "../../Parcel/Parcelform";
 import PickupBoyForm from "../../Parcel/PickupBoyForm";
 import PickupboysLandingPage from "../../../pages/pickupboylandingpage/PickupboysLandingPage";
 import useUserAction from "../../../utils/customHooks/useUserAction";
-
 const Navbar = () => {
   const navigate = useNavigate();
   const [Mobile, setMobile] = useState(false);

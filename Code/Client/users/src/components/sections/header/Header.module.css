@@ -35,6 +35,10 @@ li {
   align-items: center;
   margin: 0rem -2rem 0rem 0.625rem;
   width: 100%;
+  
+}
+.navLinks a {
+  text-decoration: none; /* Remove underline from anchor tags within li */
 }
 
 .navLinks li {

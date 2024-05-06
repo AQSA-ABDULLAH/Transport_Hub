@@ -16,10 +16,9 @@ import { setSignedIn } from "../redux/containers/auth/actions";
 import LandingPage from "../pages/car-rental/LandingPage.js";
 import ViewCars from "../pages/car-rental/showCarsPage/ViewCars.js"
 import ExtendedDetailPage from "../pages/car-rental/addOnPage/ExtendedDetailPage.js"
-import RentalBookingPage from "../pages/car-rental/bookingPage/RentalBookingPage.js"
-import BlogsNews from "../pages/blogs&news/BlogsNews.js";
-import BlogsDetails from "../pages/blogs&news/BlogsDetails.js";
-
+import RentalBookingPage from "../pages/car-rental/bookingPage/RentalBookingPage.js";
+import BlogsNews from "../pages/blogs&News/BlogsNews.js";
+import BlogsDetails from "../pages/blogs&News/BlogsDetails.js";
 import CareerPage from "../pages/career/CareerPage.js";
 import DriverEmail from "../pages/career/driver/registration/DriverEmail.js";
 import DriverVerifyMail from "../pages/career/driver/verifymail/DriverVerifyMain.js";
@@ -41,13 +40,11 @@ import PickupBoyForm from "../components/Parcel/PickupBoyForm.js";
 import Showpickupboy from "../components/Parcel/showpickupboysforms.js";
 import Userdashboard from "../user-dashboard/User-dashboard.js";
 import PickupboysLandingPage from "../pages/pickupboylandingpage/PickupboysLandingPage.js";
-import PickupBoyEmail from "../components/pickupboyregistration/emailpage/PickupboyEmail.js";
-import PickupBoyVerifyMail from "../components/pickupboyregistration/verifyemailpage/PickupBoyVerifyMain.js";
-
-
-
-
-
+import PickupboyEmail from "../pages/career/PickupboyCareer/pickupboyregistration/emailpage/PickupboyEmail.js";
+import PickupBoyVerifyMail from "../pages/career/PickupboyCareer/pickupboyregistration/verifyemailpage/PickupBoyVerifyMain.js";
+import PickupBoyDetailPage from "../pages/career/PickupboyCareer/pickupboyregistration/PickupboyDetails/PickupBoyDetailPage.js";
+import PickupBoyLocation from "../pages/career/PickupboyCareer/pickupboyregistration/PickupboyCity/PickupboyLocationDetail.js";
+import Pickupboynum from "../pages/career/PickupboyCareer/pickupboyregistration/PickupBoyNum/Pickupboynum.js"
 function AppRoutes() {
 
   const [pickupBoy, setpickupBoy] = useState([]);
@@ -63,6 +60,7 @@ function AppRoutes() {
   useEffect(() => {
     fetchData();
   }, []);
+
   const dispatch = useDispatch();
   const reduxState = useSelector((state) => state.signIn);
 
@@ -159,9 +157,12 @@ function AppRoutes() {
           {/* Parcel Pickup Routes */}
           <Route path="/parcelform" element={<Parcelform/>}/> 
           <Route path="/pickupboyform" element={<PickupBoyForm/>}/>
-
-          <Route path="/pickupboy-email" element={<PickupBoyEmail/>}/>
+          
+          <Route path="/pickupboy-email" element={<PickupboyEmail/>}/>
           <Route path="/pickupboyverifymail" element={<PickupBoyVerifyMail/>}/>
+          <Route path="/pickupboy-detail-page" element={<PickupBoyDetailPage/>}/>
+          <Route path="/pickupboy-location" element={<PickupBoyLocation/>}/>
+          <Route path="/pickupboy-number" element={<Pickupboynum/>}/>
           
            {pickupBoy.map((pickupBoy) => (
            <Route

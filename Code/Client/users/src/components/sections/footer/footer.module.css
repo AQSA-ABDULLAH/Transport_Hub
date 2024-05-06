@@ -42,6 +42,7 @@
     margin-bottom: 20px;
     color: #fff;
     font-family: 'Sintony', sans-serif;
+    text-decoration: none;
   }
 
   .emailDiv input {
@@ -175,6 +176,7 @@
 
     .footerContainer h2 {
       margin-bottom: 2rem;
+      text-decoration: none;
     }
 
     .icons {
@@ -187,6 +189,7 @@
 
     .ourClasses li {
       margin-bottom: 1rem;
+      text-decoration: none;
     }
 
     .ourTimings {
@@ -196,4 +199,5 @@
     .emailDiv {
       width: 50%;
     }
+    
   }

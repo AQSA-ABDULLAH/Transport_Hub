@@ -17,8 +17,6 @@ const upload = multer({ storage: storage });
 
 router.post('/create', parcelFormController.createParcelForm);
 
-
-
 router.post('/register',parcelFormController.registerPickupBoy);
 //  upload.fields([
 //   { name: 'picture', maxCount: 1 },

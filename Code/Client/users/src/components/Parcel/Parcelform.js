@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import "./CustomerForm.css";
 import axios from 'axios';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import parcelpickupimg2 from "./parcelpickupimg2.jpeg";
 
 const Parcelform = () => {
   const navigate = useNavigate();
@@ -113,9 +114,13 @@ let name,value;
 
   return (
     <>
-      
-      <div className="d-flex justify-content-center align-items-center form-container" style={{ minHeight: '100vh', color: 'white' }}>
-        <div className="w-50 p-4 rounded" style={{ backgroundColor: '#b491d2', marginTop: '20px' }}>
+      <div className="upper">
+        <span><p>Send your parcel from your home to anywhere at your own convenience.
+          Send your parcel from your home to anywhere at your own convenience.Send your parcel from your home to anywhere at your own convenienceSend your parcel from your home to anywhere at your own convenienceSend your parcel from your home to anywhere at your own convenienceSend your parcel from your home to anywhere at your own convenience</p></span>
+        <span>  <img src={parcelpickupimg2} alt="Example" /></span>
+      </div>
+      <div className="d-flex justify-content-center align-items-center form-container" >
+        <div className="w-50 p-4 rounded hello" >
           <h2 className="text-center mb-4">Parcel Pickup Service</h2>
           <form method="POST">
             <div className="mb-3">
