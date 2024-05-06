@@ -2,9 +2,24 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaEdit } from "react-icons/fa";
 import styles from "../../../../components/sections/transport-managment/cars/view_car/viewcars.module.css";
+import GetShipment from "../ShipmentForm";
 
 export default function Shipments() {
   const [product, setProduct] = useState([]);
+  const [showShipmentForm, setShowShipmentForm] = useState(false);
+  const [shipmentId, setShipmentId] = useState(null);
+
+    // Function to handle edit click
+    const handleEditClick = (id) => {
+      setShowShipmentForm(true);
+      setShipmentId(id);
+      console.log("show")
+    };
+
+  const handleClose = () => {
+    setShowShipmentForm(false);
+    setShipmentId(null);
+  };
 
   // Function to format date
   const formatDate = (dateString) => {
@@ -27,6 +42,7 @@ export default function Shipments() {
       });
   }, []);
 
+
   return (
     <div className={styles.shipment_container}>
       <table className={styles.table}>
@@ -45,7 +61,7 @@ export default function Shipments() {
         <tbody>
           {product.map((item, index) => (
             <tr key={index}>
-              <td className={styles.shipmentID}>{item._id} <FaEdit/></td>
+              <td className={styles.shipmentID}>{item._id} <FaEdit onClick={() => handleEditClick(item._id)}/></td>
               <td>{item.commodityName}</td>
               <td>{item.selectedMode}</td>
               <td>{item.pickupCity}</td>
@@ -57,6 +73,14 @@ export default function Shipments() {
           ))}
         </tbody>
       </table>
+
+      {showShipmentForm && (
+        <GetShipment
+          onClose={handleClose}
+          shipmentId={shipmentId}
+        />
+      )}
+
     </div>
   );
 }
