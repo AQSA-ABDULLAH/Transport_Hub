@@ -1,4 +1,39 @@
 .form-container {
     min-height: 100vh;
     background-color: #f0f0f0;
+   
   }
+  /* In your CustomerForm.css file */
+.form-submit {
+  background-color: #7f41b6; /* Blue background color */
+  color: #fff; /* White text color */
+  border: none; /* Remove border */
+  padding: 10px 20px; /* Add padding */
+  border-radius: 5px; /* Add border-radius */
+  cursor: pointer; /* Add pointer cursor */
+  font-size: 16px; /* Set font size */
+  font-weight: bold; /* Set font weight */
+}
+
+.form-submit:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+.hello {
+  width: 60%;
+  background-color: #b491d2;
+  border: 2px solid none; /* You can adjust the color as needed */
+  margin: 200px auto;
+}
+.upper {
+  margin: 0 50px; /* Add left and right margin */
+  padding: 10px;
+  margin-bottom: 10px;
+  height: 500px;
+  display: flex;
+  align-items: center; /* Vertically center the items */
+}
+
+.upper span {
+  flex: 1; /* Distribute space evenly among the spans */
+  padding: 120px;
+}

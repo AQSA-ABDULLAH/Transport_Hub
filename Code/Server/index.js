@@ -19,6 +19,8 @@ const blogsRoutes = require("./routes/blogsRoutes.js");
 const zoneRoutes = require("./routes/zoneRoutes.js");
 const rentalBookingRoutes = require("./routes/bookRentalRoutes.js");
 const shipmentRoutes = require("./routes/shipmentRoutes.js")
+const otpRoutes=require("./routes/otpRoutes.js");
+// // const useredRoutes=require("./routes/usered.js");
 
 // Express
 const app = express();
@@ -47,7 +49,11 @@ app.use("/api/zone",zoneRoutes);
 app.use("/api/rental-booking",rentalBookingRoutes);
 app.use("/api/shipment",shipmentRoutes)
 app.use(parcelRoutes);
+app.use(otpRoutes);
 
+// app.use(useredRoutes)
+
+// app.use('/user', useredRoutes)
 
 // For Server Port
 const PORT = process.env.PORT || 5000;

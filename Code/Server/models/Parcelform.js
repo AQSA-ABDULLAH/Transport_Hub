@@ -37,6 +37,10 @@ const parcelFormSchema = new mongoose.Schema({
     type: Number, // Changed to Number
     trim: true
   },
+  status: 
+  {   type: String, enum: ['pending', 'approved', 'rejected'], 
+      default: 'pending' 
+  }
 },
 {
   timestamps: true

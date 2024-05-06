@@ -1,0 +1,84 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 88vh;
+    margin: 0;
+  }
+  
+  .inputForm {
+   display: flex;
+   flex-direction: column;
+  }
+
+  .inputForm input{
+    width: 20rem;
+    margin: 12px 0px;
+  }
+
+  .formdiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  
+  .formdiv h2{
+    font-size: 25px;
+    margin: 6px 0px;
+  }
+
+  .formdiv p{
+    font-size: 13px;
+    margin: 6px 0px 28px;
+  }
+
+  .formbutton{
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+  }
+  
+.button{
+    display: flex;
+    justify-content: space-between;
+  }
+  .button button{
+    width: 25%;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 6px 0px 6px 0px;
+    border: 1.2px solid #b88cdf;
+    border-radius: 10px;
+    background-color: #7A28C2;
+    color: white;
+  }
+  
+  .input_field input {
+      height: 44px;
+      border-radius: 6px;
+      outline: none;
+      font-size: 1rem;
+      color: #3B3B4f;
+      padding: 12px;
+      border: 1px solid #ddd;
+    }
+
+/* APPLICATION STYLE */
+.container{
+  background-color:#fff;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* rgb(238, 238, 238) */
+}
+
+.subContainer {
+  min-height: 89vh;
+  width: 38%;
+  background-color: white;
+  margin: 0;
+}
+.main_container{ 
+        width: 20%; /* Set the width of the form to 20% of its containing element */
+}

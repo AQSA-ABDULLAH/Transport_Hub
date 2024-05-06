@@ -5,7 +5,6 @@ import Button from "../../atoms/button/Button";
 import { FaBars, FaUser, FaAngleDown } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import useUserAction from "../../../utils/customHooks/useUserAction";
-
 const Navbar = () => {
   const navigate = useNavigate();
   const [Mobile, setMobile] = useState(false);
