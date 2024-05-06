@@ -2,9 +2,26 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaEdit } from "react-icons/fa";
 import styles from "../viewshipments.module.css";
+import GetShipment from "./BidShipment";
 
 export default function ActiveBidding() {
   const [product, setProduct] = useState([]);
+  const [showShipmentForm, setShowShipmentForm] = useState(false);
+  const [shipmentId, setShipmentId] = useState(null);
+  // const userId = getUserIdFromToken();
+
+    // Function to handle edit click
+    const handleEditClick = (id) => {
+      setShowShipmentForm(true);
+      setShipmentId(id);
+      console.log("show")
+      // console.log(userId);
+    };
+
+  const handleClose = () => {
+    setShowShipmentForm(false);
+    setShipmentId(null);
+  };
 
   // Function to format date
   const formatDate = (dateString) => {
@@ -46,7 +63,7 @@ export default function ActiveBidding() {
         <tbody>
           {product.map((item, index) => (
             <tr key={index}>
-              <td className={styles.shipmentID}>{item._id} <FaEdit/></td>
+              <td className={styles.shipmentID}>{item._id} <FaEdit onClick={() => handleEditClick(item._id)}/></td>
               <td>{item.commodityName}</td>
               <td>{item.selectedMode}</td>
               <td>{item.pickupCity}</td>
@@ -57,6 +74,14 @@ export default function ActiveBidding() {
           ))}
         </tbody>
       </table>
+
+      {showShipmentForm && (
+        <GetShipment
+          onClose={handleClose}
+          shipmentId={shipmentId}
+        />
+      )}
+
     </div>
   );
 }
