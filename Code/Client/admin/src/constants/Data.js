@@ -18,6 +18,11 @@ export const Main = [
     route:'/carRental'
   },
   {
+    icon: <BsCreditCard2FrontFill size={20} />,
+    text: "Manage Shipments",
+    route:'/manage-shipments'
+  },
+  {
     icon: <BiSolidContact size={20}/>,
     text: "Transport Managment",
     route:'/transport-managment'

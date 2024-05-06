@@ -44,21 +44,21 @@ const dispatch=useDispatch();
         } `}
       >
         <div className={styles.logo}>
-         <img src="/assets/logo/LogoLight.png" width={215} height={110}/>
+         <img src="/assets/logo/LogoLight.png" width={160} height={68}/>
         </div>
         <div className={styles.spaceY}>
           <NavLink to={"/"} className={styles.sideLink} onClick={handleLinkClick}>
             <div className={styles.icon}>
               <AiFillHome size={20} />
             </div>
-            <p className={styles.linkText}>Home</p>
+            <p className={styles.linkText}>Dashboard</p>
           </NavLink>
         </div>
         <div className={` ${styles.linksBlock} `}>
           <SidebarLinks data={Main}  handleLinkClick={handleLinkClick}/>
         </div>
       
-        <button className={styles.btn} onClick={()=>logout()}>logout</button>
+        <button className={styles.btn} onClick={()=>logout()}>Logout</button>
         <LiaTimesSolid
           className={styles.closeIcon}
           color="#000"

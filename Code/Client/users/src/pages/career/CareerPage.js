@@ -4,7 +4,7 @@ import CareerSection2 from '../../components/sections/career/careerSection2/Abou
 import TransporterSection from '../../components/sections/career/careerSection4/TransporterSection';
 import DriverSection from '../../components/sections/career/careerSection3/DriverSection';
 import styles from './careerpage.module.css';
-import PickupboyCareerPage from './PickupboyCareer/PickupboyCareerPage';
+import PickupboyCareerPage from '../../components/sections/career/careerSection5/PickupboyCareerPage';
 
 export default function CareerPage() {
     return (

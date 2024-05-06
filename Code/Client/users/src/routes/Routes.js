@@ -14,11 +14,11 @@ import { useSelector } from "react-redux";
 import { setSignedIn } from "../redux/containers/auth/actions";
 
 import LandingPage from "../pages/car-rental/LandingPage.js";
-import ViewCars from "../pages/car-rental/showCarsPage/ViewCars.js"
 import ExtendedDetailPage from "../pages/car-rental/addOnPage/ExtendedDetailPage.js"
-import RentalBookingPage from "../pages/car-rental/bookingPage/RentalBookingPage.js";
-import BlogsNews from "../pages/blogs&News/BlogsNews.js";
-import BlogsDetails from "../pages/blogs&News/BlogsDetails.js";
+import ViewCars from "../pages/car-rental/showCarsPage/ViewCars.js";
+import RentalBookingPage from '../pages/car-rental/bookingPage/RentalBookingPage.js';
+import BlogsNews from "../pages/blogs&news/BlogsNews.js";
+import BlogsDetails from "../pages/blogs&news/BlogsDetails.js";
 import CareerPage from "../pages/career/CareerPage.js";
 import DriverEmail from "../pages/career/driver/registration/DriverEmail.js";
 import DriverVerifyMail from "../pages/career/driver/verifymail/DriverVerifyMain.js";
@@ -29,22 +29,35 @@ import VerifyTransporterEmail from "../pages/career/transporter/verifymail/Verif
 import DriverLocation from "../pages/career/driver/locationsection/DriverLocation.js";
 import DriverVechicalSection from "../pages/career/driver/vechicalselection/DriverVechicalSelection.js";
 import DriverApplication from "../pages/career/driver/application/DriverApplication.js";
-import DriverCnic from "../pages/career/driver/uploadCNIC/DriverCnic.js";
+import DriverPhoto from "../pages/career/driver/patnerphoto/DriverPhoto.js";
+import DriverCnicFrontSide from "../pages/career/driver/uploadCNIC/DriverCnicFrontSide.js";
+import DriverCnicBackSide from "../pages/career/driver/uploadCNIC/DriverCnicBackSide.js";
 import TermsCondition from "../pages/career/driver/terms&condition/Terms&Condition.js";
+import DriverLicense from "../pages/career/driver/driving-license/DriverLicense.js";
 import ShipmentLandingPage from "../pages/good-shipment/ShipmentLandingPage.js";
 import ShipmentForm from "../pages/good-shipment/create-shipment/ShipmentForm.js";
 import LandingTripPage from "../pages/Trips/LandingTripPage.js";
 import ManageShipments from "../pages/good-shipment/manage-shipments/ManageShipments.js";
+import TransportLocation from "../pages/career/transporter/locationsection/TransporterLocation.js";
+import TransporterVechicalSection from "../pages/career/transporter/vechicalselection/TransporterVechicalSelection.js";
 import Parcelform from "../components/Parcel/Parcelform.js";
 import PickupBoyForm from "../components/Parcel/PickupBoyForm.js";
 import Showpickupboy from "../components/Parcel/showpickupboysforms.js";
 import Userdashboard from "../user-dashboard/User-dashboard.js";
 import PickupboysLandingPage from "../pages/pickupboylandingpage/PickupboysLandingPage.js";
+
 import PickupboyEmail from "../pages/career/PickupboyCareer/pickupboyregistration/emailpage/PickupboyEmail.js";
 import PickupBoyVerifyMail from "../pages/career/PickupboyCareer/pickupboyregistration/verifyemailpage/PickupBoyVerifyMain.js";
 import PickupBoyDetailPage from "../pages/career/PickupboyCareer/pickupboyregistration/PickupboyDetails/PickupBoyDetailPage.js";
 import PickupBoyLocation from "../pages/career/PickupboyCareer/pickupboyregistration/PickupboyCity/PickupboyLocationDetail.js";
 import Pickupboynum from "../pages/career/PickupboyCareer/pickupboyregistration/PickupBoyNum/Pickupboynum.js"
+
+import TripDetails from "../components/molecules/trips/TripDetails.js";
+import AddOnPage from "../pages/car-rental/addOnPage/AddOnPage.js";
+import BookingForm from "../pages/Trips/BookingForm.js";
+import BookingPage from "../pages/Booking/BookingPage.js";
+
+
 function AppRoutes() {
 
   const [pickupBoy, setpickupBoy] = useState([]);
@@ -66,10 +79,12 @@ function AppRoutes() {
 
   const location = useLocation();
   const [isAuthenticated, setisAuthenticated] = useState(false);
-  const noHeaderPaths = ["/login", "/signup", "/404", "/profile", "/driverRegistration", "/verify_transporter_mail",
-  "/transporterRegistration", "/transporter_name_section", "/driver_name_section", "/driver_location_section",
-  "/driver_vechical_selection", "/driver_application_form", "/trems_and_conditions", "/upload_driver_cnic", 
-  "/driver_verify_mail", "/create_shipment_form", "/manage_shipments" ];
+  const noHeaderPaths = ["/login", "/signup", "/404", "/profile", "/driverRegistration", "/driver_verify_mail", 
+  "/driver_name_section", "/driver_location_section", "/driver_vechical_selection", "/driver_application_form", 
+  "/driver_terms_and_conditions", "/driver_photo", "/upload_driver_cnic_front_side", "/upload_driver_cnic_back_side",
+  "/driver_driving_license", "/create_shipment_form", "/manage_shipments", "/transporterRegistration", "/verify_transporter_mail", 
+  "/transporter_name_section", "/transporter_location_section",
+  "/transporter_vechical_selection" ];
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -111,14 +126,13 @@ function AppRoutes() {
         {/* CAR RENTAL ROUTES */}
         <Route path="/rental_landing_page" element={<LandingPage/>}/>
         <Route path="/viewCars" element={<ViewCars/>}/>
-        <Route path="/carAddOn" element={<ExtendedDetailPage/>}/>
+        <Route path="/carAddOn" element={<AddOnPage/>}/>
         <Route path="/RentalBooking" element={<RentalBookingPage/>}/>
 
         {/* GOOD SHIPMENT ROUTES */}
         <Route path="/shipment_landing_page" element={<ShipmentLandingPage/>}/>
         <Route path="/create_shipment_form" element={<ShipmentForm/>}/>
         <Route path="/manage_shipments" element={<ManageShipments/>}/>
-
 
         <Route path="/career" element={<CareerPage/>}/>
         {/* DRIVER REGISTRATION */}
@@ -128,17 +142,27 @@ function AppRoutes() {
         <Route path="/driver_location_section" element={<DriverLocation/>}/>
         <Route path="/driver_vechical_selection" element={<DriverVechicalSection/>}/>
         <Route path="/driver_application_form" element={<DriverApplication/>}/>
-        <Route path="/upload_driver_cnic" element={<DriverCnic/>}/>
-        <Route path="/trems_and_conditions" element={<TermsCondition/>}/>
+        <Route path="/driver_terms_and_conditions" element={<TermsCondition/>}/>
+        <Route path="/driver_photo" element={<DriverPhoto/>}/>
+        <Route path="/upload_driver_cnic_front_side" element={<DriverCnicFrontSide/>}/>
+        <Route path="/upload_driver_cnic_back_side" element={<DriverCnicBackSide/>}/>
+        <Route path="/driver_driving_license" element={<DriverLicense/>}/>
 
         {/* TRANSPORTER REGISTRATION */}
         <Route path="/transporterRegistration" element={<TransporterEmail/>}/>
         <Route path="/verify_transporter_mail" element={< VerifyTransporterEmail/>}/>
         <Route path="/transporter_name_section" element={<TransporterName/>}/>
+        <Route path="/transporter_location_section" element={<TransportLocation/>}/>
+        <Route path="/transporter_vechical_selection" element={<TransporterVechicalSection/>}/>
         
         {/* Trips Packages */}
         <Route path="/trips_packages" element={<LandingTripPage/>} />
+        <Route path="/tripDetails/:tripId" element={<TripDetails/>} />
         <Route path="/404" element={<NoRoute />} />      
+
+        {/* Booking  */}
+        <Route path="/BookingPage" element={<BookingPage/>} />
+        <Route path="/BookingForm/:tripId" element={<BookingForm/>} />
 
         <Route
           path="/signup"

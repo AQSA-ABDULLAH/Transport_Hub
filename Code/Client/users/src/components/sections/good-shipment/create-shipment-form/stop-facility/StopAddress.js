@@ -14,14 +14,14 @@ function StopAddress({ StopForm }) {
   };
 
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
+    stopFirstName: '',
+    stopLastName: '',
+    stopEmail: '',
+    stopPhone: '',
     city: '',
     zipcode: '',
     stopAddress: '',
-    defaultInstructions: ''
+    stopInstruction: ''
   });
 
   const handleChange = (event) => {
@@ -51,33 +51,33 @@ function StopAddress({ StopForm }) {
           <div className={styles.qoute_row}>
             <div className={style.pickup_form_input}>
               <label>First name</label>
-              <input type="text" name="firstName" placeholder="Enter first name" value={formData.firstName} onChange={handleChange} />
+              <input type="text" name="stopFirstName" placeholder="Enter first name" value={formData.stopFirstName} onChange={handleChange} />
             </div>
             <div className={style.pickup_form_input}>
               <label>Last name</label>
-              <input type="text" name="lastName" placeholder="Enter last name" value={formData.lastName} onChange={handleChange} />
+              <input type="text" name="stopLastName" placeholder="Enter last name" value={formData.stopLastName} onChange={handleChange} />
             </div>
           </div>
 
           <div className={styles.qoute_row}>
             <div className={style.pickup_form_input}>
               <label>Email</label>
-              <input type="text" name="email" placeholder="Enter email" value={formData.email} onChange={handleChange} />
+              <input type="text" name="stopEmail" placeholder="Enter email" value={formData.stopEmail} onChange={handleChange} />
             </div>
             <div className={style.pickup_form_input}>
               <label>Phone no</label>
-              <input type="text" name="phone" placeholder="Enter phone number" value={formData.phone} onChange={handleChange} />
+              <input type="text" name="stopPhone" placeholder="Enter phone number" value={formData.stopPhone} onChange={handleChange} />
             </div>
           </div>
 
           <div className={styles.qoute_row}>
             <div className={style.pickup_form_input}>
               <label>City</label>
-              <input type="text" name="city" placeholder="Enter city" value={formData.city} onChange={handleChange} />
+              <input type="text" name="stopCity" placeholder="Enter city" value={formData.stopCity} onChange={handleChange} />
             </div>
             <div className={style.pickup_form_input}>
               <label>Zipcode</label>
-              <input type="text" name="zipcode" placeholder="Enter zipcode" value={formData.zipcode} onChange={handleChange} />
+              <input type="text" name="stopZipcode" placeholder="Enter zipcode" value={formData.stopZipcode} onChange={handleChange} />
             </div>
           </div>
 
@@ -96,11 +96,11 @@ function StopAddress({ StopForm }) {
           <div className={style.pickup_form_input}>
             <label>Facility default instructions</label>
             <textarea
-              name="defaultInstructions"
+              name="stopInstruction"
               placeholder="Type any instruction note"
               rows={5}
               className={styles.input_div}
-              value={formData.defaultInstructions}
+              value={formData.stopInstruction}
               onChange={handleChange}
             ></textarea>
           </div>

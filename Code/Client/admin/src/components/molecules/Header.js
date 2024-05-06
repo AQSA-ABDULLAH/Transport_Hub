@@ -63,7 +63,7 @@ const TopHeader = ({ openSidebar, setOpenSidebar, haveButton, ButtonText, onClic
         </div>
         <div className={styles.content}>
           <div className={styles.navbar}>
-            <h2>{getPageName()}</h2>
+            <h3>{getPageName()}</h3>
           </div>
           <div>
 

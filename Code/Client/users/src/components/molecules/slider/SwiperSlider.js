@@ -61,7 +61,7 @@ const SwiperSlider = ({ data }) => {
     >
       {data.map((slide, index) => (
         <SwiperSlide key={index}>
-          <div className="card">
+          <div className="custcard">
             <img
               src={slide.image}
               alt={slide.caption}

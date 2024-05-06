@@ -12,3 +12,10 @@ function QouteFooter({saveQoute}) {
 }
 
 export default QouteFooter;
+
+
+// DirectionsService.route(request, function(result, status){
+//   if(status == google.DirectionsStatus.OK){
+//     const output = document.querySelector("#output")
+//   }
+// })

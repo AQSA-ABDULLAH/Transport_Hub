@@ -1,6 +1,6 @@
 .container {
     background-color: #fff;
-    width: auto;
+    width: 100%;
     height: 81.9vh;
     border-bottom-right-radius: 10px;
     overflow-y: scroll;

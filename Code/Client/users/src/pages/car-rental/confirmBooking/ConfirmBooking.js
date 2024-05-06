@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import style from './confirmBooking.module.css';
 import Button from '../../../components/atoms/button/Button';
 import { useNavigate } from 'react-router-dom';
@@ -67,6 +68,7 @@ const ConfirmBooking = () => {
             .then(response => {
                 console.log('Data sent successfully:', response.data);
                 console.log(combinedData)
+                Swal.fire('Success!', 'Your booking has been confirmed. Check your email for further details.', 'success');
                 navigate("/");
             })
             .catch(error => {
@@ -101,26 +103,3 @@ const ConfirmBooking = () => {
 };
 
 export default ConfirmBooking;
-
-
-
-
-
-
-// Check for empty fields in formData
-// const isEmpty = Object.values(formData).some(x => x.trim() === '');
-// if (isEmpty) {
-//   console.error('Please fill in all required fields');
-//   return;
-// }
-
-
-// // Retrieve carDetails from local storage
-// const filterData = JSON.parse(localStorage.getItem('filterData'));
-// const dropLocation = filterData.dropLocation;
-
-// // Combine formData with carDetails
-// const combinedData = { ...formData, dropLocation: dropLocation };
-
-// // Log combined data to console (for debugging)
-// console.log('Sending combined data:', combinedData);

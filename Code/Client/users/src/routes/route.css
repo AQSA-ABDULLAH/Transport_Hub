@@ -15,7 +15,9 @@
   .scrolled {
     position: fixed;
     transform: translateY(0);
-    transition: 0.6s all;
-    background-color: #2B2E33;
-  }
+    transition: 0.2s all;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow to bottom border */
+}
+
   
