@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { useBooking } from "../../context/booking";
-
+import axios from 'axios';
+import Swal from 'sweetalert2';
 const BookingForm = () => {
   const [booking, setBooking] = useBooking();
   const [passengerDetails, setPassengerDetails] = useState({
-    adults: 0,
-    children: 0,
-    infants: 0,
+    
     passengers: [],
   });
   
@@ -16,27 +15,14 @@ const BookingForm = () => {
     firstName: "",
     lastName: "",
     country: "",
-    adults: 0,
-    children: 0,
-    infants: 0,
+    
   });
   const [contactDetails, setContactDetails] = useState({
     fullName: "",
     email: "",
-    phoneNumber: "",
-    CNIC: "",
+    mobile_no: "",
+    cnic_no: "",
   });
-  useEffect(() => {
-    // Retrieve passenger details from cookies
-    const passengerDetailsFromCookies = {
-      adults: parseInt(Cookies.get("adults")) || 0,
-      children: parseInt(Cookies.get("children")) || 0,
-      infants: parseInt(Cookies.get("infants")) || 0,
-    };
-    setPassengerDetailsCookies(passengerDetailsFromCookies);
-
-  }, []);
-
   useEffect(() => {
     const adults = parseInt(Cookies.get("adults")) || 0;
     const children = parseInt(Cookies.get("children")) || 0;
@@ -66,19 +52,21 @@ const BookingForm = () => {
 
   const handlePassengerChange = (event, index) => {
     const { name, value } = event.target;
-    const newPassengers = [...passengerDetails.passengers]; // Create a copy of passengers array
-    newPassengers[index][name] = value; // Update the specific passenger's property
+    const newPassengers = [...passengerDetails.passengers];
+    newPassengers[index][name] = value;
+    console.log(newPassengers); 
     setPassengerDetails(prevDetails => ({
       ...prevDetails,
-      passengers: newPassengers, // Set the updated passengers array
+      passengers: newPassengers,
     }));
+    
   };
   
 
   const handleGenderChange = (event, index, gender) => {
     const newPassengers = [...passengerDetails.passengers];
     newPassengers[index].gender = gender;
-    setPassengerDetails({ ...passengerDetails, passengers: newPassengers });
+    setPassengerDetailsCookies({ ...passengerDetails, passengers: newPassengers });
   };
   
 
@@ -89,29 +77,44 @@ const BookingForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log("Submitting form...");
     try {
-      const response = await fetch("http://localhost:5000/api/trips/submit-a-new-trip-booking-form", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          passengerDetails,
-          contactDetails,
-          NoOfAdults: parseInt(Cookies.get("adults")) || 0,
-          NoOfChildren: parseInt(Cookies.get("children")) || 0,
-          NoOfInfrants: parseInt(Cookies.get("infants")) || 0,
-          totalPrice: parseInt(Cookies.get("totalPrice")) || 0,
-          departCity: Cookies.get("depareCity") || "",
-          departDate: Cookies.get("departureDate") || "",
-        }),
+      const data = {
+        passengerDetails: passengerDetails.passengers,
+        contactDetails,
+        NoOfAdults: parseInt(Cookies.get("adults")) || 0,
+        NoOfChildren: parseInt(Cookies.get("children")) || 0,
+        NoOfInfants: parseInt(Cookies.get("infants")) || 0,
+        totalPrice: parseInt(Cookies.get("totalPrice")) || 0,
+        departCity: Cookies.get("departCity") || "",
+        departDate: Cookies.get("departureDate") || "",
+      };
+  
+      console.log("Data to be sent:", data); // Log data object before sending
+  
+      // Send data to the backend
+      await axios.post('http://localhost:5000/api/trips/submit-a-new-trip-booking-form', data, {
+        headers: { 'Content-Type': 'application/json' }
       });
-      const data = await response.json();
-      console.log("Booking submitted successfully:", data);
-    } catch (error) {
-      console.error("Error submitting booking:", error);
+  
+      setBooking(); // Set booking context after successful submission
+      Swal.fire(
+        'Booking Successful',
+        'Go to Manage Booking tab to see your orders',
+        'success'
+      );
+    } catch (err) {
+      console.log(err);
+      if (err.response && err.response.status === 400) {
+        const validationErrors = err.response.data.errors;
+        const errorMessages = `Validation failed:\n${validationErrors.map((error) => error.message).join('\n')}`;
+        alert(errorMessages);
+      } else {
+        alert('Error submitting data. Please try again.');
+      }
     }
   };
+  
   
 
 
@@ -141,6 +144,7 @@ const BookingForm = () => {
                       <div className="form-check form-check-inline">
                         <input
                           className="form-check-input"
+                          name="gender"
                           type="checkbox"
                           id={`male${index}`}
                           value="Male"
@@ -153,6 +157,7 @@ const BookingForm = () => {
                         <input
                           className="form-check-input"
                           type="checkbox"
+                          name="gender"
                           id={`female${index}`}
                           value="Female"
                           checked={passenger.gender === "Female"}
@@ -164,6 +169,7 @@ const BookingForm = () => {
                         <input
                           className="form-check-input"
                           type="checkbox"
+                          name="gender"
                           id={`other${index}`}
                           value="Other"
                           checked={passenger.gender === "Other"}
@@ -183,6 +189,7 @@ const BookingForm = () => {
                           onChange={(e) =>
                             handlePassengerChange(e, passenger.id)
                           }
+                          required
                         />
                       </div>
 
@@ -196,6 +203,7 @@ const BookingForm = () => {
                           onChange={(e) =>
                             handlePassengerChange(e, passenger.id)
                           }
+                          required
                         />
                       </div>
 
@@ -209,6 +217,7 @@ const BookingForm = () => {
                           onChange={(e) =>
                             handlePassengerChange(e, passenger.id)
                           }
+                          required
                         />
                       </div>
                     </div>
@@ -247,8 +256,8 @@ const BookingForm = () => {
                   <input
                     type="tel"
                     className="form-control"
-                    name="CNIC"
-                    value={contactDetails.CNIC}
+                    name="cnic_no"
+                    value={contactDetails.cnic_no}
                     onChange={handleContactChange}
                   />
                 </div>
@@ -258,15 +267,13 @@ const BookingForm = () => {
                   <input
                     type="tel"
                     className="form-control"
-                    name="phoneNumber"
-                    value={contactDetails.phoneNumber}
+                    name="mobile_no"
+                    value={contactDetails.mobile_no}
                     onChange={handleContactChange}
                   />
                 </div>
               </div>
-              <button type="submit" className="btn btn-primary m-3 w-100" onClick={
-                () => setBooking()
-              }>
+              <button type="submit" className="btn btn-primary m-3 w-100" >
                 Submit Booking
               </button>
             </div>
