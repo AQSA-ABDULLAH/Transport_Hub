@@ -54,12 +54,12 @@ const BookingForm = () => {
     const { name, value } = event.target;
     const newPassengers = [...passengerDetails.passengers];
     newPassengers[index][name] = value;
-    console.log(newPassengers); 
+    console.log(newPassengers); // Check if newPassengers is being updated correctly
     setPassengerDetails(prevDetails => ({
       ...prevDetails,
       passengers: newPassengers,
     }));
-    
+    console.log("details",passengerDetails); // Check if passengerDetails is being updated correctly
   };
   
 
@@ -99,8 +99,8 @@ const BookingForm = () => {
   
       setBooking(); // Set booking context after successful submission
       Swal.fire(
-        'Booking Successful',
-        'Go to Manage Booking tab to see your orders',
+        'New Trip Added Successfully',
+        'Go to trips management tab to see the results',
         'success'
       );
     } catch (err) {
@@ -185,7 +185,7 @@ const BookingForm = () => {
                           type="text"
                           className="form-control"
                           name="firstName"
-                          value={passenger.firstName}
+                          value={passengerDetails.firstName}
                           onChange={(e) =>
                             handlePassengerChange(e, passenger.id)
                           }
