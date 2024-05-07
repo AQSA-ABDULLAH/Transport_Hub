@@ -1,22 +1,22 @@
-const Trips_Booking  = require("../../models/Booking/Trips_Booking.js");
 const mongoose = require('mongoose'); // Required for ObjectId validation
+const Trips_Booking  = require("../../models/Booking/Trips_Booking.js");
 
 class TripBookingController {
-    static async tripBooking(req, res) {
-        console.log('Received form data:', req.body);
-        const { carRental_id,firstName,lastName,country,fullName,cnic_no,mobile_no,email,departCity,departDate,NoOfAdults,NoOfChildren,NoOfInfrants,gender} = req.body;
+    static tripBooking=async (req, res) =>{
+        const data = req.body;
+        console.log(data);
         try {
-            const tripBooking = new Trips_Booking({
-                carRental_id,firstName,lastName,country,fullName,cnic_no,mobile_no,email,departCity,departDate,NoOfAdults,NoOfChildren,NoOfInfrants,gender});
-            
-            await tripBooking.save();
-            res.status(201).json({ status: "success", message: "Data saved successfully"});
-        } catch (error) {
-            console.error("Error in saving trip booking:", error);
-            return res.status(500).json({ error: "Failed to save rental booking due to server error" });
-        }
+            const newTripBooking = await Trips_Booking.create(data);
+            console.log("Data saved");
+            console.log(newTripBooking);
+            res.status(201).send({ status: "success", message: "Trip saved successfully", data: newTripBooking });
+          } catch (error) {
+            console.error(error); // Log the error
+            res.status(500).send({ status: "failed", message: "Internal Server Error" });
+          }
+        
     }
-
+    
     // GET all bookings
     static async getAllTripBookings(req, res) {
         try {
@@ -49,4 +49,3 @@ class TripBookingController {
 }
 
 module.exports = { TripBookingController };
-
