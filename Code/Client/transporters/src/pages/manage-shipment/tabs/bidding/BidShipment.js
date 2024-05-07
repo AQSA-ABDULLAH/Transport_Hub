@@ -297,8 +297,12 @@ const BidShipment = ({ onClose, shipmentId }) => {
                         <div>
                             <h3>Shipment Bidding:</h3>
                         </div>
-                        <div>
-                            <p>No bidding yet</p>
+                        <div className={style.bid_container}>
+                            <h2>Truck W345 S98 Wagnor</h2>
+                            <div className={style.bid} >
+                                <h4>Amit</h4>
+                                <p>{data.bidamount}</p>
+                            </div>
                         </div>
                     </section>
                 </div>
