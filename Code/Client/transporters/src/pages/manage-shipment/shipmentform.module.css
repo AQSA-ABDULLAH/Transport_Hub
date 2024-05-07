@@ -1,4 +1,4 @@
-.popupForm {
+.popupForm, .bidForm {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -7,10 +7,13 @@
     padding: 30px 45px;
     border-radius: 6px;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
-    width: 600px;
     max-height: 90vh;
     overflow-y: auto;
     z-index: 1000;
+  }
+
+  .popupForm {
+    width: 600px;
   }
 
   .shipment_header{
@@ -27,7 +30,7 @@
 
 
   /* form style */
-  .popupForm h1{
+  .popupForm h1, .bidForm h1{
     display: inline-block;
     font-size: 21px;
     font-weight: 700;
@@ -97,3 +100,24 @@
 }
 
 
+/* BID SHIPMENT */
+.shipment_container{
+    display: flex;
+    flex-direction: row;
+}
+.bidForm{
+    width: 750px;
+  }
+
+.horizontalLine {
+    border-top: 1px solid #ccc;
+    margin-top: 15px;
+    margin-left: 50px;
+    margin-right: 30px;
+}
+.bidding_container h3{
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
