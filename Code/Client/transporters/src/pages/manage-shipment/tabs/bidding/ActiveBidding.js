@@ -10,14 +10,12 @@ export default function ActiveBidding() {
   const [showShipmentForm, setShowShipmentForm] = useState(false);
   const [addFare, setAddFare] = useState(false);
   const [shipmentId, setShipmentId] = useState(null);
-  // const userId = getUserIdFromToken();
 
     // Function to handle fare click
     const handelAddFare = (id) => {
       setAddFare(true);
       setShipmentId(id);
       console.log("show")
-      // console.log(userId);
     };
   
     const close = () => {
