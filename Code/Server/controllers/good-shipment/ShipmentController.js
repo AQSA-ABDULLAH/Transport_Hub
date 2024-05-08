@@ -78,6 +78,7 @@ class ShipmentController {
 
     // UPDATE METHOD
   static updateShipment = async (req, res) => {
+    console.log('Received form data:', req.body);
     const { id } = req.params;
     const {
         commodityName, selectedMode, ltlVehicleType, equipment, length, width, height, temperature, 

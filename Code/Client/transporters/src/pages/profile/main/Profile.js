@@ -1,15 +1,16 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Tab } from "../../../constants/ShipmentsTab";
-import styles from "./Shipments.module.css";
+import { Tab } from "../../../constants/ProfileTab";
+import styles from "./profile.module.css";
 import Button from "../../../components/atoms/buttons/Button";
-import Qoute from "../tabs/qoute/Qoute";
-import Shipments from "../tabs/shipments/Shipments";
-import ActiveBidding from "../tabs/bidding/ActiveBidding";
-import Bidded from "../tabs/bidding/Bidded";
-import CanceledShipments from "../tabs/shipments/CanceledShipments";
+import General from "../tabs/general/General";
+import ProfileTab from "../tabs/profile_pic/Profile";
+import CNIC from "../tabs/cnic/CNIC";
+import License from "../tabs/driving_license/License";
+import Vechical from "../tabs/vechical_registration/Vechical";
 
-const ManageShipment = () => {
+
+const Profile = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isActive, setIsActive] = useState(0);
@@ -19,7 +20,7 @@ const ManageShipment = () => {
     const params = new URLSearchParams(location.search);
     const tabName = params.get("tab");
     if (tabName == null) {
-      document.title = "Manage Shipments"
+      document.title = "Manage Profile"
     }
     if (tabName) {
       const tabIndex = Tab.findIndex(tab => tab.text.toLowerCase() === tabName.toLowerCase());
@@ -28,7 +29,7 @@ const ManageShipment = () => {
       }
     }
     else {
-      navigate(`?tab=Cars`);
+      navigate(`?tab=Profile`);
     }
   }, [location]);
 
@@ -47,13 +48,15 @@ const ManageShipment = () => {
   const renderTabContent = () => {
     switch (isActive) {
       case 0:
-        return <Shipments/>
+        return <General/>
       case 1:
-        return <ActiveBidding/>
+        return <ProfileTab/>
       case 2:
-        return <Bidded/>
+        return <CNIC/>
       case 6:
-        return <CanceledShipments/>
+        return <License/>
+      case 7:
+        return <Vechical/>
       default:
         return null;
     }
@@ -86,4 +89,4 @@ const ManageShipment = () => {
   );
 };
 
-export default ManageShipment;
+export default Profile;

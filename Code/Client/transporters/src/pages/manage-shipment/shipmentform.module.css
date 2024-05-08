@@ -1,36 +1,39 @@
-.popupForm {
+.popupForm, .bidForm {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: #fff;
-    padding: 30px 45px;
+    padding: 30px 40px;
+    padding-left: 40px;
     border-radius: 6px;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
-    width: 600px;
     max-height: 90vh;
     overflow-y: auto;
     z-index: 1000;
   }
-  
-  /* .popupForm h3 {
-    font-size: 22px;
-    font-weight: 600;
-    color: #333;
+
+  .popupForm {
+    width: 600px;
   }
 
-  .row {
+  .shipment_header{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 3px;
-  } */
+    align-items: center;
+  }
+
+  .closeButton{
+    font-size: 1.85rem;
+    cursor: pointer;
+  }
 
 
   /* form style */
-  .popupForm h1{
+  .popupForm h1, .bidForm h1{
     display: inline-block;
-    font-size: 23px;
+    font-size: 21px;
     font-weight: 700;
     letter-spacing: normal;
     margin-bottom: -2px;
@@ -58,6 +61,7 @@
     font-size: 14px;
     font-weight: 500;
     color: #3B3B4f;
+    margin-top: 6px;
 }
 .shipment_content p,
 .bid_deadline p,
@@ -70,7 +74,7 @@
     font-size: 1rem;
     font-weight: 700;
     margin-top: 30px;
-    margin-bottom: 12px;
+    margin-bottom: 3px;
 }
 .footer_container{
     display: flex;
