@@ -32,8 +32,8 @@ const BidShipment = ({ onClose, shipmentId }) => {
             .then(response => {
                 console.log('Data sent successfully:', response.data);
                 console.log(formData)
-                Swal.fire('Success!', 'Your booking has been confirmed. Check your email for further details.', 'success');
-                // navigate("/");
+                Swal.fire('Success!', 'Your Fare has been Added. You will receive notification if you win bidding.', 'success');
+                onClose();
             })
             .catch(error => {
                 console.error('Failed to send data:', error.response ? error.response.data : error.message);
