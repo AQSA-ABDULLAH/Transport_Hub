@@ -12,8 +12,8 @@ export const Tab = [
         onClick: '/bidded'
     },
     {
-        text: "Shipped by transporter",
-        onClick: '/shipped_by_transporter'
+        text: "Shipments",
+        onClick: '/shipments'
     },
     {
         text: "Active Delivery",

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaEdit } from "react-icons/fa";
 import styles from "../../../../components/sections/transport-managment/cars/view_car/viewcars.module.css";
-import GetShipment from "../ShipmentForm";
+import GetShipment from "./BidShipment";
 
 export default function ActiveBidding() {
   const [product, setProduct] = useState([]);
