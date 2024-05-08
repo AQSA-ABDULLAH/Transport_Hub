@@ -1,6 +1,7 @@
 import React from 'react'
-
+import { useBooking } from '../../context/booking';
 const BookingPage = () => {
+    const [booking, setBooking] = useBooking();
     return (
         <>
         <div className="container m-5">

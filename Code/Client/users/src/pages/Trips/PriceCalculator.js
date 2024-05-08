@@ -6,6 +6,8 @@ import { Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { useBooking } from "../../context/booking";
+import toast from "react-hot-toast";
 const PriceCalculator = ({ handleClose, tripId }) => {
   const QuantitySelector = ({ label, value, onIncrease, onDecrease }) => {
     return (
@@ -27,6 +29,7 @@ const PriceCalculator = ({ handleClose, tripId }) => {
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
   const [infants, setInfants] = useState(0);
+  const [booking, setBooking] = useBooking();
 
   const handleAdultsIncrease = () => {
     setAdults(adults + 1);
@@ -189,8 +192,6 @@ const PriceCalculator = ({ handleClose, tripId }) => {
           <h5>Total Price:</h5>
           <p>Rs{totalPrice}</p>
         </div>
-
-        <Button variant="primary">Book Now</Button>
       </div>
 
       <div className="mt-4 border border-1 bg-light p-3" style={{ maxHeight: '40vh', overflowY: 'auto' }}>
@@ -232,7 +233,10 @@ const PriceCalculator = ({ handleClose, tripId }) => {
         </Button>
         
         <Link to={`/BookingForm/${tripId}`}>
-  <Button variant="primary">Confirm Booking</Button>
+  <Button variant="primary" onClick={()=>{
+    setBooking([...booking,formData])
+    toast.success("Item Added to cart")
+  }}>Confirm Booking</Button>
 </Link>
 
       </Modal.Footer>
