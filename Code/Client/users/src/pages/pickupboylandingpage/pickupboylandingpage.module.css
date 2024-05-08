@@ -57,6 +57,8 @@
 .list {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between; /* Add equal spacing between items */
+    margin: 50px; /* Add negative margin to counteract spacing between items */
 }
 
 .city_lists{
@@ -91,3 +93,97 @@
   .side_parcel_image{
    width: 100%;
   }
+  .company {
+    width: calc(33.33% - 20px); /* Calculate width with spacing and margins */
+    margin: 10px; /* Add spacing around items */
+    text-align: center; /* Center content horizontally */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.company img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.company p {
+    margin-top: 10px; /* Add spacing between image and text */
+}
+h2 {
+    font-size: 33px;
+    font-weight: bold;
+    line-height: 45px;
+    text-align: center; /* Center the heading */
+}
+.container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Adjust height as needed */
+}
+
+.text_area {
+    display: flex;
+    flex-direction: column; /* Arrange children in a column */
+    align-items: center; /* Center children horizontally */
+}
+
+.text_area h2 {
+    font-size: 33px;
+    font-weight: bold;
+    line-height: 45px;
+    text-align: center;
+}
+
+.text_area span {
+    display: flex; /* Make the spans flex containers */
+    align-items: center; /* Align items vertically */
+    margin: 10px 0;/* Add vertical margin between elements */
+}
+
+.text_area label {
+    flex: 1;
+    margin-right: 10px; /* Add spacing between label and input */
+}
+
+.text_area input {
+    /* Allow input field to grow and occupy more space */
+    margin-right: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; 
+}
+
+.text_area button {
+    margin-top: 10px; /* Add space below inputs */
+    padding: 9px 25px 10px 10px;
+    background-color: white;
+    border: 1px solid #000000;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 400;
+    position: relative;
+}
+
+.text_area button::after {
+    content: ">";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+.text_area button:hover {
+    background-color: #7e22ce;
+    border: 1px solid #7e22ce;
+    color: white;
+    font-weight: 500;
+}.weight{
+    padding-right: 35px;
+}
+.destination.destination{
+    padding-left:35px;
+}
+.calculate{
+    margin-left: 100px;
+}

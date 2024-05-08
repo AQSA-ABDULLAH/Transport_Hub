@@ -9,13 +9,13 @@ export default function DriverVerifyMail() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const driverEmail = localStorage.getItem("driverEmail");
+        const driver_Email = JSON.parse(localStorage.getItem('driverEmail'));
+        const driverEmail = driver_Email.email;
 
 
         // Select the specific OTP input elements
         const inputs = document.querySelectorAll("input");
         const otp = Array.from(inputs).map(input => input.value).join('');
-        console.log("Merged input data:", otp);
 
 
         try {

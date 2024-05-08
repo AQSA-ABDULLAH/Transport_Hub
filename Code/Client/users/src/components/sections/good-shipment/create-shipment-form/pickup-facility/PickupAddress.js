@@ -14,16 +14,15 @@ const PickupAddress = ({ PickupForm }) => {
   };
 
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    city: '',
-    zipcode: '',
+    pickupFirstName: '',
+    pickupLastName: '',
+    pickupEmail: '',
+    pickupPhone: '',
+    pickupCity: '',
+    pickupZipcode: '',
     pickupAddress: '',
-    defaultInstructions: ''
+    pickupInstruction: ''
   });
-  
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -51,33 +50,33 @@ const PickupAddress = ({ PickupForm }) => {
           <div className={styles.qoute_row}>
             <div className={style.pickup_form_input}>
               <label>First name</label>
-              <input type="text" name="firstName" placeholder="Enter first name" value={formData.firstName} onChange={handleChange} />
+              <input type="text" name="pickupFirstName" placeholder="Enter first name" value={formData.pickupFirstName} onChange={handleChange} />
             </div>
             <div className={style.pickup_form_input}>
               <label>Last name</label>
-              <input type="text" name="lastName" placeholder="Enter last name" value={formData.lastName} onChange={handleChange} />
+              <input type="text" name="pickupLastName" placeholder="Enter last name" value={formData.pickupLastName} onChange={handleChange} />
             </div>
           </div>
 
           <div className={styles.qoute_row}>
             <div className={style.pickup_form_input}>
               <label>Email</label>
-              <input type="text" name="email" placeholder="Enter email" value={formData.email} onChange={handleChange} />
+              <input type="text" name="pickupEmail" placeholder="Enter email" value={formData.pickupEmail} onChange={handleChange} />
             </div>
             <div className={style.pickup_form_input}>
               <label>Phone no</label>
-              <input type="text" name="phone" placeholder="Enter phone number" value={formData.phone} onChange={handleChange} />
+              <input type="text" name="pickupPhone" placeholder="Enter phone number" value={formData.pickupPhone} onChange={handleChange} />
             </div>
           </div>
 
           <div className={styles.qoute_row}>
             <div className={style.pickup_form_input}>
               <label>City</label>
-              <input type="text" name="city" placeholder="Enter city" value={formData.city} onChange={handleChange} />
+              <input type="text" name="pickupCity" placeholder="Enter city" value={formData.pickupCity} onChange={handleChange} />
             </div>
             <div className={style.pickup_form_input}>
               <label>Zipcode</label>
-              <input type="text" name="zipcode" placeholder="Enter zipcode" value={formData.zipcode} onChange={handleChange} />
+              <input type="text" name="pickupZipcode" placeholder="Enter zipcode" value={formData.pickupZipcode} onChange={handleChange} />
             </div>
           </div>
 
@@ -96,11 +95,11 @@ const PickupAddress = ({ PickupForm }) => {
           <div className={style.pickup_form_input}>
             <label>Facility default instructions</label>
             <textarea
-              name="defaultInstructions"
+              name="pickupInstruction"
               placeholder="Type any instruction note"
               rows={5}
               className={styles.input_div}
-              value={formData.defaultInstructions}
+              value={formData.pickupInstruction}
               onChange={handleChange}
             ></textarea>
           </div>

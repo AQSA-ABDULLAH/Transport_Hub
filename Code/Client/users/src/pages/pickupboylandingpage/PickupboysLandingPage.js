@@ -45,22 +45,19 @@ const PickupboysLandingPage = () => {
                     <section className={styles.text_area}>
                           <h2>Calculate Rate</h2>
                            <span>
-                              <label>Pickup Location</label>
+                              <label>Pickup Location     </label>
                                <input type='text'/>
                            </span>
                            <span>
-                               <label>Destination</label>
+                               <label className={styles.destination}>Destination        </label>
                                <input type='text'/>
                            </span>
                            <span>
-                               <label>Weight</label>
+                               <label className={styles.weight}>Weight(kg)</label>
                                <input type='text'/>
                            </span>
-                           <span>
-                               <label>Weight</label>
-                               <input type='text'/>
-                           </span>
-                           <button>Calculate</button>
+                          
+                           <button className={styles.calculate}>Calculate</button>
                         
                         {/* delivery service company images 
                         rate calculate for sending*/}
@@ -76,30 +73,26 @@ const PickupboysLandingPage = () => {
                 <div className={styles.city_list}>
                    
                     <div className={styles.list}>
-                    <span>
+                    <span className={styles.company}>
                         <img src={parcelpickupimg1} alt="Example" />
                         <p>Leopard</p>
                     </span>
-                    <span>
-                        <img src={parcelpickupimg2} alt="Example" />
-                        <p>TCS</p>
-                    </span>
-                    <span>
+                    <span className={styles.company}>
                         <img src={parcelpickupimg3} alt="Example" />
                         <p>Pakistan Post</p>
                     </span>
-                    <span>
-                        <img src={images} alt="Example" />
-                        <p>DCS</p>
-                    </span>
-                    <span>
-                        <img src={images} alt="Example" />
-                        <p>MOVEX</p>
-                    </span>
-                    <span>
+                    <span className={styles.company}>
                         <img src={images} alt="Example" />
                         <p>TCS</p>
                     </span>
+                    {/* <span>
+                        <img src={images} alt="Example" />
+                        <p>MOVEX</p>
+                    </span> */}
+                    {/* <span>
+                        <img src={images} alt="Example" />
+                        <p>TCS</p>
+                    </span> */}
                     </div>
                 </div>  
                 </div>

@@ -1,7 +1,9 @@
-.container {
+.employee_container {
     background-color: #fff;
     width: auto;
-    height: 85.8vh;
+    height: 81.9vh;
+    overflow-y: scroll;
+    border-bottom-right-radius: 10px;
   }
   
   .tabBar {

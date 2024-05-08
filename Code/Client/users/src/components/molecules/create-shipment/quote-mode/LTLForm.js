@@ -1,18 +1,22 @@
-// LTLForm.js
 import React from 'react';
 import styles from "./quotemode.module.css";
 
-function LTLForm({ selectedVehicle, setSelectedVehicle }) {
-  const handleVehicleChange = (event) => {
-    setSelectedVehicle(event.target.value);
+function LTLForm({ formData, setFormData }) {
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData(prevFormData => ({
+      ...prevFormData,
+      [name]: value
+    }));
   };
+  
 
   return (
     <>
       <div className={styles.row}>
         <div>
           <label htmlFor="vehicle">Vehicle Type</label>
-          <select id="vehicle" value={selectedVehicle} onChange={handleVehicleChange}>
+          <select id="ltlVehicleType" value={formData.ltlVehicleType} onChange={handleChange} name="ltlVehicleType">
             <option value="" disabled>Select Vehicle Type</option>
             <option value="mazda">Mazda</option>
             <option value="shehzore">Shehzore</option>
@@ -25,4 +29,3 @@ function LTLForm({ selectedVehicle, setSelectedVehicle }) {
 }
 
 export default LTLForm;
-

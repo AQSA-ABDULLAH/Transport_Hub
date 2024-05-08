@@ -1,0 +1,31 @@
+.location{
+    padding: 30px 40px;
+}
+
+.location h2{
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.location p{
+    font-size: 15px;
+    padding: 8px 0px 25px;
+}
+
+.inputForm h4{
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 0px;
+}
+
+.inputForm input{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.notice h4{
+    margin: 32px 0px 40px;
+    font-size: 13px;
+    font-weight: 400;
+    color: #89898b;
+}

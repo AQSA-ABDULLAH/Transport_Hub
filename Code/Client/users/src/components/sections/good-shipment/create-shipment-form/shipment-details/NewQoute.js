@@ -8,8 +8,11 @@ import Parcel from '../../../../molecules/create-shipment/quote-mode/Parcel';
 import PickupAddress from '../pickup-facility/PickupAddress';
 import DeliveryAddress from '../delivery-facility/DeliveryAddress';
 import StopAddress from '../stop-facility/StopAddress';
+import { useNavigate } from 'react-router-dom';
 
 function NewQuote() {
+  const navigate = useNavigate();
+
   const [isPickupFacility, setIsPickupFacility] = useState(false);
   const [isDeliveryFacility, setIsDeliveryFacility] = useState(false);
   const [isStopFacility, setIsStopFacility] = useState(false);
@@ -27,49 +30,76 @@ function NewQuote() {
   const [trapSize, setTrapSize] = useState('');
   const [handlingItems, setHandlingItems] = useState('');
   const [itemWeight, setItemWeight] = useState('');
-  const [dimensions, setDimensions] = useState({ length: '', width: '', height: '' });
+  const [length, setLength] = useState('');
+  const [width, setWidth] = useState('');
+  const [height, setHeight] = useState('');
+  const [formData, setFormData] = useState('');
+  const [temperature, setTemperature] = useState('');
 
+
+
+  // GET DATA FROM LOCAL STORAGE
   const pickupFacility = JSON.parse(localStorage.getItem('pickupFacility'));
   const pickupAddress = pickupFacility ? pickupFacility.pickupAddress : null;
-  
+
   const deliveryFacility = JSON.parse(localStorage.getItem('deliveryFacility'));
-  const deliveryAddress = deliveryFacility?.deliveryAddress;  
+  const deliveryAddress = deliveryFacility?.deliveryAddress;
 
   const stopFacility = JSON.parse(localStorage.getItem('stopFacility'));
-  const stopAddress = stopFacility ? stopFacility.stopAddress : null;  
+  const stopAddress = stopFacility ? stopFacility.stopAddress : null;
 
+
+  // SEND DATA TO LOCAL STORAGE
   const saveQoute = () => {
+    // Get additional data from localStorage
+    const ltlVehicleType = JSON.parse(localStorage.getItem('ltlVehicleType'));
+    const ftlEquipmentData = JSON.parse(localStorage.getItem('ftlEquipmentData'));
+    const flatbedData = JSON.parse(localStorage.getItem('flatbedData'));
+    const parcelData = JSON.parse(localStorage.getItem('parcelData'));
+  
+    // Combine additional data with the quote data
     const formData = {
       commodityName,
       selectedMode,
       pickupDate,
       stopType,
       moreDetails,
+      ltlVehicleType, // Add ltlVehicleType data
+      ftlEquipmentData, // Add ftlEquipmentData
+      flatbedData, // Add flatbedData
+      parcelData, // Add parcelData
     };
-    localStorage.setItem('formData', JSON.stringify(formData));
-  };
+  
+    // Save form data to local storage
+    localStorage.setItem('quoteData', JSON.stringify(formData));
 
+    navigate("/create_shipment_form")
+  };
+  
+
+
+
+
+  // CHANGE LOCAL STORAGE DAT ACCORDING TO MODE
   useEffect(() => {
     if (selectedMode !== 'FTL') {
       setSelectedEquipment('');
       localStorage.removeItem('ftlEquipmentData');
     }
   }, [selectedMode, selectedEquipment]);
-  const saveFTLEquipment = (equipment, details) => {
-    const data = { equipment, details };
+  const saveFTLEquipment = (equipment, length, temperature) => {
+    const data = { equipment, length, temperature };
     localStorage.setItem('ftlEquipmentData', JSON.stringify(data));
   };
-
 
   useEffect(() => {
     if (selectedMode !== 'LTL') {
       setSelectedVehicle('');
       localStorage.removeItem('ltlVehicleType');
     } else {
-      localStorage.setItem('ltlVehicleType', selectedVehicle);
+      localStorage.setItem('ltlVehicleType', JSON.stringify(formData));
     }
   }, [selectedMode, selectedVehicle]);
-
 
   useEffect(() => {
     if (selectedMode === 'flatbed') {
@@ -84,22 +114,20 @@ function NewQuote() {
     }
   }, [selectedMode, selectedDimensions, selectedTrapSize, trapSize]);
 
-
   useEffect(() => {
     if (selectedMode === 'parcel') {
       const parcelData = {
         handlingItems,
         itemWeight,
-        dimensions
+        length,
+        width,
+        height
       };
       localStorage.setItem('parcelData', JSON.stringify(parcelData));
     } else {
       localStorage.removeItem('parcelData');
     }
-  }, [handlingItems, itemWeight, dimensions, selectedMode]);
-  const handleDimensionChange = (field) => (event) => {
-    setDimensions(prev => ({ ...prev, [field]: event.target.value }));
-  };
+  }, [handlingItems, itemWeight, length, width, height, selectedMode]);
 
 
 
@@ -164,17 +192,23 @@ function NewQuote() {
           <div>
             {selectedMode === 'LTL' && (
               <LTLForm
-                selectedVehicle={selectedVehicle}
-                setSelectedVehicle={setSelectedVehicle}
+                formData={formData}
+                setFormData={setFormData}
               />
+
             )}
             {selectedMode === 'FTL' && (
               <FTLForm
                 selectedEquipment={selectedEquipment}
                 setSelectedEquipment={setSelectedEquipment}
                 saveFTLEquipment={saveFTLEquipment}
+                length={length}
+                setLength={setLength}
+                temperature={temperature}
+                setTemperature={setTemperature}
               />
             )}
+
             {selectedMode === 'flatbed' && (
               <Flatbed
                 setSelectedDimensions={setSelectedDimensions}
@@ -185,16 +219,23 @@ function NewQuote() {
                 trapSize={trapSize}
               />
             )}
+
             {selectedMode === 'parcel' && (
               <Parcel
                 handlingItems={handlingItems}
                 setHandlingItems={setHandlingItems}
                 itemWeight={itemWeight}
                 setItemWeight={setItemWeight}
-                dimensions={dimensions}
-                handleDimensionChange={handleDimensionChange}
+                length={length}
+                setLength={setLength}
+                width={width}
+                setWidth={setWidth}
+                height={height}
+                setHeight={setHeight}
               />
             )}
+
+
           </div>
 
           {/* ADD PICKUP DETAILS */}

@@ -3,21 +3,86 @@ const Schema = mongoose.Schema;
 
 const ShipmentSchema = new mongoose.Schema({
     commodityName: { type: String, trim: true },
-    selectedMode: { type: String},
-    pickupDate: { type: String},
+    selectedMode: { type: String },
+    ltlVehicleType: { type: String, trim: true },
+    equipment: { type: String, trim: true },
+    length: { type: String, trim: true },
+    width: { type: String, trim: true },
+    height: { type: String, trim: true },
+    temperature: { type: String, trim: true },
+    dimensions: { type: String, trim: true },
+    trap: { type: String, trim: true },
+    trapSize: { type: String, trim: true },
+    handlingItems: { type: Number },
+    itemWeight: { type: String, trim: true },
+    pickupDate: { type: Date },
     moreDetails: { type: String, trim: true },
-    // dropDate: { type: String},
-    // dropTime: { type: String},
-    // firstName: { type: String, trim: true },
-    // lastName: { type: String, trim: true },
-    // phoneNumber: { type: Number, trim: true },
-    // email: { type: String, trim: true },
-    // cnic: { type: String, trim: true },
-    // zipCode: { type: Number, trim: true },
-    // address: { type: String, trim: true },
-    // addDriver: { type: Boolean },
-    // addInfantSeat: { type: Boolean },
-    // addToddlerSeat: { type: Boolean },
+
+    pickupFirstName: { type: String, trim: true },
+    pickupLastName: { type: String, trim: true },
+    pickupEmail: { type: String, trim: true },
+    pickupPhone: { type: Number, trim: true },
+    pickupCity: { type: String, trim: true },
+    pickupZipcode: { type: Number, trim: true },
+    pickupAddress: { type: String, trim: true },
+    pickupInstruction: { type: String, trim: true },
+
+    deliveryFirstName: { type: String, trim: true },
+    deliveryLastName: { type: String, trim: true },
+    deliveryEmail: { type: String, trim: true },
+    deliveryPhone: { type: Number, trim: true },
+    deliveryCity: { type: String, trim: true },
+    deliveryZipcode: { type: Number, trim: true },
+    deliveryAddress: { type: String, trim: true },
+    deliveryInstruction: { type: String, trim: true },
+
+    stopFirstName: { type: String, trim: true },
+    stopLastName: { type: String, trim: true },
+    stopEmail: { type: String, trim: true },
+    stopPhone: { type: Number, trim: true },
+    stopCity: { type: String, trim: true },
+    stopZipcode: { type: Number, trim: true },
+    stopAddress: { type: String, trim: true },
+    stopInstruction: { type: String, trim: true },
+    stopType: { type: String, trim: true },
+
+    deliveryDate: {type: Date},
+    duration: { type: Number, default: 300 },
+    timer: { type: Number, default: 300 },
+    status: { type: String },
+    
+    biddingEnded: {
+        type: Boolean,
+        default: false,
+      },
+    bids: [
+        {
+            transporter: {
+                type:  mongoose.Schema.Types.ObjectId,
+                ref: 'Transporter',
+            },
+            bidamount: {
+                type: Number,
+            },
+            status: {
+                type: Boolean,
+                default: false
+            },
+            time: {
+                type: Date,
+                default: Date.now,
+            },
+        },
+    ],
+    createShipment: {
+        type:  mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+    },
+    shippedBy: {
+        type:  mongoose.Schema.Types.ObjectId,
+        ref: 'Transporter',
+    },
+
 }, {
     timestamps: true
 })

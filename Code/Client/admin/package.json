@@ -11,12 +11,8 @@
     "datatables.net": "^1.13.8",
     "datatables.net-bs4": "^1.13.8",
     "datatables.net-responsive-bs4": "^2.5.0",
-
     "express-formidable": "^1.2.0",
-    "firebase": "^10.8.1",
-
     "firebase": "^10.10.0",
-
     "jquery": "^3.7.1",
     "react": "^18.2.0",
     "react-datepicker": "^4.24.0",

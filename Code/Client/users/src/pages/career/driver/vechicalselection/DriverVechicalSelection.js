@@ -38,7 +38,7 @@ export default function DriverVechicalSection() {
     return (
         <>
             <div className={careerStyles.container}>
-                <div className={careerStyles.subContainer}>
+                <div className={`${careerStyles.subContainer} ${careerStyles.initialContainer}`}>
                     <MediumHeader />
                     <div className={styles.vechical_selection}>
                         <h2>Choose how you'd like to earn:</h2>

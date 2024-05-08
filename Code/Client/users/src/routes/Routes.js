@@ -14,8 +14,8 @@ import { useSelector } from "react-redux";
 import { setSignedIn } from "../redux/containers/auth/actions";
 
 import LandingPage from "../pages/car-rental/LandingPage.js";
+import ExtendedDetailPage from "../pages/car-rental/addOnPage/ExtendedDetailPage.js"
 import ViewCars from "../pages/car-rental/showCarsPage/ViewCars.js";
-import ExtendedDetailPage from '../pages/car-rental/showCarsPage/ViewCars.js';
 import RentalBookingPage from '../pages/car-rental/bookingPage/RentalBookingPage.js';
 import BlogsNews from '../pages/blogs&News/BlogsNews.js';
 import BlogsDetails from '../pages/blogs&News/BlogsDetails.js';
@@ -45,12 +45,17 @@ import PickupBoyForm from "../components/Parcel/PickupBoyForm.js";
 import Showpickupboy from "../components/Parcel/showpickupboysforms.js";
 import Userdashboard from "../user-dashboard/User-dashboard.js";
 import PickupboysLandingPage from "../pages/pickupboylandingpage/PickupboysLandingPage.js";
-import PickupBoyEmail from "../components/pickupboyregistration/emailpage/PickupboyEmail.js";
-import PickupBoyVerifyMail from "../components/pickupboyregistration/verifyemailpage/PickupBoyVerifyMain.js";
+
+import PickupboyEmail from "../pages/career/PickupboyCareer/pickupboyregistration/emailpage/PickupboyEmail.js";
+import PickupBoyVerifyMail from "../pages/career/PickupboyCareer/pickupboyregistration/verifyemailpage/PickupBoyVerifyMain.js";
+import PickupBoyDetailPage from "../pages/career/PickupboyCareer/pickupboyregistration/PickupboyDetails/PickupBoyDetailPage.js";
+import PickupBoyLocation from "../pages/career/PickupboyCareer/pickupboyregistration/PickupboyCity/PickupboyLocationDetail.js";
+import Pickupboynum from "../pages/career/PickupboyCareer/pickupboyregistration/PickupBoyNum/Pickupboynum.js"
+
 import TripDetails from "../components/molecules/trips/TripDetails.js";
+import AddOnPage from "../pages/car-rental/addOnPage/AddOnPage.js";
 import BookingForm from "../pages/Trips/BookingForm.js";
 import BookingPage from "../pages/Booking/BookingPage.js";
-
 
 
 function AppRoutes() {
@@ -68,6 +73,7 @@ function AppRoutes() {
   useEffect(() => {
     fetchData();
   }, []);
+
   const dispatch = useDispatch();
   const reduxState = useSelector((state) => state.signIn);
 
@@ -120,7 +126,7 @@ function AppRoutes() {
         {/* CAR RENTAL ROUTES */}
         <Route path="/rental_landing_page" element={<LandingPage/>}/>
         <Route path="/viewCars" element={<ViewCars/>}/>
-        <Route path="/carAddOn" element={<ExtendedDetailPage/>}/>
+        <Route path="/carAddOn" element={<AddOnPage/>}/>
         <Route path="/RentalBooking" element={<RentalBookingPage/>}/>
 
         {/* GOOD SHIPMENT ROUTES */}
@@ -175,9 +181,12 @@ function AppRoutes() {
           {/* Parcel Pickup Routes */}
           <Route path="/parcelform" element={<Parcelform/>}/> 
           <Route path="/pickupboyform" element={<PickupBoyForm/>}/>
-
-          <Route path="/pickupboy-email" element={<PickupBoyEmail/>}/>
+          
+          <Route path="/pickupboy-email" element={<PickupboyEmail/>}/>
           <Route path="/pickupboyverifymail" element={<PickupBoyVerifyMail/>}/>
+          <Route path="/pickupboy-detail-page" element={<PickupBoyDetailPage/>}/>
+          <Route path="/pickupboy-location" element={<PickupBoyLocation/>}/>
+          <Route path="/pickupboy-number" element={<Pickupboynum/>}/>
           
            {pickupBoy.map((pickupBoy) => (
            <Route
