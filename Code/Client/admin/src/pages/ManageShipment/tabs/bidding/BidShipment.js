@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
-import style from "../../shipmentform.module.css";
+import style from "../shipmentform.module.css";
 
 const BidShipment = ({ onClose, shipmentId }) => {
     const [data, setData] = useState([]);

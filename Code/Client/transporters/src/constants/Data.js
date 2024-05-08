@@ -24,6 +24,6 @@ export const Main = [
   {
     icon: <BiSolidContact size={20} />,
     text: "Profile & Settings",
-    route: '/contact-messages'
+    route: '/transporter-profile'
   },
 ];
