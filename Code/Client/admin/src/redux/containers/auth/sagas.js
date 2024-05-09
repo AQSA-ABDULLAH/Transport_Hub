@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from "redux-saga/effects";
 import * as type from "./constants";
-import { axiosInstance } from "../../util/AxiosHeader"; // Make sure to import axiosInstance correctly
+import { axiosInstance } from "../../util/AxiosHeader";
 import { API } from "../../services";
 import Swal from 'sweetalert2';
 
