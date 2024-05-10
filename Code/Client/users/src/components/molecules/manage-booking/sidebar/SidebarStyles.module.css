@@ -1,7 +1,7 @@
 .sidebar {
     background-color: #7A28C2;
     height: 80vh;
-    width: 17rem;
+    width: 15.5rem;
     padding: 1rem;
     position: absolute;
     min-height: 642px;
@@ -15,6 +15,7 @@
     text-transform: uppercase;
     text-align: center;
     margin-top: 20px;
+    margin-bottom: 3rem;
 }
 
 .spaceY {
@@ -65,10 +66,10 @@
 }
 
 .linkText {
-    width: 80%;
+    width: 75%;
     text-transform: capitalize;
     font-size: 0.8rem;
-    margin: 0;
+    margin-bottom: -3px;
 }
 
 .linksBlock h5 {
