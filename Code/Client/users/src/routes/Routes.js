@@ -56,6 +56,8 @@ import TripDetails from "../components/molecules/trips/TripDetails.js";
 import AddOnPage from "../pages/car-rental/addOnPage/AddOnPage.js";
 import BookingForm from "../pages/Trips/BookingForm.js";
 import BookingPage from "../pages/Booking/BookingPage.js";
+import ManageBooking from "../pages/manage_booking/ManageBooking.js";
+import ManageRental from "../pages/manage_booking/rental_reservation/ManageRental.js";
 
 
 function AppRoutes() {
@@ -84,7 +86,7 @@ function AppRoutes() {
   "/driver_terms_and_conditions", "/driver_photo", "/upload_driver_cnic_front_side", "/upload_driver_cnic_back_side",
   "/driver_driving_license", "/create_shipment_form", "/manage_shipments", "/transporterRegistration", "/verify_transporter_mail", 
   "/transporter_name_section", "/transporter_location_section",
-  "/transporter_vechical_selection" ];
+  "/transporter_vechical_selection", "/manage_booking", "/manage_rental" ];
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -123,6 +125,13 @@ function AppRoutes() {
         <Route path="/blog&news" element={<BlogsNews/>}/>
         <Route path="/blog&news/:id" element={<BlogsDetails/>}/>
 
+        {/* MANAGE BOOKING ROUTES */}
+        <Route
+          path="/manage_booking"
+          element={isAuthenticated ? <Navigate to="/" replace /> : <ManageBooking/> }
+        />
+        <Route path="/manage_rental" element={<ManageRental/>}/>
+
         {/* CAR RENTAL ROUTES */}
         <Route path="/rental_landing_page" element={<LandingPage/>}/>
         <Route path="/viewCars" element={<ViewCars/>}/>
@@ -157,10 +166,7 @@ function AppRoutes() {
         
         {/* Trips Packages */}
         <Route path="/trips_packages" element={<LandingTripPage/>} />
-        <Route path="/tripDetails/:tripId" element={<TripDetails/>} />
-        <Route path="/404" element={<NoRoute />} />      
-
-        {/* Booking  */}
+        <Route path="/tripDetails/:tripId" element={<TripDetails/>} />  
         <Route path="/BookingPage" element={<BookingPage/>} />
         <Route path="/BookingForm/:tripId" element={<BookingForm/>} />
 
@@ -176,12 +182,12 @@ function AppRoutes() {
           path="/user-profile"
           element={isAuthenticated ? <Navigate to="/" replace /> : <Profile/> }
         />
+        <Route path="/404" element={<NoRoute />} />    
         <Route path="*" element={<Navigate to="/404" replace />} />
 
           {/* Parcel Pickup Routes */}
           <Route path="/parcelform" element={<Parcelform/>}/> 
           <Route path="/pickupboyform" element={<PickupBoyForm/>}/>
-          
           <Route path="/pickupboy-email" element={<PickupboyEmail/>}/>
           <Route path="/pickupboyverifymail" element={<PickupBoyVerifyMail/>}/>
           <Route path="/pickupboy-detail-page" element={<PickupBoyDetailPage/>}/>
