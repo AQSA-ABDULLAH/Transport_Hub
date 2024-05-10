@@ -12,10 +12,15 @@
     padding: 35px 45px;
 }
 
+.rental_div h2{
+    font-size: 25px;
+}
+
 .rental_div p{
     text-align: center;
     margin: 20px 0px;
-    padding-bottom: 10px;
+    font-size: 15px;
+    font-weight: 600;
 }
 
 .rental_inputs{
@@ -24,12 +29,17 @@
     margin-top: 20px;
 }
 
+.rental_inputs label{
+    font-size: 15px;
+    color: #3B3B4f;
+}
+
 .rental_inputs input{
     border: 1px solid #ccc;
     color: #3B3B4f;
     font-size: 15px;
     padding: 8px;
-    margin-top: 5px;
+    margin-top: 4px;
 }
 
 .rental_div button{
@@ -39,4 +49,6 @@
     color: white;
     padding: 10px 0px;
     border: none;
+    font-size: 17px;
+    font-weight: 500;
 }

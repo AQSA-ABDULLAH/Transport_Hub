@@ -19,11 +19,11 @@ function ManageRental() {
                     <form>
                         <div className={style.rental_inputs}>
                             <label>Confirmation Number :</label>
-                            <input type='text'/>
+                            <input type='text' placeholder='K8201300138'/>
                         </div>
                         <div className={style.rental_inputs}>
                             <label>Last Name :</label>
-                            <input type='text'/>
+                            <input type='text' placeholder='Doe'/>
                         </div>
                         <button>Locate Rental</button>
                     </form>
