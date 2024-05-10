@@ -1,0 +1,42 @@
+.rental_container{
+    height: 88vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.rental_div{
+    border: 1px solid #ccc;
+    width: 35rem;
+    padding: 35px 45px;
+}
+
+.rental_div p{
+    text-align: center;
+    margin: 20px 0px;
+    padding-bottom: 10px;
+}
+
+.rental_inputs{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.rental_inputs input{
+    border: 1px solid #ccc;
+    color: #3B3B4f;
+    font-size: 15px;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+.rental_div button{
+    margin-top: 35px;
+    width: 100%;
+    background-color: #7E22CE;
+    color: white;
+    padding: 10px 0px;
+    border: none;
+}

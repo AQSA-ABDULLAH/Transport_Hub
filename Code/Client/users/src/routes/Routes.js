@@ -128,10 +128,10 @@ function AppRoutes() {
         <Route path="/blog&news/:id" element={<BlogsDetails/>}/>
 
         {/* MANAGE BOOKING ROUTES */}
-        <Route
+        {/* <Route
           path="/manage_booking"
           element={isAuthenticated ? <Navigate to="/" replace /> : <ManageBooking/> }
-        />
+        /> */}
         <Route path="/manage_rental" element={<ManageRental/>}/>
         <Route path="/extend_rental" element={<ExtendRental/>}/>
 
