@@ -52,3 +52,15 @@
     font-size: 17px;
     font-weight: 500;
 }
+
+/* VIEW RENTAL BOOKING */
+.viewrental_container{
+    padding: 1.5rem 3rem;
+}
+
+.rental_header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}

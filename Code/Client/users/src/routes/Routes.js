@@ -59,6 +59,8 @@ import BookingPage from "../pages/Booking/BookingPage.js";
 import ManageBooking from "../pages/manage_booking/ManageBooking.js";
 import ManageRental from "../pages/manage_booking/rental_reservation/ManageRental.js";
 import ExtendRental from "../pages/manage_booking/extend-rental/ExtendRental.js";
+import ViewRental from "../pages/manage_booking/rental_reservation/ViewRental.js";
+import RentalDetails from "../pages/manage_booking/extend-rental/RentalDetails.js";
 
 
 function AppRoutes() {
@@ -87,7 +89,7 @@ function AppRoutes() {
   "/driver_terms_and_conditions", "/driver_photo", "/upload_driver_cnic_front_side", "/upload_driver_cnic_back_side",
   "/driver_driving_license", "/create_shipment_form", "/manage_shipments", "/transporterRegistration", "/verify_transporter_mail", 
   "/transporter_name_section", "/transporter_location_section", "/transporter_vechical_selection", 
-  "/manage_booking", "/manage_rental", "/extend_rental" ];
+  "/manage_booking", "/manage_rental", "/extend_rental", "/manage_rental/view_rental", "/extend_rental/rental-details" ];
   
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -133,7 +135,9 @@ function AppRoutes() {
           element={isAuthenticated ? <Navigate to="/" replace /> : <ManageBooking/> }
         /> */}
         <Route path="/manage_rental" element={<ManageRental/>}/>
+        <Route path="/manage_rental/view_rental" element={<ViewRental/>}/>
         <Route path="/extend_rental" element={<ExtendRental/>}/>
+        <Route path="/extend_rental/rental-details" element={<RentalDetails/>}/>
 
         {/* CAR RENTAL ROUTES */}
         <Route path="/rental_landing_page" element={<LandingPage/>}/>

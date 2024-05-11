@@ -1,10 +1,44 @@
 import React, { useState } from 'react';
 import style from "./managerental.module.css";
-import Sidebar from '../../../components/molecules/manage-booking/sidebar/Sidebar'
-import TopHeader from '../../../components/molecules/manage-booking/booking-header/TopHeader'
+import axios from 'axios';
+import Sidebar from '../../../components/molecules/manage-booking/sidebar/Sidebar';
+import TopHeader from '../../../components/molecules/manage-booking/booking-header/TopHeader';
+import { useNavigate } from 'react-router-dom';
 
 function ManageRental() {
     const [openSidebar, setOpenSidebar] = useState(false);
+    const navigate = useNavigate();
+
+    const [formData, setFormData] = useState({
+        _id: '',
+        rentalemail: '',
+    });
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        axios.post('http://localhost:5000/api/rental-booking/manage-rental', formData)
+            .then(response => {
+                console.log('Data sent successfully:', response.data);
+                // Extract only the rentalBooking data
+                const rentalBookingData = response.data.rentalBooking;
+                // Save rentalBookingData to local storage
+                localStorage.setItem('rentalData', JSON.stringify(rentalBookingData));
+                navigate("/manage_rental/view_rental");
+            })
+            .catch(error => {
+                console.error('Failed to send data:', error.response ? error.response.data : error.message);
+            });
+    };
+
 
     return (
         <>
@@ -19,13 +53,27 @@ function ManageRental() {
                     <form>
                         <div className={style.rental_inputs}>
                             <label>Confirmation Number :</label>
-                            <input type='text' placeholder='K8201300138'/>
+                            <input
+                                type='text'
+                                placeholder='K8201300138'
+                                id="_id"
+                                name="_id"
+                                required
+                                onChange={handleChange}
+                            />
                         </div>
                         <div className={style.rental_inputs}>
-                            <label>Last Name :</label>
-                            <input type='text' placeholder='Doe'/>
+                            <label>Rental Email :</label>
+                            <input
+                                type='email'
+                                placeholder='Doe'
+                                id="rentalemail"
+                                name="rentalemail"
+                                required
+                                onChange={handleChange}
+                            />
                         </div>
-                        <button>Locate Rental</button>
+                        <button onClick={handleSubmit}>Locate Rental</button>
                     </form>
                 </div>
             </section>
@@ -34,4 +82,5 @@ function ManageRental() {
 }
 
 export default ManageRental;
+
 
