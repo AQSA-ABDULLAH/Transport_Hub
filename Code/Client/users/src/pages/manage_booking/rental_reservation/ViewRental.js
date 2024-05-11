@@ -7,6 +7,8 @@ function ViewRental() {
     const [openSidebar, setOpenSidebar] = useState(false);
     const [rentalData, setRentalData] = useState(null);
 
+
+    // GET DATA FROM LOCALSTORAGE
     useEffect(() => {
         const storedRentalData = localStorage.getItem('rentalData');
         if (storedRentalData) {
@@ -14,6 +16,7 @@ function ViewRental() {
             setRentalData(parsedRentalData);
         }
     }, []);
+    const _id = rentalData ? rentalData._id : null;
 
     const handleCancelReservation = () => {
         if (rentalData) {
@@ -25,8 +28,6 @@ function ViewRental() {
             setRentalData(updatedRentalData);
         }
     };
-
-    const _id = rentalData ? rentalData._id : null;
 
     return (
         <>
