@@ -55,4 +55,4 @@ const PickBoyRegisterSchema = new mongoose.Schema({
 
 );
 
-module.exports =mongoose.model('PickupBoyRegister', PickBoyRegisterSchema);
+module.exports =mongoose.model('PickBoyRegister', PickBoyRegisterSchema);

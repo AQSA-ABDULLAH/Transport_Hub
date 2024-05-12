@@ -17,8 +17,9 @@ export default function PickupBoyLocation() {
     };
 
     const onSubmit = data => {
+        const city = `${data.city} `;
          // Get the value of the city from the form data
-        dispatch(chooseCity(data.city));
+         dispatch(chooseCity(city));
         navigate("/pickupboy-number"); // Redirect to the next page
     };
 
@@ -33,7 +34,7 @@ export default function PickupBoyLocation() {
                         <form className={`${careerStyles.input_field} ${styles.inputForm}`}  onSubmit={handleSubmit(onSubmit)}>
                             <h4>Where would you like to earn?</h4>
                             <input type='text' placeholder='City'  {...register('city')} />
-                        </form>
+                        
                         <div className={styles.notice}>
                             <h4>By proceeding, I agree that Transport Hub or its representatives may contact me by email 
                                 or SMS (including by automatic telephone dialing system) at the email address
@@ -43,7 +44,9 @@ export default function PickupBoyLocation() {
                         <div className={`${careerStyles.button} ${styles.formbutton}`}>
                             <button onClick={backRedirect}><FontAwesomeIcon icon={faArrowLeft} /> BACK</button>
                             <button> <FontAwesomeIcon icon={faArrowRight} />NEXT</button>
+                            
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>

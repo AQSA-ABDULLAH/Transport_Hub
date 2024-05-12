@@ -24,21 +24,33 @@ const userReducers = (state = initialState, action) => {
     switch (action.type) {
 
         case GET_ALL_USERS:
-            return { ...state, result: action.payload.result, isError: false, error: '' }
+            return { ...state,
+                 result: action.payload.result,
+                  isError: false, 
+                  error: '' }
 
         case SEND_OTP:
-            return { ...state, isError: false, error: '' }
+            return { ...state,
+                 isError: false, 
+                 error: '' }
 
         case CHANGE_PASSWORD:
-            return { ...state, isError: false, error: '' }
+            return { ...state, 
+                isError: false,
+                 error: '' }
 
         case REGISTER:
             Cookie.set('profile', JSON.stringify(action.payload.result))
-            return { ...state, result: action.payload.result, isError: false, error: '' }
+            return { ...state, 
+                result: action.payload.result,
+                 isError: false, 
+                 error: '' }
 
         case LOGIN:
             Cookie.set('profile', JSON.stringify(action.payload.result))
-            return { ...state, result: action.payload.result, isError: false, error: '' }
+            return { ...state, 
+                result: action.payload.result, 
+                isError: false, error: '' }
 
         case LOGOUT:
             Cookie.remove('profile')
