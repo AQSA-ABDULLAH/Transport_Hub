@@ -85,7 +85,7 @@ const Navbar = () => {
         <div className={styles.button_div}>
           <ul className={styles.navLinks}>
           <Badge count={booking?.length} showZero>
-          <Link to="/BookingPage">
+          <Link to="/manage_rental">
               <li className={styles.btns}>
                 <Button
                   primary

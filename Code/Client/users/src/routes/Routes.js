@@ -14,11 +14,11 @@ import { useSelector } from "react-redux";
 import { setSignedIn } from "../redux/containers/auth/actions";
 
 import LandingPage from "../pages/car-rental/LandingPage.js";
-import ExtendedDetailPage from "../pages/car-rental/addOnPage/ExtendedDetailPage.js"
+// import ExtendedDetailPage from "../pages/car-rental/addOnPage/AddOnPage.js";
 import ViewCars from "../pages/car-rental/showCarsPage/ViewCars.js";
 import RentalBookingPage from '../pages/car-rental/bookingPage/RentalBookingPage.js';
-import BlogsNews from '../pages/blogs&News/BlogsNews.js';
-import BlogsDetails from '../pages/blogs&News/BlogsDetails.js';
+import BlogsNews from '../pages/blogs&news/BlogsNews.js';
+import BlogsDetails from '../pages/blogs&news/BlogsDetails.js';
 import CareerPage from "../pages/career/CareerPage.js";
 import DriverEmail from "../pages/career/driver/registration/DriverEmail.js";
 import DriverVerifyMail from "../pages/career/driver/verifymail/DriverVerifyMain.js";
@@ -56,6 +56,11 @@ import TripDetails from "../components/molecules/trips/TripDetails.js";
 import AddOnPage from "../pages/car-rental/addOnPage/AddOnPage.js";
 import BookingForm from "../pages/Trips/BookingForm.js";
 import BookingPage from "../pages/Booking/BookingPage.js";
+import ManageBooking from "../pages/manage_booking/ManageBooking.js";
+import ManageRental from "../pages/manage_booking/rental_reservation/ManageRental.js";
+import ExtendRental from "../pages/manage_booking/extend-rental/ExtendRental.js";
+import ViewRental from "../pages/manage_booking/rental_reservation/ViewRental.js";
+import RentalDetails from "../pages/manage_booking/extend-rental/RentalDetails.js";
 
 
 function AppRoutes() {
@@ -83,8 +88,9 @@ function AppRoutes() {
   "/driver_name_section", "/driver_location_section", "/driver_vechical_selection", "/driver_application_form", 
   "/driver_terms_and_conditions", "/driver_photo", "/upload_driver_cnic_front_side", "/upload_driver_cnic_back_side",
   "/driver_driving_license", "/create_shipment_form", "/manage_shipments", "/transporterRegistration", "/verify_transporter_mail", 
-  "/transporter_name_section", "/transporter_location_section",
-  "/transporter_vechical_selection" ];
+  "/transporter_name_section", "/transporter_location_section", "/transporter_vechical_selection", 
+  "/manage_booking", "/manage_rental", "/extend_rental", "/manage_rental/view_rental", "/extend_rental/rental-details" ];
+  
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -123,6 +129,16 @@ function AppRoutes() {
         <Route path="/blog&news" element={<BlogsNews/>}/>
         <Route path="/blog&news/:id" element={<BlogsDetails/>}/>
 
+        {/* MANAGE BOOKING ROUTES */}
+        {/* <Route
+          path="/manage_booking"
+          element={isAuthenticated ? <Navigate to="/" replace /> : <ManageBooking/> }
+        /> */}
+        <Route path="/manage_rental" element={<ManageRental/>}/>
+        <Route path="/manage_rental/view_rental" element={<ViewRental/>}/>
+        <Route path="/extend_rental" element={<ExtendRental/>}/>
+        <Route path="/extend_rental/rental-details" element={<RentalDetails/>}/>
+
         {/* CAR RENTAL ROUTES */}
         <Route path="/rental_landing_page" element={<LandingPage/>}/>
         <Route path="/viewCars" element={<ViewCars/>}/>
@@ -157,10 +173,7 @@ function AppRoutes() {
         
         {/* Trips Packages */}
         <Route path="/trips_packages" element={<LandingTripPage/>} />
-        <Route path="/tripDetails/:tripId" element={<TripDetails/>} />
-        <Route path="/404" element={<NoRoute />} />      
-
-        {/* Booking  */}
+        <Route path="/tripDetails/:tripId" element={<TripDetails/>} />  
         <Route path="/BookingPage" element={<BookingPage/>} />
         <Route path="/BookingForm/:tripId" element={<BookingForm/>} />
 
@@ -176,12 +189,12 @@ function AppRoutes() {
           path="/user-profile"
           element={isAuthenticated ? <Navigate to="/" replace /> : <Profile/> }
         />
+        <Route path="/404" element={<NoRoute />} />    
         <Route path="*" element={<Navigate to="/404" replace />} />
 
           {/* Parcel Pickup Routes */}
           <Route path="/parcelform" element={<Parcelform/>}/> 
           <Route path="/pickupboyform" element={<PickupBoyForm/>}/>
-          
           <Route path="/pickupboy-email" element={<PickupboyEmail/>}/>
           <Route path="/pickupboyverifymail" element={<PickupBoyVerifyMail/>}/>
           <Route path="/pickupboy-detail-page" element={<PickupBoyDetailPage/>}/>
