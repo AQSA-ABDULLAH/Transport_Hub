@@ -82,6 +82,7 @@ const ShipmentSchema = new mongoose.Schema({
         type:  mongoose.Schema.Types.ObjectId,
         ref: 'Transporter',
     },
+    paymentStatus: { type: String, default: "unpaid", trim: true }
 
 }, {
     timestamps: true

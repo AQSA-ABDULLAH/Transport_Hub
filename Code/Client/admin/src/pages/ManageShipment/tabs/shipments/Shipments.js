@@ -3,17 +3,20 @@ import axios from 'axios';
 import { FaEdit } from "react-icons/fa";
 import styles from "../../../../components/sections/transport-managment/cars/view_car/viewcars.module.css";
 import GetShipment from "../ShipmentForm";
+// import { getUserIdFromToken } from "../../../../redux/util/AxiosHeader";
 
 export default function Shipments() {
   const [product, setProduct] = useState([]);
   const [showShipmentForm, setShowShipmentForm] = useState(false);
   const [shipmentId, setShipmentId] = useState(null);
+  // const userId = getUserIdFromToken();
 
     // Function to handle edit click
     const handleEditClick = (id) => {
       setShowShipmentForm(true);
       setShipmentId(id);
       console.log("show")
+      // console.log(userId);
     };
 
   const handleClose = () => {

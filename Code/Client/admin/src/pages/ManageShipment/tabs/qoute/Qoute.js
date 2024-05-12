@@ -4,10 +4,27 @@ import { FaEdit } from "react-icons/fa";
 import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
 import styles from "../../../../components/sections/transport-managment/cars/view_car/viewcars.module.css";
+import GetShipment from "../ShipmentForm";
 
 export default function Qoute() {
   const navigate = useNavigate();
   const [product, setProduct] = useState([]);
+  const [showShipmentForm, setShowShipmentForm] = useState(false);
+  const [shipmentId, setShipmentId] = useState(null);
+  // const userId = getUserIdFromToken();
+
+    // Function to handle edit click
+    const handleEditClick = (id) => {
+      setShowShipmentForm(true);
+      setShipmentId(id);
+      console.log("show")
+      // console.log(userId);
+    };
+
+  const handleClose = () => {
+    setShowShipmentForm(false);
+    setShipmentId(null);
+  };
 
   // Function to format date
   const formatDate = (dateString) => {
@@ -94,7 +111,7 @@ export default function Qoute() {
         <tbody>
           {product.map((item, index) => (
             <tr key={index}>
-              <td className={styles.shipmentID}>{item._id} <FaEdit/></td>
+              <td className={styles.shipmentID}>{item._id} <FaEdit onClick={() => handleEditClick(item._id)}/></td>
               <td>{item.commodityName}</td>
               <td>{item.selectedMode}</td>
               <td>{item.pickupCity}</td>
@@ -109,6 +126,14 @@ export default function Qoute() {
           ))}
         </tbody>
       </table>
+
+      {showShipmentForm && (
+        <GetShipment
+          onClose={handleClose}
+          shipmentId={shipmentId}
+        />
+      )}
+      
     </div>
   );
 }

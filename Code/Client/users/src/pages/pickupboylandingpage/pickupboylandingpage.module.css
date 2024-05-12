@@ -108,12 +108,7 @@
 .company p {
     margin-top: 10px; /* Add spacing between image and text */
 }
-h2 {
-    font-size: 33px;
-    font-weight: bold;
-    line-height: 45px;
-    text-align: center; /* Center the heading */
-}
+
 .container {
     display: flex;
     justify-content: center; /* Center horizontally */
