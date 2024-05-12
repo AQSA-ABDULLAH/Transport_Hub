@@ -12,30 +12,33 @@ function ExtendRental() {
     const [formData, setFormData] = useState({
         _id: '',
         rentalemail: '',
-      });
-    
-      const handleChange = (event) => {
+    });
+
+    const handleChange = (event) => {
         const { name, value } = event.target;
         setFormData(prevFormData => ({
-          ...prevFormData,
-          [name]: value
+            ...prevFormData,
+            [name]: value
         }));
-      };
-    
-      const handleSubmit = (event) => {
+    };
+
+    const handleSubmit = (event) => {
         event.preventDefault();
-      
+
         axios.post('http://localhost:5000/api/rental-booking/manage-rental', formData)
-          .then(response => {
-            console.log('Data sent successfully:', response.data);
-            // Save response.data to local storage
-            localStorage.setItem('rentalData', JSON.stringify(response.data));
-            navigate("/extend_rental/rental-details");
-          })
-          .catch(error => {
-            console.error('Failed to send data:', error.response ? error.response.data : error.message);
-          });
-      };
+            .then(response => {
+                console.log('Data sent successfully:', response.data);
+                // Extract only the rentalBooking data
+                const rentalBookingData = response.data.rentalBooking;
+                // Save rentalBookingData to local storage
+                localStorage.setItem('rentalData', JSON.stringify(rentalBookingData));
+                navigate("/extend_rental/rental-details");
+            })
+            .catch(error => {
+                console.error('Failed to send data:', error.response ? error.response.data : error.message);
+            });
+    };
+
 
     return (
         <>

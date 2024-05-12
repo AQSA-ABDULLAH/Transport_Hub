@@ -57,7 +57,7 @@ function ViewRental() {
                                 <h1>Vehicle Details :</h1>
                                 <div className={style.car_header}>
                                     <div>
-                                        <img src="./assets/images/cars/car4.png" alt="car" />
+                                        <img src="https://firebasestorage.googleapis.com/v0/b/transport-hub-a77ee.appspot.com/o/CarImages%2FPassengerVan.PNG?alt=media&token=76e01964-166b-471c-935d-54243e284b40" alt="car" />
                                     </div>
                                     <div>
                                         <h2>GAC GN8 7-SEATS MPV MODEL 2023</h2>
@@ -91,19 +91,19 @@ function ViewRental() {
                                 <h3>Price Summary</h3>
                                 <div className={style.price}>
                                     <p>Base Rate</p>
-                                    <p>$54.95</p>
+                                    <p>RS 650</p>
                                 </div>
                                 <div className={style.price}>
                                     <p>Add On Price</p>
-                                    <p>$54.95</p>
+                                    <p>RS 120</p>
                                 </div>
                                 <div className={style.price}>
                                     <p>Taxes and Fees</p>
                                     <p>Free</p>
                                 </div>
                                 <div className={`${style.price} ${style.price_per_day}`}>
-                                    <p>Price for 1 day</p>
-                                    <p>$111.54</p>
+                                    <p>Price for 5 day</p>
+                                    <p>RS 3850</p>
                                 </div>
 
                             </div>
