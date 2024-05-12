@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 import { setSignedIn } from "../redux/containers/auth/actions";
 
 import LandingPage from "../pages/car-rental/LandingPage.js";
-import ExtendedDetailPage from "../pages/car-rental/addOnPage/ExtendedDetailPage.js"
+// import ExtendedDetailPage from "../pages/car-rental/addOnPage/ExtendedDetailPage.js"
 import ViewCars from "../pages/car-rental/showCarsPage/ViewCars.js";
 import RentalBookingPage from '../pages/car-rental/bookingPage/RentalBookingPage.js';
 import BlogsNews from '../pages/blogs&News/BlogsNews.js';
@@ -50,10 +50,16 @@ import PickupboyEmail from "../pages/career/PickupboyCareer/pickupboyregistratio
 import PickupBoyVerifyMail from "../pages/career/PickupboyCareer/pickupboyregistration/verifyemailpage/PickupBoyVerifyMain.js";
 import PickupBoyDetailPage from "../pages/career/PickupboyCareer/pickupboyregistration/PickupboyDetails/PickupBoyDetailPage.js";
 import PickupBoyLocation from "../pages/career/PickupboyCareer/pickupboyregistration/PickupboyCity/PickupboyLocationDetail.js";
-import Pickupboynum from "../pages/career/PickupboyCareer/pickupboyregistration/PickupBoyNum/Pickupboynum.js"
-
+import Pickupboynum from "../pages/career/PickupboyCareer/pickupboyregistration/PickupBoyNum/Pickupboynum.js";
+import Pickupboycnic from "../pages/career/PickupboyCareer/pickupboyregistration/PickupBoyNum/Pickupboycnic.js";
+import PickupBoyPicture from "../pages/career/PickupboyCareer/pickupboyregistration/pickupboydocuments/PickupBoyPhoto/PickupBoyPicture.js";
+import PickupBoyCNICFrontSide from "../pages/career/PickupboyCareer/pickupboyregistration/pickupboydocuments/PickupBoyPhoto/PickupBoyCNICFrontSide.js";
+import PickupBoyCNICBackSide from "../pages/career/PickupboyCareer/pickupboyregistration/pickupboydocuments/PickupBoyPhoto/PickupBoyCNICBackSide.js";
+import PickupBoyDrivingLicense from "../pages/career/PickupboyCareer/pickupboyregistration/pickupboydocuments/PickupBoyPhoto/PickupboyDrivingLicense.js"
+import PickupBoyVehiclePapers from "../pages/career/PickupboyCareer/pickupboyregistration/pickupboydocuments/PickupBoyPhoto/PickupBoyVehiclePapers.js";
+import LocationSearch from "../user-dashboard/LocationSearch.js";
 import TripDetails from "../components/molecules/trips/TripDetails.js";
-import AddOnPage from "../pages/car-rental/addOnPage/AddOnPage.js";
+import AddOnPage from "../pages/car-rental/addOnPage/AddOnPage.js";  
 import BookingForm from "../pages/Trips/BookingForm.js";
 import BookingPage from "../pages/Booking/BookingPage.js";
 
@@ -177,16 +183,24 @@ function AppRoutes() {
           element={isAuthenticated ? <Navigate to="/" replace /> : <Profile/> }
         />
         <Route path="*" element={<Navigate to="/404" replace />} />
-
+        
           {/* Parcel Pickup Routes */}
           <Route path="/parcelform" element={<Parcelform/>}/> 
-          <Route path="/pickupboyform" element={<PickupBoyForm/>}/>
-          
+          <Route path="/pickupboyform" element={<PickupBoyForm/>}/>        
           <Route path="/pickupboy-email" element={<PickupboyEmail/>}/>
           <Route path="/pickupboyverifymail" element={<PickupBoyVerifyMail/>}/>
           <Route path="/pickupboy-detail-page" element={<PickupBoyDetailPage/>}/>
           <Route path="/pickupboy-location" element={<PickupBoyLocation/>}/>
           <Route path="/pickupboy-number" element={<Pickupboynum/>}/>
+          <Route path="/pickupboy-cnic" element={<Pickupboycnic/>}/>
+          <Route path="/pickupboy-photo" element={<PickupBoyPicture/>}/>
+          <Route path="/pickupboy-front-cnic" element={<PickupBoyCNICFrontSide/>}/>
+          <Route path="/pickupboy-back-cnic" element={<PickupBoyCNICBackSide/>}/>
+          <Route path="/pickupboy-driving-license" element={<PickupBoyDrivingLicense/>}/>
+          <Route path="/pickupboy-vehicle-papers" element={<PickupBoyVehiclePapers/>}/>
+          <Route path="/pickupboy-vehicle-papers" element={<PickupBoyVehiclePapers/>}/>
+        
+          <Route path="/LocationSearch" element={<LocationSearch/>}/>
           
            {pickupBoy.map((pickupBoy) => (
            <Route

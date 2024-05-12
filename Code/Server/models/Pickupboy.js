@@ -1,48 +1,58 @@
 const mongoose = require('mongoose');
 
 const pickupBoySchema = new mongoose.Schema({
-  name: {
-    type: String,
-    trim: true,
-  },
   email: {
     type: String,
-    trim: true,
+    required: true,
+    unique: true,
   },
-  phoneNumber: {
+  name: {
     type: String,
-    trim: true,
-  },
-  vehicleType: {
-    type: String,
-    trim: true,
-  },
-  cnicNumber: {
-    type: String,
-    trim: true,
+    required: true,
   },
   city: {
     type: String,
-    trim: true,
+    required: true,
+  },
+  phoneNumber: {
+    type: String,
+    required: true,
+  },
+  cnicNumber: {
+    type: String,
+    required: true,
   },
   picture: {
     type: String,
-    trim: true,
+    required: true,
+  },
+  cnicFront: {
+    type: String,
+    required: true,
+  },
+  cnicBack: {
+    type: String,
+    required: true,
   },
   drivingLicense: {
     type: String,
-    trim: true,
+    required: true,
   },
   vehiclePapers: {
     type: String,
-    trim: true,
+    required: true,
   },
-  referenceNumber: {
+  isVerified: {
+    type: Boolean,
+    default: false,
+  },
+  status: {
     type: String,
-    trim: true,
+    enum: ['pending', 'accepted', 'rejected'],
+    default: 'pending',
   },
-}, {
-  timestamps: true,
 });
 
-module.exports =mongoose.model('PickupBoy', pickupBoySchema);
+const PickupBoy = mongoose.model('PickupBoyRegister', pickupBoySchema);
+
+module.exports = PickupBoy;
