@@ -12,8 +12,8 @@ const CarTypes = () => {
     },
     {
       id: 2,
-      title: "Pickup Trucks",
-      imageUrl: "./assets/images/cars/PickupTrucks.PNG",
+      title: "Electric Cars",
+      imageUrl: "./assets/images/cars/ElectricCars.PNG",
     },
     {
       id: 3,
@@ -37,13 +37,8 @@ const CarTypes = () => {
     },
     {
       id: 7,
-      title: "Electric Cars",
-      imageUrl: "./assets/images/cars/ElectricCars.PNG",
-    },
-    {
-      id: 8,
-      title: "Convertibles",
-      imageUrl: "./assets/images/cars/CONVERTIBLES.png",
+      title: "Pickup Trucks",
+      imageUrl: "./assets/images/cars/PickupTrucks.PNG",
     },
   ];
 
@@ -80,10 +75,13 @@ const CarTypes = () => {
                           src={deal.imageUrl}
                           alt={deal.title}
                           className={style.carimage}
-                          style={{ height: "150px", width: "200px" }} // Adjust the height and width as needed
+                          style={{ height: "120px", width: "150px" }} // Adjust the height and width as needed
                         />
 
-                        <Card.Title className="fs-6">{deal.title}</Card.Title>
+                        <Card.Title className={`fs-6 ${style.title}`} style={{ textAlign: "center" }}>
+                          {deal.title}
+                        </Card.Title>
+
                       </Card.Body>
                     </Card>
                   </Col>
