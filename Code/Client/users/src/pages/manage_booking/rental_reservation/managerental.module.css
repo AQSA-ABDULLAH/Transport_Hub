@@ -122,7 +122,6 @@
     justify-content: space-between;
     margin: 0.5rem;
     padding-bottom: 1rem;
-    border-bottom: 0.1rem solid rgb(209, 207, 207);
 }
 .car_header span{
     font-size: 0.9rem;
@@ -166,4 +165,16 @@
 
 .extras{
     padding: 2.2rem 0rem;
+}
+
+.booking_details button{
+    background-color: white;
+    border: 1px solid #3B3B4f;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+.booking_details{
+    padding-bottom: 1rem;
+    border-bottom: 0.1rem solid rgb(209, 207, 207);
 }

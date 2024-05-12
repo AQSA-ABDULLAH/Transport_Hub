@@ -3,11 +3,13 @@ import style from "../rental_reservation/managerental.module.css";
 import axios from 'axios';
 import Sidebar from '../../../components/molecules/manage-booking/sidebar/Sidebar';
 import TopHeader from '../../../components/molecules/manage-booking/booking-header/TopHeader';
+import ExtendDate from './extendDate/ExtendDate';
 
 function RentalDetails() {
     const [openSidebar, setOpenSidebar] = useState(false);
     const [rentalData, setRentalData] = useState(null);
     const [product, setProduct] = useState([]);
+    const [addDropDate, setAddDropDate] = useState(false);
 
     useEffect(() => {
         const storedRentalData = localStorage.getItem('rentalData');
@@ -27,16 +29,15 @@ function RentalDetails() {
     }, []);
 
 
-    const handleCancelReservation = () => {
-        if (rentalData) {
-            // Update the status to 'canceled'
-            const updatedRentalData = { ...rentalData, status: 'canceled' };
-            // Store the updated data back in local storage
-            localStorage.setItem('rentalData', JSON.stringify(updatedRentalData));
-            // Update state to reflect the change
-            setRentalData(updatedRentalData);
-        }
+    const handelAddDropDate = () => {
+        setAddDropDate(true);
+        console.log("show");
     };
+    
+    
+      const close = () => {
+        setAddDropDate(false);
+      };
 
     return (
         <>
@@ -47,7 +48,6 @@ function RentalDetails() {
             <section className={style.viewrental_container}>
                 <div className={style.rental_header}>
                     <h2>Your Rental Details</h2>
-                    <button onClick={handleCancelReservation}>Cancel Reservation</button>
                 </div>
                 <h4>Confirmation: {rentalData ? rentalData._id : null}</h4>
                 <section>
@@ -67,17 +67,21 @@ function RentalDetails() {
 
                                 <h1>Itinerary :</h1>
 
-                                <div className={style.booking_time}>
-                                    <div>
-                                        <span>{rentalData?.pickupDate}</span> -
-                                        <span> {rentalData?.pickupTime}</span>
-                                        <p>{rentalData?.pickupLocation}</p>
+                                <div className={style.booking_details}>
+                                    <div className={style.booking_time}>
+                                        <div>
+                                            <span>{rentalData?.pickupDate}</span> -
+                                            <span> {rentalData?.pickupTime}</span>
+                                            <p>{rentalData?.pickupLocation}</p>
+                                        </div>
+                                        <div>
+                                            <span>{rentalData?.dropDate}</span> -
+                                            <span> {rentalData?.dropTime}</span>
+                                            <p>{rentalData?.dropLocation}</p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <span>{rentalData?.dropDate}</span> -
-                                        <span> {rentalData?.dropTime}</span>
-                                        <p>{rentalData?.dropLocation}</p>
-                                    </div>
+
+                                    <button onClick={handelAddDropDate}>Extend rental</button>
                                 </div>
 
                                 <div className={style.extras}>
@@ -111,6 +115,10 @@ function RentalDetails() {
                     </div>
                 </section>
             </section>
+
+            {addDropDate && (
+        <ExtendDate  onClose={close} />
+      )}
         </>
     );
 }
