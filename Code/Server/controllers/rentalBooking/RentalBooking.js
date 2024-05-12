@@ -5,7 +5,7 @@ class RentalBookingController {
     static async rentalBooking(req, res) {
         console.log('Received form data:', req.body);
         const { pickupLocation, pickupDate, pickupTime, dropLocation, dropDate, dropTime, firstName, 
-            lastName, email, phoneNumber, cnic, zipCode, address, car_id, addDriver, addInfantSeat, 
+            lastName, email, phoneNumber, cnic, zipCode, address, basePrice, totalPrice, car_id, addDriver, addInfantSeat, 
             addToddlerSeat } = req.body;
         
         // Check if any of the required fields are missing
@@ -16,7 +16,7 @@ class RentalBookingController {
         try {
             const rentalBooking = new RentalBooking({
                 pickupLocation, pickupDate, pickupTime, dropLocation, dropDate, dropTime, firstName, 
-                lastName, email, phoneNumber, cnic, zipCode, address, car_id, addDriver, addInfantSeat, 
+                lastName, email, phoneNumber, cnic, zipCode, address, car_id, basePrice, totalPrice, addDriver, addInfantSeat, 
                 addToddlerSeat });
             
             await rentalBooking.save();

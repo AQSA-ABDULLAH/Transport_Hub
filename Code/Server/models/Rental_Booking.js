@@ -15,7 +15,8 @@ const RentalBookingSchema = new mongoose.Schema({
     cnic: { type: String, trim: true },
     zipCode: { type: Number, trim: true },
     address: { type: String, trim: true },
-    price: { type: Number },
+    basePrice: { type: Number, trim: true },
+    totalPrice: { type: Number, trim: true },
     status: { type: String, trim: true },
     car_id: {
         type:mongoose.Schema.Types.ObjectId,
