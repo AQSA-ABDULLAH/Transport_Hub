@@ -22,15 +22,19 @@
     "email-validator": "^2.0.4",
     "firebase": "^10.10.0",
     "js-cookie": "^3.0.5",
+    "jwt-decode": "^4.0.0",
     "moment": "^2.30.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.2",
     "react-datepicker": "^6.1.0",
     "react-dom": "^18.2.0",
+
     "react-hook-form": "^7.51.3",
     "react-hot-toast": "^2.4.1",
+
     "react-icons": "^5.0.1",
     "react-id-swiper": "^4.0.0",
+    "react-load-script": "^0.0.6",
     "react-redux": "^9.1.0",
     "react-router-dom": "^6.23.0",
     "react-scripts": "5.0.1",
@@ -44,8 +48,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts --max_old_space_size=4096 start",
+    "build": "react-scripts --max_old_space_size=4096 build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

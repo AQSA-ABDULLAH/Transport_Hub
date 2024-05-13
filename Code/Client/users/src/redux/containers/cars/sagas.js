@@ -1,7 +1,7 @@
 import { put, takeLatest, call } from "redux-saga/effects";
 import * as type from "./constants";
 import * as actions from "./actions";
-import axiosInstance from "../../util/AxiosHeader";
+import { axiosInstance } from "../../util/AxiosHeader";
 
 function* bookCar(action) {
   try {

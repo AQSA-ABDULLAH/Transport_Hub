@@ -12,7 +12,7 @@ export default function DriverApplication() {
     const driverEmail = driver_Email.email;
 
     const driver_name = JSON.parse(localStorage.getItem('driver_name'));
-    const driverFirstName = driver_name.driverFirstName;
+    const driverFirstName = driver_name.driverFirstName; 
     const driverLastName = driver_name.driverLastName;
 
     const driverLocation = JSON.parse(localStorage.getItem('driver_location'));

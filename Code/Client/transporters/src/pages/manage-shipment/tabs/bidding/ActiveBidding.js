@@ -2,9 +2,39 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaEdit } from "react-icons/fa";
 import styles from "../viewshipments.module.css";
+import GetShipment from "../../ShipmentForm";
+import AddFare from "./fare/AddFare";
 
 export default function ActiveBidding() {
   const [product, setProduct] = useState([]);
+  const [showShipmentForm, setShowShipmentForm] = useState(false);
+  const [addFare, setAddFare] = useState(false);
+  const [shipmentId, setShipmentId] = useState(null);
+
+    // Function to handle fare click
+    const handelAddFare = (id) => {
+      setAddFare(true);
+      setShipmentId(id);
+      console.log("show")
+    };
+  
+    const close = () => {
+      setAddFare(false);
+      setShipmentId(null);
+    };
+
+  // Function to handle edit click
+  const handleEditClick = (id) => {
+    setShowShipmentForm(true);
+    setShipmentId(id);
+    console.log("show")
+    // console.log(userId);
+  };
+
+  const handleClose = () => {
+    setShowShipmentForm(false);
+    setShipmentId(null);
+  };
 
   // Function to format date
   const formatDate = (dateString) => {
@@ -29,6 +59,8 @@ export default function ActiveBidding() {
       });
   }, []);
 
+
+
   return (
     <div className={styles.shipment_container}>
       <table className={styles.table}>
@@ -40,23 +72,40 @@ export default function ActiveBidding() {
             <th>Pickup City</th>
             <th>Delivery City</th>
             <th>Pickup Date</th>
-            <th>StopType</th>
+            <th>Fare Price</th>
           </tr>
         </thead>
         <tbody>
           {product.map((item, index) => (
             <tr key={index}>
-              <td className={styles.shipmentID}>{item._id} <FaEdit/></td>
+              <td className={styles.shipmentID}>{item._id} <FaEdit onClick={() => handleEditClick(item._id)} /></td>
               <td>{item.commodityName}</td>
               <td>{item.selectedMode}</td>
               <td>{item.pickupCity}</td>
               <td>{item.deliveryCity}</td>
               <td>{formatDate(item.pickupDate)}</td>
-              <td>{item.stopType ? item.stopType : "no stop"}</td>
+              <td>
+                <button className={styles.cancel_button} onClick={() => handelAddFare(item._id)}>Add Fare</button>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      {showShipmentForm && (
+        <GetShipment
+          onClose={handleClose}
+          shipmentId={shipmentId}
+        />
+      )}
+
+      {addFare && (
+        <AddFare
+          onClose={close}
+          shipmentId={shipmentId}
+        />
+      )}
+
     </div>
   );
 }
