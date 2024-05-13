@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useBooking } from "../../context/booking";
-import toast from "react-hot-toast";
+
 const PriceCalculator = ({ handleClose, tripId }) => {
   const QuantitySelector = ({ label, value, onIncrease, onDecrease }) => {
     return (
@@ -25,10 +25,12 @@ const PriceCalculator = ({ handleClose, tripId }) => {
   };
   const [stDate, setStDate] = useState(null);
   const currentDate = new Date();
-  const [depareCity, setDepareCity] = useState("Select City");
+  const [depareCity, setDepareCity] = useState("");
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
   const [infants, setInfants] = useState(0);
+  const [tripTitle,setTripTitle] = useState("");
+  const [description,setDescription] = useState("");
   const [booking, setBooking] = useBooking();
 
   const handleAdultsIncrease = () => {
@@ -64,16 +66,26 @@ const PriceCalculator = ({ handleClose, tripId }) => {
   const handleDateChange = (date) => {
     setStDate(date);
   };
-  const [formData, setFormData] = useState(0)
+  const [formData, setFormData] = useState({})
   const [images, setImages] = useState(null);
+  const [newPrice,setNewPrice] = useState(0);
     useEffect(() => {
     const fetchTripDetails = async () => {
       try {
         const response = await axios.get(`http://localhost:5000/api/trips/tripDetails/${tripId}`);
         const tripDetails = response.data.data;
+        const tripTitle = tripDetails.tripTitle;
+        const description = tripDetails.description;
         console.log(tripDetails);
+        Cookies.set('tripTitle', tripTitle.toString());
+        Cookies.set('description', description.toString());
+        Cookies.set('images', images.toString());
+        Cookies.set('tripId', tripId.toString());
         if (tripDetails.images) {
           setImages(tripDetails.images);
+        }
+        if(tripDetails.price){
+          setNewPrice(tripDetails.price);
         }
         setFormData((prevData) => ({
           ...prevData,
@@ -86,6 +98,7 @@ const PriceCalculator = ({ handleClose, tripId }) => {
 
     fetchTripDetails();
   }, [tripId]);
+  const newTotalPrice = totalPrice + newPrice;
   useEffect(() => {
     if (depareCity !== null) {
         Cookies.set('depareCity', depareCity);
@@ -103,9 +116,10 @@ const PriceCalculator = ({ handleClose, tripId }) => {
         Cookies.set('infants', infants.toString());
     }
     if (totalPrice !== null) {
-        Cookies.set('totalPrice', totalPrice.toString());
+     
+        Cookies.set('totalPrice', newTotalPrice.toString());
     }
-}, [depareCity, stDate, adults, children, infants, totalPrice]);
+}, [depareCity, stDate, adults, children, infants, newTotalPrice]);
 
   return (
     <Modal show={true} onHide={handleClose} animation={false} dialogClassName="custom-modal">
@@ -190,7 +204,8 @@ const PriceCalculator = ({ handleClose, tripId }) => {
 
         <div>
           <h5>Total Price:</h5>
-          <p>Rs{totalPrice}</p>
+          <p>Trip Price is <span className="fw-semibold">Rs {formData.price}</span> so after adding the guests the total price is</p>
+          <p className="fw-semibold">Rs {totalPrice + formData.price}</p>
         </div>
       </div>
 
@@ -233,10 +248,7 @@ const PriceCalculator = ({ handleClose, tripId }) => {
         </Button>
         
         <Link to={`/BookingForm/${tripId}`}>
-  <Button variant="primary" onClick={()=>{
-    setBooking([...booking,formData])
-    toast.success("Item Added to cart")
-  }}>Confirm Booking</Button>
+  <Button variant="primary" >Confirm Booking</Button>
 </Link>
 
       </Modal.Footer>

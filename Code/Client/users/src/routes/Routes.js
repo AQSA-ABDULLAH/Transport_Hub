@@ -15,7 +15,11 @@ import { setSignedIn } from "../redux/containers/auth/actions";
 
 import LandingPage from "../pages/car-rental/LandingPage.js";
 
+// import ExtendedDetailPage from "../pages/car-rental/addOnPage/ExtendedDetailPage.js"
+
+
 // import ExtendedDetailPage from "../pages/car-rental/addOnPage/AddOnPage.js";
+
 import ViewCars from "../pages/car-rental/showCarsPage/ViewCars.js";
 import RentalBookingPage from '../pages/car-rental/bookingPage/RentalBookingPage.js';
 import BlogsNews from '../pages/blogs&news/BlogsNews.js';
@@ -63,6 +67,9 @@ import TripDetails from "../components/molecules/trips/TripDetails.js";
 import AddOnPage from "../pages/car-rental/addOnPage/AddOnPage.js";  
 import BookingForm from "../pages/Trips/BookingForm.js";
 import BookingPage from "../pages/Booking/BookingPage.js";
+
+import SuccessPage from '../components/atoms/payment/SuccessPage.js';
+
 import ManageBooking from "../pages/manage_booking/ManageBooking.js";
 import ManageRental from "../pages/manage_booking/rental_reservation/ManageRental.js";
 import ExtendRental from "../pages/manage_booking/extend-rental/ExtendRental.js";
@@ -183,6 +190,7 @@ function AppRoutes() {
         <Route path="/tripDetails/:tripId" element={<TripDetails/>} />  
         <Route path="/BookingPage" element={<BookingPage/>} />
         <Route path="/BookingForm/:tripId" element={<BookingForm/>} />
+        <Route path="/checkout-success" element={<SuccessPage/>} />
 
         <Route
           path="/signup"
