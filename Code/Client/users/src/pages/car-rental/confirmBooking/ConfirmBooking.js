@@ -20,6 +20,7 @@ const ConfirmBooking = () => {
 
     const selectedCar = JSON.parse(localStorage.getItem('selectedCar'));
     const car_id = selectedCar._id;
+    const price = selectedCar.price;
 
     const bookingForm = JSON.parse(localStorage.getItem('bookingForm'));
     const firstName = bookingForm.firstName;
@@ -34,6 +35,7 @@ const ConfirmBooking = () => {
     const addDriver = carAddons.addDriver;
     const addInfantSeat = carAddons.addInfantSeat;
     const addToddlerSeat = carAddons.addToddlerSeat;
+    const totalPrice = carAddons.totalPrice;
 
 
 
@@ -41,12 +43,12 @@ const ConfirmBooking = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+ 
         // Combine all booking details
         const combinedData = {
             pickupLocation: pickupLocation,
             pickupDate: pickupDate,
-            pickupTime: pickupTime,
+            pickupTime: pickupTime,  
             dropLocation: dropLocation,
             dropDate: dropDate,
             dropTime: dropTime,
@@ -60,7 +62,9 @@ const ConfirmBooking = () => {
             address: address,
             addDriver: addDriver,
             addInfantSeat: addInfantSeat,
-            addToddlerSeat: addToddlerSeat
+            addToddlerSeat: addToddlerSeat,
+            basePrice: price,
+            totalPrice: totalPrice
         };
 
         // Send combined data to server

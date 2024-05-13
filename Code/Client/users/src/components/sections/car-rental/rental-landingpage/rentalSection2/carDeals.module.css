@@ -1,6 +1,13 @@
 /* CarDeals.css */
 
-.carousel-indicator-btn {
+.cardeals_container{
+  margin: 2rem;
+}
+
+.cardeals_container h2{
+  text-align: center;
+}
+.carousel_indicator_btn {
     width: 15px;
     height: 15px;
     margin: 0 5px;
@@ -10,7 +17,10 @@
     cursor: pointer;
   }
   
-  .carousel-indicator-btn.active {
+  .carousel_indicator_btn.active {
     background-color: #007bff;
   }
-  
+   
+  .carimage{
+    width: 20rem;
+  }

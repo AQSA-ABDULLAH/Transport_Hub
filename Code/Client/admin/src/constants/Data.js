@@ -13,9 +13,14 @@ export const Main = [
     route:'/'
   },
   {
+    icon: <BiSolidContact size={20}/>,
+    text: "Manage Trips",
+    route:'/manage-trips'
+  },
+  {
     icon: <BsCreditCard2FrontFill size={20} />,
-    text: "Services",
-    route:'/carRental'
+    text: "Rental Booking",
+    route:'/rental_booking'
   },
   {
     icon: <BsCreditCard2FrontFill size={20} />,
@@ -24,18 +29,13 @@ export const Main = [
   },
   {
     icon: <BiSolidContact size={20}/>,
-    text: "Transport Managment",
-    route:'/transport-managment'
-  },
-  {
-    icon: <BiSolidContact size={20}/>,
-    text: "Manage Trips",
-    route:'/manage-trips'
-  },
-  {
-    icon: <BiSolidContact size={20}/>,
     text: "Manage Parcels",
     route:'/ParcelList'
+  },
+  {
+    icon: <BiSolidContact size={20}/>,
+    text: "Transport Managment",
+    route:'/transport-managment'
   },
   {
     icon: <FaUsers size={20}/>,

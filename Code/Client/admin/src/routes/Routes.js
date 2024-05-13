@@ -14,6 +14,7 @@ import Pickupboyform from "../components/molecules/pickupboyforms/Pickupboyform"
 import Driver from "../components/molecules/pickupboyforms/Driver";
 import Transporter from "../components/molecules/pickupboyforms/Transporter";
 import ManageShipment from "../pages/ManageShipment/main/ManageShipment";
+import ManageRental from "../pages/RentalBooking/main/ManageRental";
 const RoutesStack = ({ openSidebar, setOpenSidebar }) => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -55,6 +56,7 @@ const RoutesStack = ({ openSidebar, setOpenSidebar }) => {
           <Route path="/transport-managment" element={<TransportMangment />} />
           <Route path="/manage-shipments" element={<ManageShipment/>} />
           <Route path="/manage-trips" element={<ManageTrips />} />
+          <Route path="/rental_booking" element={<ManageRental/>} />
           <Route path="/" element={<AdminDashboard />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
