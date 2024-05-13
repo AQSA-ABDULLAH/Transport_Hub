@@ -5,7 +5,7 @@ import styles from "../../../components/sections/transport-managment/cars/view_c
 
 // import { getUserIdFromToken } from "../../../../redux/util/AxiosHeader";
 
-export default function RentalBooking() {
+export default function Upcomming() {
     const [product, setProduct] = useState([]);
     const [showShipmentForm, setShowShipmentForm] = useState(false);
     const [shipmentId, setShipmentId] = useState(null);
@@ -38,12 +38,57 @@ export default function RentalBooking() {
         axios.get("http://localhost:5000/api/rental-booking/get-book-rental")
             .then(res => {
                 console.log(res.data);
-                setProduct(res.data.data);
+                const rentalBooking = res.data.data.filter(item => item.status === "pending");
+                setProduct(rentalBooking);
+
             })
             .catch(err => {
                 console.log(err);
             });
     }, []);
+
+
+      // UPDATE SHIPMENT STATUS
+  const updateStatus = (id) => {
+    console.log(id)
+    // Swal.fire({
+    //   title: 'Are you sure?',
+    //   text: "You want to cancel this Shipment!",
+    //   icon: 'warning',
+    //   showCancelButton: true,
+    //   confirmButtonColor: '#3085d6',
+    //   cancelButtonColor: '#d33',
+    //   confirmButtonText: 'Canceled!'
+    // })
+    // .then((result) => {
+    //   if (result.isConfirmed) {
+    //     axios.patch(`http://localhost:5000/api/shipment/update-shipment/${id}`, { status: "canceled" })
+    //       .then(res => {
+    //         Swal.fire(
+    //           'Canceled!',
+    //           'Shipment has been canceled.',
+    //           'success'
+    //         );
+    //         // Update the product state to reflect the changes
+    //         setProduct(prevProduct => prevProduct.map(item => {
+    //           if (item._id === id) {
+    //             return { ...item, status: "Canceled" };
+    //           }
+    //           return item;
+    //         }));
+    //         navigate("/manage-shipments?tab=Canceled")
+    //       })
+    //       .catch(err => {
+    //         console.log(err);
+    //         Swal.fire(
+    //           'Error!',
+    //           'Failed to cancel shipment.',
+    //           'error'
+    //         );
+    //       });
+    //   }
+    // });
+  }
 
 
     return (
@@ -52,13 +97,13 @@ export default function RentalBooking() {
                 <thead>
                     <tr>
                         <th>Booking ID</th>
-                        <th>Car Image</th>
-                        <th>Car Title</th>
+                           <th>Car Title</th>
                         <th>Pickup Location</th>
                         <th>Drop Location</th>
                         <th>Pickup Date</th>
                         <th>Drop Date</th>
                         <th>Price</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -67,12 +112,15 @@ export default function RentalBooking() {
                             <td className={styles.shipmentID}>{item._id} <FaEdit /></td>
 
                             <td>ghdhfdg</td>
-                            <td>dsfs</td>
+                        
                             <td>{item.pickupLocation}</td>
                             <td>{item.dropLocation}</td>
                             <td>{formatDate(item.pickupDate)}</td>
                             <td>{formatDate(item.dropDate)}</td>
                             <td>{item.totalPrice}</td>
+                            <td>
+                                <button className={styles.cancel_button} onClick={() => updateStatus(item._id)}>Start Rental</button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

@@ -4,6 +4,8 @@ import { Tab } from "../../../constants/RentalBooking";
 import styles from "../../TransportManagment/main/Transport.module.css";
 import Button from "../../../components/atoms/buttons/Button";
 import RentalBooking from "../tabs/RentalBooking";
+import Upcomming from "../tabs/Upcomming";
+import Ongoing from "../tabs/Ongoing";
 
 const ManageRental = () => {
   const navigate = useNavigate();
@@ -44,6 +46,10 @@ const ManageRental = () => {
     switch (isActive) {
       case 0:
         return <RentalBooking/>
+    case 1:
+        return <Upcomming/>
+    case 2:
+        return <Ongoing/>
       default:
         return null;
     }

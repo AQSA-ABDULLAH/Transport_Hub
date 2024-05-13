@@ -17,7 +17,7 @@ const RentalBookingSchema = new mongoose.Schema({
     address: { type: String, trim: true },
     basePrice: { type: Number, trim: true },
     totalPrice: { type: Number, trim: true },
-    status: { type: String, trim: true },
+    status: { type: String, trim: true, default: "pending" },
     car_id: {
         type:mongoose.Schema.Types.ObjectId,
         required: true,

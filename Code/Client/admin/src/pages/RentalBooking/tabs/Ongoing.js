@@ -5,7 +5,7 @@ import styles from "../../../components/sections/transport-managment/cars/view_c
 
 // import { getUserIdFromToken } from "../../../../redux/util/AxiosHeader";
 
-export default function RentalBooking() {
+export default function Ongoing() {
     const [product, setProduct] = useState([]);
     const [showShipmentForm, setShowShipmentForm] = useState(false);
     const [shipmentId, setShipmentId] = useState(null);
@@ -38,7 +38,9 @@ export default function RentalBooking() {
         axios.get("http://localhost:5000/api/rental-booking/get-book-rental")
             .then(res => {
                 console.log(res.data);
-                setProduct(res.data.data);
+                const rentalBooking = res.data.data.filter(item => item.status === "ongoing");
+                setProduct(rentalBooking);
+
             })
             .catch(err => {
                 console.log(err);
