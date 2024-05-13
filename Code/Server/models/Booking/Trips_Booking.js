@@ -41,8 +41,18 @@ const TripsBookingSchema = new mongoose.Schema({
         type: Number,
         
         trim: true,
-    }
+    },
+    tripTitle: {
+        type: String,
+    },
+    description: {
+        type: String,
+    },
+    images: {
+        type: String,
+    },
 });
+
 
 
 module.exports = mongoose.model("Trips_Booking", TripsBookingSchema);

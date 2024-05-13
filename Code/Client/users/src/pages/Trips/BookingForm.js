@@ -3,12 +3,27 @@ import Cookies from "js-cookie";
 import { useBooking } from "../../context/booking";
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useParams } from "react-router-dom";
+import toast from "react-hot-toast";
 const BookingForm = () => {
   const [booking, setBooking] = useBooking();
+  // const [thisBooking, setThisBooking] = useBooking();
   const [passengerDetails, setPassengerDetails] = useState({
     
     passengers: [],
   });
+  const [tripTitle, setTripTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [images, setImages] = useState(null);
+  const { tripId } = useParams(); 
+
+  useEffect(() => {
+    const tripTitle = Cookies.get("tripTitle") || "";
+    const description = Cookies.get("description") || "";
+    const images = Cookies.get("images") || "";
+    setTripTitle(tripTitle);
+
+  }, []); 
   
   const [passengerDetailsCookies, setPassengerDetailsCookies] = useState({
     gender: "",
@@ -28,6 +43,7 @@ const BookingForm = () => {
     const children = parseInt(Cookies.get("children")) || 0;
     const infants = parseInt(Cookies.get("infants")) || 0;
     const totalPrice = parseInt(Cookies.get("totalPrice")) || 0;
+    
     const totalGuests = adults + children + infants;
     
 
@@ -46,7 +62,8 @@ const BookingForm = () => {
       infants,
       passengers,
       totalPrice,
-      totalGuests
+      totalGuests,
+      
     });
   }, []);
 
@@ -88,16 +105,21 @@ const BookingForm = () => {
         totalPrice: parseInt(Cookies.get("totalPrice")) || 0,
         departCity: Cookies.get("departCity") || "",
         departDate: Cookies.get("departureDate") || "",
+        trip_id: Cookies.get("tripId") || "",
+        tripTitle: Cookies.get("tripTitle") || "",
+        description: Cookies.get("description") || "",
+        images: Cookies.get("images") || "",
       };
   
       console.log("Data to be sent:", data); // Log data object before sending
   
       // Send data to the backend
-      await axios.post('http://localhost:5000/api/trips/submit-a-new-trip-booking-form', data, {
-        headers: { 'Content-Type': 'application/json' }
-      });
+      // await axios.post('http://localhost:5000/api/trips/submit-a-new-trip-booking-form', data, {
+      //   headers: { 'Content-Type': 'application/json' }
+      // });
   
-      setBooking(); // Set booking context after successful submission
+      setBooking([...booking, data]);
+      localStorage.setItem('booking', JSON.stringify([...booking, data]));
       Swal.fire(
         'New Trip Added Successfully',
         'Go to trips management tab to see the results',
@@ -105,19 +127,16 @@ const BookingForm = () => {
       );
     } catch (err) {
       console.log(err);
-      if (err.response && err.response.status === 400) {
-        const validationErrors = err.response.data.errors;
-        const errorMessages = `Validation failed:\n${validationErrors.map((error) => error.message).join('\n')}`;
-        alert(errorMessages);
-      } else {
-        alert('Error submitting data. Please try again.');
-      }
+      // if (err.response && err.response.status === 400) {
+      //   const validationErrors = err.response.data.errors;
+      //   const errorMessages = `Validation failed:\n${validationErrors.map((error) => error.message).join('\n')}`;
+      //   alert(errorMessages);
+      // } else {
+      //   alert('Error submitting data. Please try again.');
+      // }
     }
   };
   
-  
-
-
   return (
     <>
     {/* <Navbar /> */}
@@ -283,7 +302,7 @@ const BookingForm = () => {
           <div className="p-3 bg-white border border-1 m-5 rounded-3">
             <h3 className="fw-bold text-start">Tour</h3>
             <p className="text-start">
-              3 Days New Year Celebration Trip to Swat Kalam
+            {tripTitle}
             </p>
             <hr />
             <div className="d-flex justify-content-between">

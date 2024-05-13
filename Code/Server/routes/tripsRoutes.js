@@ -28,5 +28,7 @@ router.put("/updatePackage/:id", TripsController.updateTripById); // Fix the met
 router.delete("/deletePackage/:id", TripsController.deleteTripById); // Fix the method name here
 router.get('/Trip_Booking_Form/:id',TripBookingController.getTripBooking );
 router.post('/submit-a-new-trip-booking-form',TripBookingController.tripBooking ); 
+router.delete('/delete-trip-booking',TripBookingController.deleteTripBooking ); 
+router.post('/create-checkout-session',TripBookingController.makePayment ); 
 
 module.exports = router;

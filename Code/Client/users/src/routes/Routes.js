@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 import { setSignedIn } from "../redux/containers/auth/actions";
 
 import LandingPage from "../pages/car-rental/LandingPage.js";
-import ExtendedDetailPage from "../pages/car-rental/addOnPage/ExtendedDetailPage.js"
+// import ExtendedDetailPage from "../pages/car-rental/addOnPage/ExtendedDetailPage.js"
 import ViewCars from "../pages/car-rental/showCarsPage/ViewCars.js";
 import RentalBookingPage from '../pages/car-rental/bookingPage/RentalBookingPage.js';
 import BlogsNews from '../pages/blogs&News/BlogsNews.js';
@@ -56,7 +56,7 @@ import TripDetails from "../components/molecules/trips/TripDetails.js";
 import AddOnPage from "../pages/car-rental/addOnPage/AddOnPage.js";
 import BookingForm from "../pages/Trips/BookingForm.js";
 import BookingPage from "../pages/Booking/BookingPage.js";
-
+import SuccessPage from '../components/atoms/payment/SuccessPage.js';
 
 function AppRoutes() {
 
@@ -163,6 +163,7 @@ function AppRoutes() {
         {/* Booking  */}
         <Route path="/BookingPage" element={<BookingPage/>} />
         <Route path="/BookingForm/:tripId" element={<BookingForm/>} />
+        <Route path="/checkout-success" element={<SuccessPage/>} />
 
         <Route
           path="/signup"
