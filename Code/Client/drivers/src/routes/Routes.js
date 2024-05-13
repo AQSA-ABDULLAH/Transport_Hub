@@ -4,6 +4,7 @@ import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Home from "../pages/home/Home";
 import Unknown from "../pages/unknown/Unknown";
 import Login from "../pages/login/Login";
+import ManageRental from "../pages/RentalBooking/main/ManageRental";
 const RoutesStack = ({ openSidebar, setOpenSidebar }) => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -37,6 +38,7 @@ const RoutesStack = ({ openSidebar, setOpenSidebar }) => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login/>}/>
           <Route path="*" element={<Unknown />} />
+          <Route path="/manage-rentals" element={<ManageRental/>}/>
         </Routes>
       </div>
     </>
