@@ -50,9 +50,6 @@ class TripsController {
     endDate: Joi.date().label('endDate').messages({
         'string.base': '{#label} must be a string',
     }),
-    status: Joi.string().label('status').messages({
-        'string.base': '{#label} must be a string',
-    }),
     Ages: Joi.number().label('Ages').messages({
         'string.base': '{#label} must be a number',
     }),

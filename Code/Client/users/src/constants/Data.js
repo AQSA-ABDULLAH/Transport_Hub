@@ -6,7 +6,7 @@ export const Main = [
   {
     icon: <AiFillHome size={20} />,
     text: "Manage Trips",
-    route:'/manage_trip'
+    route:'/BookingPage'
   },
   {
     icon: <BsCreditCard2FrontFill size={20} />,
