@@ -255,6 +255,7 @@ const BookingForm = () => {
                     name="fullName"
                     value={contactDetails.fullName}
                     onChange={handleContactChange}
+                    required
                   />
                 </div>
 
@@ -266,6 +267,7 @@ const BookingForm = () => {
                     name="email"
                     value={contactDetails.email}
                     onChange={handleContactChange}
+                    required
                   />
                 </div>
               </div>
@@ -276,8 +278,10 @@ const BookingForm = () => {
                     type="tel"
                     className="form-control"
                     name="cnic_no"
+                    pattern="^\d{13}$" title="CNIC can be only 13 didgit "
                     value={contactDetails.cnic_no}
                     onChange={handleContactChange}
+                    required
                   />
                 </div>
 
@@ -287,6 +291,7 @@ const BookingForm = () => {
                     type="tel"
                     className="form-control"
                     name="mobile_no"
+                    pattern="^\d{11}$" title="Phone number can be only 11 didgit "
                     value={contactDetails.mobile_no}
                     onChange={handleContactChange}
                   />

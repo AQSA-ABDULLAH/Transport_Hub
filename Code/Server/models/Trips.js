@@ -65,11 +65,6 @@ const tripSchema = new mongoose.Schema({
     
     trim: true
   },
-  status: {
-    type: String,
-    
-    trim: true
-  },
   Ages: {
     type: Number,
     trim:true

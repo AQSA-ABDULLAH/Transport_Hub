@@ -56,7 +56,7 @@ function LoginModal({ onClose }) {
   return (
     <>
       {onClose ? (
-        <div onClick={() => onClose()} className="modal-conatainer"></div>
+        <div onClick={() => onClose()} className="modal-conatainer1"></div>
       ) : (
         ""
       )}
@@ -67,7 +67,7 @@ function LoginModal({ onClose }) {
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-        className="modal-content"
+        className="modal-content1"
       >
         <div className="logo-container">
           <img

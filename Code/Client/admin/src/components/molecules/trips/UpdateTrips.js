@@ -24,13 +24,13 @@ const UpdateTrips = ({ onClose, tripId }) => {
     departureCity: '',
     startDate: '',
     endDate: '',
-    status: '',
+    
     Ages: '',
     CheckIn: '',
     Checkout: '',
     BookingCloseDate: '',
   });
-  const { category, tripTitle, location, description, extraInformation, price, noOfGuest, noOfDays, noOfNights, departureCity, startDate, endDate, status, Ages, CheckIn, Checkout, BookingCloseDate } = formData;
+  const { category, tripTitle, location, description, extraInformation, price, noOfGuest, noOfDays, noOfNights, departureCity, startDate, endDate, Ages, CheckIn, Checkout, BookingCloseDate } = formData;
 
   const [imageFile, setImageFile] = useState(null);
   const [images, setImages] = useState(null);
@@ -103,7 +103,6 @@ const UpdateTrips = ({ onClose, tripId }) => {
     updatedFormData.append('departureCity', formData.departureCity);
     updatedFormData.append('startDate', formData.startDate);
     updatedFormData.append('endDate', formData.endDate);
-    updatedFormData.append('status', formData.status);
     updatedFormData.append('Ages', formData.Ages);
     updatedFormData.append('CheckIn', formData.CheckIn);
     updatedFormData.append('Checkout', formData.Checkout);
@@ -346,13 +345,6 @@ const UpdateTrips = ({ onClose, tripId }) => {
               type="text"
               name="departureCity"
               value={formData.departureCity}
-              onChange={handleInputChange}
-            />
-            <label>Status</label>
-            <input
-              type="text"
-              name="status"
-              value={formData.status}
               onChange={handleInputChange}
             />
             <label>Age</label>

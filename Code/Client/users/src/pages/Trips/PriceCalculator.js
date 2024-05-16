@@ -76,6 +76,7 @@ const PriceCalculator = ({ handleClose, tripId }) => {
         const tripDetails = response.data.data;
         const tripTitle = tripDetails.tripTitle;
         const description = tripDetails.description;
+        const images = tripDetails.images;
         console.log(tripDetails);
         Cookies.set('tripTitle', tripTitle.toString());
         Cookies.set('description', description.toString());

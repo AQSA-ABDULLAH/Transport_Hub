@@ -1,18 +1,18 @@
-.modal-conatainer {
+.modal-conatainer1 {
   z-index: 1000;
   position: fixed;
   inset: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(52, 51, 51, 0.8); /* Semi-transparent background */
-  backdrop-filter: blur(5px); /* Apply a blur effect */
+  background-color: rgba(52, 51, 51, 0.8); 
+  backdrop-filter: blur(5px);
 }
 
-.modal-content {
+.modal-content1 {
   z-index: 1100;
-  top: 50%; /* Vertically center */
-  left: 50%; /* Horizontally center */
+  top: 50%; 
+  left: 50%; 
   transform: translate(-50%, -50%);
   position: fixed;
   padding: 40px;
