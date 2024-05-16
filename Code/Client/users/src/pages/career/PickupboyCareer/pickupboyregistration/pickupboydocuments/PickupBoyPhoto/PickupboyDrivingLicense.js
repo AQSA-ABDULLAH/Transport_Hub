@@ -47,7 +47,7 @@ export default function PickupBoyDrivingLicense() {
 
     const handleUploadPhoto = () => {
         dispatch(chooseDrivingLicense(imageUrl));
-        localStorage.setItem('pickupboy_driving_License', JSON.stringify({ imageUrl }));
+
 
          // Show SweetAlert2 confirmation
          Swal.fire({

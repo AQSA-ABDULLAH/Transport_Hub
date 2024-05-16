@@ -47,7 +47,6 @@ export default function PickupBoyCNICFrontSide() {
 
     const handleUploadPhoto = () => {
         dispatch(chooseCnicFront(imageUrl));
-        localStorage.setItem('pickupboy_cnic_front', JSON.stringify({ imageUrl }));
         
          // Show SweetAlert2 confirmation
          Swal.fire({

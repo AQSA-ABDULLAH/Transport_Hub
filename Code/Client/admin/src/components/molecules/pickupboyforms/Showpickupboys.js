@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./showpickupboy.module.css"
+import pickupboyimage from './pickupboyimage.jpg';
+import vehiclelicenseimage from './vehiclelicenseimage.jpg';
 const Showpickupboys = () => {
   const [data, setData] = useState([]);
 
@@ -19,12 +21,12 @@ const Showpickupboys = () => {
   }, []);
 
   const handleAccept = (id) => {
-    console.log(`Accepted data with id: ${id}`);
+    // console.log(`Accepted data with id: ${id}`);
   };
 
   
   const handleReject = (id) => {
-    console.log(`Rejected data with id: ${id}`);
+    // console.log(`Rejected data with id: ${id}`);
   };
   const buttonStyle = {
     backgroundColor: '#FF0000',
@@ -56,33 +58,40 @@ const Showpickupboys = () => {
               </tr>
             </thead>
             <tbody>
-              {data.map((item) => (
-                <tr key={item._id}>
-                  <td>{item.name}</td>
+              {/* {data.map((item) => ( */}
+              {/* key={item._id} */}
+                <tr>
+                {/* <td>{item.name}</td>
                   <td>{item.email}</td>
                   <td>{item.phoneNumber}</td>
                   <td>{item.vehicleType}</td>
                   <td>{item.cnicNumber}</td>
-                  <td>{item.city}</td>
+                  <td>{item.city}</td> */}
+                  <td>Alia</td>
+                  <td>fatima75.ahmad@gmail.com</td>
+                  <td>+923185031361</td>
+                  <td>Bike</td>
+                  <td>37406-9605539-6</td>
+                  <td>Wah Cantt</td>
                   <td>
-                    <img src={`http://localhost:5000/uploads/parcel/${item.picture}`} alt="Picture" style={{ maxWidth: '100px' }} />
+                    <img src={pickupboyimage} alt="Picture" style={{ maxWidth: '100px' }} />
                   </td>
-                  <td><img src={`http://localhost:5000/uploads/parcel/${item.drivingLicense}`} alt="Picture" style={{ maxWidth: '100px' }} /></td>
-                  <td><img src={`http://localhost:5000/uploads/parcel/${item.vehiclePapers}`} alt="Picture" style={{ maxWidth: '100px' }} /></td>
-                  <td>{item.referenceNumber}</td>
+                  <td><img src={vehiclelicenseimage}alt="Picture" style={{ maxWidth: '100px' }} /></td>
+                  <td><img src={vehiclelicenseimage} alt="Picture" style={{ maxWidth: '100px' }} /></td>
+                  <td>{2344}</td>
                   <td>
                   <div className="d-flex gap-2">
-                    <button className="btn btn-success" onClick={() => handleAccept(item._id)}>
+                    <button className="btn btn-success" onClick={() => handleAccept()}>
                       Accept
                     </button>
-                    <button className="btn btn-danger" style={buttonStyle} onClick={() => handleReject(item._id)}>
+                    <button className="btn btn-danger" style={buttonStyle} onClick={() => handleReject()}>
                       Reject
                     </button>
                     </div>
                     
                   </td>
                 </tr>
-              ))}
+              {/* ))} */}
             </tbody>
           </table>
         </div>

@@ -12,7 +12,6 @@ import Swal from 'sweetalert2';
 import { chooseVehiclePapers } from '../../../../../../redux/containers/pickupboyreg/reducer';
 import { useDispatch ,useSelector} from 'react-redux'; 
 
-
 export default function PickupBoyVehiclePapers() {
 
     const [image, setImage] = useState('');
@@ -22,16 +21,17 @@ export default function PickupBoyVehiclePapers() {
     const dispatch = useDispatch();
 
 
-    const email = useSelector(state => state.root.email);
-    const name = useSelector(state => state.root.name);
-    const city = useSelector(state => state.root.city);
-    const phoneNumber = useSelector(state => state.root.phoneNumber);
-    const cnicNumber = useSelector(state => state.root.cnicNumber);
-    const picture = useSelector(state => state.root.picture);
-    const cnicFront = useSelector(state => state.root.cnicFront);
-    const cnicBack = useSelector(state => state.root.cnicBack);
-    const drivingLicense = useSelector(state => state.root.drivingLicense);
-    const vehiclePapers = useSelector(state => state.root.vehiclePapers);
+    const email = useSelector(state => state.pickupboy.email);
+    console.log(email);
+    const name = useSelector(state => state.pickupboy.name);
+    const city = useSelector(state => state.pickupboy.city);
+    const phoneNumber = useSelector(state => state.pickupboy.phoneNumber);
+    const cnicNumber = useSelector(state => state.pickupboy.cnicNumber);
+    const picture = useSelector(state => state.pickupboy.picture);
+    const cnicFront = useSelector(state => state.pickupboy.cnicFront);
+    const cnicBack = useSelector(state => state.pickupboy.cnicBack);
+    const drivingLicense = useSelector(state => state.pickupboy.drivingLicense);
+    const vehiclePapers = useSelector(state => state.pickupboy.vehiclePapers);
 
 
 
@@ -66,7 +66,6 @@ export default function PickupBoyVehiclePapers() {
 
     const handleUploadPhoto = () => {
         dispatch(chooseVehiclePapers(imageUrl));
-        localStorage.setItem('pickupboy_vehicle_papers', JSON.stringify({ imageUrl }));
 
          // Show SweetAlert2 confirmation
          Swal.fire({

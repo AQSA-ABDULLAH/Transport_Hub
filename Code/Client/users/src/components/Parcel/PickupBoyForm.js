@@ -61,6 +61,7 @@ const PickupBoyForm = () => {
       const response = await axios.post(url, formData);
       console.log(response.data);
       // Show a success alert or handle the success state as needed
+     
       alert('Form submitted successfully!'); 
       // Redirect the user to the homepage
       // window.location.href = '/'; 

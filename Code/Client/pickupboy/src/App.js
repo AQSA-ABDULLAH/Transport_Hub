@@ -1,26 +1,20 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import PickupBoyDashboard from "./pages/PickupBoyDashboard.js"
-import LoginDetails from "./pages/SidebarPages/LoginDetails.js";
-import PickupRequests from "./pages/SidebarPages/PickupRequests.js";
-import Settings from "./pages/SidebarPages/Settings.js";
+import React from "react";
+import GlobalRoute from "./routes/GlobalRoute";
+import { Route, Routes } from "react-router-dom";
+import { Provider } from 'react-redux';
 
-function App() {
+import store from './redux/store'; // Import your Redux store
+
+const App = () => {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/PickupBoyDashboard" element={<PickupBoyDashboard />}>
-                  <Route path="Login" element={<LoginDetails />} />
-                  <Route path="pickuprequest" element={<PickupRequests />} />
-                  <Route path="settings" element={<Settings/>} />
-          </Route>
-          
-        </Routes>
-      </BrowserRouter>
-      
-        
-    </div>
+    <>
+    <Provider store={store}>
+      <Routes>
+        <Route path="*" element={<GlobalRoute />} />
+      </Routes>
+      </Provider>
+    </>
   );
-}
+};
 
 export default App;

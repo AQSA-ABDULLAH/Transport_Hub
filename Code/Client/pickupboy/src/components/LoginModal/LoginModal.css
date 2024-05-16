@@ -1,0 +1,138 @@
+.modal {
+  z-index: 100;
+  top: 44%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  padding: 0px 80px;
+  width: 100%;
+}
+
+.login-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.head-container {
+  color: white;
+  font-size: 20px;
+}
+
+.modal-content {
+  display: flex;
+  padding: 2rem 0rem;
+  height: 450px;
+  gap: 2rem;
+}
+
+.notice-board {
+  background-color: white;
+  padding: 1rem 2rem;
+  border-top: 16px solid #efefef;
+  border-left: 16px solid #efefef;
+  border-bottom: 16px solid #efefef;
+  border-radius: 8px;
+  overflow-y: scroll;
+  width: 65%;
+}
+
+.notice-board h3 {
+  float: left;
+  width: 100%;
+  margin: 10px 0;
+  text-align: center;
+  font-size: 36px;
+  font-weight: 300;
+  letter-spacing: -2px;
+  color: inherit;
+}
+
+.login-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  background-color: white;
+  border-radius: 8px;
+  padding: 2rem;
+  width: 32%;
+}
+
+.login-form-container>form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* .login-form>div {
+  margin: 25px 0px;
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -2px;
+  text-align: center;
+  text-transform: uppercase;
+} */
+
+.login-form h3{
+  font-size: 20px;
+  padding-bottom: 15px;
+}
+
+.login-form input {
+  margin: 10px 0px;
+  padding: 10px 8px;
+  font-size: 15px;
+  border-radius: 5px;
+  border: 1px solid #b3b2b2;
+}
+
+.login-form input:focus {
+  outline: none;
+}
+
+#passwordInput {
+  position: relative;
+}
+
+#passwordInput>input {
+  height: 100%;
+  width: 100%;
+}
+
+.recaptcha{
+  padding-left: 18px;
+  padding-top: 12px;
+}
+
+#toggleIcon {
+  position: absolute;
+  top: 33%;
+  right: 10px;
+  width: 22px;
+  aspect-ratio: 1/1;
+}
+
+#toggleIcon:hover {
+  cursor: pointer;
+}
+
+.login-form Button {
+  margin: 20px 0px;
+  padding: 10px 0px;
+}
+
+@media screen and (max-width:1068px) {
+  .modal-content {
+    height: 100%;
+    width: 100%;
+    /* background-image: url('/client/admin/public/assets/image/error/error.png'); */
+    justify-content: center;
+    align-items: center;
+    background-image: none;
+    border-radius: 0px;
+    /* padding: 20p; */
+    margin: 0;
+
+  }
+}

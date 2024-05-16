@@ -5,6 +5,10 @@ const parcelFormSchema = new mongoose.Schema({
     type: String,
     trim: true
   },
+  destinationLocation:{
+    type: String,
+    trim: true
+  },
   weight: {
     type: Number, // Changed to Number
     trim: true

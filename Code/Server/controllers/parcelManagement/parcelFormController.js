@@ -1,12 +1,13 @@
 const mongoose = require("mongoose");
 const Parcelform = require("../../models/Parcelform");
 const PickupBoy = require("../../models/Pickupboy");
-
+const mailSender = require("../../utils/mailSender");
 const createParcelForm = async (req, res) => {
   console.log(req.body);
   try {
     const {
       pickupLocation, 
+      destinationLocation,
       weight,
       parcelType,
       phone,
@@ -18,13 +19,14 @@ const createParcelForm = async (req, res) => {
     } = req.body;
 
     // Validate required fields
-    if (!pickupLocation || !weight || !parcelType || !phone || !email || !time || !address || !selectedCompany || !rate) {
+    if (!pickupLocation || !destinationLocation|| !weight || !parcelType || !phone || !email || !time || !address || !selectedCompany || !rate) {
       return res.status(422).json({ error: "Please fill in all the fields properly." });
     }
 
     // Create a new ParcelForm instance
     const newParcelForm = new Parcelform({
       pickupLocation,
+      destinationLocation,
       weight,
       parcelType,
       phone,
@@ -37,12 +39,28 @@ const createParcelForm = async (req, res) => {
 
     // Save the new ParcelForm to the database
     await newParcelForm.save();
+  
     return res.status(201).json({ message: "Parcel form submitted successfully." });
+
   } catch (err) {
     console.error(err);
     return res.status(500).json({ success: false, error: "Internal Server Error" });
   }
 };
+// async function sendVerificationEmail(email) {
+//   try {
+//     const mailResponse = await mailSender(
+//       email,
+//       "Order Request recieved",
+//       `<h1>We have recieved your order.Someone will contact your shortly</h1>
+//        <p>We will update you soon for your order. </p>`
+//     );
+//     console.log("Email sent successfully: ", mailResponse);
+//   } catch (error) {
+//     console.log("Error occurred while sending email: ", error);
+//     throw error;
+//   }
+// }
 
 const registerPickupBoy = async (req, res) => {
   try {

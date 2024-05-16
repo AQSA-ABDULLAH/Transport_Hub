@@ -6,7 +6,7 @@ const PickupboyCareerPage = () => {
     const navigate = useNavigate();
 
     const handleRedirect = () => {
-        navigate('/pickupboyform'); // Replace '/RentalBookingPage' with the actual path to your driver login page
+        navigate('/pickupboy-email'); // Replace '/RentalBookingPage' with the actual path to your driver login page
     };
   return (
     <>

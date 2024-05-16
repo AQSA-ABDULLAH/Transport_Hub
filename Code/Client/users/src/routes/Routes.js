@@ -18,8 +18,8 @@ import LandingPage from "../pages/car-rental/LandingPage.js";
 // import ExtendedDetailPage from "../pages/car-rental/addOnPage/AddOnPage.js";
 import ViewCars from "../pages/car-rental/showCarsPage/ViewCars.js";
 import RentalBookingPage from '../pages/car-rental/bookingPage/RentalBookingPage.js';
-import BlogsNews from '../pages/blogs&news/BlogsNews.js';
-import BlogsDetails from '../pages/blogs&news/BlogsDetails.js';
+// import BlogsNews from "../pages/blogs&news/BlogsNews.js";
+// import BlogsDetails from "../pages/blogs&news/BlogsDetails.js";
 import CareerPage from "../pages/career/CareerPage.js";
 import DriverEmail from "../pages/career/driver/registration/DriverEmail.js";
 import DriverVerifyMail from "../pages/career/driver/verifymail/DriverVerifyMain.js";
@@ -58,7 +58,11 @@ import PickupBoyCNICFrontSide from "../pages/career/PickupboyCareer/pickupboyreg
 import PickupBoyCNICBackSide from "../pages/career/PickupboyCareer/pickupboyregistration/pickupboydocuments/PickupBoyPhoto/PickupBoyCNICBackSide.js";
 import PickupBoyDrivingLicense from "../pages/career/PickupboyCareer/pickupboyregistration/pickupboydocuments/PickupBoyPhoto/PickupboyDrivingLicense.js"
 import PickupBoyVehiclePapers from "../pages/career/PickupboyCareer/pickupboyregistration/pickupboydocuments/PickupBoyPhoto/PickupBoyVehiclePapers.js";
-import LocationSearch from "../user-dashboard/LocationSearch.js";
+// import LocationSearch from "../user-dashboard/LocationSearch.js";
+// import Search from "../user-dashboard/Search.js";
+// import NearbySearch from "../user-dashboard/NearbySearch.js";
+import RateCalculator from "../user-dashboard/RateCalculator.js";
+
 import TripDetails from "../components/molecules/trips/TripDetails.js";
 import AddOnPage from "../pages/car-rental/addOnPage/AddOnPage.js";  
 import BookingForm from "../pages/Trips/BookingForm.js";
@@ -133,8 +137,8 @@ function AppRoutes() {
       <Routes>
 
         <Route path="/" element={<Home />} />
-        <Route path="/blog&news" element={<BlogsNews/>}/>
-        <Route path="/blog&news/:id" element={<BlogsDetails/>}/>
+        {/* <Route path="/blog&news" element={<BlogsNews/>}/>
+        <Route path="/blog&news/:id" element={<BlogsDetails/>}/> */}
 
         {/* MANAGE BOOKING ROUTES */}
         {/* <Route
@@ -214,8 +218,11 @@ function AppRoutes() {
           <Route path="/pickupboy-driving-license" element={<PickupBoyDrivingLicense/>}/>
           <Route path="/pickupboy-vehicle-papers" element={<PickupBoyVehiclePapers/>}/>
           <Route path="/pickupboy-vehicle-papers" element={<PickupBoyVehiclePapers/>}/>
-        
-          <Route path="/LocationSearch" element={<LocationSearch/>}/>
+          {/* <Route path="/Search" element={<Search/>}/> */}
+          {/* <Route path="/NearbySearch" element={<NearbySearch/>}/> */}
+          
+           <Route path="/ratecalculator" element={<RateCalculator/>} />
+          {/* <Route path="/LocationSearch" element={<LocationSearch/>}/> */}
           
            {pickupBoy.map((pickupBoy) => (
            <Route

@@ -18,7 +18,7 @@ const ShowParcels = () => {
 
 
   return (
-   <>
+   
     <div className={styles.tableContainer}>
       <h2 >Parcel Forms</h2>
       <table>
@@ -26,6 +26,7 @@ const ShowParcels = () => {
           <tr >
             {/* <th>ID</th> */}
             <th>Pickup Location</th>
+            <th>Destination Location</th>
             <th>Weight</th>
             <th>ParcelType</th>
             <th>Phone</th>
@@ -42,6 +43,7 @@ const ShowParcels = () => {
             <tr key={parcel._id}>
               {/* <td>{parcel._id}</td> */}
               <td>{parcel.pickupLocation}</td>
+              <td>{parcel.destinationLocation}</td>
               <td>{parcel.weight}</td>
               <td>{parcel.parcelType}</td>
               <td>{parcel.phone}</td>
@@ -59,7 +61,7 @@ const ShowParcels = () => {
         </tbody>
       </table>
     </div>
-    </>
+    
   );
 }
 export default ShowParcels;

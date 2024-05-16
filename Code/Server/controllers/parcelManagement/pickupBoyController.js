@@ -1,4 +1,4 @@
-const PickupBoy = require('../../models/PickBoyRegister');
+const PickupBoy = require('../../models/Pickupboy');
 
 const submitFormData = async (req, res) => {
   try {
@@ -20,3 +20,4 @@ const submitFormData = async (req, res) => {
 module.exports = {
   submitFormData,
 };
+

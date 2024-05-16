@@ -1,0 +1,46 @@
+.topHeader {
+    display: flex;
+    align-items: center;
+    margin: 0rem 0rem 0rem 15rem;
+    background-color: #e0e0e058;
+    padding-left: 20px;
+    height: 65px;
+    flex-shrink: 0;
+}
+.hamburger {
+    display: none; /* Hide by default */
+    align-items: center;
+}
+.navbar {
+    margin-left: 0px;
+}
+.icon {
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.menuIcon {
+    display: none;
+}
+.content{
+    display: flex;
+    flex:1;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 24px;
+    flex-direction: row;
+}
+/* Show hamburger menu on small screens */
+@media screen and (max-width: 1068px) {
+    .hamburger {
+        display: flex;
+    }
+    .topHeader{
+        width: 100%;
+        border-radius: 0px 0px 0px 0px;
+        height: 70px;
+    }
+    .navbar {
+        margin-left: 16px;
+    }
+}

@@ -5,6 +5,7 @@ import parcelpickupimg1 from "./parcelpickupimages/parcelpickupimg1.jpeg";
 import parcelpickupimg2 from "./parcelpickupimages/parcelpickupimg2.jpeg";
 import parcelpickupimg3 from "./parcelpickupimages/parcelpickupimg3.jpeg";
 import images from "./parcelpickupimages/images.jpeg";
+import RateCalculator from "../../user-dashboard/RateCalculator.js";
 import { useNavigate } from 'react-router-dom';
 const PickupboysLandingPage = () => {
      const navigate = useNavigate()
@@ -18,9 +19,14 @@ const PickupboysLandingPage = () => {
                 <div >
                 <img className={styles.mainImage}src={main} alt="Example" />
                 </div>
+             
 
-             <div className={styles.main}>
+                <div className={styles.main}>
                 <div className={styles.container}>
+                   
+                    <section className={styles.landing_video}>
+                    <img className={styles.side_parcel_image} src={main} alt="Example" />
+                    </section>
                     <section className={styles.text_area}>
                         <h2>We will Pickup your parcel from your Door Step</h2>
                         <p>Send your parcel from your door to any delivery service of your choice</p>
@@ -28,48 +34,48 @@ const PickupboysLandingPage = () => {
                         rate calculate for sending*/}
                        <button onClick={handleRedirect}>Send Parcel</button>
                     </section>
+                </div>
+                </div>
+
+
+             <div className={styles.main}>
+                <div className={styles.container}>
+                    <section className={styles.text_area}>
+                        <h2>Drop your parcel from any nearby pickup service.</h2>
+                        <p>Send your parcel from your door to any delivery service of your choice</p>
+                        {/* delivery service company images 
+                        rate calculate for sending*/}
+                      
+                    </section>
                     <section className={styles.landing_video}>
                     <img className={styles.side_parcel_image} src={parcelpickupimg1} alt="Example" />
                     </section>
                 </div>
                 </div>
-                <hr></hr>
+              
 
 
 
 
 
 
-                <div className={styles.main}>
-                <div className={styles.container}>
-                    <section className={styles.text_area}>
-                          <h2>Calculate Rate</h2>
-                           <span>
-                              <label>Pickup Location     </label>
-                               <input type='text'/>
-                           </span>
-                           <span>
-                               <label className={styles.destination}>Destination        </label>
-                               <input type='text'/>
-                           </span>
-                           <span>
-                               <label className={styles.weight}>Weight(kg)</label>
-                               <input type='text'/>
-                           </span>
-                          
-                           <button className={styles.calculate}>Calculate</button>
-                        
+                <div >
+                <div >
+                    <section >
+                        <h2 className={styles.calculaterate}>Calculate Rate</h2>
+                         <RateCalculator/>
+                                                
                         {/* delivery service company images 
                         rate calculate for sending*/}
                        
                     </section>  
                 </div>
                 </div>
-                <hr></hr>
+              
 
  {/* slider for images*/}
                 <div className={styles.city_lists}>
-                    <h2>You can drop your parcel at these companies</h2>
+                    <h2 className={styles.calculaterate}>You can drop your parcel at these companies</h2>
                 <div className={styles.city_list}>
                    
                     <div className={styles.list}>

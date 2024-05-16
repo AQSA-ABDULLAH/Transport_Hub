@@ -163,3 +163,6 @@ form .input_field {
   .otp_form p{
     font-size: 15px;
   }
+  .otpinput{
+    margin-left: 15px;
+  }
