@@ -75,6 +75,7 @@ import ManageRental from "../pages/manage_booking/rental_reservation/ManageRenta
 import ExtendRental from "../pages/manage_booking/extend-rental/ExtendRental.js";
 import ViewRental from "../pages/manage_booking/rental_reservation/ViewRental.js";
 import RentalDetails from "../pages/manage_booking/extend-rental/RentalDetails.js";
+import Tracking from "../pages/manage_booking/track-shipment.js/Tracking.js";
 
 
 function AppRoutes() {
@@ -102,7 +103,7 @@ function AppRoutes() {
   "/driver_name_section", "/driver_location_section", "/driver_vechical_selection", "/driver_application_form", 
   "/driver_terms_and_conditions", "/driver_photo", "/upload_driver_cnic_front_side", "/upload_driver_cnic_back_side",
   "/driver_driving_license", "/create_shipment_form", "/manage_shipments", "/transporterRegistration", "/verify_transporter_mail", 
-  "/transporter_name_section", "/transporter_location_section", "/transporter_vechical_selection", 
+  "/transporter_name_section", "/transporter_location_section", "/transporter_vechical_selection", "/trackingshipment",
   "/manage_booking", "/manage_rental", "/extend_rental", "/manage_rental/view_rental", "/extend_rental/rental-details" ];
   
   const [isScrolled, setIsScrolled] = useState(false);
@@ -142,6 +143,7 @@ function AppRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/blog&news" element={<BlogsNews/>}/>
         <Route path="/blog&news/:id" element={<BlogsDetails/>}/>
+        <Route path="/trackingshipment" element={<Tracking/>}/>
 
         {/* MANAGE BOOKING ROUTES */}
         {/* <Route

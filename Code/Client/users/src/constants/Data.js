@@ -21,7 +21,7 @@ export const Main = [
   {
     icon: <BiSolidContact size={20}/>,
     text: "Track Shipment",
-    route:'/track_shipment'
+    route:'/trackingshipment'
   },
   {
     icon: <BiSolidContact size={20}/>,
