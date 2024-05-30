@@ -7,27 +7,38 @@ import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import MediumHeader from '../../../../components/sections/header-medium/MediumHeader';
 
 export default function DriverVechicalSection() {
-
+    const [selectedType, setSelectedType] = useState('');
     const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        selectedType: ''
+    });
+
+
+    const handleTypeSelection = (value) => {
+        setSelectedType(value);
+
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            selectedType: value
+        }));
+    };
+
 
     const backRedirect = () => {
-      navigate('/driver_location_section'); 
+        navigate('/driver_location_section');
     };
 
     const nextRedirect = () => {
-      navigate('/driver_application_form'); 
+        // Store the selected vehicle type in local storage
+        localStorage.setItem('driverVehicleType', JSON.stringify(formData));
+        navigate('/driver_application_form');
     };
 
-    const [selectedType, setSelectedType] = useState('');
-
-    const handleTypeSelection = (type) => {
-        setSelectedType(type);
-    };
 
     return (
         <>
             <div className={careerStyles.container}>
-                <div className={careerStyles.subContainer}>
+                <div className={`${careerStyles.subContainer} ${careerStyles.initialContainer}`}>
                     <MediumHeader />
                     <div className={styles.vechical_selection}>
                         <h2>Choose how you'd like to earn:</h2>

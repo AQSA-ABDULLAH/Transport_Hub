@@ -21,7 +21,7 @@ export default function AddOnsCard() {
         </div>
         <div className={style.cards}>
           <div className={style.addOnCard}>
-            <img src="" alt="icon"/>
+            <img src="" alt="icon" />
             <div>
               <h3>Car driver</h3>
               <span>Need a driver to drive with car.</span>
@@ -63,6 +63,57 @@ export default function AddOnsCard() {
               )}
             </div>
           </div>
+        </div>
+
+        <div className={style.cards}>
+          <div className={style.addOnCard}>
+            <img src="" alt="icon" />
+            <div>
+              <h3>Car driver</h3>
+              <span>Need a driver to drive with car.</span>
+            </div>
+            <div className={style.price}>
+              <p>RS 450 <span>Per Day</span></p>
+              {addDriver ? (
+                <button onClick={() => setAddDriver(false)}>Remove</button>
+              ) : (
+                <button onClick={() => setAddDriver(true)}>Add</button>
+              )}
+            </div>
+          </div>
+
+          <div className={style.addOnCard}>
+            <img src="" alt="icon" />
+            <div>
+              <h3>Car driver</h3>
+              <span>Need a driver to drive with car.</span>
+            </div>
+            <div className={style.price}>
+              <p>RS 450 <span>Per Day</span></p>
+              {addDriver ? (
+                <button onClick={() => setAddDriver(false)}>Remove</button>
+              ) : (
+                <button onClick={() => setAddDriver(true)}>Add</button>
+              )}
+            </div>
+          </div>
+
+          <div className={style.addOnCard}>
+            <img src="" alt="icon" />
+            <div>
+              <h3>Car driver</h3>
+              <span>Need a driver to drive with car.</span>
+            </div>
+            <div className={style.price}>
+              <p>RS 450 <span>Per Day</span></p>
+              {addDriver ? (
+                <button onClick={() => setAddDriver(false)}>Remove</button>
+              ) : (
+                <button onClick={() => setAddDriver(true)}>Add</button>
+              )}
+            </div>
+          </div>
+          
         </div>
       </div>
     </>

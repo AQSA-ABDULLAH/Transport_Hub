@@ -1,0 +1,42 @@
+/* SUB PAGES STYLE */
+.button{
+    display: flex;
+    justify-content: space-between;
+  }
+  .button button{
+    width: 25%;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 6px 0px 6px 0px;
+    border: 1.2px solid #b88cdf;
+    border-radius: 10px;
+    background-color: #7A28C2;
+    color: white;
+  }
+  
+  .input_field input {
+      height: 44px;
+      border-radius: 6px;
+      outline: none;
+      font-size: 1rem;
+      color: #3B3B4f;
+      padding: 12px;
+      border: 1px solid #ddd;
+    }
+
+/* APPLICATION STYLE */
+.container{
+  background-color: #cfcece58;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* rgb(238, 238, 238) */
+}
+
+.subContainer {
+  min-height: 89vh;
+  width: 38%;
+  background-color: white;
+  margin: 0;
+}

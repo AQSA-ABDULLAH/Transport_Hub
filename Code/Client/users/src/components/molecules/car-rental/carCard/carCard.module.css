@@ -16,12 +16,12 @@
     margin: 4px 0px;
   }
 
-  h2{
+  .singleOffer h2{
     font-size: 1.2rem;
     font-weight: 700;
   }
   
-  h4 {
+  .singleOffer h4 {
     color: black;
     font-weight: 500;
     font-size: 0.8rem;

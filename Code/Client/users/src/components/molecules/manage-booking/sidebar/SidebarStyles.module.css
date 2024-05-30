@@ -1,0 +1,136 @@
+.sidebar {
+    background-color: #7A28C2;
+    height: 80vh;
+    width: 15.5rem;
+    padding: 1rem;
+    position: absolute;
+    min-height: 642px;
+    overflow-y: auto;
+    top: 0;
+    left: 0;
+    transition: all 0.3s ease-in;
+}
+
+.logo {
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 3rem;
+}
+
+.spaceY {
+    margin-top: 2rem;
+
+}
+
+.sideLink {
+    display: flex;
+    padding: 10px 20px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    margin-top: .9rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: large;
+    transition: all .5s ease-in-out;
+    color: white;
+    text-decoration: none;
+}
+
+.active {
+    background-color: #e0e0e058;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 10px;
+    padding-left: 1rem;
+}
+
+.sideLink:hover {
+    padding-right: .1em;
+    transition: all .2s ease-in-out;
+    color: #fff;
+    background-color: #e0e0e058;
+    border-radius: 10px;
+}
+
+.sidebar_icon {
+    width: 20%;
+    font-size: 0.8rem;
+
+}
+
+.headingText {
+    color: #3c6382;
+}
+
+.linkText {
+    width: 75%;
+    text-transform: capitalize;
+    font-size: 0.8rem;
+    margin-bottom: -3px;
+}
+
+.linksBlock h5 {
+    /* text-align: center; */
+    font-weight: 300;
+    text-transform: capitalize;
+}
+
+.btn {
+    background-color: white;
+    padding: 0.7rem;
+    text-transform: uppercase;
+    position: absolute;
+    bottom: 35px;
+    align-self: center;
+    color: black;
+    font-weight: 600;
+    font-size: 14px;
+    width: 70%;
+    border: none;
+    border-radius: 6px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.linksContainer {
+    margin-top: 1rem;
+}
+
+.closeIcon {
+    position: absolute;
+    top: 3%;
+    right: 10%;
+    font-size: 1.5rem;
+    font-weight: 800;
+    cursor: pointer;
+    color: white;
+}
+
+/* media queries */
+@media screen and (max-width:1068px) {
+    .sidebar {
+        width: 18.8rem;
+        left: -80%;
+        height: 100vh;
+        margin: 0px;
+        border-radius: 0;
+
+    }
+
+    .activeSidebar {
+        left: -0%;
+        transition: all 1s ease-out;
+    }
+
+    .closeIcon {
+        display: block;
+    }
+
+    .active {
+        color: #fff;
+    }
+
+}

@@ -13,24 +13,31 @@ export const Main = [
     route:'/'
   },
   {
+
     icon: <BsCreditCard2FrontFill size={20} />,
     text: "Bookings",
     route:'/bookings'
+
   },
   {
-    icon: <BiSolidContact size={20}/>,
-    text: "Transport Managment",
-    route:'/transport-managment'
+    icon: <BsCreditCard2FrontFill size={20} />,
+    text: "Rental Booking",
+    route:'/rental_booking'
   },
   {
-    icon: <BiSolidContact size={20}/>,
-    text: "Manage Trips",
-    route:'/manage-trips'
+    icon: <BsCreditCard2FrontFill size={20} />,
+    text: "Manage Shipments",
+    route:'/manage-shipments'
   },
   {
     icon: <BiSolidContact size={20}/>,
     text: "Manage Parcels",
     route:'/ParcelList'
+  },
+  {
+    icon: <BiSolidContact size={20}/>,
+    text: "Transport Managment",
+    route:'/transport-managment'
   },
   {
     icon: <FaUsers size={20}/>,

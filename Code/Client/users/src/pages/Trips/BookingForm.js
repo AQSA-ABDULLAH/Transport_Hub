@@ -1,66 +1,145 @@
-import React, { useState } from "react";
-
-import Navbar from "../../components/atoms/Navbar/Navbar";
+import React, { useState, useEffect } from "react";
+import Cookies from "js-cookie";
+import { useBooking } from "../../context/booking";
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import { useParams } from "react-router-dom";
+import toast from "react-hot-toast";
 const BookingForm = () => {
+  const [booking, setBooking] = useBooking();
+  // const [thisBooking, setThisBooking] = useBooking();
   const [passengerDetails, setPassengerDetails] = useState({
-    title: [],
+    
+    passengers: [],
+  });
+  const [tripTitle, setTripTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [images, setImages] = useState(null);
+  const { tripId } = useParams(); 
+
+  useEffect(() => {
+    const tripTitle = Cookies.get("tripTitle") || "";
+    const description = Cookies.get("description") || "";
+    const images = Cookies.get("images") || "";
+    setTripTitle(tripTitle);
+
+  }, []); 
+  
+  const [passengerDetailsCookies, setPassengerDetailsCookies] = useState({
+    gender: "",
     firstName: "",
     lastName: "",
     country: "",
-    adults: 0,
-    children: 0,
-    infants: 0,
+    
   });
-
   const [contactDetails, setContactDetails] = useState({
     fullName: "",
     email: "",
-    phoneNumber: "",
-    CNIC: "",
+    mobile_no: "",
+    cnic_no: "",
   });
+  useEffect(() => {
+    const adults = parseInt(Cookies.get("adults")) || 0;
+    const children = parseInt(Cookies.get("children")) || 0;
+    const infants = parseInt(Cookies.get("infants")) || 0;
+    const totalPrice = parseInt(Cookies.get("totalPrice")) || 0;
+    
+    const totalGuests = adults + children + infants;
+    
 
-  const handlePassengerChange = (event) => {
-    const { name, value, type } = event.target;
+    const passengers = Array.from({ length: totalGuests }, (_, index) => ({
+      id: index,
+      type: index < adults ? "Adult" : index < adults + children ? "Child" : "Infant",
+      gender: "",
+      firstName: "",
+      lastName: "",
+      country: "",
+    }));
 
-    if (type === "checkbox") {
-      const checkedTitles = [...passengerDetails.title];
+    setPassengerDetails({
+      adults,
+      children,
+      infants,
+      passengers,
+      totalPrice,
+      totalGuests,
+      
+    });
+  }, []);
 
-      if (event.target.checked) {
-        checkedTitles.push(value);
-      } else {
-        const index = checkedTitles.indexOf(value);
-        if (index !== -1) {
-          checkedTitles.splice(index, 1);
-        }
-      }
-
-      setPassengerDetails((prevDetails) => ({
-        ...prevDetails,
-        title: checkedTitles,
-      }));
-    } else {
-      setPassengerDetails((prevDetails) => ({
-        ...prevDetails,
-        [name]: value,
-      }));
-    }
+  const handlePassengerChange = (event, index) => {
+    const { name, value } = event.target;
+    const newPassengers = [...passengerDetails.passengers];
+    newPassengers[index][name] = value;
+    console.log(newPassengers); // Check if newPassengers is being updated correctly
+    setPassengerDetails(prevDetails => ({
+      ...prevDetails,
+      passengers: newPassengers,
+    }));
+    console.log("details",passengerDetails); // Check if passengerDetails is being updated correctly
   };
+  
+
+  const handleGenderChange = (event, index, gender) => {
+    const newPassengers = [...passengerDetails.passengers];
+    newPassengers[index].gender = gender;
+    setPassengerDetailsCookies({ ...passengerDetails, passengers: newPassengers });
+  };
+  
 
   const handleContactChange = (event) => {
     const { name, value } = event.target;
     setContactDetails((prevDetails) => ({ ...prevDetails, [name]: value }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Add your logic to handle the form submission (e.g., send data to the server)
-    console.log("Passenger Details:", passengerDetails);
-    console.log("Contact Details:", contactDetails);
+    console.log("Submitting form...");
+    try {
+      const data = {
+        passengerDetails: passengerDetails.passengers,
+        contactDetails,
+        NoOfAdults: parseInt(Cookies.get("adults")) || 0,
+        NoOfChildren: parseInt(Cookies.get("children")) || 0,
+        NoOfInfants: parseInt(Cookies.get("infants")) || 0,
+        totalPrice: parseInt(Cookies.get("totalPrice")) || 0,
+        departCity: Cookies.get("departCity") || "",
+        departDate: Cookies.get("departureDate") || "",
+        trip_id: Cookies.get("tripId") || "",
+        tripTitle: Cookies.get("tripTitle") || "",
+        description: Cookies.get("description") || "",
+        images: Cookies.get("images") || "",
+      };
+  
+      console.log("Data to be sent:", data); // Log data object before sending
+  
+      // Send data to the backend
+      // await axios.post('http://localhost:5000/api/trips/submit-a-new-trip-booking-form', data, {
+      //   headers: { 'Content-Type': 'application/json' }
+      // });
+  
+      setBooking([...booking, data]);
+      localStorage.setItem('booking', JSON.stringify([...booking, data]));
+      Swal.fire(
+        'New Trip Added Successfully',
+        'Go to trips management tab to see the results',
+        'success'
+      );
+    } catch (err) {
+      console.log(err);
+      // if (err.response && err.response.status === 400) {
+      //   const validationErrors = err.response.data.errors;
+      //   const errorMessages = `Validation failed:\n${validationErrors.map((error) => error.message).join('\n')}`;
+      //   alert(errorMessages);
+      // } else {
+      //   alert('Error submitting data. Please try again.');
+      // }
+    }
   };
-
+  
   return (
     <>
-    <Navbar />
+    {/* <Navbar /> */}
     <div className="bg-body-secondary  p-0 vw-100">
       <div className="row ">
         <div className="col-lg-8 ">
@@ -75,216 +154,95 @@ const BookingForm = () => {
               </p>
             </div>
             <div className="border border-1 bg-white m-3 p-4 rounded-3">
-              <h3>Passenger Details</h3>
-              <div className="my-3 mx-2 d-flex justify-content-start">
-                <label className="form-label">Adult:</label>
-                <div className="form-check form-check-inline">
-                  <input
-                    type="checkbox"
-                    className="form-check-input"
-                    name="title"
-                    value="Mr"
-                    onChange={handlePassengerChange}
-                  />
-                  <label className="form-check-label">Mr</label>
-                </div>
+                <h3>Passenger Details</h3>
+                {passengerDetails.passengers.map((passenger, index) => (
+                  <div key={passenger.id}>
+                    <h2 className="my-2">{passenger.type}</h2>
+                    <div className="my-3 mx-2 d-flex justify-content-start">
+                      <label className="form-label">Gender:</label>
+                      <div className="form-check form-check-inline">
+                        <input
+                          className="form-check-input"
+                          name="gender"
+                          type="checkbox"
+                          id={`male${index}`}
+                          value="Male"
+                          checked={passenger.gender === "Male"}
+                          onChange={(e) => handleGenderChange(e, index, "Male")}
+                        />
+                        <label className="form-check-label" htmlFor={`male${index}`}>Male</label>
+                      </div>
+                      <div className="form-check form-check-inline">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          name="gender"
+                          id={`female${index}`}
+                          value="Female"
+                          checked={passenger.gender === "Female"}
+                          onChange={(e) => handleGenderChange(e, index, "Female")}
+                        />
+                        <label className="form-check-label" htmlFor={`female${index}`}>Female</label>
+                      </div>
+                      <div className="form-check form-check-inline">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          name="gender"
+                          id={`other${index}`}
+                          value="Other"
+                          checked={passenger.gender === "Other"}
+                          onChange={(e) => handleGenderChange(e, index, "Other")}
+                        />
+                        <label className="form-check-label" htmlFor={`other${index}`}>Other</label>
+                      </div>
+                    </div>
+                    <div className="d-flex justify-content-between">
+                      <div className="me-1 my-2">
+                        <label className="form-label">First Name:</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="firstName"
+                          value={passengerDetails.firstName}
+                          onChange={(e) =>
+                            handlePassengerChange(e, passenger.id)
+                          }
+                          required
+                        />
+                      </div>
 
-                <div className="form-check form-check-inline">
-                  <input
-                    type="checkbox"
-                    className="form-check-input"
-                    name="title"
-                    value="Mrs"
-                    onChange={handlePassengerChange}
-                  />
-                  <label className="form-check-label">Mrs</label>
-                </div>
+                      <div className="mx-1 my-2">
+                        <label className="form-label">Last Name:</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="lastName"
+                          value={passenger.lastName}
+                          onChange={(e) =>
+                            handlePassengerChange(e, passenger.id)
+                          }
+                          required
+                        />
+                      </div>
 
-                <div className="form-check form-check-inline">
-                  <input
-                    type="checkbox"
-                    className="form-check-input"
-                    name="title"
-                    value="Miss"
-                    onChange={handlePassengerChange}
-                  />
-                  <label className="form-check-label">Miss</label>
-                </div>
+                      <div className="mx-1 my-2">
+                        <label className="form-label">Country:</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="country"
+                          value={passenger.country}
+                          onChange={(e) =>
+                            handlePassengerChange(e, passenger.id)
+                          }
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div className="d-flex justify-content-between">
-                <div className="me-1 my-2">
-                  <label className="form-label">First Name:</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="firstName"
-                    value={passengerDetails.firstName}
-                    onChange={handlePassengerChange}
-                  />
-                </div>
-
-                <div className="mx-1 my-2">
-                  <label className="form-label">Last Name:</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="lastName"
-                    value={passengerDetails.lastName}
-                    onChange={handlePassengerChange}
-                  />
-                </div>
-
-                <div className="mx-1 my-2">
-                  <label className="form-label">Country:</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="country"
-                    value={passengerDetails.country}
-                    onChange={handlePassengerChange}
-                  />
-                </div>
-              </div>
-              <div className="my-3 mx-2 d-flex justify-content-start">
-                <label className="form-label">Children:</label>
-                <div className="form-check form-check-inline">
-                  <input
-                    type="checkbox"
-                    className="form-check-input"
-                    name="title"
-                    value="Mr"
-                    onChange={handlePassengerChange}
-                  />
-                  <label className="form-check-label">Mr</label>
-                </div>
-
-                <div className="form-check form-check-inline">
-                  <input
-                    type="checkbox"
-                    className="form-check-input"
-                    name="title"
-                    value="Mrs"
-                    onChange={handlePassengerChange}
-                  />
-                  <label className="form-check-label">Mrs</label>
-                </div>
-
-                <div className="form-check form-check-inline">
-                  <input
-                    type="checkbox"
-                    className="form-check-input"
-                    name="title"
-                    value="Miss"
-                    onChange={handlePassengerChange}
-                  />
-                  <label className="form-check-label">Miss</label>
-                </div>
-              </div>
-
-              <div className="d-flex justify-content-between">
-                <div className="me-1 my-2">
-                  <label className="form-label">First Name:</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="firstName"
-                    value={passengerDetails.firstName}
-                    onChange={handlePassengerChange}
-                  />
-                </div>
-
-                <div className="mx-1 my-2">
-                  <label className="form-label">Last Name:</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="lastName"
-                    value={passengerDetails.lastName}
-                    onChange={handlePassengerChange}
-                  />
-                </div>
-
-                <div className="mx-1 my-2">
-                  <label className="form-label">Country:</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="country"
-                    value={passengerDetails.country}
-                    onChange={handlePassengerChange}
-                  />
-                </div>
-              </div>
-              <div className="my-3 mx-2 d-flex justify-content-start">
-                <label className="form-label">Infant:</label>
-                <div className="form-check form-check-inline">
-                  <input
-                    type="checkbox"
-                    className="form-check-input"
-                    name="title"
-                    value="Mr"
-                    onChange={handlePassengerChange}
-                  />
-                  <label className="form-check-label">Mr</label>
-                </div>
-
-                <div className="form-check form-check-inline">
-                  <input
-                    type="checkbox"
-                    className="form-check-input"
-                    name="title"
-                    value="Mrs"
-                    onChange={handlePassengerChange}
-                  />
-                  <label className="form-check-label">Mrs</label>
-                </div>
-
-                <div className="form-check form-check-inline">
-                  <input
-                    type="checkbox"
-                    className="form-check-input"
-                    name="title"
-                    value="Miss"
-                    onChange={handlePassengerChange}
-                  />
-                  <label className="form-check-label">Miss</label>
-                </div>
-              </div>
-              <div className="d-flex justify-content-between">
-                <div className="me-1 my-2">
-                  <label className="form-label">First Name:</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="firstName"
-                    value={passengerDetails.firstName}
-                    onChange={handlePassengerChange}
-                  />
-                </div>
-
-                <div className="mx-1 my-2">
-                  <label className="form-label">Last Name:</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="lastName"
-                    value={passengerDetails.lastName}
-                    onChange={handlePassengerChange}
-                  />
-                </div>
-
-                <div className="mx-1 my-2">
-                  <label className="form-label">Country:</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="country"
-                    value={passengerDetails.country}
-                    onChange={handlePassengerChange}
-                  />
-                </div>
-              </div>
-            </div>
 
             <div className="border border-1 bg-white m-3 p-4 rounded-3">
               <h3>Contact Details</h3>
@@ -297,6 +255,7 @@ const BookingForm = () => {
                     name="fullName"
                     value={contactDetails.fullName}
                     onChange={handleContactChange}
+                    required
                   />
                 </div>
 
@@ -308,6 +267,7 @@ const BookingForm = () => {
                     name="email"
                     value={contactDetails.email}
                     onChange={handleContactChange}
+                    required
                   />
                 </div>
               </div>
@@ -317,9 +277,11 @@ const BookingForm = () => {
                   <input
                     type="tel"
                     className="form-control"
-                    name="CNIC"
-                    value={contactDetails.CNIC}
+                    name="cnic_no"
+                    pattern="^\d{13}$" title="CNIC can be only 13 didgit "
+                    value={contactDetails.cnic_no}
                     onChange={handleContactChange}
+                    required
                   />
                 </div>
 
@@ -328,13 +290,14 @@ const BookingForm = () => {
                   <input
                     type="tel"
                     className="form-control"
-                    name="phoneNumber"
-                    value={contactDetails.phoneNumber}
+                    name="mobile_no"
+                    pattern="^\d{11}$" title="Phone number can be only 11 didgit "
+                    value={contactDetails.mobile_no}
                     onChange={handleContactChange}
                   />
                 </div>
               </div>
-              <button type="submit" className="btn btn-primary m-3 w-100">
+              <button type="submit" className="btn btn-primary m-3 w-100" >
                 Submit Booking
               </button>
             </div>
@@ -344,29 +307,29 @@ const BookingForm = () => {
           <div className="p-3 bg-white border border-1 m-5 rounded-3">
             <h3 className="fw-bold text-start">Tour</h3>
             <p className="text-start">
-              3 Days New Year Celebration Trip to Swat Kalam
+            {tripTitle}
             </p>
             <hr />
             <div className="d-flex justify-content-between">
-              <h3>Subtotal</h3>
-              <h3>Rs 82,500</h3>
+              <h3>Total Guests</h3>
+              <h3>{passengerDetails.totalGuests}</h3>
             </div>
             <div className="d-flex justify-content-between">
               <p>Adult(s)</p>
-              <p>1x</p>
+              <p>{passengerDetails.adults}</p>
             </div>
             <div className="d-flex justify-content-between">
               <p>Child(s)</p>
-              <p>1x</p>
+              <p>{passengerDetails.children}</p>
             </div>
             <div className="d-flex justify-content-between">
               <p>Infant(s)</p>
-              <p>1x</p>
+              <p>{passengerDetails.infants}</p>
             </div>
             <hr />
             <div className="d-flex justify-content-between">
               <h3>Sub Total</h3>
-              <h3>RS 82,500</h3>
+              <h3>{passengerDetails.totalPrice}</h3>
             </div>
           </div>
         </div>

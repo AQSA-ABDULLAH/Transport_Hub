@@ -1,0 +1,76 @@
+.table {
+    width: 100%;
+    /* border-collapse: collapse; */
+  }
+  
+  .table th{
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .table img{
+    height: 40px;
+    width: 80px;
+  }
+  
+  .table th,
+  .table td {
+    padding: 3px 8px 3px 9px;
+    font-size: 14px;
+    text-align: left;
+  }
+  
+  .table span{
+    font-size: 11px;
+    font-weight: 400;
+  }
+  
+  .table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .carTitle {
+    width: 40%;
+  }
+  
+  .editButton, .deleteButton{
+    color: white;
+    font-size: 20px;
+    padding: 4px 3px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .editButton {
+    background-color: #3498db;
+  }
+  
+  .deleteButton {
+    background-color: #e74c3c;
+    margin-left: 4px;
+  }
+  
+    
+  /* SHIPMENT STLYE */
+  .shipment_container{
+    padding: 40px 70px;
+  }
+  .shipmentID{
+    width: 20%;
+    word-break: break-all;
+  }
+  
+  .cancel_button{
+    border-radius: 3px;
+      border: 1px solid;
+      padding: 2px 4px;
+      font-size: 13px;
+      font-weight: 500;
+      background-color: white;
+      color: black;
+  }
+  
+  .shipment_container button:hover {
+    background-color: #dad8d8;
+    cursor: pointer;
+  }

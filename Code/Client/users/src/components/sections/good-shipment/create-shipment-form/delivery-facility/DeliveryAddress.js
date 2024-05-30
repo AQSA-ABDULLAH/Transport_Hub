@@ -14,14 +14,14 @@ export default function DeliveryAddress({ DeliveryForm }) {
   };
 
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    city: '',
-    zipcode: '',
+    deliveryFirstName: '',
+    deliveryLastName: '',
+    deliveryEmail: '',
+    deliveryPhone: '',
+    deliveryCity: '',
+    deliveryZipcode: '',
     deliveryAddress: '',
-    defaultInstructions: ''
+    deliveryInstruction: ''
   });
 
   const handleChange = (event) => {
@@ -51,33 +51,33 @@ export default function DeliveryAddress({ DeliveryForm }) {
           <div className={styles.qoute_row}>
             <div className={style.pickup_form_input}>
               <label>First name</label>
-              <input type="text" name="firstName" placeholder="Enter first name" value={formData.firstName} onChange={handleChange} />
+              <input type="text" name="deliveryFirstName" placeholder="Enter first name" value={formData.deliveryFirstName} onChange={handleChange} />
             </div>
             <div className={style.pickup_form_input}>
               <label>Last name</label>
-              <input type="text" name="lastName" placeholder="Enter last name" value={formData.lastName} onChange={handleChange} />
+              <input type="text" name="deliveryLastName" placeholder="Enter last name" value={formData.deliveryLastName} onChange={handleChange} />
             </div>
           </div>
 
           <div className={styles.qoute_row}>
             <div className={style.pickup_form_input}>
               <label>Email</label>
-              <input type="text" name="email" placeholder="Enter email" value={formData.email} onChange={handleChange} />
+              <input type="text" name="deliveryEmail" placeholder="Enter email" value={formData.deliveryEmail} onChange={handleChange} />
             </div>
             <div className={style.pickup_form_input}>
               <label>Phone no</label>
-              <input type="text" name="phone" placeholder="Enter phone number" value={formData.phone} onChange={handleChange} />
+              <input type="text" name="deliveryPhone" placeholder="Enter phone number" value={formData.deliveryPhone} onChange={handleChange} />
             </div>
           </div>
 
           <div className={styles.qoute_row}>
             <div className={style.pickup_form_input}>
               <label>City</label>
-              <input type="text" name="city" placeholder="Enter city" value={formData.city} onChange={handleChange} />
+              <input type="text" name="deliveryCity" placeholder="Enter city" value={formData.deliveryCity} onChange={handleChange} />
             </div>
             <div className={style.pickup_form_input}>
               <label>Zipcode</label>
-              <input type="text" name="zipcode" placeholder="Enter zipcode" value={formData.zipcode} onChange={handleChange} />
+              <input type="text" name="deliveryZipcode" placeholder="Enter zipcode" value={formData.deliveryZipcode} onChange={handleChange} />
             </div>
           </div>
 
@@ -96,11 +96,11 @@ export default function DeliveryAddress({ DeliveryForm }) {
           <div className={style.pickup_form_input}>
             <label>Facility default instructions</label>
             <textarea
-              name="defaultInstructions"
+              name="deliveryInstruction"
               placeholder="Type any instruction note about delivery facility"
               rows={5}
               className={styles.input_div}
-              value={formData.defaultInstructions}
+              value={formData.deliveryInstruction}
               onChange={handleChange}
             ></textarea>
           </div>

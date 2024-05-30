@@ -14,31 +14,32 @@
 .logo {
     text-transform: uppercase;
     text-align: center;
+    margin-top: 20px;
 }
 
 .spaceY {
-    margin-top: 1.5rem;
+    margin-top: 2rem;
 
 }
 
 .sideLink {
     display: flex;
-    padding: 15px 20px;
+    padding: 10px 20px;
     width: 100%;
     align-items: center;
     justify-content: space-between;
     border-radius: 10px;
-    margin-top: .5rem;
+    margin-top: .9rem;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 600;
     font-size: large;
     transition: all .5s ease-in-out;
-    color: #000;
+    color: white;
     text-decoration: none;
 }
 
 .active {
-    background-color: #EC1F3E;
+    background-color: #e0e0e058;
     color: #fff;
     font-weight: 700;
     border-radius: 10px;
@@ -55,7 +56,6 @@
 
 .icon {
     width: 20%;
-
     font-size: 0.8rem;
 
 }
@@ -79,17 +79,18 @@
 
 .btn {
     background-color: white;
-    padding: 1rem;
+    padding: 0.7rem;
     text-transform: uppercase;
     position: absolute;
-    bottom: 30px;
+    bottom: 35px;
     align-self: center;
     color: black;
-    font-weight: 700;
-    font-size: 12px;
-    width: 87%;
-    border-radius: 10px;
-    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+    width: 70%;
+    border: none;
+    border-radius: 6px;
+    margin-left: 20px;
     cursor: pointer;
 }
 

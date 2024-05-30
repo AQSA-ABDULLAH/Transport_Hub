@@ -53,7 +53,7 @@ const Transport = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.content_container}>
       <div className={styles.tabBar}>
         <div className={styles.scrollableTab}>
           {Tab.map((item, index) => {

@@ -24,13 +24,13 @@ const UpdateTrips = ({ onClose, tripId }) => {
     departureCity: '',
     startDate: '',
     endDate: '',
-    status: '',
+    
     Ages: '',
     CheckIn: '',
     Checkout: '',
     BookingCloseDate: '',
   });
-  const {category, tripTitle, location, description, extraInformation, price, noOfGuest, noOfDays,noOfNights, departureCity, startDate, endDate, status, Ages,CheckIn,Checkout, BookingCloseDate } = formData;
+  const { category, tripTitle, location, description, extraInformation, price, noOfGuest, noOfDays, noOfNights, departureCity, startDate, endDate, Ages, CheckIn, Checkout, BookingCloseDate } = formData;
 
   const [imageFile, setImageFile] = useState(null);
   const [images, setImages] = useState(null);
@@ -68,10 +68,10 @@ const UpdateTrips = ({ onClose, tripId }) => {
   const handleInputChange = (event) => {
     setFormData(prevFormData => {
       return {
-          ...prevFormData,
-          [event.target.name]: event.target.value
+        ...prevFormData,
+        [event.target.name]: event.target.value
       }
-  })
+    })
   };
 
 
@@ -83,11 +83,13 @@ const UpdateTrips = ({ onClose, tripId }) => {
   };
 
 
-  const handleSubmit = async() => {
+
+  const handleSubmit = async () => {
+
     const errors = {};
-    if (isNaN(price || Ages || noOfGuest || noOfDays || noOfNights )) {
+    if (isNaN(price || Ages || noOfGuest || noOfDays || noOfNights)) {
       setErrors(true);
-      return false; 
+      return false;
     }
     const updatedFormData = new FormData();
     updatedFormData.append('category', formData.category);
@@ -103,7 +105,6 @@ const UpdateTrips = ({ onClose, tripId }) => {
     updatedFormData.append('departureCity', formData.departureCity);
     updatedFormData.append('startDate', formData.startDate);
     updatedFormData.append('endDate', formData.endDate);
-    updatedFormData.append('status', formData.status);
     updatedFormData.append('Ages', formData.Ages);
     updatedFormData.append('CheckIn', formData.CheckIn);
     updatedFormData.append('Checkout', formData.Checkout);
@@ -113,27 +114,27 @@ const UpdateTrips = ({ onClose, tripId }) => {
       const response = await axios.put(`http://localhost:5000/api/trips/updatePackage/${tripId}`, formData);
 
       if (response.data.status === "success") {
-          Swal.fire(
-              'Data Updated Successfully',
-              'Go to trips tab to see the changes',
-              'success'
-            );
-            onClose();
-            const response = await axios.get('http://localhost:5000/api/trips/TripPackages', {
+        Swal.fire(
+          'Data Updated Successfully',
+          'Go to trips tab to see the changes',
+          'success'
+        );
+        onClose();
+        const response = await axios.get('http://localhost:5000/api/trips/TripPackages', {
           params: { category },
         });
         console.log('Response:', response.data);
         setCategoryData(response.data.data);
 
       } else {
-          alert("Failed to submit data. Please try again.");
+        alert("Failed to submit data. Please try again.");
       }
 
-  } catch (error) {
+    } catch (error) {
       console.log(error);
       alert("An error occurred while submitting the data. Please try again.");
-  }
-    
+    }
+
   };
 
 
@@ -142,19 +143,21 @@ const UpdateTrips = ({ onClose, tripId }) => {
       <h3>Update Trip Form</h3>
 
       <form onSubmit={handleSubmit}>
-      <div>
-        <label>Select Category:</label>
-<select
-  name="category"
-  
-  onChange={(e) => handleInputChange(e)} // Assuming handleInputChange is your existing change handler
-  value={formData.category}
->
-  <option >Select</option>
-  <option value="Family">Family</option>
-  <option value="Group">Group</option>
-  <option value="Individual">Individual</option>
-</select>
+
+        <div>
+          <label>Select Category:</label>
+          <select
+            name="category"
+
+            onChange={(e) => handleInputChange(e)} // Assuming handleInputChange is your existing change handler
+            value={formData.category}
+          >
+            <option >Select</option>
+            <option value="Family">Family</option>
+            <option value="Group">Group</option>
+            <option value="Individual">Individual</option>
+          </select>
+
         </div>
 
         <div>
@@ -176,28 +179,32 @@ const UpdateTrips = ({ onClose, tripId }) => {
           />
         </div>
         <div className={style.formField}>
-        <label htmlFor="">
-          <input
+
+          <label htmlFor="">
+            <input
+
               type="file" // Change type to 'file'
               id="images"
               name="images"
               onChange={(e) => setImages(URL.createObjectURL(e.target.files[0]))}
-              />
-             
-        </label>
-        <div>
-          {images ? (
-            <div>
-              <img src={images} alt="Image" style={{ maxWidth: '200px', maxHeight: '200px' }} />
-            </div>
-          ) : (
-            <div className={style.image_container}>
-              <MdCloudUpload className={style.icon} />
-              <p>Drag and drop or click here to upload image</p>
-            </div>
-          )}
+            />
+
+          </label>
+          <div>
+            {images ? (
+              <div>
+                <img src={images} alt="Image" style={{ maxWidth: '200px', maxHeight: '200px' }} />
+              </div>
+            ) : (
+              <div className={style.image_container}>
+                <MdCloudUpload className={style.icon} />
+                <p>Drag and drop or click here to upload image</p>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+
+
 
 
         <div>
@@ -218,69 +225,73 @@ const UpdateTrips = ({ onClose, tripId }) => {
             onChange={handleInputChange}
           />
         </div>
-         
+
         {category === "Family" && (
-        <div>
-          <label>Price Per Person</label>
-          <input
-            type="text"
-            name="price"
-            value={formData.price}
-            onChange={handleInputChange}
-          />
-          {errors && price && isNaN(price) && <span class-Name={style.error}>Price must be a number</span>}
-           <div>
-            <label>No of Guests</label>
+          <div>
+            <label>Price Per Person</label>
             <input
               type="text"
-              name="noOfGuest"
-              value={formData.noOfGuest}
+              name="price"
+              value={formData.price}
               onChange={handleInputChange}
             />
-            {errors && noOfGuest && isNaN(noOfGuest) && <span class-Name={style.error}>No of Guest must be a number</span>}
+            {errors && price && isNaN(price) && <span class-Name={style.error}>Price must be a number</span>}
+            <div>
+              <label>No of Guests</label>
+              <input
+                type="text"
+                name="noOfGuest"
+                value={formData.noOfGuest}
+                onChange={handleInputChange}
+              />
+              {errors && noOfGuest && isNaN(noOfGuest) && <span class-Name={style.error}>No of Guest must be a number</span>}
+            </div>
           </div>
-        </div>
-        
 
-        
+
+
         )}
         {category === "Group" && (
           <div>
-          <label>Price Per Group</label>
-          <input
-            type="text"
-            name="price"
-            value={formData.price}
-            onChange={handleInputChange}
-          />
-          {errors && price && isNaN(price) && <span className={style.error}>Price must be a number</span>}
-           <div>
-            <label>No of Guests</label>
+
+            <label>Price Per Group</label>
+
             <input
               type="text"
-              name="noOfGuest"
-              value={formData.noOfGuest}
+              name="price"
+              value={formData.price}
               onChange={handleInputChange}
             />
-            {errors && noOfGuest && isNaN(noOfGuest) && <span class-Name={style.error}>No of Guest must be a number</span>}
+            {errors && price && isNaN(price) && <span className={style.error}>Price must be a number</span>}
+            <div>
+              <label>No of Guests</label>
+              <input
+                type="text"
+                name="noOfGuest"
+                value={formData.noOfGuest}
+                onChange={handleInputChange}
+              />
+              {errors && noOfGuest && isNaN(noOfGuest) && <span class-Name={style.error}>No of Guest must be a number</span>}
+            </div>
           </div>
-        </div>
-         
+
         )}
 
         {category === "Individual" && (
           <div>
             <div>
-          <label>Price Per Individual</label>
-          <input
-            type="text"
-            name="price"
-            value={formData.price}
-            onChange={handleInputChange}
-          />
-        </div>
-        {errors && price && isNaN(price) && <span className={style.error}>Price must be a number</span>}
-         
+
+              <label>Price Per Individual</label>
+              <input
+                type="text"
+                name="price"
+                value={formData.price}
+                onChange={handleInputChange}
+              />
+            </div>
+            {errors && price && isNaN(price) && <span className={style.error}>Price must be a number</span>}
+
+
             <label>No of Days</label>
             <input
               type="text"
@@ -288,7 +299,9 @@ const UpdateTrips = ({ onClose, tripId }) => {
               value={formData.noOfDays}
               onChange={handleInputChange}
             />
-        {errors && noOfDays && isNaN(noOfDays) && <span className={style.error}>No of Days must be a number</span>}
+
+            {errors && noOfDays && isNaN(noOfDays) && <span className={style.error}>No of Days must be a number</span>}
+
             <label>No of Nights</label>
             <input
               type="text"
@@ -299,32 +312,34 @@ const UpdateTrips = ({ onClose, tripId }) => {
         {errors && noOfNights && isNaN(noOfNights) && <span class-Name={style.error}>No Of Nights must be a number</span>}
             <label>Start Date</label>
             <DatePicker
-            value={startDate}
-            dateFormat="dd/MM/yyyy"
-            onChange={(date) => handleDateChange(date, 'startDate')}
-            name="startDate"
-            className="form-control custom-date-picker"
-            placeholderText="Click to select a Start Date"
-            minDate={currentDate}
-          />
+              value={startDate}
+              dateFormat="dd/MM/yyyy"
+              onChange={(date) => handleDateChange(date, 'startDate')}
+              name="startDate"
+              className="form-control custom-date-picker"
+              placeholderText="Click to select a Start Date"
+              minDate={currentDate}
+            />
             <label>End Date</label>
             <DatePicker
-                value={endDate}
-                dateFormat="dd/MM/yyyy"
-                onChange={(date) => handleDateChange(date, 'endDate')}
-                name="endDate"
-                className="form-control custom-date-picker"
-                placeholderText="Click to select a End Date"
-                minDate={currentDate}
-              />
-             <label>CheckIn Time</label>
+
+              value={endDate}
+              dateFormat="dd/MM/yyyy"
+              onChange={(date) => handleDateChange(date, 'endDate')}
+              name="endDate"
+              className="form-control custom-date-picker"
+              placeholderText="Click to select a End Date"
+              minDate={currentDate}
+            />
+            <label>CheckIn Time</label>
+
             <input
               type="text"
               name="CheckIn"
               value={formData.CheckIn}
               onChange={handleInputChange}
             />
-             <label>CheckOut Time</label>
+            <label>CheckOut Time</label>
             <input
               type="text"
               name="Checkout"
@@ -333,7 +348,7 @@ const UpdateTrips = ({ onClose, tripId }) => {
             />
             <label>Booking Clsoe Date</label>
             <DatePicker
-          
+
               value={formData.BookingCloseDate}
               onChange={(date) => handleDateChange(date, 'BookingCloseDate')}
               name="BookingCloseDate"
@@ -346,13 +361,6 @@ const UpdateTrips = ({ onClose, tripId }) => {
               type="text"
               name="departureCity"
               value={formData.departureCity}
-              onChange={handleInputChange}
-            />
-            <label>Status</label>
-            <input
-              type="text"
-              name="status"
-              value={formData.status}
               onChange={handleInputChange}
             />
             <label>Age</label>

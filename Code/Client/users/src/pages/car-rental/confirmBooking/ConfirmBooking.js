@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import style from './confirmBooking.module.css';
 import Button from '../../../components/atoms/button/Button';
 import { useNavigate } from 'react-router-dom';
@@ -19,6 +20,7 @@ const ConfirmBooking = () => {
 
     const selectedCar = JSON.parse(localStorage.getItem('selectedCar'));
     const car_id = selectedCar._id;
+    const price = selectedCar.price;
 
     const bookingForm = JSON.parse(localStorage.getItem('bookingForm'));
     const firstName = bookingForm.firstName;
@@ -33,6 +35,7 @@ const ConfirmBooking = () => {
     const addDriver = carAddons.addDriver;
     const addInfantSeat = carAddons.addInfantSeat;
     const addToddlerSeat = carAddons.addToddlerSeat;
+    const totalPrice = carAddons.totalPrice;
 
 
 
@@ -40,12 +43,12 @@ const ConfirmBooking = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+ 
         // Combine all booking details
         const combinedData = {
             pickupLocation: pickupLocation,
             pickupDate: pickupDate,
-            pickupTime: pickupTime,
+            pickupTime: pickupTime,  
             dropLocation: dropLocation,
             dropDate: dropDate,
             dropTime: dropTime,
@@ -59,7 +62,9 @@ const ConfirmBooking = () => {
             address: address,
             addDriver: addDriver,
             addInfantSeat: addInfantSeat,
-            addToddlerSeat: addToddlerSeat
+            addToddlerSeat: addToddlerSeat,
+            basePrice: price,
+            totalPrice: totalPrice
         };
 
         // Send combined data to server
@@ -67,6 +72,7 @@ const ConfirmBooking = () => {
             .then(response => {
                 console.log('Data sent successfully:', response.data);
                 console.log(combinedData)
+                Swal.fire('Success!', 'Your booking has been confirmed. Check your email for further details.', 'success');
                 navigate("/");
             })
             .catch(error => {
@@ -101,26 +107,3 @@ const ConfirmBooking = () => {
 };
 
 export default ConfirmBooking;
-
-
-
-
-
-
-// Check for empty fields in formData
-// const isEmpty = Object.values(formData).some(x => x.trim() === '');
-// if (isEmpty) {
-//   console.error('Please fill in all required fields');
-//   return;
-// }
-
-
-// // Retrieve carDetails from local storage
-// const filterData = JSON.parse(localStorage.getItem('filterData'));
-// const dropLocation = filterData.dropLocation;
-
-// // Combine formData with carDetails
-// const combinedData = { ...formData, dropLocation: dropLocation };
-
-// // Log combined data to console (for debugging)
-// console.log('Sending combined data:', combinedData);

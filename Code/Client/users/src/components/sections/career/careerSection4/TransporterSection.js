@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import style from "../careerSection3/driverSection.module.css";
 
 export default function TransporterSection() {
   const navigate = useNavigate();
@@ -9,10 +10,24 @@ export default function TransporterSection() {
   };
   return (
     <>
-      <h4>How do we reimagine & improve lives of our Transporters.</h4>
-        <h2>Transporter Section</h2>
-        <p>This is the Transporter section content.</p>
-        <button onClick={handleRedirect}>Become a Transporter</button>
+      <div className={style.container_heading}>
+                <h1>How do we reimagine & improve
+                    lives of our transporters.</h1>
+            </div>
+            <div className={style.career_container}>
+                <div className={style.content_section}>
+                    <h2>We help Transporters with:</h2>
+                    <p>Hassle-free onboarding</p>
+                    <p>Largest load availability</p>
+                    <p>Transporter welfare</p>
+                    <p>Simplified ontime payments and settlements</p>
+                    <p>Most advanced Transporter dashboard</p>
+                    <button onClick={handleRedirect}>Become a Transporter</button>
+                </div>
+                <div className={style.image_section}>
+                    <img src='./assets/images/career/transport.webp' />
+                </div>
+            </div>
     </>
   );
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import styles from  './unknown.module.css'
 import { useNavigate } from 'react-router-dom';
 
-import  Button from '../../components/atoms/button/Button';
+import  Button from '../../components/atoms/buttons/Button';
 const Unknown = () => {
   const navigate=useNavigate();
   const handleButtonClick = () => {

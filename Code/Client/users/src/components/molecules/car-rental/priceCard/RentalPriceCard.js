@@ -11,6 +11,7 @@ export default function RentalPriceCard() {
   // Fetching car price data from localStorage
   const carData = JSON.parse(localStorage.getItem('selectedCar'));
   const filterData = JSON.parse(localStorage.getItem('filterData'));
+  const carAddons = JSON.parse(localStorage.getItem('carAddons'));
   const basePrice = carData ? carData.totalPrice : 0;
 
   // Fetch add-on states from localStorage on component mount
@@ -86,7 +87,7 @@ export default function RentalPriceCard() {
           </div>
           <div className={style.price}>
             <p>Price for {filterData ? filterData.totalDays : "Total Days"} days</p>
-            <p>RS {carData ? carData.totalPrice : "Car Price"}</p>
+            <p>RS {carAddons ? carAddons.totalPrice : "Car Price"}</p>
           </div>
         </div>
 

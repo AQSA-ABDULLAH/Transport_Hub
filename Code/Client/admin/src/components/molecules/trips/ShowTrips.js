@@ -32,7 +32,7 @@ const ShowTrips = () => {
         console.error('Error fetching data:', error);
       }
     };
-    
+
 
     fetchData();
   }, [category]);
@@ -44,18 +44,18 @@ const ShowTrips = () => {
 
   const filteredFields = ['_id', 'createdAt', 'updatedAt', '__v'];
 
-  
+
   const handleDelete = async (id) => {
-    
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "You want to delete this Trip!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, Delete!'
-      })
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You want to delete this Trip!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Delete!'
+    })
       .then((result) => {
         if (result.isConfirmed) {
           axios.delete(`http://localhost:5000/api/trips/deletePackage/${id}`)
@@ -66,7 +66,7 @@ const ShowTrips = () => {
                 'success'
               );
               if (res.status === 200) {
-                axios.get("http://localhost:5000/api/trips/TripPackages",{
+                axios.get("http://localhost:5000/api/trips/TripPackages", {
                   params: { category },
                 })
                   .then(res => {
@@ -104,45 +104,45 @@ const ShowTrips = () => {
   return (
     <div>
       <div className="mb-3">
-  <label htmlFor="category" className="form-label">Select Category:</label>
-  <select
-    className="form-select"
-    name="category"
-    onChange={handleCategoryChange}
-  >
-    <option value="Family">Family</option>
-    <option value="Group">Group</option>
-    <option value="Individual">Individual</option>
-  </select>
-</div>
+        <label htmlFor="category" className="form-label">Select Category:</label>
+        <select
+          className="form-select"
+          name="category"
+          onChange={handleCategoryChange}
+        >
+          <option value="Family">Family</option>
+          <option value="Group">Group</option>
+          <option value="Individual">Individual</option>
+        </select>
+      </div>
 
       {categoryData.length > 0 ? (
         <div>
           <h2>{category} Data</h2>
           <table className="table">
-        <thead>
-          <tr>
-            <th>Category</th>
-            <th>Title</th>
-            <th>Location</th>
-            <th>Images</th>
-            <th>Price</th>
-            <th>Extra Information</th>
-            <th>Action</th>
-          </tr>
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Title</th>
+                <th>Location</th>
+                <th>Images</th>
+                <th>Price</th>
+                <th>Extra Information</th>
+                <th>Action</th>
+              </tr>
             </thead>
             <tbody>
-            {categoryData.map((item, index) => (
-            <tr key={index} >
-              <td >{item.category}</td>
-              <td>{item.tripTitle}</td>
-              <td>{item.location}</td>
-              <td>
-                <img src={item?.images} alt={item.images} />
-              </td>
-              <td>{item.price}</td>
-              <td>{item.extraInformation}</td>
-            {/* {Object.entries(item)
+              {categoryData.map((item, index) => (
+                <tr key={index} >
+                  <td >{item.category}</td>
+                  <td>{item.tripTitle}</td>
+                  <td>{item.location}</td>
+                  <td>
+                    <img src={item?.images} alt={item.images} />
+                  </td>
+                  <td>{item.price}</td>
+                  <td>{item.extraInformation}</td>
+                  {/* {Object.entries(item)
             .filter(([key]) => !filteredFields.includes(key))
             .map(([key, value]) => (
             <td key={key} style={{ padding: '12px', textAlign: 'left' }}>
@@ -151,15 +151,15 @@ const ShowTrips = () => {
           ) : (
             value
           )} */}
-        {/* </td> */}
-      {/* ))} */}
-    
-    <td>
-                <FaEdit className='editButton' onClick={() => handleUpdate(item._id)} />
-                <FaTrash className='deleteButton' onClick={() => handleDelete(item._id)} />
-              </td>
-  </tr>
-))}
+                  {/* </td> */}
+                  {/* ))} */}
+
+                  <td>
+                    <FaEdit className='editButton' onClick={() => handleUpdate(item._id)} />
+                    <FaTrash className='deleteButton' onClick={() => handleDelete(item._id)} />
+                  </td>
+                </tr>
+              ))}
 
             </tbody>
           </table>

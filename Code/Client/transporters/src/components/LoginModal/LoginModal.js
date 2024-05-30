@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Button from "../atoms/button/Button";
+import Button from "../atoms/buttons/Button";
 import "./LoginModal.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { signUpWithEmail } from '../../redux/containers/auth/actions';

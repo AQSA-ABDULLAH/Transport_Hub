@@ -6,9 +6,6 @@ import UserProfile from "../components/sections/userProfile/UserProfile";
 const Profile = () => {
   return (
     <>
-
-      <section >
-
       <section>
 
         <UserProfile />

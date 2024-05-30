@@ -4,10 +4,10 @@ import styles from "./Header.module.css";
 import Button from "../../atoms/button/Button";
 import { FaBars, FaUser, FaAngleDown } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
-import Parcelform from "../../Parcel/Parcelform";
-import PickupBoyForm from "../../Parcel/PickupBoyForm";
-import PickupboysLandingPage from "../../../pages/pickupboylandingpage/PickupboysLandingPage";
 import useUserAction from "../../../utils/customHooks/useUserAction";
+
+import { useBooking } from "../../../context/booking";
+import { Badge } from 'antd';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -16,6 +16,7 @@ const Navbar = () => {
   const { reduxState, dispatch, actions } = useUserAction();
   const [showParcelForm, setShowParcelForm] = useState(false);
   const [showPickupBoyForm, setShowPickupBoyForm] = useState(false);
+  const [booking] = useBooking();
   const handlePickupBoyItemClick = () => {
     setShowPickupBoyForm(true);
     setShowParcelForm(false); // Close ParcelForm if open
@@ -50,7 +51,7 @@ const Navbar = () => {
               SERVICES <FaAngleDown />
               {showDropdown && (
                 <ul className={styles.dropdownMenu}>
-                  <Link to="">
+                  <Link to="/trips_packages">
                     <li>Trip Packages</li>
                   </Link>
                   <Link to="/rental_landing_page">
@@ -83,7 +84,8 @@ const Navbar = () => {
 
         <div className={styles.button_div}>
           <ul className={styles.navLinks}>
-            <Link to="/">
+          <Badge count={booking?.length} showZero>
+          <Link to="/manage_rental">
               <li className={styles.btns}>
                 <Button
                   primary
@@ -92,7 +94,10 @@ const Navbar = () => {
                   size={"13px"}
                 />
               </li>
+              
             </Link>
+    </Badge>
+            
             <li className={styles.btns}>
               <Button
                 bgColor={"#e0e0e058"}

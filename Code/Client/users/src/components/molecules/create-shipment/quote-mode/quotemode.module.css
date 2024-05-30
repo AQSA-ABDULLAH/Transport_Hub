@@ -47,3 +47,7 @@ select {
 .dimensions_row input{
     width: 100px;
 }
+
+.parcel_input input{
+    width: 150px;
+}
