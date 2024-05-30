@@ -83,7 +83,9 @@ const UpdateTrips = ({ onClose, tripId }) => {
   };
 
 
+
   const handleSubmit = async () => {
+
     const errors = {};
     if (isNaN(price || Ages || noOfGuest || noOfDays || noOfNights)) {
       setErrors(true);
@@ -141,6 +143,7 @@ const UpdateTrips = ({ onClose, tripId }) => {
       <h3>Update Trip Form</h3>
 
       <form onSubmit={handleSubmit}>
+
         <div>
           <label>Select Category:</label>
           <select
@@ -154,6 +157,7 @@ const UpdateTrips = ({ onClose, tripId }) => {
             <option value="Group">Group</option>
             <option value="Individual">Individual</option>
           </select>
+
         </div>
 
         <div>
@@ -175,8 +179,10 @@ const UpdateTrips = ({ onClose, tripId }) => {
           />
         </div>
         <div className={style.formField}>
+
           <label htmlFor="">
             <input
+
               type="file" // Change type to 'file'
               id="images"
               name="images"
@@ -197,6 +203,8 @@ const UpdateTrips = ({ onClose, tripId }) => {
             )}
           </div>
         </div>
+
+
 
 
         <div>
@@ -245,7 +253,9 @@ const UpdateTrips = ({ onClose, tripId }) => {
         )}
         {category === "Group" && (
           <div>
+
             <label>Price Per Group</label>
+
             <input
               type="text"
               name="price"
@@ -270,6 +280,7 @@ const UpdateTrips = ({ onClose, tripId }) => {
         {category === "Individual" && (
           <div>
             <div>
+
               <label>Price Per Individual</label>
               <input
                 type="text"
@@ -280,6 +291,7 @@ const UpdateTrips = ({ onClose, tripId }) => {
             </div>
             {errors && price && isNaN(price) && <span className={style.error}>Price must be a number</span>}
 
+
             <label>No of Days</label>
             <input
               type="text"
@@ -287,7 +299,9 @@ const UpdateTrips = ({ onClose, tripId }) => {
               value={formData.noOfDays}
               onChange={handleInputChange}
             />
+
             {errors && noOfDays && isNaN(noOfDays) && <span className={style.error}>No of Days must be a number</span>}
+
             <label>No of Nights</label>
             <input
               type="text"
@@ -295,7 +309,7 @@ const UpdateTrips = ({ onClose, tripId }) => {
               value={formData.noOfNights}
               onChange={handleInputChange}
             />
-            {errors && noOfNights && isNaN(noOfNights) && <span class-Name={style.error}>No Of Nights must be a number</span>}
+        {errors && noOfNights && isNaN(noOfNights) && <span class-Name={style.error}>No Of Nights must be a number</span>}
             <label>Start Date</label>
             <DatePicker
               value={startDate}
@@ -308,6 +322,7 @@ const UpdateTrips = ({ onClose, tripId }) => {
             />
             <label>End Date</label>
             <DatePicker
+
               value={endDate}
               dateFormat="dd/MM/yyyy"
               onChange={(date) => handleDateChange(date, 'endDate')}
@@ -317,6 +332,7 @@ const UpdateTrips = ({ onClose, tripId }) => {
               minDate={currentDate}
             />
             <label>CheckIn Time</label>
+
             <input
               type="text"
               name="CheckIn"

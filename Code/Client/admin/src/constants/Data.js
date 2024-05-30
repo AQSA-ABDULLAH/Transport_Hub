@@ -13,9 +13,11 @@ export const Main = [
     route:'/'
   },
   {
-    icon: <BiSolidContact size={20}/>,
-    text: "Manage Trips",
-    route:'/manage-trips'
+
+    icon: <BsCreditCard2FrontFill size={20} />,
+    text: "Bookings",
+    route:'/bookings'
+
   },
   {
     icon: <BsCreditCard2FrontFill size={20} />,

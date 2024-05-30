@@ -70,6 +70,7 @@ const AddTrip = ({ onClose }) => {
         return false;
       }
       if (!tripTitle) {
+
         setErrors(true);
         return false;
       }
@@ -195,7 +196,9 @@ const AddTrip = ({ onClose }) => {
   
         } else if (category === 'Individual') {
           
-          if (!price || !noOfDays || !noOfNights || !departureCity || !startDate || !endDate || !Ages || !CheckIn || !Checkout || !BookingCloseDate) {
+
+          if (!price || !noOfDays || !noOfNights || !departureCity || !startDate || !endDate || !status || !Ages || !CheckIn || !Checkout || !BookingCloseDate) {
+
             alert('Please fill in all required fields for Group category.');
             return; 
           }
@@ -206,7 +209,6 @@ const AddTrip = ({ onClose }) => {
           formData.append('departureCity', departureCity);
           formData.append('startDate', startDate);
           formData.append('endDate', endDate);
-          
           formData.append('Ages', Ages);
           formData.append('CheckIn', CheckIn);
           formData.append('Checkout', Checkout);
@@ -256,7 +258,7 @@ const AddTrip = ({ onClose }) => {
     });
   };
      }
-     
+
      const overlayStyle = {
       position: 'fixed',
       top: '0',
@@ -266,7 +268,9 @@ const AddTrip = ({ onClose }) => {
       backgroundColor: 'rgba(0, 0, 0, 0.3)',
       zIndex: '999',
       backdropFilter: 'blur(1px)',
+
   };
+
     
     return (
       <>
@@ -289,6 +293,7 @@ const AddTrip = ({ onClose }) => {
   <option value="Individual">Individual</option>
 </select>
 {errors && !category && <span className={style.error}>This field is required</span>}
+
         </div>
         <div className={style.first_row}>
         <div className={style.image}>
@@ -307,6 +312,8 @@ const AddTrip = ({ onClose }) => {
       </div>
       {errors && !imageUpload && <span className={style.error}>Upload an Image</span>}
 </div>
+
+
         <div >
           <label>Trip Title</label>
           <input
@@ -340,6 +347,7 @@ const AddTrip = ({ onClose }) => {
           />
         </div>
         {errors && !description && <span className={style.error}>This field is required</span>}
+
         <div className={style.input_field}>
           <label>Extra Information</label>
           <input
@@ -350,8 +358,9 @@ const AddTrip = ({ onClose }) => {
           />
         </div>
         {errors && !extraInformation && <span className={style.error}>This field is required</span>}
+
         </div>
-        
+
         {category === "Family" && (
         <div className={style.row}>
         <div className={style.input_field}>
@@ -364,7 +373,9 @@ const AddTrip = ({ onClose }) => {
           />
           {errors && !price && <span className={style.error}>This field is required</span>}
           {errors && price && isNaN(price) && <span className={style.error}>Price must be a number</span>}
+
            <div className={style.input_field}>
+
             <label>No of Guests</label>
             <input
               type="text"
@@ -393,7 +404,9 @@ const AddTrip = ({ onClose }) => {
           {errors && !price && <span className={style.error}>This field is required</span>}
           {errors && price && isNaN(price) && <span class-Name={style.error}>Price must be a number</span>}
 
+
            <div className={style.input_field}>
+
             <label>No of Guests</label>
             <input
               type="text"
@@ -431,11 +444,13 @@ const AddTrip = ({ onClose }) => {
               name="noOfDays"
               value={formData.noOfDays}
               onChange={handleInputChange}
+
               />
              {errors && !noOfDays && <span className={style.error}>This field is required</span>}
             {errors && noOfDays && isNaN(noOfDays) && <span class-Name={style.error}>No of Guests must be a number</span>}
               </div>
             <div className={style.input_field}>
+
 
             <label>No of Night</label>
             <input
@@ -443,6 +458,7 @@ const AddTrip = ({ onClose }) => {
               name="noOfNights"
               value={formData.noOfNights}
               onChange={handleInputChange}
+
               />
              {errors && !noOfNights && <span className={style.error}>This field is required</span>}
             {errors && noOfNights && isNaN(noOfNights) && <span class-Name={style.error}>No of Guests must be a number</span>}
@@ -450,6 +466,7 @@ const AddTrip = ({ onClose }) => {
             </div>
             <div className={style.row}>
             <div className={style.input_field}>
+
             <label>Start Date</label>
             <DatePicker
               selected={formData.startDate}
@@ -471,6 +488,7 @@ const AddTrip = ({ onClose }) => {
                 className="form-control custom-date-picker"
                 placeholderText="Click to select a End Date"
                 minDate={currentDate}
+
                 />
             {errors && !endDate && <span className={style.error}>This field is required</span>}
                 </div>
@@ -479,6 +497,7 @@ const AddTrip = ({ onClose }) => {
             <div className={style.row}>
 
             <div class="cs-form" className={style.input_field}>
+
             <label>Check In Time</label>
             <input
           type="time"
@@ -501,8 +520,9 @@ const AddTrip = ({ onClose }) => {
         {errors && !Checkout && <span className={style.error}>This field is required</span>}
             </div>
           
+
             <div className={style.input_field}>
-              
+
             <label>Booking Clsoe Date</label>
             <DatePicker
               selected={formData.BookingCloseDate}
@@ -511,12 +531,14 @@ const AddTrip = ({ onClose }) => {
               className="form-control custom-date-picker"
               placeholderText="Click to select a closing Date"
               minDate={currentDate}
+
               />
             {errors && !BookingCloseDate && <span className={style.error}>This field is required</span>}       
               </div>
             </div>
             <div className={style.row}>
               <div className={style.input_field}>
+
             <label>Departure City</label>
             <input
               type="text"
@@ -535,12 +557,17 @@ const AddTrip = ({ onClose }) => {
               onChange={handleInputChange}
               />
             {errors && !Ages && <span className={style.error}>This field is required</span>}
+
             </div>
+
           </div>
               </div>
         )}
+
         <div className={style.row}>
          <button type="button" className="btn btn-success " onClick={handleSubmit}>
+
+           
                 SUBMIT
               </button>
             <Button btnText="Close"  primary btnClick={onClose} />
