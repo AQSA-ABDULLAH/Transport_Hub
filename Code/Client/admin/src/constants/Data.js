@@ -14,8 +14,8 @@ export const Main = [
   },
   {
     icon: <BsCreditCard2FrontFill size={20} />,
-    text: "Services",
-    route:'/carRental'
+    text: "Bookings",
+    route:'/bookings'
   },
   {
     icon: <BiSolidContact size={20}/>,

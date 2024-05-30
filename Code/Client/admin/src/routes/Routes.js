@@ -13,6 +13,7 @@ import EmployeeManagement from "../pages/EmployeeManagement/EmployeeManagement";
 import Pickupboyform from "../components/molecules/pickupboyforms/Pickupboyform"
 import Driver from "../components/molecules/pickupboyforms/Driver";
 import Transporter from "../components/molecules/pickupboyforms/Transporter";
+import Bookings from "../pages/Bookings/bookings";
 const RoutesStack = ({ openSidebar, setOpenSidebar }) => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -53,6 +54,7 @@ const RoutesStack = ({ openSidebar, setOpenSidebar }) => {
           <Route path="/website-content" element={<WebsiteContent />} />
           <Route path="/transport-managment" element={<TransportMangment />} />
           <Route path="/manage-trips" element={<ManageTrips />} />
+          <Route path="/bookings" element={<Bookings/>} />
           <Route path="/" element={<AdminDashboard />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>

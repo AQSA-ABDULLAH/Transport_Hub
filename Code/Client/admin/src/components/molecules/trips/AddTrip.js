@@ -260,11 +260,21 @@ const AddTrip = ({ onClose }) => {
     });
   };
      }
-     
+     const overlayStyle = {
+      position: 'fixed',
+      top: '0',
+      left: '0',
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'rgba(0, 0, 0, 0.3)',
+      zIndex: '999',
+      backdropFilter: 'blur(1px)',
+  }; 
   
     
     return (
       <>
+      <div style={overlayStyle}></div>
         <div className={style.popupForm}>
             <h3>Add New Trip Form</h3>
 
