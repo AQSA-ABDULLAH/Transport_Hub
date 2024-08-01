@@ -9,20 +9,7 @@ export default function Upcomming() {
     const [product, setProduct] = useState([]);
     const [showShipmentForm, setShowShipmentForm] = useState(false);
     const [shipmentId, setShipmentId] = useState(null);
-    // const userId = getUserIdFromToken();
-
-    // Function to handle edit click
-    const handleEditClick = (id) => {
-        setShowShipmentForm(true);
-        setShipmentId(id);
-        console.log("show")
-        // console.log(userId);
-    };
-
-    const handleClose = () => {
-        setShowShipmentForm(false);
-        setShipmentId(null);
-    };
+    
 
     // Function to format date
     const formatDate = (dateString) => {

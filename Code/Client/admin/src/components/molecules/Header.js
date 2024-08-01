@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { LiaBarsSolid } from "react-icons/lia";
 import styles from "./Header.module.css";
 import { useLocation } from "react-router-dom";
-import Button from '../atoms/buttons/Button';
 import { setSignedOut } from "../../redux/containers/auth/actions";
 
 const capitalizeFirstLetter = (str) => {

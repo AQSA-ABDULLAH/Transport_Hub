@@ -19,7 +19,7 @@ const Sidebar = ({ openSidebar, setOpenSidebar }) => {
         } `}
       >
         <div className={styles.logo}>
-         <img src="/assets/logo/LogoDark.png"/>
+         <img src="/assets/logo/LogoDark.png" alt=""/>
         </div>
 
         {/* <div className={styles.spaceY}>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import style from "./pickupboy.module.css";
 import Showpickupboys from "./Showpickupboys";
 

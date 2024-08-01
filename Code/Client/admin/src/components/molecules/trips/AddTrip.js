@@ -45,7 +45,7 @@ const AddTrip = ({ onClose }) => {
     BookingCloseDate:"",
     
   });
-  const {category, tripTitle, location,images, description, extraInformation, price, noOfGuest, noOfDays,noOfNights, departureCity, startDate, endDate,  Ages,CheckIn,Checkout, BookingCloseDate } = formData;
+  const {category, tripTitle, location, description, extraInformation, price, noOfGuest, noOfDays,noOfNights, departureCity, startDate, endDate,  Ages,CheckIn,Checkout, BookingCloseDate } = formData;
   const handleInputChange = (event) => {
     const { name, value, type, files } = event.target;
   
@@ -55,7 +55,7 @@ const AddTrip = ({ onClose }) => {
       setFormData((prevData) => ({ ...prevData, [name]: value }));
     }
   };
-   const navigate = useNavigate();
+  
 
    
 
@@ -245,8 +245,7 @@ const AddTrip = ({ onClose }) => {
             if (err.response && err.response.status === 400) {
               // Validation error(s) from the server
               const validationErrors = err.response.data.errors;
-          const errorMessages = `Validation failed:\n${validationErrors.map((error) => error.message).join('\n')}`;
-          // setErrors({ server: errorMessages });
+            
           
             } else {
               // Other errors

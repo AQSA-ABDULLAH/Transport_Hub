@@ -27,7 +27,7 @@ const Bookings = () => {
     else {
       navigate(`?tab=Trips`);
     }
-  }, [location]);
+  }, [location, navigate]);
 
   const handleTabClick = (index) => {
     setIsActive(index);
