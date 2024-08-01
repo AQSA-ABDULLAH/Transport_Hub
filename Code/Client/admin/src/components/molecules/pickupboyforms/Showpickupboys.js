@@ -65,10 +65,10 @@ const Showpickupboys = () => {
                   <td>{item.cnicNumber}</td>
                   <td>{item.city}</td>
                   <td>
-                    <img src={`https://transport-hub-tawny.vercel.app/uploads/parcel/${item.picture}`}  style={{ maxWidth: '100px' }} />
+                    <img src={`https://transport-hub-tawny.vercel.app/uploads/parcel/${item.picture}`}  style={{ maxWidth: '100px' }} alt=''/>
                   </td>
-                  <td><img src={`https://transport-hub-tawny.vercel.app/uploads/parcel/${item.drivingLicense}`} style={{ maxWidth: '100px' }} /></td>
-                  <td><img src={`https://transport-hub-tawny.vercel.app/uploads/parcel/${item.vehiclePapers}`} style={{ maxWidth: '100px' }} /></td>
+                  <td><img src={`https://transport-hub-tawny.vercel.app/uploads/parcel/${item.drivingLicense}`} style={{ maxWidth: '100px' }}alt='' /></td>
+                  <td><img src={`https://transport-hub-tawny.vercel.app/uploads/parcel/${item.vehiclePapers}`} style={{ maxWidth: '100px' }} alt=''/></td>
                   <td>{item.referenceNumber}</td>
                   <td>
                   <div className="d-flex gap-2">

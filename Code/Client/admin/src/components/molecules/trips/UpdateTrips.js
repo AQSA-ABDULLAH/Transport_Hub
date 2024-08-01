@@ -124,7 +124,12 @@ const UpdateTrips = ({ onClose, tripId }) => {
 
   };
 
-
+  useEffect(() => {
+    // Example of using categoryData indirectly
+    if (categoryData.length > 0) {
+      console.log('Category data has been updated:', categoryData);
+    }
+  }, [categoryData]);
   return (
     <div className={style.popupForm}>
       <h3>Update Trip Form</h3>

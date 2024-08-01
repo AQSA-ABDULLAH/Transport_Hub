@@ -7,9 +7,6 @@ import styles from "../../../components/sections/transport-managment/cars/view_c
 
 export default function Ongoing() {
     const [product, setProduct] = useState([]);
-    const [showShipmentForm, setShowShipmentForm] = useState(false);
-    const [shipmentId, setShipmentId] = useState(null);
-  
 
     // Function to format date
     const formatDate = (dateString) => {

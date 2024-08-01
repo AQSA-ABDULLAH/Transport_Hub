@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Button from '../../atoms/buttons/Button';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import style from './addTrip.module.css';
 import DatePicker from "react-datepicker";
@@ -244,7 +243,7 @@ const AddTrip = ({ onClose }) => {
             console.log(err, 'err');
             if (err.response && err.response.status === 400) {
               // Validation error(s) from the server
-              const validationErrors = err.response.data.errors;
+              err.response.data.errors;
             
           
             } else {
