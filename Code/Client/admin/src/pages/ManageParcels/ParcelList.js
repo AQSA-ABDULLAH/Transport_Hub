@@ -16,12 +16,12 @@ const ParcelList = () => {
     if (tabName == null) {
       document.title = "Parcel Managment"
     }
-    if (tabName) {
-      const tabIndex = Tab.findIndex(tab => tab.text.toLowerCase() === tabName.toLowerCase());
-      if (tabIndex !== -1) {
-        setIsActive(tabIndex);
-      }
-    }
+    // if (tabName) {
+    //   const tabIndex = Tab.findIndex(tab => tab.text.toLowerCase() === tabName.toLowerCase());
+    //   if (tabIndex !== -1) {
+    //     setIsActive(tabIndex);
+    //   }
+    // }
     else {
       navigate(`?tab=ManageParcels`);
     }
