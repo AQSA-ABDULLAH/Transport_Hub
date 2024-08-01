@@ -197,7 +197,7 @@ const AddTrip = ({ onClose }) => {
         } else if (category === 'Individual') {
           
 
-          if (!price || !noOfDays || !noOfNights || !departureCity || !startDate || !endDate || !status || !Ages || !CheckIn || !Checkout || !BookingCloseDate) {
+          if (!price || !noOfDays || !noOfNights || !departureCity || !startDate || !endDate  || !Ages || !CheckIn || !Checkout || !BookingCloseDate) {
 
             alert('Please fill in all required fields for Group category.');
             return; 
