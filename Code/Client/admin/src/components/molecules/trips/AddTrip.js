@@ -17,7 +17,7 @@ const AddTrip = ({ onClose }) => {
 
   const [imageUpload, setImageUpload] = useState(null);
   const [errors, setErrors] = useState(null);
-
+  const currentDate = new Date();
     const handleDateChange = (date, name) => {
         setFormData((prevData) => ({
           ...prevData,
