@@ -51,7 +51,7 @@
 .login-form-container {
   display: flex;
   justify-content: center;
-  align-items: start;
+  align-items: flex-start;
   background-color: white;
   border-radius: 8px;
   padding: 2rem;
