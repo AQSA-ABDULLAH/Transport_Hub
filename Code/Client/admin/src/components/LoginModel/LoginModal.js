@@ -59,8 +59,8 @@ function LoginModal({ onClose }) {
         <div className={styles.logo_container}>
       
           <div className={styles.image}>
-          <img className={styles.logo_image} src="/assets/logo/LogoDark.png"></img>
-          <img className={styles.login_image} src="/assets/images/cars/image4.png"></img>
+          <img className={styles.logo_image} src="/assets/logo/LogoDark.png" alt="logo image"></img>
+          <img className={styles.login_image} src="/assets/images/cars/image4.png" alt="logo img"></img>
           </div>
         </div>
         <div className={styles.login_form_container}>
@@ -92,7 +92,7 @@ function LoginModal({ onClose }) {
                 ) : (
                   "/assets/images/login/solar_eye-closed-bold.png"
                 )}
-              ></img>
+              alt="toggleIcon"></img>
             </div>
             <Button
               type="submit"

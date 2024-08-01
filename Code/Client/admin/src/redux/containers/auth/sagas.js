@@ -26,7 +26,7 @@ function* signIn(action) {
         showConfirmButton: false,
         timer: 1500
       });
-    } else if (res.status=='failed') {
+    } else if (res.status==='failed') {
       yield call([Swal, 'fire'], {
         icon: 'error',
         title: 'Login failed!',
