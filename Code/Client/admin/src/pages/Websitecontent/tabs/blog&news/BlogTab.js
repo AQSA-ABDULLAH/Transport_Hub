@@ -15,7 +15,6 @@ const BlogTab = () => {
     const [category, setCategory] = useState("");
     const [writtenby, setWrittenby] = useState("");
     const [content, setContent] = useState("");
-    const [imgperc, setImagePrec] = useState("");
     const [imageUrl, setImageUrl] = useState("");
     const [error, setError] = useState(false);
     const navigate = useNavigate();
@@ -39,7 +38,7 @@ const BlogTab = () => {
             (snapshot) => {
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                 console.log('Upload is ' + progress + '% done');
-                setImagePrec(progress); // Update image upload progress
+              
             },
             (error) => {
                 console.error('Error uploading file:', error);

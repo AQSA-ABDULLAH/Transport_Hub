@@ -17,7 +17,6 @@ const AddTruck = ({ onClose }) => {
     const [dimensions, setDimensions] = useState('');
     const [zone, setZone] = useState('Select zone');
     const [price, setPrice] = useState('');
-    const [imgperc, setImagePrec] = useState("");
     const [imageUrl, setImageUrl] = useState("");
     const [error, setError] = useState(false);
     const [product, setProduct] = useState([]);
@@ -52,7 +51,7 @@ const AddTruck = ({ onClose }) => {
             (snapshot) => {
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                 console.log('Upload is ' + progress + '% done');
-                setImagePrec(progress); // Update image upload progress
+               
             },
             (error) => {
                 console.error('Error uploading file:', error);
