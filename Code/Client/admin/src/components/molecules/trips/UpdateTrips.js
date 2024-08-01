@@ -28,7 +28,7 @@ const UpdateTrips = ({ onClose, tripId }) => {
     Checkout: '',
     BookingCloseDate: '',
   });
-  const { category, price, noOfGuest, noOfDays, noOfNights, startDate, endDate, Ages } = formData;
+  const { category, price, noOfGuest, noOfDays, noOfNights, Ages } = formData;
 
   const [imageFile, setImageFile] = useState(null);
   const [images, setImages] = useState(null);

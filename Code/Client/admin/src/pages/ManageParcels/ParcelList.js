@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Tab } from "../../constants/ManageTabs";
 import styles from "./parcelList.module.css";
 import Parcels from "../../components/molecules/parcel/Parcels";
 
@@ -8,7 +7,6 @@ import Parcels from "../../components/molecules/parcel/Parcels";
 const ParcelList = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [isActive, setIsActive] = useState(0);
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -19,7 +17,7 @@ const ParcelList = () => {
     // if (tabName) {
     //   const tabIndex = Tab.findIndex(tab => tab.text.toLowerCase() === tabName.toLowerCase());
     //   if (tabIndex !== -1) {
-    //     setIsActive(tabIndex);
+    //     setIsActive(tabIndex); 
     //   }
     // }
     else {
