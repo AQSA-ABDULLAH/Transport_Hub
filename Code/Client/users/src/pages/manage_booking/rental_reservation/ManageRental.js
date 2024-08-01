@@ -25,7 +25,7 @@ function ManageRental() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        axios.post('http://localhost:5000/api/rental-booking/manage-rental', formData)
+        axios.post('https://transport-hub-tawny.vercel.app/api/rental-booking/manage-rental', formData)
             .then(response => {
                 console.log('Data sent successfully:', response.data);
                 // Extract only the rentalBooking data

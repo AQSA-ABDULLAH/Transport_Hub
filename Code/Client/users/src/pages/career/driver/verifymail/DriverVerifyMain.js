@@ -19,7 +19,7 @@ export default function DriverVerifyMail() {
 
 
         try {
-            const response = await axios.post("http://localhost:5000/api/driver/verify-otp", { driverEmail: driverEmail, otp: otp });
+            const response = await axios.post("https://transport-hub-tawny.vercel.app/api/driver/verify-otp", { driverEmail: driverEmail, otp: otp });
             if (response.data.status === "success") {
                 navigate('/driver_name_section');
             } else {

@@ -49,7 +49,7 @@ const BookingPage = () => {
         const headers = {
             "Content-Type": "application/json"
         };
-        const response = await fetch("http://localhost:5000/api/trips/create-checkout-session",{
+        const response = await fetch("https://transport-hub-tawny.vercel.app/api/trips/create-checkout-session",{
             method:"POST",
             headers:headers,
             body: JSON.stringify({ booking: booking }), 

@@ -7,7 +7,7 @@ export default function Blogsection1molecule() {
     const [product, setProduct] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:5000/api/blogs/get-blog")
+        axios.get("https://transport-hub-tawny.vercel.app/api/blogs/get-blog")
             .then(res => {
                 console.log(res.data);
                 setProduct(res.data.data);

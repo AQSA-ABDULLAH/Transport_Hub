@@ -12,7 +12,7 @@ const PickupboyEmail = () => {
   const { register, handleSubmit } = useForm({ defaultValues: { email } })
   const handleSendOTP = async (formData) => {
     try {
-      const response = await fetch('http://localhost:5000/send-otp', {
+      const response = await fetch('https://transport-hub-tawny.vercel.app/send-otp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

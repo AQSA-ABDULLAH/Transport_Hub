@@ -68,7 +68,7 @@ const ConfirmBooking = () => {
         };
 
         // Send combined data to server
-        axios.post('http://localhost:5000/api/rental-booking/book-rental', combinedData)
+        axios.post('https://transport-hub-tawny.vercel.app/api/rental-booking/book-rental', combinedData)
             .then(response => {
                 console.log('Data sent successfully:', response.data);
                 console.log(combinedData)

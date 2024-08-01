@@ -19,7 +19,7 @@ const BidShipment = ({ onClose, shipmentId }) => {
         // Fetch trip details based on tripId and populate the form
         const fetchshipmentDetails = async () => {
             try {
-                axios.get(`http://localhost:5000/api/shipment/get-shipment/${shipmentId}`)
+                axios.get(`https://transport-hub-tawny.vercel.app/api/shipment/get-shipment/${shipmentId}`)
                     .then(res => {
                         console.log(res.data);
                         setData(res.data.data);

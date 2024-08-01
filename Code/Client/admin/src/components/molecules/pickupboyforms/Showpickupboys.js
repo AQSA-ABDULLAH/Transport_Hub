@@ -7,7 +7,7 @@ const Showpickupboys = () => {
   
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/getAllData');
+      const response = await axios.get('https://transport-hub-tawny.vercel.app/getAllData');
       setData(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -65,10 +65,10 @@ const Showpickupboys = () => {
                   <td>{item.cnicNumber}</td>
                   <td>{item.city}</td>
                   <td>
-                    <img src={`http://localhost:5000/uploads/parcel/${item.picture}`} alt="Picture" style={{ maxWidth: '100px' }} />
+                    <img src={`https://transport-hub-tawny.vercel.app/uploads/parcel/${item.picture}`} alt="Picture" style={{ maxWidth: '100px' }} />
                   </td>
-                  <td><img src={`http://localhost:5000/uploads/parcel/${item.drivingLicense}`} alt="Picture" style={{ maxWidth: '100px' }} /></td>
-                  <td><img src={`http://localhost:5000/uploads/parcel/${item.vehiclePapers}`} alt="Picture" style={{ maxWidth: '100px' }} /></td>
+                  <td><img src={`https://transport-hub-tawny.vercel.app/uploads/parcel/${item.drivingLicense}`} alt="Picture" style={{ maxWidth: '100px' }} /></td>
+                  <td><img src={`https://transport-hub-tawny.vercel.app/uploads/parcel/${item.vehiclePapers}`} alt="Picture" style={{ maxWidth: '100px' }} /></td>
                   <td>{item.referenceNumber}</td>
                   <td>
                   <div className="d-flex gap-2">

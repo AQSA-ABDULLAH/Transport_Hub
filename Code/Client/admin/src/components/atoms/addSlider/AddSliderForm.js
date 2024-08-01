@@ -54,7 +54,7 @@ const AddSliderForm = () => {
 
 
     try {
-      const response = await axios.post("http://localhost:5000/api/user/create-slider", formData, {
+      const response = await axios.post("https://transport-hub-tawny.vercel.app/api/user/create-slider", formData, {
           headers: { 'Authorization': localStorage.getItem('token') }
       });
 

@@ -36,7 +36,7 @@ const PickupBoyForm = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/register', data);
+      const response = await axios.post('https://transport-hub-tawny.vercel.app/register', data);
 
       console.log(response.data);
 

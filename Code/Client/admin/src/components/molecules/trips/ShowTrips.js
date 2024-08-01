@@ -23,7 +23,7 @@ const ShowTrips = () => {
     const fetchData = async () => {
       try {
         console.log('Fetching data for category:', category);
-        const response = await axios.get('http://localhost:5000/api/trips/TripPackages', {
+        const response = await axios.get('https://transport-hub-tawny.vercel.app/api/trips/TripPackages', {
           params: { category },
         });
         console.log('Response:', response.data);
@@ -58,7 +58,7 @@ const ShowTrips = () => {
     })
       .then((result) => {
         if (result.isConfirmed) {
-          axios.delete(`http://localhost:5000/api/trips/deletePackage/${id}`)
+          axios.delete(`https://transport-hub-tawny.vercel.app/api/trips/deletePackage/${id}`)
             .then(res => {
               Swal.fire(
                 'Trip Deleted!',
@@ -66,7 +66,7 @@ const ShowTrips = () => {
                 'success'
               );
               if (res.status === 200) {
-                axios.get("http://localhost:5000/api/trips/TripPackages", {
+                axios.get("https://transport-hub-tawny.vercel.app/api/trips/TripPackages", {
                   params: { category },
                 })
                   .then(res => {
@@ -83,7 +83,7 @@ const ShowTrips = () => {
             });
         }
       });
-    //   const response = await axi-os.delete(`http://localhost:5000/api/trips/deletePackage/${id}`);
+    //   const response = await axi-os.delete(`https://transport-hub-tawny.vercel.app/api/trips/deletePackage/${id}`);
     //   if (response.status === 200) {
     //     // Successfully deleted on the server, now update the local state to reflect the change
     //     Swal.fire(

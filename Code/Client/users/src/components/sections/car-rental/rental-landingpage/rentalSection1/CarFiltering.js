@@ -31,7 +31,7 @@ const CarFiltering = () => {
   }, [pickupLocation, dropLocation, pickupDate, pickupTime, dropDate, dropTime, totalDays]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/zone/get-zone")
+    axios.get("https://transport-hub-tawny.vercel.app/api/zone/get-zone")
       .then(res => {
         console.log(res.data);
         setProduct(res.data.data);

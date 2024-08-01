@@ -35,7 +35,7 @@ export default function Canceled() {
 
     // GET CAR DATA
     useEffect(() => {
-        axios.get("http://localhost:5000/api/rental-booking/get-book-rental")
+        axios.get("https://transport-hub-tawny.vercel.app/api/rental-booking/get-book-rental")
             .then(res => {
                 console.log(res.data);
                 const rentalBooking = res.data.data.filter(item => item.status === "cancel");

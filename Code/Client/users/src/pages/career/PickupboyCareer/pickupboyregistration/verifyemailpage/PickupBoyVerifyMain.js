@@ -27,7 +27,7 @@ export default function PickupBoyVerifyMail() {
         console.log(email)
         try {
             
-            const response = await fetch('http://localhost:5000/verify-otp', {
+            const response = await fetch('https://transport-hub-tawny.vercel.app/verify-otp', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

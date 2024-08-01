@@ -54,7 +54,7 @@ const Showpickupboy = ({pickupBoy}) => {
                   <td><img src={pickupBoy.drivingLicense} alt="" style={{ maxWidth: '100px' }} /></td>
                   <td><img src={pickupBoy.vehiclePapers} alt="" style={{ maxWidth: '100px' }} /></td>
                   <td>{pickupBoy.referenceNumber}</td>
-                  {/* `http://localhost:5000/uploads/parcel/${item.vehiclePapers}` */}
+                  {/* `https://transport-hub-tawny.vercel.app/uploads/parcel/${item.vehiclePapers}` */}
                   <td>
                   <div className="d-flex gap-2">
                     <button className="btn btn-success" onClick={() => handleAccept(pickupBoy._id)}>

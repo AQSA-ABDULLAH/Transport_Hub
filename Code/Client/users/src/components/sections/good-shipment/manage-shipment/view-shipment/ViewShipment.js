@@ -35,7 +35,7 @@ export default function ViewShipment() {
 
 
         // Send combined data to server
-        axios.post('http://localhost:5000/api/shipment/book-shipment', formData)
+        axios.post('https://transport-hub-tawny.vercel.app/api/shipment/book-shipment', formData)
             .then(response => {
                 console.log('Data sent successfully:', response.data);
                 console.log(formData);
@@ -83,7 +83,7 @@ export default function ViewShipment() {
 
 
         // Send combined data to server
-        axios.post('http://localhost:5000/api/shipment/book-shipment', formData)
+        axios.post('https://transport-hub-tawny.vercel.app/api/shipment/book-shipment', formData)
             .then(response => {
                 console.log('Data sent successfully:', response.data);
                 console.log(formData);

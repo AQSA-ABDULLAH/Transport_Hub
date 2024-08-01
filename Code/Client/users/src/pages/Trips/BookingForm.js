@@ -114,7 +114,7 @@ const BookingForm = () => {
       console.log("Data to be sent:", data); // Log data object before sending
   
       // Send data to the backend
-      // await axios.post('http://localhost:5000/api/trips/submit-a-new-trip-booking-form', data, {
+      // await axios.post('https://transport-hub-tawny.vercel.app/api/trips/submit-a-new-trip-booking-form', data, {
       //   headers: { 'Content-Type': 'application/json' }
       // });
   

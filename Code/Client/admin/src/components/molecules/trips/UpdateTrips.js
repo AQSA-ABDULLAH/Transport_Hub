@@ -40,7 +40,7 @@ const UpdateTrips = ({ onClose, tripId }) => {
     // Fetch trip details based on tripId and populate the form
     const fetchTripDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/trips/tripDetails/${tripId}`);
+        const response = await axios.get(`https://transport-hub-tawny.vercel.app/api/trips/tripDetails/${tripId}`);
         const tripDetails = response.data.data;
         if (tripDetails.images) {
           setImages(tripDetails.images);
@@ -111,7 +111,7 @@ const UpdateTrips = ({ onClose, tripId }) => {
     updatedFormData.append('BookingCloseDate', formData.BookingCloseDate);
 
     try {
-      const response = await axios.put(`http://localhost:5000/api/trips/updatePackage/${tripId}`, formData);
+      const response = await axios.put(`https://transport-hub-tawny.vercel.app/api/trips/updatePackage/${tripId}`, formData);
 
       if (response.data.status === "success") {
         Swal.fire(
@@ -120,7 +120,7 @@ const UpdateTrips = ({ onClose, tripId }) => {
           'success'
         );
         onClose();
-        const response = await axios.get('http://localhost:5000/api/trips/TripPackages', {
+        const response = await axios.get('https://transport-hub-tawny.vercel.app/api/trips/TripPackages', {
           params: { category },
         });
         console.log('Response:', response.data);
