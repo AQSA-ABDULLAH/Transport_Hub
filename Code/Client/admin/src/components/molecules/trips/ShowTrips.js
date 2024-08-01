@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import UpdateTrips from './UpdateTrips';
 import './showTrips.css';
 import { FaTrash, FaEdit } from "react-icons/fa";
@@ -41,9 +40,6 @@ const ShowTrips = () => {
     setCategory(event.target.value);
     console.log('Selected category:', event.target.value);
   };
-
-  const filteredFields = ['_id', 'createdAt', 'updatedAt', '__v'];
-
 
   const handleDelete = async (id) => {
 

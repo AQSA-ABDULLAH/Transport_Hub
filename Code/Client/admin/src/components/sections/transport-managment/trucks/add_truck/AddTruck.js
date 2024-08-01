@@ -17,7 +17,6 @@ const AddTruck = ({ onClose }) => {
     const [dimensions, setDimensions] = useState('');
     const [zone, setZone] = useState('Select zone');
     const [price, setPrice] = useState('');
-    const [mileLimit, setMileLimit] = useState('');
     const [imgperc, setImagePrec] = useState("");
     const [imageUrl, setImageUrl] = useState("");
     const [error, setError] = useState(false);

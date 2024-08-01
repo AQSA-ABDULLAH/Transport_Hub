@@ -11,7 +11,6 @@ const initialState = {
 const EditUser = () => {
     const [data, setData] = useState(initialState);
     const { name, email, info, contact } = data;
-    const [file, setFile] = useState(null);
     const [errors, setErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
 

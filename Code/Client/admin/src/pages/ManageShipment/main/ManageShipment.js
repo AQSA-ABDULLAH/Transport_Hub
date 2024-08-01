@@ -30,7 +30,7 @@ const ManageShipment = () => {
     else {
       navigate(`?tab=Cars`);
     }
-  }, [location]);
+  }, [location, navigate]);
 
   const handleTabClick = (index) => {
     setIsActive(index);

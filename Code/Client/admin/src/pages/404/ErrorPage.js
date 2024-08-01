@@ -21,14 +21,13 @@ function ErrorPage() {
         <button
           class="btn mx-2 text-light fw-bold"
           href="#"
-          role="button"
           style={{ backgroundColor: "rgb(126 34 206)" }}
         >
           Go to Home
         </button>
         <a
           class="btn btn-outline-secondary mx-2 px-4 fw-bold"
-          href="#"
+          href="/"
           role="button"
         >
           Cancel

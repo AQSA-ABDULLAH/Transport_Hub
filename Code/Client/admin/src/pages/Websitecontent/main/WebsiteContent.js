@@ -31,7 +31,7 @@ const WebsiteContent = () => {
     else {
       navigate(`?tab=About`);
     }
-  }, [location]);
+  }, [location, navigate]);
 
   const handleTabClick = (index) => {
     setIsActive(index);

@@ -24,7 +24,7 @@ const ManageTrips = () => {
     else {
       navigate(`?tab=ManageTrips`);
     }
-  }, [location]);
+  }, [location, navigate]);
 
   return (
     <div className={styles.container}>

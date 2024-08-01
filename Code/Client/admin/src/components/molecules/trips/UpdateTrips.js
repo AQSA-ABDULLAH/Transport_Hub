@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Button from '../../atoms/buttons/Button';
-import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import style from './addTrip.module.css';
 import DatePicker from 'react-datepicker';
@@ -30,7 +29,7 @@ const UpdateTrips = ({ onClose, tripId }) => {
     Checkout: '',
     BookingCloseDate: '',
   });
-  const { category, tripTitle, location, description, extraInformation, price, noOfGuest, noOfDays, noOfNights, departureCity, startDate, endDate, Ages, CheckIn, Checkout, BookingCloseDate } = formData;
+  const { category, price, noOfGuest, noOfDays, noOfNights,  startDate, endDate, Ages, } = formData;
 
   const [imageFile, setImageFile] = useState(null);
   const [images, setImages] = useState(null);
@@ -73,20 +72,8 @@ const UpdateTrips = ({ onClose, tripId }) => {
       }
     })
   };
-
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImageFile(file);
-    }
-  };
-
-
-
   const handleSubmit = async () => {
 
-    const errors = {};
     if (isNaN(price || Ages || noOfGuest || noOfDays || noOfNights)) {
       setErrors(true);
       return false;
@@ -193,7 +180,7 @@ const UpdateTrips = ({ onClose, tripId }) => {
           <div>
             {images ? (
               <div>
-                <img src={images} alt="Image" style={{ maxWidth: '200px', maxHeight: '200px' }} />
+                <img src={images} alt="" style={{ maxWidth: '200px', maxHeight: '200px' }} />
               </div>
             ) : (
               <div className={style.image_container}>

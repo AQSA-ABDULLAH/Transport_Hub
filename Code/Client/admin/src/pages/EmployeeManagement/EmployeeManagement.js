@@ -28,7 +28,7 @@ const EmployeeManagement= () => {
       else {
         navigate(`?tab=manageEmployees`);
       }
-    }, [location]);
+    }, [location, navigate]);
   
     const handleTabClick = (index) => {
       setIsActive(index);
