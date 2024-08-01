@@ -243,7 +243,7 @@ const AddTrip = ({ onClose }) => {
             console.log(err, 'err');
             if (err.response && err.response.status === 400) {
               // Validation error(s) from the server
-              err.response.data.errors;
+              console.log(err.response.data.errors);
             
           
             } else {
