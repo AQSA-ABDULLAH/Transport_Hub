@@ -23,7 +23,7 @@ const ParcelList = () => {
     else {
       navigate(`?tab=ManageParcels`);
     }
-  }, [location, navigate, setIsActive]);
+  }, [location, navigate]);
 
 
   return (
