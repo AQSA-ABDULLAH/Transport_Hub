@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { Button, Form, Grid, Loader } from "semantic-ui-react";
-import { storage } from "../../../firebase";
-import { useParams, useNavigate } from "react-router-dom";
 
 const initialState = {
     name: "",
@@ -14,7 +12,6 @@ const EditUser = () => {
     const [data, setData] = useState(initialState);
     const { name, email, info, contact } = data;
     const [file, setFile] = useState(null);
-    const [progress, setProgress] = useState(null);
     const [errors, setErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
 
