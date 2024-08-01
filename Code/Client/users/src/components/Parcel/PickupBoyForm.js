@@ -57,7 +57,7 @@ const PickupBoyForm = () => {
     // }
 
     try {
-      const url="http://localhost:5000/register"
+      const url="https://transport-hub-tawny.vercel.app/register"
       const response = await axios.post(url, formData);
       console.log(response.data);
       // Show a success alert or handle the success state as needed

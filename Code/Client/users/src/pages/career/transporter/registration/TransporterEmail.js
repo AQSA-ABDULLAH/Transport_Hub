@@ -14,7 +14,7 @@ export default function DriverEmail() {
 
 
     try {
-      axios.post("http://localhost:5000/api/transporter/registration", { email: email })
+      axios.post("https://transport-hub-tawny.vercel.app/api/transporter/registration", { email: email })
           console.log(email);
           navigate("/verify_transporter_mail");
 

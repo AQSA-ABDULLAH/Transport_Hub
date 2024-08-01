@@ -55,7 +55,7 @@ export default function DriverApplication() {
             cnicFrontSide, cnicBackSide, drivingLicense);
 
         // Send combined data to server
-        axios.post(`http://localhost:5000/api/driver/updateDriver/${driverEmail}`, combinedData)
+        axios.post(`https://transport-hub-tawny.vercel.app/api/driver/updateDriver/${driverEmail}`, combinedData)
             .then(response => {
                 console.log('Data sent successfully:', response.data);
                 console.log(combinedData)

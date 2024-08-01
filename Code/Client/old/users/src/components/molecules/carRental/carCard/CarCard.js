@@ -14,7 +14,7 @@ const CarCard = () => {
     // const [filter, setFilter] = useState('');
 
     useEffect(() => {
-        axios.get("http://localhost:5000/api/cars/getCars")
+        axios.get("https://transport-hub-tawny.vercel.app/api/cars/getCars")
             .then(res => {
                 console.log(res.data)
                 setProduct(res.data.data)
@@ -41,8 +41,8 @@ const CarCard = () => {
                             <div className={style.singleOffer}>
                                 <h2 className={style.secTitle}>{item.carTitle}</h2>
                                 <div className={style.destImage}>
-                                    <img src={`http://localhost:5000/${item.carImage}`} alt="car" />
-                                    {console.log(`http://localhost:5000/${item.carImage}`)}
+                                    <img src={`https://transport-hub-tawny.vercel.app/${item.carImage}`} alt="car" />
+                                    {console.log(`https://transport-hub-tawny.vercel.app/${item.carImage}`)}
                                 </div>
 
                                 <div className={style.offerBody}>

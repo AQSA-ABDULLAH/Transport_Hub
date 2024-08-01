@@ -13,7 +13,7 @@ const TripsMain = () => {
     const fetchData = async () => {
       try {
         console.log('Fetching data for category:', category);
-        const response = await axios.get('http://localhost:5000/api/trips/TripPackages', {
+        const response = await axios.get('https://transport-hub-tawny.vercel.app/api/trips/TripPackages', {
           params: { category },
         });
         console.log('Response:', response.data);

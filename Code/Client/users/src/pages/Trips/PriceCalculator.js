@@ -72,7 +72,7 @@ const PriceCalculator = ({ handleClose, tripId }) => {
     useEffect(() => {
     const fetchTripDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/trips/tripDetails/${tripId}`);
+        const response = await axios.get(`https://transport-hub-tawny.vercel.app/api/trips/tripDetails/${tripId}`);
         const tripDetails = response.data.data;
         const tripTitle = tripDetails.tripTitle;
         const description = tripDetails.description;

@@ -24,7 +24,7 @@ const ZoneTab = () => {
 
         try {
 
-            const response = await axios.post("http://localhost:5000/api/zone/add_zone", {
+            const response = await axios.post("https://transport-hub-tawny.vercel.app/api/zone/add_zone", {
                 zone
             }, {
                 headers: { 'Authorization': localStorage.getItem('token') }

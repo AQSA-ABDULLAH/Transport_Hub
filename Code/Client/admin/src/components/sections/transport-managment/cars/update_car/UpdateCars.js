@@ -17,7 +17,7 @@
 
 //     // GET CAR DATA BY ID
 //     const getCarData = async () => {
-//         axios.get(`http://localhost:5000/api/cars/updateCar/${params.id}`)
+//         axios.get(`https://transport-hub-tawny.vercel.app/api/cars/updateCar/${params.id}`)
 //             .then(res => {
 //                 console.log(res.data);
 //                 setData(res.data.data);

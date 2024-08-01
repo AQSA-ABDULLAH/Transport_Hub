@@ -31,7 +31,7 @@ export default function CanceledShipments() {
 
   // GET CAR DATA
   useEffect(() => {
-    axios.get("http://localhost:5000/api/shipment/get-shipment")
+    axios.get("https://transport-hub-tawny.vercel.app/api/shipment/get-shipment")
       .then(res => {
         console.log(res.data);
         // Filter shipments with status "booked by admin"

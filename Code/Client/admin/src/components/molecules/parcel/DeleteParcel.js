@@ -3,7 +3,7 @@ import axios from 'axios';
 const DeleteParcel = ({ parcelId, setParcelForms }) => {
     const handleDelete = async (id) => {
         try {
-          await axios.delete(`http://localhost:5000/parcelforms/${parcelId}`); // Replace with your API endpoint
+          await axios.delete(`https://transport-hub-tawny.vercel.app/parcelforms/${parcelId}`); // Replace with your API endpoint
           // Update the state to reflect the deleted parcel form
           setParcelForms((prevParcelForms) => prevParcelForms.filter((parcel) => parcel._id !== parcelId));
           console.log('Parcel form deleted successfully');

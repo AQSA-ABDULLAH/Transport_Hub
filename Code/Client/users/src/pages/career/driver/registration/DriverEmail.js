@@ -26,7 +26,7 @@ export default function DriverEmail() {
     localStorage.setItem('driverEmail', JSON.stringify(formData));
   
     try {
-      const response = await axios.post("http://localhost:5000/api/driver/registration", { driverEmail: email });
+      const response = await axios.post("https://transport-hub-tawny.vercel.app/api/driver/registration", { driverEmail: email });
       if (response.data.status === "success") {
         navigate('/driver_verify_mail');
       } else {

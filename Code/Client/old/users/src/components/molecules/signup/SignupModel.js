@@ -25,7 +25,7 @@ function SignupModal() {
 
         try {
             const formData = { fullName, email, phoneNumber, password, city, address };
-            const response = await axios.post("http://localhost:5000/api/user/user_signUp", formData);
+            const response = await axios.post("https://transport-hub-tawny.vercel.app/api/user/user_signUp", formData);
 
             // Assuming the server returns a success message in the response
             console.log('Data submitted successfully:', response.data.message);

@@ -25,7 +25,7 @@ export default function VerifyTransporterEmail() {
         navigate('/transporter_name_section');
       
         // try {
-        //   const response = await axios.post("http://localhost:5000/api/transporter/verify-otp", formData);
+        //   const response = await axios.post("https://transport-hub-tawny.vercel.app/api/transporter/verify-otp", formData);
         //   if (response.data.status === "success") {
         //     navigate('/transporter_name_section');
         // } else {

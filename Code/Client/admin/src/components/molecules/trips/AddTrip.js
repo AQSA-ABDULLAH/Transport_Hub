@@ -228,7 +228,7 @@ const AddTrip = ({ onClose }) => {
       
         // Proceed with data submission
         axios
-          .post('http://localhost:5000/api/trips/addTrip', formData, {
+          .post('https://transport-hub-tawny.vercel.app/api/trips/addTrip', formData, {
             headers: { 'Content-Type': 'multipart/form-data' },
           }).then((res) => {
             console.log(res.data);

@@ -7,7 +7,7 @@ const ShowParcels = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/getParcels'); 
+        const response = await axios.get('https://transport-hub-tawny.vercel.app/getParcels'); 
         setParcelForms(response.data);
       } catch (error) {
         console.error('Error fetching parcel forms', error);

@@ -28,7 +28,7 @@ const BidShipment = ({ onClose, shipmentId }) => {
             ]
         };
 
-        axios.patch(`http://localhost:5000/api/shipment/update-shipment/${shipmentId}`, bidData)
+        axios.patch(`https://transport-hub-tawny.vercel.app/api/shipment/update-shipment/${shipmentId}`, bidData)
             .then(response => {
                 console.log('Data sent successfully:', response.data);
                 console.log(formData)

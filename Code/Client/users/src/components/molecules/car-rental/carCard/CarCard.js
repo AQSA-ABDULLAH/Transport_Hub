@@ -15,7 +15,7 @@ function CarCard() {
     const [totalDays, setTotalDays] = useState(1);
 
     useEffect(() => {
-        axios.get("http://localhost:5000/api/cars/getCars")
+        axios.get("https://transport-hub-tawny.vercel.app/api/cars/getCars")
             .then(res => {
                 console.log(res.data);
                 setProduct(res.data.data);
@@ -140,7 +140,7 @@ export default CarCard;
 //             bags
 //         };
 
-//         axios.get("http://localhost:5000/api/cars/getCars", { params })
+//         axios.get("https://transport-hub-tawny.vercel.app/api/cars/getCars", { params })
 //             .then(res => {
 //                 console.log(res.data);
 //                 setProduct(res.data.data);

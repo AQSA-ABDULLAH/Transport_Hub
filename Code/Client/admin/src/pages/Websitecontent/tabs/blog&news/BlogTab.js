@@ -73,7 +73,7 @@ const BlogTab = () => {
         formData.append('content', content);
 
         try {
-            const response = await axios.post("http://localhost:5000/api/blogs/create-blog", formData, {
+            const response = await axios.post("https://transport-hub-tawny.vercel.app/api/blogs/create-blog", formData, {
                 headers: { 'Authorization': localStorage.getItem('token') }
             });
 

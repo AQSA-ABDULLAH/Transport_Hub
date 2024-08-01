@@ -11,7 +11,7 @@ const TripDetails = () => {
     useEffect(() => {
         const fetchTripDetails = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/trips/tripDetails/${params.tripId}`);
+                const response = await axios.get(`https://transport-hub-tawny.vercel.app/api/trips/tripDetails/${params.tripId}`);
                 const tripDetails = response.data.data;
                 console.log('Trip Details:', tripDetails);
 

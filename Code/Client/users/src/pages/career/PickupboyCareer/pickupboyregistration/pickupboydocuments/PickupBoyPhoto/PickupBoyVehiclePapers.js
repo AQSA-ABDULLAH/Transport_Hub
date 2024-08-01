@@ -91,7 +91,7 @@ export default function PickupBoyVehiclePapers() {
             drivingLicense,
             vehiclePapers,
         };
-        fetch('http://localhost:5000/api/submitFormData', {
+        fetch('https://transport-hub-tawny.vercel.app/api/submitFormData', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

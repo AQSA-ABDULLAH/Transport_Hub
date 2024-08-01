@@ -15,7 +15,7 @@ function ViewRental() {
             const parsedRentalData = JSON.parse(storedRentalData);
             setRentalData(parsedRentalData);
             const car_id = parsedRentalData.car_id;
-            axios.get(`http://localhost:5000/api/cars/getCar/${car_id}`)
+            axios.get(`https://transport-hub-tawny.vercel.app/api/cars/getCar/${car_id}`)
                 .then(res => {
                     console.log(res.data);
                     setProduct(res.data.data);

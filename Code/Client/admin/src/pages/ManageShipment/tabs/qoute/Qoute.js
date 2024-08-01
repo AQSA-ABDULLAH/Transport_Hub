@@ -37,7 +37,7 @@ export default function Qoute() {
 
   // GET CAR DATA
   useEffect(() => {
-    axios.get("http://localhost:5000/api/shipment/get-shipment")
+    axios.get("https://transport-hub-tawny.vercel.app/api/shipment/get-shipment")
       .then(res => {
         console.log(res.data);
         // Filter shipments with status "booked by admin"
@@ -63,7 +63,7 @@ export default function Qoute() {
     })
     .then((result) => {
       if (result.isConfirmed) {
-        axios.patch(`http://localhost:5000/api/shipment/update-shipment/${id}`, { status: "canceled" })
+        axios.patch(`https://transport-hub-tawny.vercel.app/api/shipment/update-shipment/${id}`, { status: "canceled" })
           .then(res => {
             Swal.fire(
               'Canceled!',

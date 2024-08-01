@@ -12,7 +12,7 @@ export default function ViewCars() {
 
   // GET CAR DATA
   useEffect(() => {
-    axios.get("http://localhost:5000/api/cars/getCars")
+    axios.get("https://transport-hub-tawny.vercel.app/api/cars/getCars")
       .then(res => {
         console.log(res.data);
         setProduct(res.data.data);
@@ -37,7 +37,7 @@ export default function ViewCars() {
 
       .then((result) => {
         if (result.isConfirmed) {
-          axios.delete(`http://localhost:5000/api/cars/deleteCar/${id}`)
+          axios.delete(`https://transport-hub-tawny.vercel.app/api/cars/deleteCar/${id}`)
             .then(res => {
               Swal.fire(
                 'Delete Car!',
@@ -45,7 +45,7 @@ export default function ViewCars() {
                 'success'
               );
               if (res.status === 200) {
-                axios.get("http://localhost:5000/api/cars/getCars")
+                axios.get("https://transport-hub-tawny.vercel.app/api/cars/getCars")
                   .then(res => {
                     console.log(res.data);
                     setProduct(res.data.data);

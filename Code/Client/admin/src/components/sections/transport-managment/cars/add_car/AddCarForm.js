@@ -30,7 +30,7 @@ const AddCarForm = ({ onClose }) => {
 
 
     useEffect(() => {
-        axios.get("http://localhost:5000/api/zone/get-zone")
+        axios.get("https://transport-hub-tawny.vercel.app/api/zone/get-zone")
             .then(res => {
                 console.log(res.data);
                 setProduct(res.data.data);
@@ -104,7 +104,7 @@ const AddCarForm = ({ onClose }) => {
 
 
         try {
-            const response = await axios.post("http://localhost:5000/api/cars/addCar", formData, {
+            const response = await axios.post("https://transport-hub-tawny.vercel.app/api/cars/addCar", formData, {
                 headers: { 'Authorization': localStorage.getItem('token') }
             });
 

@@ -6,7 +6,7 @@ export default function ZoneList() {
     const [product, setProduct] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:5000/api/zone/get-zone")
+        axios.get("https://transport-hub-tawny.vercel.app/api/zone/get-zone")
             .then(res => {
                 console.log(res.data);
                 setProduct(res.data.data);

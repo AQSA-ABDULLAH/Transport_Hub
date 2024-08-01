@@ -49,7 +49,7 @@ let name,value;
         selectedCompany
       } = formValues;
       const rate = weight * 100;
-      const response = await axios.post("http://localhost:5000/create", {pickupLocation,
+      const response = await axios.post("https://transport-hub-tawny.vercel.app/create", {pickupLocation,
       weight,
       parcelType,
       phone,

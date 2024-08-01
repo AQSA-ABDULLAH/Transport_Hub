@@ -35,7 +35,7 @@ export default function Upcomming() {
 
     // GET CAR DATA
     useEffect(() => {
-        axios.get("http://localhost:5000/api/rental-booking/get-book-rental")
+        axios.get("https://transport-hub-tawny.vercel.app/api/rental-booking/get-book-rental")
             .then(res => {
                 console.log(res.data);
                 const rentalBooking = res.data.data.filter(item => item.status === "pending");
@@ -62,7 +62,7 @@ export default function Upcomming() {
     // })
     // .then((result) => {
     //   if (result.isConfirmed) {
-    //     axios.patch(`http://localhost:5000/api/shipment/update-shipment/${id}`, { status: "canceled" })
+    //     axios.patch(`https://transport-hub-tawny.vercel.app/api/shipment/update-shipment/${id}`, { status: "canceled" })
     //       .then(res => {
     //         Swal.fire(
     //           'Canceled!',
