@@ -9,7 +9,7 @@ const App = () => {
   return (
     <>
     <Provider store={store}>
-      <Routes basename="/netlify.app">
+      <Routes >
         <Route path="*" element={<GlobalRoute />} />
       </Routes>
       </Provider>
